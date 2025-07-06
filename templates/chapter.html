@@ -50,6 +50,17 @@
                             {% endif %}
                         </div>
                         
+                        <!-- Master Prompt input -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-secondary text-white">
+                                <h3 class="h5 mb-0">Master Prompt (Optional)</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="small text-muted">Add a master prompt here to influence the entire chapter generation. This could be a style guide, a specific tone, or high-level instructions.</p>
+                                <textarea class="form-control" id="masterPrompt" name="master_prompt" rows="4">{{ master_prompt }}</textarea>
+                            </div>
+                        </div>
+                        
                         <!-- Chat interface for chapter development -->
                         <div class="card">
                             <div class="card-header bg-info text-white">
@@ -203,11 +214,14 @@ $(document).ready(function() {
                         .join("\n")
             : "";
         
+        const masterPrompt = $('#masterPrompt').val();
+        
         $.ajax({
             type: 'POST',
             url: '/chapter/{{ chapter.chapter_number }}',
             data: {
-                additional_context: additionalContext
+                additional_context: additionalContext,
+                master_prompt: masterPrompt
             },
             success: function(response) {
                 $('#chapterContent').val(response.chapter_content);
@@ -290,6 +304,38 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+
+    // Save master prompt with debounce
+    const saveMasterPrompt = debounce(function() {
+        const masterPrompt = $('#masterPrompt').val();
+        $.ajax({
+            type: 'POST',
+            url: '/save_master_prompt',
+            data: {
+                master_prompt: masterPrompt
+            },
+            success: function() {
+                // Optional: show a success indicator
+                console.log('Master prompt saved.');
+            },
+            error: function() {
+                // Optional: show an error indicator
+                console.error('Error saving master prompt.');
+            }
+        });
+    }, 500); // 500ms delay
+
+    $('#masterPrompt').on('keyup', saveMasterPrompt);
 });
 </script>
-{% endblock %} 
+{% endblock %}

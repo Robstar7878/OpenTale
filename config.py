@@ -1,23 +1,27 @@
 """Configuration for the book generation system"""
 import os
 from typing import Dict, List
+from dotenv import load_dotenv
 
-def get_config(local_url: str = "http://localhost:1234/v1") -> Dict:
+load_dotenv()
+
+def get_config() -> Dict:
     """Get the configuration for the agents"""
     
     # Basic config for local LLM
     config_list = [{
-        'model': 'gemma-3-12b-it',
-        'base_url': local_url,
-        'api_key': "not-needed"
+        'model': os.getenv("MODEL", "google/gemini-2.5-flash"),
+        'base_url': os.getenv("BASE_URL", "https://openrouter.ai/api/v1"),
+        'api_key': os.getenv("API_KEY"),
     }]
 
     # Common configuration for all agents
     agent_config = {
-        "seed": 42,
-        "temperature": 0.7,
+        "seed": int(os.getenv("SEED", 42)),
+        "temperature": float(os.getenv("TEMPERATURE", 1.0)),
+        "top_p": float(os.getenv("TOP_P", 1.0)),
         "config_list": config_list,
-        "timeout": 600,
+        "timeout": int(os.getenv("TIMEOUT", 600)),
         "cache_seed": None
     }
     

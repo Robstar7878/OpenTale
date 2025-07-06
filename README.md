@@ -35,19 +35,25 @@ The application consists of:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ai-book-writer.git
-cd ai-book-writer
+git clone https://github.com/yourusername/OpenTale.git
+cd OpenTale
 ```
 
 2. Create a virtual environment:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
+```
+
+4. Create a `.env` file in the project root and add your secrets:
+```bash
+cp .env.example .env
+# Open .env and add your API_KEY and BASE_URL
 ```
 
 ## Usage
@@ -111,7 +117,7 @@ book_output/
 
 ## Configuration
 
-The system can be configured through `config.py` for the AI model settings and `prompts.py` for generation prompts.
+The system is configured through `config.py` for AI model settings and `prompts.py` for generation prompts. Secrets like `API_KEY` and `BASE_URL` are not stored in `config.py` but are loaded from a `.env` file in the project root.
 
 ## Contributing
 

@@ -95,6 +95,8 @@ Write engaging, immersive prose that advances the story while staying true to th
 
 # Chapter generation prompt
 CHAPTER_GENERATION_PROMPT = """
+{master_prompt}
+
 Generate Chapter {chapter_number}: {chapter_title}
 
 Based on:

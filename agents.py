@@ -2,6 +2,20 @@
 from openai import OpenAI
 from typing import Dict, List, Optional
 
+def check_openai_connection(agent_config: Dict):
+    """Checks if the OpenAI API connection is valid."""
+    try:
+        client = OpenAI(
+            base_url=agent_config["config_list"][0]["base_url"],
+            api_key=agent_config["config_list"][0]["api_key"]
+        )
+        # Make a cheap call to list models
+        client.models.list()
+        print("✅ OpenAI API connection successful.")
+    except Exception as e:
+        print(f"❌ OpenAI API connection failed. Please check your API key and configuration. Error: {e}")
+
+
 class BookAgents:
     def __init__(self, agent_config: Dict, outline: Optional[List[Dict]] = None):
         """Initialize with book outline context"""

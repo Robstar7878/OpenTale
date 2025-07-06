@@ -5,7 +5,7 @@ import os
 import json
 from flask import Flask, render_template, request, jsonify, session, Response, stream_with_context, flash, redirect
 from config import get_config
-from agents import BookAgents
+from agents import BookAgents, check_openai_connection
 import prompts
 import re
 
@@ -351,6 +351,7 @@ def chapter(chapter_number):
     if request.method == 'POST':
         # Get any additional context from the chat interface
         additional_context = request.form.get('additional_context', '')
+        master_prompt = request.form.get('master_prompt', '')
         
         # Generate chapter content
         world_theme = session.get('world_theme', '')
@@ -392,6 +393,7 @@ def chapter(chapter_number):
         chapter_content = book_agents.generate_content(
             "writer",
             prompts.CHAPTER_GENERATION_PROMPT.format(
+                master_prompt=master_prompt,
                 chapter_number=chapter_number,
                 chapter_title=chapter_data['title'],
                 chapter_outline=chapter_prompt,
@@ -416,11 +418,17 @@ def chapter(chapter_number):
     if os.path.exists(chapter_path):
         with open(chapter_path, 'r') as f:
             chapter_content = f.read().strip()
+
+    master_prompt = ""
+    if os.path.exists('book_output/master_prompt.txt'):
+        with open('book_output/master_prompt.txt', 'r') as f:
+            master_prompt = f.read().strip()
     
-    return render_template('chapter.html', 
+    return render_template('chapter.html',
                            chapter=chapter_data,
                            chapter_content=chapter_content,
-                           chapters=chapters)
+                           chapters=chapters,
+                           master_prompt=master_prompt)
 
 @app.route('/save_chapter/<int:chapter_number>', methods=['POST'])
 def save_chapter(chapter_number):
@@ -435,6 +443,15 @@ def save_chapter(chapter_number):
         f.write(chapter_content)
     
     return jsonify({'success': True})
+
+@app.route('/save_master_prompt', methods=['POST'])
+def save_master_prompt():
+    """Save the master prompt to a file."""
+    master_prompt = request.form.get('master_prompt', '')
+    with open('book_output/master_prompt.txt', 'w') as f:
+        f.write(master_prompt)
+    return jsonify({'success': True})
+
 
 @app.route('/scene/<int:chapter_number>', methods=['GET', 'POST'])
 def scene(chapter_number):
@@ -970,4 +987,6 @@ def parse_outline_to_chapters(outline_content, num_chapters):
     return chapters
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    # Check OpenAI connection on startup
+    check_openai_connection(agent_config)
+    app.run(debug=True)
