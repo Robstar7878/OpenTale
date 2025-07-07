@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/"
+    },
+    {
+      "name": "Python: Test Web App GUI",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/web_app.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/"
+    }
+  ]
+}

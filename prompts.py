@@ -25,7 +25,7 @@ Based on the general topic: {topic}
 Create a brief overview of potential world elements for a book. Include:
 1. 2-3 potential time periods or settings that would work well
 2. 3-5 key elements that would make this world interesting and unique
-3. Brief suggestions for the atmosphere and tone 
+3. Brief suggestions for the atmosphere and tone
 4. Any potential conflicts or tensions that could exist in this world
 
 This is a preliminary summary to help guide the creation of a more detailed world setting.
@@ -139,4 +139,4 @@ Provide a comprehensive edit that:
 7. Ensures the chapter is at least 5000 words
 
 Return the complete edited chapter.
-""" 
+"""
