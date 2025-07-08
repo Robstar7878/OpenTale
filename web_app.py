@@ -6,7 +6,17 @@ import json
 import os
 import re
 
-from flask import Flask, Response, flash, jsonify, redirect, render_template, request, session, stream_with_context
+from flask import (
+    Flask,
+    Response,
+    flash,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    stream_with_context,
+)
 
 import prompts
 from agents import BookAgents, check_openai_connection
@@ -22,6 +32,67 @@ os.makedirs("book_output/chapters", exist_ok=True)
 agent_config = get_config()
 
 
+# Helper functions to read data from files
+def get_world_theme():
+    """Get world theme from file."""
+    if os.path.exists("book_output/world.txt"):
+        with open("book_output/world.txt", "r") as f:
+            return f.read().strip()
+    return ""
+
+
+def get_characters():
+    """Get characters from file."""
+    if os.path.exists("book_output/characters.txt"):
+        with open("book_output/characters.txt", "r") as f:
+            return f.read().strip()
+    return ""
+
+
+def get_outline():
+    """Get outline from file."""
+    if os.path.exists("book_output/outline.txt"):
+        with open("book_output/outline.txt", "r") as f:
+            return f.read().strip()
+    return ""
+
+
+def get_chapters():
+    """Get chapters from file."""
+    if os.path.exists("book_output/chapters.json"):
+        with open("book_output/chapters.json", "r") as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                return []
+    return []
+
+
+def get_master_prompt():
+    """Get master prompt from file."""
+    if os.path.exists("book_output/master_prompt.txt"):
+        with open("book_output/master_prompt.txt", "r", encoding="utf-8") as f:
+            return f.read().strip()
+    return ""
+
+
+def get_settings():
+    """Get settings from file."""
+    if os.path.exists("book_output/settings.json"):
+        with open("book_output/settings.json", "r", encoding="utf-8") as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                return {}
+    return {}
+
+
+def save_settings(settings):
+    """Save settings to file."""
+    with open("book_output/settings.json", "w", encoding="utf-8") as f:
+        json.dump(settings, f, indent=2)
+
+
 @app.route("/")
 def index():
     """Render the home page"""
@@ -32,13 +103,10 @@ def index():
 def world():
     """Display world theme or chat interface"""
     # GET request - show world page with existing theme if available
-    world_theme = ""
-    if os.path.exists("book_output/world.txt"):
-        with open("book_output/world.txt", "r") as f:
-            world_theme = f.read().strip()
-        session["world_theme"] = world_theme
-
-    return render_template("world.html", world_theme=world_theme, topic=session.get("topic", ""))
+    world_theme = get_world_theme()
+    return render_template(
+        "world.html", world_theme=world_theme, topic=session.get("topic", "")
+    )
 
 
 @app.route("/world_chat", methods=["POST"])
@@ -83,7 +151,9 @@ def world_chat_stream():
     book_agents.create_agents(topic, 0)
 
     # Generate streaming response
-    stream = book_agents.generate_chat_response_stream(chat_history, topic, user_message)
+    stream = book_agents.generate_chat_response_stream(
+        chat_history, topic, user_message
+    )
 
     def generate():
         # Send a heartbeat to establish the connection
@@ -107,7 +177,10 @@ def world_chat_stream():
     return Response(
         stream_with_context(generate()),
         mimetype="text/event-stream",
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},  # Disable buffering in Nginx if used
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },  # Disable buffering in Nginx if used
     )
 
 
@@ -129,7 +202,6 @@ def finalize_world():
     world_theme = world_theme.strip()
     world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
-    session["world_theme"] = world_theme
     with open("book_output/world.txt", "w") as f:
         f.write(world_theme)
 
@@ -177,7 +249,6 @@ def finalize_world_stream():
         world_theme = complete_content.strip()
         world_theme = re.sub(r"\n+", "\n", world_theme)
 
-        session["world_theme"] = world_theme
         with open("book_output/world.txt", "w") as f:
             f.write(world_theme)
 
@@ -202,9 +273,6 @@ def save_world():
     world_theme = world_theme.strip()
     world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
-    # Save to session
-    session["world_theme"] = world_theme
-
     # Save to file
     with open("book_output/world.txt", "w") as f:
         f.write(world_theme)
@@ -216,22 +284,20 @@ def save_world():
 def characters():
     """Display characters or character creation chat interface"""
     # GET request - show characters page with existing characters if available
-    characters_content = ""
-    if os.path.exists("book_output/characters.txt"):
-        with open("book_output/characters.txt", "r") as f:
-            characters_content = f.read().strip()
-        session["characters"] = characters_content
+    characters_content = get_characters()
 
-    # Load world theme from file if it exists
-    world_theme = ""
-    if os.path.exists("book_output/world.txt"):
-        with open("book_output/world.txt", "r") as f:
-            world_theme = f.read().strip()
-    # If not available from file, try from session
-    else:
-        world_theme = session.get("world_theme", "")
+    # Load world theme from file
+    world_theme = get_world_theme()
 
-    return render_template("characters.html", characters=characters_content, world_theme=world_theme)
+    settings = get_settings()
+    num_characters = settings.get("num_characters", 3)
+
+    return render_template(
+        "characters.html",
+        characters=characters_content,
+        world_theme=world_theme,
+        num_characters=num_characters,
+    )
 
 
 @app.route("/save_characters", methods=["POST"])
@@ -243,9 +309,6 @@ def save_characters():
 
     # Strip extra newlines at the beginning and normalize newlines
     characters_content = characters_content.strip()
-
-    # Save to session
-    session["characters"] = characters_content
 
     # Save to file
     with open("book_output/characters.txt", "w") as f:
@@ -284,8 +347,16 @@ def outline():
         with open("book_output/chapters.json", "r") as f:
             chapters = json.load(f)
 
+    settings = get_settings()
+    num_chapters = settings.get("num_chapters", 20)
+
     return render_template(
-        "outline.html", world_theme=world_theme, characters=characters, outline=outline_content, chapters=chapters
+        "outline.html",
+        world_theme=world_theme,
+        characters=characters,
+        outline=outline_content,
+        chapters=chapters,
+        num_chapters=num_chapters,
     )
 
 
@@ -306,8 +377,7 @@ def generate_chapters():
     # Parse the outline into chapters
     chapters = parse_outline_to_chapters(outline_content, num_chapters)
 
-    # Save chapters to session and file
-    session["chapters"] = chapters
+    # Save chapters to file
     with open("book_output/chapters.json", "w") as f:
         json.dump(chapters, f, indent=2)
 
@@ -324,9 +394,6 @@ def save_outline():
     # Strip extra newlines at the beginning and normalize newlines
     outline_content = outline_content.strip()
 
-    # Save to session
-    session["outline"] = outline_content
-
     # Save to file
     with open("book_output/outline.txt", "w") as f:
         f.write(outline_content)
@@ -335,8 +402,7 @@ def save_outline():
     num_chapters = int(request.form.get("num_chapters", 10))
     chapters = parse_outline_to_chapters(outline_content, num_chapters)
 
-    # Save chapters to session and file
-    session["chapters"] = chapters
+    # Save chapters to file
     with open("book_output/chapters.json", "w") as f:
         json.dump(chapters, f, indent=2)
 
@@ -346,13 +412,7 @@ def save_outline():
 @app.route("/chapter/<int:chapter_number>", methods=["GET", "POST"])
 def chapter(chapter_number):
     """Generate or display a specific chapter"""
-    chapters = session.get("chapters", [])
-
-    # If no chapters in session, try to load from file
-    if not chapters and os.path.exists("book_output/chapters.json"):
-        with open("book_output/chapters.json", "r") as f:
-            chapters = json.load(f)
-            session["chapters"] = chapters
+    chapters = get_chapters()
 
     # Check if chapter exists
     chapter_data = None
@@ -362,7 +422,9 @@ def chapter(chapter_number):
             break
 
     if not chapter_data:
-        return render_template("error.html", message=f"Chapter {chapter_number} not found")
+        return render_template(
+            "error.html", message=f"Chapter {chapter_number} not found"
+        )
 
     if request.method == "POST":
         # Get any additional context from the chat interface
@@ -370,23 +432,8 @@ def chapter(chapter_number):
         master_prompt = request.form.get("master_prompt", "")
 
         # Generate chapter content
-        world_theme = session.get("world_theme", "")
-        if not world_theme and os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-                session["world_theme"] = world_theme
-
-        characters = session.get("characters", "")
-        if not characters and os.path.exists("book_output/characters.txt"):
-            with open("book_output/characters.txt", "r") as f:
-                characters = f.read().strip()
-                session["characters"] = characters
-
-        outline = session.get("outline", "")
-        if not outline and os.path.exists("book_output/outline.txt"):
-            with open("book_output/outline.txt", "r") as f:
-                outline = f.read().strip()
-                session["outline"] = outline
+        world_theme = get_world_theme()
+        characters = get_characters()
 
         # Get previous chapters context
         previous_context = ""
@@ -396,7 +443,9 @@ def chapter(chapter_number):
                 with open(prev_chapter_path, "r") as f:
                     # Get a summary or the last few paragraphs
                     content = f.read()
-                    previous_context = content[-1000:] if len(content) > 1000 else content
+                    previous_context = (
+                        content[-1000:] if len(content) > 1000 else content
+                    )
 
         # Initialize agents for chapter generation
         book_agents = BookAgents(agent_config, chapters)
@@ -404,7 +453,9 @@ def chapter(chapter_number):
 
         # Add the additional context from chat to the chapter prompt
         chapter_prompt = (
-            f"{chapter_data['prompt']}\n\n{additional_context}" if additional_context else chapter_data["prompt"]
+            f"{chapter_data['prompt']}\n\n{additional_context}"
+            if additional_context
+            else chapter_data["prompt"]
         )
 
         # Generate the chapter
@@ -437,10 +488,7 @@ def chapter(chapter_number):
         with open(chapter_path, "r") as f:
             chapter_content = f.read().strip()
 
-    master_prompt = ""
-    if os.path.exists("book_output/master_prompt.txt"):
-        with open("book_output/master_prompt.txt", "r") as f:
-            master_prompt = f.read().strip()
+    master_prompt = get_master_prompt()
 
     return render_template(
         "chapter.html",
@@ -475,26 +523,36 @@ def save_master_prompt():
     return jsonify({"success": True})
 
 
+@app.route("/save_setting", methods=["POST"])
+def save_setting():
+    """Save a specific setting value."""
+    data = request.json
+    key = data.get("key")
+    value = data.get("value")
+
+    if not key or value is None:
+        return jsonify({"error": "Key or value missing"}), 400
+
+    settings = get_settings()
+    settings[key] = value
+    save_settings(settings)
+
+    return jsonify({"success": True})
+
+
 @app.route("/scene/<int:chapter_number>", methods=["GET", "POST"])
 def scene(chapter_number):
     """Generate a scene for a specific chapter"""
     # Load chapters data - similar logic to the chapter route
-    chapters = session.get("chapters", [])
-
-    # If no chapters in session, try to load from file
-    if not chapters and os.path.exists("book_output/outline.json"):
-        try:
-            with open("book_output/outline.json", "r") as f:
-                chapters = json.load(f)
-                session["chapters"] = chapters
-        except Exception as e:
-            print(f"Error loading outline.json: {e}")
+    chapters = get_chapters()
 
     # Print diagnostic info
     print(f"Number of chapters loaded: {len(chapters)}")
     print(f"Looking for chapter: {chapter_number}")
     if chapters:
-        print(f"Available chapter numbers: {[ch.get('chapter_number') for ch in chapters]}")
+        print(
+            f"Available chapter numbers: {[ch.get('chapter_number') for ch in chapters]}"
+        )
 
     # Find chapter data
     chapter_data = None
@@ -531,21 +589,8 @@ def scene(chapter_number):
         # scene_description = request.form.get("scene_description", "")
 
         # Generate the scene
-        world_theme = ""
-        characters = ""
-
-        # Load world and character data
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-        else:
-            world_theme = session.get("world_theme", "")
-
-        if os.path.exists("book_output/characters.txt"):
-            with open("book_output/characters.txt", "r") as f:
-                characters = f.read().strip()
-        else:
-            characters = session.get("characters", "")
+        world_theme = get_world_theme()
+        characters = get_characters()
 
         # Get previous context
         previous_context = ""
@@ -554,7 +599,9 @@ def scene(chapter_number):
             if os.path.exists(prev_chapter_path):
                 with open(prev_chapter_path, "r") as f:
                     content = f.read()
-                    previous_context = content[-1000:] if len(content) > 1000 else content
+                    previous_context = (
+                        content[-1000:] if len(content) > 1000 else content
+                    )
 
         # Initialize agents
         book_agents = BookAgents(agent_config, chapters)
@@ -592,7 +639,9 @@ def scene(chapter_number):
 
     if os.path.exists(scene_dir):
         scene_files = [f for f in os.listdir(scene_dir) if f.endswith(".txt")]
-        scene_files.sort(key=lambda f: int(f.split("_")[1].split(".")[0]))  # Sort by scene number
+        scene_files.sort(
+            key=lambda f: int(f.split("_")[1].split(".")[0])
+        )  # Sort by scene number
 
         for scene_file in scene_files:
             scene_path = os.path.join(scene_dir, scene_file)
@@ -608,7 +657,9 @@ def scene(chapter_number):
                 else:
                     title = f"Scene {scene_number}"
 
-                scenes.append({"number": scene_number, "title": title, "content": content})
+                scenes.append(
+                    {"number": scene_number, "title": title, "content": content}
+                )
 
     # Return the template with loaded scenes
     return render_template("scene.html", chapter=chapter_data, scenes=scenes)
@@ -620,23 +671,22 @@ def characters_chat():
     data = request.json
     user_message = data.get("message", "")
     chat_history = data.get("chat_history", [])
-    world_theme = session.get("world_theme", "")
+    world_theme = get_world_theme()
 
     # Ensure we have a world theme
     if not world_theme:
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-        else:
-            return jsonify({"error": "World theme not found. Please complete world building first."})
+        return jsonify(
+            {"error": "World theme not found. Please complete world building first."}
+        )
 
     # Initialize agents for character creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, 0)
 
     # Generate response using the direct chat method
-    ai_response = book_agents.generate_chat_response_characters(chat_history, world_theme, user_message)
+    ai_response = book_agents.generate_chat_response_characters(
+        chat_history, world_theme, user_message
+    )
 
     # Clean the response
     ai_response = ai_response.strip()
@@ -650,23 +700,22 @@ def characters_chat_stream():
     data = request.json
     user_message = data.get("message", "")
     chat_history = data.get("chat_history", [])
-    world_theme = session.get("world_theme", "")
+    world_theme = get_world_theme()
 
     # Ensure we have a world theme
     if not world_theme:
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-        else:
-            return jsonify({"error": "World theme not found. Please complete world building first."})
+        return jsonify(
+            {"error": "World theme not found. Please complete world building first."}
+        )
 
     # Initialize agents for character creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, 0)
 
     # Generate streaming response
-    stream = book_agents.generate_chat_response_characters_stream(chat_history, world_theme, user_message)
+    stream = book_agents.generate_chat_response_characters_stream(
+        chat_history, world_theme, user_message
+    )
 
     def generate():
         # Send a heartbeat to establish the connection
@@ -700,23 +749,22 @@ def finalize_characters_stream():
     data = request.json
     chat_history = data.get("chat_history", [])
     num_characters = data.get("num_characters", 3)
-    world_theme = session.get("world_theme", "")
+    world_theme = get_world_theme()
 
     # Ensure we have a world theme
     if not world_theme:
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-        else:
-            return jsonify({"error": "World theme not found. Please complete world building first."})
+        return jsonify(
+            {"error": "World theme not found. Please complete world building first."}
+        )
 
     # Initialize agents for character creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, 0)
 
     # Generate the final characters using streaming
-    stream = book_agents.generate_final_characters_stream(chat_history, world_theme, num_characters)
+    stream = book_agents.generate_final_characters_stream(
+        chat_history, world_theme, num_characters
+    )
 
     def generate():
         # Send a heartbeat to establish the connection
@@ -741,10 +789,9 @@ def finalize_characters_stream():
         # Combine all chunks for the complete content
         complete_content = "".join(collected_content)
 
-        # Clean and save characters to session and file once streaming is complete
+        # Clean and save characters to file once streaming is complete
         characters_content = complete_content.strip()
 
-        session["characters"] = characters_content
         with open("book_output/characters.txt", "w") as f:
             f.write(characters_content)
 
@@ -767,31 +814,25 @@ def outline_chat():
     num_chapters = data.get("num_chapters", 10)
 
     # Get world_theme and characters for context
-    world_theme = session.get("world_theme", "")
-    characters = session.get("characters", "")
+    world_theme = get_world_theme()
+    characters = get_characters()
 
     # Ensure we have world and characters
     if not world_theme or not characters:
-        # Try to load from files
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-
-        if os.path.exists("book_output/characters.txt"):
-            with open("book_output/characters.txt", "r") as f:
-                characters = f.read().strip()
-            session["characters"] = characters
-
-        if not world_theme or not characters:
-            return jsonify({"error": "World theme or characters not found. Please complete previous steps first."})
+        return jsonify(
+            {
+                "error": "World theme or characters not found. Please complete previous steps first."
+            }
+        )
 
     # Initialize agents for outline creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, num_chapters)
 
     # Generate response using the direct chat method
-    ai_response = book_agents.generate_chat_response_outline(chat_history, world_theme, characters, user_message)
+    ai_response = book_agents.generate_chat_response_outline(
+        chat_history, world_theme, characters, user_message
+    )
 
     # Clean the response
     ai_response = ai_response.strip()
@@ -808,31 +849,25 @@ def outline_chat_stream():
     num_chapters = data.get("num_chapters", 10)
 
     # Get world_theme and characters for context
-    world_theme = session.get("world_theme", "")
-    characters = session.get("characters", "")
+    world_theme = get_world_theme()
+    characters = get_characters()
 
     # Ensure we have world and characters
     if not world_theme or not characters:
-        # Try to load from files
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-
-        if os.path.exists("book_output/characters.txt"):
-            with open("book_output/characters.txt", "r") as f:
-                characters = f.read().strip()
-            session["characters"] = characters
-
-        if not world_theme or not characters:
-            return jsonify({"error": "World theme or characters not found. Please complete previous steps first."})
+        return jsonify(
+            {
+                "error": "World theme or characters not found. Please complete previous steps first."
+            }
+        )
 
     # Initialize agents for outline creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, num_chapters)
 
     # Generate streaming response
-    stream = book_agents.generate_chat_response_outline_stream(chat_history, world_theme, characters, user_message)
+    stream = book_agents.generate_chat_response_outline_stream(
+        chat_history, world_theme, characters, user_message
+    )
 
     def generate():
         # Send a heartbeat to establish the connection
@@ -868,31 +903,25 @@ def finalize_outline_stream():
     num_chapters = data.get("num_chapters", 10)
 
     # Get world_theme and characters for context
-    world_theme = session.get("world_theme", "")
-    characters = session.get("characters", "")
+    world_theme = get_world_theme()
+    characters = get_characters()
 
     # Ensure we have world and characters
     if not world_theme or not characters:
-        # Try to load from files
-        if os.path.exists("book_output/world.txt"):
-            with open("book_output/world.txt", "r") as f:
-                world_theme = f.read().strip()
-            session["world_theme"] = world_theme
-
-        if os.path.exists("book_output/characters.txt"):
-            with open("book_output/characters.txt", "r") as f:
-                characters = f.read().strip()
-            session["characters"] = characters
-
-        if not world_theme or not characters:
-            return jsonify({"error": "World theme or characters not found. Please complete previous steps first."})
+        return jsonify(
+            {
+                "error": "World theme or characters not found. Please complete previous steps first."
+            }
+        )
 
     # Initialize agents for outline creation
     book_agents = BookAgents(agent_config)
     book_agents.create_agents(world_theme, num_chapters)
 
     # Generate the final outline using streaming
-    stream = book_agents.generate_final_outline_stream(chat_history, world_theme, characters, num_chapters)
+    stream = book_agents.generate_final_outline_stream(
+        chat_history, world_theme, characters, num_chapters
+    )
 
     def generate():
         # Send a heartbeat to establish the connection
@@ -917,10 +946,8 @@ def finalize_outline_stream():
         # Combine all chunks for the complete content
         complete_content = "".join(collected_content)
 
-        # Clean and save outline to session and file once streaming is complete
+        # Clean and save outline to file once streaming is complete
         outline_content = complete_content.strip()
-
-        session["outline"] = outline_content
 
         # Save to file
         with open("book_output/outline.txt", "w") as f:
@@ -928,7 +955,6 @@ def finalize_outline_stream():
 
         # Try to parse chapters
         chapters = parse_outline_to_chapters(outline_content, num_chapters)
-        session["chapters"] = chapters
 
         # Save structured outline for later use
         with open("book_output/outline.json", "w") as f:
@@ -952,7 +978,9 @@ def parse_outline_to_chapters(outline_content, num_chapters):
         start_idx = outline_content.find("OUTLINE:")
         end_idx = outline_content.find("END OF OUTLINE")
         if start_idx != -1 and end_idx != -1:
-            outline_text = outline_content[start_idx + len("OUTLINE:") : end_idx].strip()
+            outline_text = outline_content[
+                start_idx + len("OUTLINE:") : end_idx
+            ].strip()
         else:
             outline_text = outline_content
 
@@ -972,7 +1000,9 @@ def parse_outline_to_chapters(outline_content, num_chapters):
 
             # Find the end of this chapter's content (start of next chapter or end of text)
             start_pos = match.start()
-            next_chapter_match = re.search(r"Chapter\s+(\d+):", outline_text[start_pos + 1 :])
+            next_chapter_match = re.search(
+                r"Chapter\s+(\d+):", outline_text[start_pos + 1 :]
+            )
 
             if next_chapter_match:
                 end_pos = start_pos + 1 + next_chapter_match.start()
@@ -982,24 +1012,46 @@ def parse_outline_to_chapters(outline_content, num_chapters):
 
             # Extract just the content part, not including the chapter title line
             content_lines = chapter_content.split("\n")
-            chapter_description = "\n".join(content_lines[1:]) if len(content_lines) > 1 else ""
+            chapter_description = (
+                "\n".join(content_lines[1:]) if len(content_lines) > 1 else ""
+            )
 
-            chapters.append({"chapter_number": chapter_num, "title": chapter_title, "prompt": chapter_description})
+            chapters.append(
+                {
+                    "chapter_number": chapter_num,
+                    "title": chapter_title,
+                    "prompt": chapter_description,
+                }
+            )
 
         # Sort chapters by chapter number to ensure correct order
         chapters.sort(key=lambda x: x["chapter_number"])
 
         # Only use num_chapters as a fallback if no chapters are found
         if not chapters:
-            print(f"No chapters found in outline, creating {num_chapters} default chapters")
+            print(
+                f"No chapters found in outline, creating {num_chapters} default chapters"
+            )
             for i in range(1, num_chapters + 1):
-                chapters.append({"chapter_number": i, "title": f"Chapter {i}", "prompt": f"Content for chapter {i}"})
+                chapters.append(
+                    {
+                        "chapter_number": i,
+                        "title": f"Chapter {i}",
+                        "prompt": f"Content for chapter {i}",
+                    }
+                )
 
     except Exception as e:
         # Fallback if parsing fails
         print(f"Error parsing outline: {e}")
         for i in range(1, num_chapters + 1):
-            chapters.append({"chapter_number": i, "title": f"Chapter {i}", "prompt": f"Content for chapter {i}"})
+            chapters.append(
+                {
+                    "chapter_number": i,
+                    "title": f"Chapter {i}",
+                    "prompt": f"Content for chapter {i}",
+                }
+            )
 
     # Print diagnostic info
     print(f"Found {len(chapters)} chapters in the outline")
@@ -1014,25 +1066,4 @@ def parse_outline_to_chapters(outline_content, num_chapters):
 if __name__ == "__main__":
     # Check OpenAI connection on startup
     check_openai_connection(agent_config)
-    app.run(debug=True)  # Check OpenAI connection on startup
-    check_openai_connection(agent_config)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
-    app.run(debug=True)
     app.run(debug=True)

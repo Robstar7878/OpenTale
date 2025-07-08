@@ -9,13 +9,16 @@ def check_openai_connection(agent_config: Dict):
     """Checks if the OpenAI API connection is valid."""
     try:
         client = OpenAI(
-            base_url=agent_config["config_list"][0]["base_url"], api_key=agent_config["config_list"][0]["api_key"]
+            base_url=agent_config["config_list"][0]["base_url"],
+            api_key=agent_config["config_list"][0]["api_key"],
         )
         # Make a cheap call to list models
         client.models.list()
         print("✅ OpenAI API connection successful.")
     except Exception as e:
-        print(f"❌ OpenAI API connection failed. Please check your API key and configuration. Error: {e}")
+        print(
+            f"❌ OpenAI API connection failed. Please check your API key and configuration. Error: {e}"
+        )
 
 
 class BookAgents:
@@ -40,7 +43,12 @@ class BookAgents:
 
         context_parts = ["Complete Book Outline:"]
         for chapter in self.outline:
-            context_parts.extend([f"\nChapter {chapter['chapter_number']}: {chapter['title']}", chapter["prompt"]])
+            context_parts.extend(
+                [
+                    f"\nChapter {chapter['chapter_number']}: {chapter['title']}",
+                    chapter["prompt"],
+                ]
+            )
         return "\n".join(context_parts)
 
     def create_agents(self, initial_prompt, num_chapters) -> Dict:
@@ -279,7 +287,9 @@ class BookAgents:
     def generate_content(self, agent_name: str, prompt: str) -> str:
         """Generate content using the OpenAI API with the specified agent system prompt"""
         if agent_name not in self.system_prompts:
-            raise ValueError(f"Agent '{agent_name}' not found. Available agents: {list(self.system_prompts.keys())}")
+            raise ValueError(
+                f"Agent '{agent_name}' not found. Available agents: {list(self.system_prompts.keys())}"
+            )
 
         # Create the messages array with system prompt and user message
         messages = [
@@ -289,7 +299,10 @@ class BookAgents:
 
         # Call the API
         completion = self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=self.agent_config.get("temperature", 0.7), max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            max_tokens=8000,
         )
 
         # Extract the response
@@ -316,7 +329,12 @@ class BookAgents:
                 return response[start:].strip()
             else:
                 # Try to find any content that looks like world-building
-                for marker in ["Time Period", "Setting:", "Locations:", "Major Locations"]:
+                for marker in [
+                    "Time Period",
+                    "Setting:",
+                    "Locations:",
+                    "Major Locations",
+                ]:
                     if marker in response:
                         return response
         elif agent_name == "story_planner":
@@ -331,7 +349,12 @@ class BookAgents:
                 return response[start:].strip()
             else:
                 # Try to find any content that looks like character profiles
-                for marker in ["Character 1:", "Main Character:", "Protagonist:", "CHARACTER_PROFILES"]:
+                for marker in [
+                    "Character 1:",
+                    "Main Character:",
+                    "Protagonist:",
+                    "CHARACTER_PROFILES",
+                ]:
                     if marker in response:
                         return response
 
@@ -340,7 +363,9 @@ class BookAgents:
     def generate_chat_response(self, chat_history, topic, user_message) -> str:
         """Generate a chat response based on conversation history"""
         # Format the messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["world_builder_chat"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["world_builder_chat"]}
+        ]
 
         # Add conversation history
         for entry in chat_history:
@@ -349,7 +374,10 @@ class BookAgents:
 
         # Call the API
         completion = self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=self.agent_config.get("temperature", 0.7), max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            max_tokens=8000,
         )
 
         # Extract the response
@@ -358,7 +386,9 @@ class BookAgents:
     def generate_chat_response_stream(self, chat_history, topic, user_message):
         """Generate a streaming chat response based on conversation history"""
         # Format the messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["world_builder_chat"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["world_builder_chat"]}
+        ]
 
         # Add conversation history
         for entry in chat_history:
@@ -420,7 +450,10 @@ class BookAgents:
 
         # Call the API
         completion = self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=self.agent_config.get("temperature", 0.7), max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            max_tokens=8000,
         )
 
         # Extract the response
@@ -454,14 +487,20 @@ class BookAgents:
 
         # Make the API call with streaming enabled
         return self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=0.7, stream=True, max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=0.7,
+            stream=True,
+            max_tokens=8000,
         )
 
     def update_world_element(self, element_name: str, description: str) -> None:
         """Update a world element description"""
         self.world_elements[element_name] = description
 
-    def update_character_development(self, character_name: str, development: str) -> None:
+    def update_character_development(
+        self, character_name: str, development: str
+    ) -> None:
         """Update a character's development"""
         if character_name not in self.character_developments:
             self.character_developments[character_name] = []
@@ -491,14 +530,21 @@ class BookAgents:
 
         return "\n".join(developments)
 
-    def generate_chat_response_characters(self, chat_history, world_theme, user_message):
+    def generate_chat_response_characters(
+        self, chat_history, world_theme, user_message
+    ):
         """Generate a chat response about character creation."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["character_generator"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["character_generator"]}
+        ]
 
         # Add world theme context
         messages.append(
-            {"role": "system", "content": f"The book takes place in the following world:\n\n{world_theme}"}
+            {
+                "role": "system",
+                "content": f"The book takes place in the following world:\n\n{world_theme}",
+            }
         )
 
         # Add conversation context from chat history
@@ -513,21 +559,30 @@ class BookAgents:
 
         # Make the API call
         response = (
-            self.client.chat.completions.create(model=self.model, messages=messages, temperature=0.7, max_tokens=8000)
+            self.client.chat.completions.create(
+                model=self.model, messages=messages, temperature=0.7, max_tokens=8000
+            )
             .choices[0]
             .message.content
         )
 
         return response
 
-    def generate_chat_response_characters_stream(self, chat_history, world_theme, user_message):
+    def generate_chat_response_characters_stream(
+        self, chat_history, world_theme, user_message
+    ):
         """Generate a streaming chat response about character creation."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["character_generator"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["character_generator"]}
+        ]
 
         # Add world theme context
         messages.append(
-            {"role": "system", "content": f"The book takes place in the following world:\n\n{world_theme}"}
+            {
+                "role": "system",
+                "content": f"The book takes place in the following world:\n\n{world_theme}",
+            }
         )
 
         # Add conversation context from chat history
@@ -542,17 +597,28 @@ class BookAgents:
 
         # Make the API call with streaming enabled
         return self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=0.7, stream=True, max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=0.7,
+            stream=True,
+            max_tokens=8000,
         )
 
-    def generate_final_characters_stream(self, chat_history, world_theme, num_characters=3):
+    def generate_final_characters_stream(
+        self, chat_history, world_theme, num_characters=3
+    ):
         """Generate the final character profiles based on chat history using streaming."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["character_generator"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["character_generator"]}
+        ]
 
         # Add world theme context
         messages.append(
-            {"role": "system", "content": f"The book takes place in the following world:\n\n{world_theme}"}
+            {
+                "role": "system",
+                "content": f"The book takes place in the following world:\n\n{world_theme}",
+            }
         )
 
         # Add conversation context from chat history
@@ -572,13 +638,21 @@ class BookAgents:
 
         # Make the API call with streaming enabled
         return self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=0.7, stream=True, max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=0.7,
+            stream=True,
+            max_tokens=8000,
         )
 
-    def generate_chat_response_outline(self, chat_history, world_theme, characters, user_message):
+    def generate_chat_response_outline(
+        self, chat_history, world_theme, characters, user_message
+    ):
         """Generate a chat response about outline creation."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["outline_creator_chat"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["outline_creator_chat"]}
+        ]
 
         # Add world theme and character context
         messages.append(
@@ -600,17 +674,23 @@ class BookAgents:
 
         # Make the API call
         response = (
-            self.client.chat.completions.create(model=self.model, messages=messages, temperature=0.7, max_tokens=8000)
+            self.client.chat.completions.create(
+                model=self.model, messages=messages, temperature=0.7, max_tokens=8000
+            )
             .choices[0]
             .message.content
         )
 
         return response
 
-    def generate_chat_response_outline_stream(self, chat_history, world_theme, characters, user_message):
+    def generate_chat_response_outline_stream(
+        self, chat_history, world_theme, characters, user_message
+    ):
         """Generate a streaming chat response about outline creation."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["outline_creator_chat"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["outline_creator_chat"]}
+        ]
 
         # Add world theme and character context
         messages.append(
@@ -632,13 +712,21 @@ class BookAgents:
 
         # Make the API call with streaming enabled
         return self.client.chat.completions.create(
-            model=self.model, messages=messages, temperature=0.7, stream=True, max_tokens=8000
+            model=self.model,
+            messages=messages,
+            temperature=0.7,
+            stream=True,
+            max_tokens=8000,
         )
 
-    def generate_final_outline_stream(self, chat_history, world_theme, characters, num_chapters=10):
+    def generate_final_outline_stream(
+        self, chat_history, world_theme, characters, num_chapters=10
+    ):
         """Generate the final outline based on chat history using streaming."""
         # Format messages for the API call
-        messages = [{"role": "system", "content": self.system_prompts["outline_creator"]}]
+        messages = [
+            {"role": "system", "content": self.system_prompts["outline_creator"]}
+        ]
 
         # Add world theme and character context
         messages.append(

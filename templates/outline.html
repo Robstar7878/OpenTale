@@ -55,6 +55,11 @@
 
                 <p class="lead">Chat with the AI to develop your book's outline. Describe your ideas for the plot structure, major story beats, and character arcs. The number of chapters will be determined by the structure of your outline.</p>
                 
+                <div class="mb-3">
+                    <label for="numChapters" class="form-label">How many chapters would you like to create?</label>
+                    <input type="number" class="form-control" id="numChapters" name="num_chapters" min="5" max="100" value="{{ num_chapters }}">
+                </div>
+                
                 {% endif %}
             </div>
         </div>
@@ -177,6 +182,20 @@
 
 <script>
 $(document).ready(function() {
+    // Save numChapters on change
+    $('#numChapters').on('change', function() {
+        const numChapters = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/save_setting',
+            contentType: 'application/json',
+            data: JSON.stringify({ key: 'num_chapters', value: numChapters }),
+            error: function() {
+                console.error('Error saving num_chapters');
+            }
+        });
+    });
+
     // Chat history
     let chatHistory = [];
     
@@ -225,7 +244,7 @@ $(document).ready(function() {
         const requestData = {
             message: message,
             chat_history: chatHistory.slice(0, -1), // Exclude current message
-            num_chapters: 20
+            num_chapters: $('#numChapters').val()
         };
         
         // Initialize response content
@@ -325,7 +344,7 @@ $(document).ready(function() {
             },
             body: JSON.stringify({
                 chat_history: chatHistory,
-                num_chapters: 20
+                num_chapters: $('#numChapters').val()
             })
         }).then(response => {
             // Process the streaming response
@@ -462,7 +481,7 @@ $(document).ready(function() {
             type: 'POST',
             url: '/generate_chapters',
             data: {
-                num_chapters: 20
+                num_chapters: $('#numChapters').val()
             },
             success: function(response) {
                 if(response.success) {
