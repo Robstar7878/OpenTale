@@ -25,8 +25,22 @@ from config import get_config
 app = Flask(__name__)
 app.secret_key = "ai-book-writer-secret-key"  # For session management
 
+
+# Constants for file paths
+BOOK_OUTPUT_DIR = "book_output"
+TEXT_EXTENSION = ".txt"
+WORLD_FILE = os.path.join(BOOK_OUTPUT_DIR, f"world{TEXT_EXTENSION}")
+CHARACTERS_FILE = os.path.join(BOOK_OUTPUT_DIR, f"characters{TEXT_EXTENSION}")
+OUTLINE_FILE = os.path.join(BOOK_OUTPUT_DIR, f"outline{TEXT_EXTENSION}")
+CHAPTERS_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "chapters.json")
+MASTER_PROMPT_FILE = os.path.join(BOOK_OUTPUT_DIR, f"master_prompt{TEXT_EXTENSION}")
+SETTINGS_FILE = os.path.join(BOOK_OUTPUT_DIR, "settings.json")
+OUTLINE_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "outline.json")
+CHAPTERS_DIR = os.path.join(BOOK_OUTPUT_DIR, "chapters")
+
+
 # Ensure book_output directory exists
-os.makedirs("book_output/chapters", exist_ok=True)
+os.makedirs(CHAPTERS_DIR, exist_ok=True)
 
 # Initialize global variables
 agent_config = get_config()
@@ -35,32 +49,32 @@ agent_config = get_config()
 # Helper functions to read data from files
 def get_world_theme():
     """Get world theme from file."""
-    if os.path.exists("book_output/world.txt"):
-        with open("book_output/world.txt", "r") as f:
+    if os.path.exists(WORLD_FILE):
+        with open(WORLD_FILE, "r") as f:
             return f.read().strip()
     return ""
 
 
 def get_characters():
     """Get characters from file."""
-    if os.path.exists("book_output/characters.txt"):
-        with open("book_output/characters.txt", "r") as f:
+    if os.path.exists(CHARACTERS_FILE):
+        with open(CHARACTERS_FILE, "r") as f:
             return f.read().strip()
     return ""
 
 
 def get_outline():
     """Get outline from file."""
-    if os.path.exists("book_output/outline.txt"):
-        with open("book_output/outline.txt", "r") as f:
+    if os.path.exists(OUTLINE_FILE):
+        with open(OUTLINE_FILE, "r") as f:
             return f.read().strip()
     return ""
 
 
 def get_chapters():
     """Get chapters from file."""
-    if os.path.exists("book_output/chapters.json"):
-        with open("book_output/chapters.json", "r") as f:
+    if os.path.exists(CHAPTERS_JSON_FILE):
+        with open(CHAPTERS_JSON_FILE, "r") as f:
             try:
                 return json.load(f)
             except json.JSONDecodeError:
@@ -70,16 +84,16 @@ def get_chapters():
 
 def get_master_prompt():
     """Get master prompt from file."""
-    if os.path.exists("book_output/master_prompt.txt"):
-        with open("book_output/master_prompt.txt", "r", encoding="utf-8") as f:
+    if os.path.exists(MASTER_PROMPT_FILE):
+        with open(MASTER_PROMPT_FILE, "r", encoding="utf-8") as f:
             return f.read().strip()
     return ""
 
 
 def get_settings():
     """Get settings from file."""
-    if os.path.exists("book_output/settings.json"):
-        with open("book_output/settings.json", "r", encoding="utf-8") as f:
+    if os.path.exists(SETTINGS_FILE):
+        with open(SETTINGS_FILE, "r", encoding="utf-8") as f:
             try:
                 return json.load(f)
             except json.JSONDecodeError:
@@ -89,7 +103,7 @@ def get_settings():
 
 def save_settings(settings):
     """Save settings to file."""
-    with open("book_output/settings.json", "w", encoding="utf-8") as f:
+    with open(SETTINGS_FILE, "w", encoding="utf-8") as f:
         json.dump(settings, f, indent=2)
 
 
@@ -202,7 +216,7 @@ def finalize_world():
     world_theme = world_theme.strip()
     world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
-    with open("book_output/world.txt", "w") as f:
+    with open(WORLD_FILE, "w") as f:
         f.write(world_theme)
 
     return jsonify({"world_theme": world_theme})
@@ -249,7 +263,7 @@ def finalize_world_stream():
         world_theme = complete_content.strip()
         world_theme = re.sub(r"\n+", "\n", world_theme)
 
-        with open("book_output/world.txt", "w") as f:
+        with open(WORLD_FILE, "w") as f:
             f.write(world_theme)
 
         # Send completion marker
@@ -274,7 +288,7 @@ def save_world():
     world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
     # Save to file
-    with open("book_output/world.txt", "w") as f:
+    with open(WORLD_FILE, "w") as f:
         f.write(world_theme)
 
     return jsonify({"success": True})
@@ -311,7 +325,7 @@ def save_characters():
     characters_content = characters_content.strip()
 
     # Save to file
-    with open("book_output/characters.txt", "w") as f:
+    with open(CHARACTERS_FILE, "w") as f:
         f.write(characters_content)
 
     return jsonify({"success": True})
@@ -320,31 +334,31 @@ def save_characters():
 @app.route("/outline", methods=["GET", "POST"])
 def outline():
     # Check if world theme and characters exist
-    if not os.path.exists("book_output/world.txt"):
+    if not os.path.exists(WORLD_FILE):
         flash("You need to create a world setting first.", "warning")
         return redirect("/world")
 
-    if not os.path.exists("book_output/characters.txt"):
+    if not os.path.exists(CHARACTERS_FILE):
         flash("You need to create characters first.", "warning")
         return redirect("/characters")
 
     # Get world theme and characters
-    with open("book_output/world.txt", "r") as f:
+    with open(WORLD_FILE, "r") as f:
         world_theme = f.read()
 
-    with open("book_output/characters.txt", "r") as f:
+    with open(CHARACTERS_FILE, "r") as f:
         characters = f.read()
 
     # GET request - just show the page
     outline_content = ""
-    if os.path.exists("book_output/outline.txt"):
-        with open("book_output/outline.txt", "r") as f:
+    if os.path.exists(OUTLINE_FILE):
+        with open(OUTLINE_FILE, "r") as f:
             outline_content = f.read()
 
     # Get chapter list if it exists
     chapters = []
-    if os.path.exists("book_output/chapters.json"):
-        with open("book_output/chapters.json", "r") as f:
+    if os.path.exists(CHAPTERS_JSON_FILE):
+        with open(CHAPTERS_JSON_FILE, "r") as f:
             chapters = json.load(f)
 
     settings = get_settings()
@@ -364,11 +378,11 @@ def outline():
 def generate_chapters():
     """Generate chapters structure from existing outline"""
     # Check if we have an outline
-    if not os.path.exists("book_output/outline.txt"):
+    if not os.path.exists(OUTLINE_FILE):
         return jsonify({"error": "Outline not found. Please create an outline first."})
 
     # Get the outline content
-    with open("book_output/outline.txt", "r") as f:
+    with open(OUTLINE_FILE, "r") as f:
         outline_content = f.read()
 
     # Get the desired number of chapters
@@ -378,7 +392,7 @@ def generate_chapters():
     chapters = parse_outline_to_chapters(outline_content, num_chapters)
 
     # Save chapters to file
-    with open("book_output/chapters.json", "w") as f:
+    with open(CHAPTERS_JSON_FILE, "w") as f:
         json.dump(chapters, f, indent=2)
 
     return jsonify({"success": True, "num_chapters": len(chapters)})
@@ -395,7 +409,7 @@ def save_outline():
     outline_content = outline_content.strip()
 
     # Save to file
-    with open("book_output/outline.txt", "w") as f:
+    with open(OUTLINE_FILE, "w") as f:
         f.write(outline_content)
 
     # Generate and save chapters
@@ -403,7 +417,7 @@ def save_outline():
     chapters = parse_outline_to_chapters(outline_content, num_chapters)
 
     # Save chapters to file
-    with open("book_output/chapters.json", "w") as f:
+    with open(CHAPTERS_JSON_FILE, "w") as f:
         json.dump(chapters, f, indent=2)
 
     return jsonify({"success": True, "num_chapters": len(chapters)})
@@ -438,7 +452,9 @@ def chapter(chapter_number):
         # Get previous chapters context
         previous_context = ""
         if chapter_number > 1:
-            prev_chapter_path = f"book_output/chapters/chapter_{chapter_number - 1}.txt"
+            prev_chapter_path = os.path.join(
+                CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+            )
             if os.path.exists(prev_chapter_path):
                 with open(prev_chapter_path, "r") as f:
                     # Get a summary or the last few paragraphs
@@ -475,7 +491,9 @@ def chapter(chapter_number):
 
         # Clean and save chapter content
         chapter_content = chapter_content.strip()
-        chapter_path = f"book_output/chapters/chapter_{chapter_number}.txt"
+        chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+        )
         with open(chapter_path, "w") as f:
             f.write(chapter_content)
 
@@ -483,7 +501,9 @@ def chapter(chapter_number):
 
     # GET request - show chapter page with existing content if available
     chapter_content = ""
-    chapter_path = f"book_output/chapters/chapter_{chapter_number}.txt"
+    chapter_path = os.path.join(
+        CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+    )
     if os.path.exists(chapter_path):
         with open(chapter_path, "r") as f:
             chapter_content = f.read().strip()
@@ -507,7 +527,9 @@ def save_chapter(chapter_number):
     # Strip extra newlines at the beginning and normalize newlines
     chapter_content = chapter_content.strip()
 
-    chapter_path = f"book_output/chapters/chapter_{chapter_number}.txt"
+    chapter_path = os.path.join(
+        CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+    )
     with open(chapter_path, "w") as f:
         f.write(chapter_content)
 
@@ -518,7 +540,7 @@ def save_chapter(chapter_number):
 def save_master_prompt():
     """Save the master prompt to a file."""
     master_prompt = request.form.get("master_prompt", "")
-    with open("book_output/master_prompt.txt", "w") as f:
+    with open(MASTER_PROMPT_FILE, "w") as f:
         f.write(master_prompt)
     return jsonify({"success": True})
 
@@ -566,7 +588,9 @@ def scene(chapter_number):
         # Try alternate approaches to find the chapter
 
         # Approach 1: Direct file check
-        chapter_path = f"book_output/chapters/chapter_{chapter_number}.txt"
+        chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+        )
         if os.path.exists(chapter_path):
             # Chapter exists but data isn't in memory
             chapter_data = {
@@ -595,7 +619,9 @@ def scene(chapter_number):
         # Get previous context
         previous_context = ""
         if chapter_number > 1:
-            prev_chapter_path = f"book_output/chapters/chapter_{chapter_number - 1}.txt"
+            prev_chapter_path = os.path.join(
+                CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+            )
             if os.path.exists(prev_chapter_path):
                 with open(prev_chapter_path, "r") as f:
                     content = f.read()
@@ -621,12 +647,14 @@ def scene(chapter_number):
         )
 
         # Save scene to a file
-        scene_dir = f"book_output/chapters/chapter_{chapter_number}_scenes"
+        scene_dir = os.path.join(CHAPTERS_DIR, f"chapter_{chapter_number}_scenes")
         os.makedirs(scene_dir, exist_ok=True)
 
         # Count existing scenes and create a new one
-        scene_count = len([f for f in os.listdir(scene_dir) if f.endswith(".txt")])
-        scene_path = f"{scene_dir}/scene_{scene_count + 1}.txt"
+        scene_count = len(
+            [f for f in os.listdir(scene_dir) if f.endswith(TEXT_EXTENSION)]
+        )
+        scene_path = os.path.join(scene_dir, f"scene_{scene_count + 1}{TEXT_EXTENSION}")
 
         with open(scene_path, "w") as f:
             f.write(scene_content)
@@ -635,10 +663,10 @@ def scene(chapter_number):
 
     # GET request - load existing scenes for this chapter
     scenes = []
-    scene_dir = f"book_output/chapters/chapter_{chapter_number}_scenes"
+    scene_dir = os.path.join(CHAPTERS_DIR, f"chapter_{chapter_number}_scenes")
 
     if os.path.exists(scene_dir):
-        scene_files = [f for f in os.listdir(scene_dir) if f.endswith(".txt")]
+        scene_files = [f for f in os.listdir(scene_dir) if f.endswith(TEXT_EXTENSION)]
         scene_files.sort(
             key=lambda f: int(f.split("_")[1].split(".")[0])
         )  # Sort by scene number
@@ -792,7 +820,7 @@ def finalize_characters_stream():
         # Clean and save characters to file once streaming is complete
         characters_content = complete_content.strip()
 
-        with open("book_output/characters.txt", "w") as f:
+        with open(CHARACTERS_FILE, "w") as f:
             f.write(characters_content)
 
         # Send completion marker
@@ -950,14 +978,14 @@ def finalize_outline_stream():
         outline_content = complete_content.strip()
 
         # Save to file
-        with open("book_output/outline.txt", "w") as f:
+        with open(OUTLINE_FILE, "w") as f:
             f.write(outline_content)
 
         # Try to parse chapters
         chapters = parse_outline_to_chapters(outline_content, num_chapters)
 
         # Save structured outline for later use
-        with open("book_output/outline.json", "w") as f:
+        with open(OUTLINE_JSON_FILE, "w") as f:
             json.dump(chapters, f, indent=2)
 
         # Send completion marker
@@ -1057,7 +1085,7 @@ def parse_outline_to_chapters(outline_content, num_chapters):
     print(f"Found {len(chapters)} chapters in the outline")
 
     # Save to the correct filename
-    with open("book_output/chapters.json", "w") as f:
+    with open(CHAPTERS_JSON_FILE, "w") as f:
         json.dump(chapters, f, indent=2)
 
     return chapters
