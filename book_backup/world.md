@@ -105,3 +105,4 @@ These are the blighted zones where Asakael's influence has taken hold, manifesti
 *   **Day to Night:** A dramatic, immediate shift. The world doesn't just darken; it transforms. The hyper-saturated colors are consumed by active shadows, the air cools, and the sounds change dramatically. Safe havens become critical.
 *   **Into the Underground:** Entrances to the tunnels are often hidden, requiring specific knowledge or exploration. Movement within involves navigating complex passages, dealing with echoes, and sensing the encroaching Rot through subtle environmental changes, but also potentially uncovering ancient wonders left by The Weavers.
 *   **Refugee Routes:** Major roads and pathways leading north, especially into Raum and then Eleium, will be choked with migrants, creating scenes of desperation and potential conflict, highlighting the human cost of the Rot.
+ss

@@ -28,12 +28,12 @@ app.secret_key = "ai-book-writer-secret-key"  # For session management
 
 # Constants for file paths
 BOOK_OUTPUT_DIR = "book_output"
-TEXT_EXTENSION = ".txt"
+TEXT_EXTENSION = ".md"
 WORLD_FILE = os.path.join(BOOK_OUTPUT_DIR, f"world{TEXT_EXTENSION}")
 CHARACTERS_FILE = os.path.join(BOOK_OUTPUT_DIR, f"characters{TEXT_EXTENSION}")
 OUTLINE_FILE = os.path.join(BOOK_OUTPUT_DIR, f"outline{TEXT_EXTENSION}")
 CHAPTERS_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "chapters.json")
-MASTER_PROMPT_FILE = os.path.join(BOOK_OUTPUT_DIR, f"master_prompt{TEXT_EXTENSION}")
+MASTER_PROMPT_FILE = os.path.join(BOOK_OUTPUT_DIR, "master_prompt.txt")
 SETTINGS_FILE = os.path.join(BOOK_OUTPUT_DIR, "settings.json")
 OUTLINE_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "outline.json")
 CHAPTERS_DIR = os.path.join(BOOK_OUTPUT_DIR, "chapters")
