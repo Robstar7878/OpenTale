@@ -20,13 +20,13 @@ Solen sto høyt på himmelen da de brøt ut av en spesielt tett del av skogen, o
 
 Arana stoppet brått, hånden hennes glidende mot buen. Miel, som hadde vært i ferd med å plukke en liten, lilla blomst, frøs midt i bevegelsen. Kaa, som allerede hadde klatret opp i et av trærne for å få bedre oversikt, pekte med en rask bevegelse mot den andre siden av elven. Sileus, hans fuglelignende øyne smalnet, løftet sin vridde vandringsstav.
 
-Lyden kom først som en svak, ubestemmelig rumling, som fjern torden. Men så vokste den, ble mer distinkt, mer skremmende. Det var skrik – menneskelige skrik, fylt med redsel og fortvilelse. Deretter kom den umiskjennelige lyden av metall mot metall, et skjærende klimaks som fortalte om kamp. Og under det hele, en dyp, guttural gurgling, en lyd som var blitt altfor kjent for de som hadde møtt Rotspawn.
+Lyden kom først som en svak, ubestemmelig rumling, som fjern torden. Men så vokste den, ble mer distinkt, mer skremmende. Det var skrik – menneskelige skrik, fylt med redsel og fortvilelse. Deretter kom den umiskjennelige lyden av metall mot metall, et skjærende klimaks som fortalte om kamp. Og under det hele, en dyp, guttural gurgling, en lyd som var blitt altfor kjent for de som hadde møtt Råteyngel.
 
-"Rotspawn," hvisket Arana, stemmen hennes hard som flint. Hun spente buen, en pil allerede på strengen. Øynene hennes var festet på sletten på den andre siden av elven.
+"Råteyngel," hvisket Arana, stemmen hennes hard som flint. Hun spente buen, en pil allerede på strengen. Øynene hennes var festet på sletten på den andre siden av elven.
 
 "Vent," sa Sileus, stemmen hans lav, men fylt med en ubestridelig autoritet. "Se."
 
-Synet som utspilte seg foran dem, var både grusomt og hypnotiserende. På den åpne sletten, ikke langt fra elvebredden, var et lite reisefølge i ferd med å bli overveldet. Det var to figurer de kunne se klart, en ung kvinne med mørkt hår, kjempet med enestående raseri, og en ung mann som virket forvirret og ute av stand til å forstå hva som skjedde. Rundt dem svermet Rotspawn, deres grønnbrune kropper en vridende masse av ondskap, deres klør og tenner glimtet i sollyset. De var avskyelige, forvridde former for liv, en gang innfødt fauna, nå forvandlet til instrumenter for Asakaels korrupsjon.
+Synet som utspilte seg foran dem, var både grusomt og hypnotiserende. På den åpne sletten, ikke langt fra elvebredden, var et lite reisefølge i ferd med å bli overveldet. Det var to figurer de kunne se klart, en ung kvinne med mørkt hår, kjempet med enestående raseri, og en ung mann som virket forvirret og ute av stand til å forstå hva som skjedde. Rundt dem svermet Råteyngel, deres grønnbrune kropper en vridende masse av ondskap, deres klør og tenner glimtet i sollyset. De var avskyelige, forvridde former for liv, en gang innfødt fauna, nå forvandlet til instrumenter for Asakaels korrupsjon.
 
 Miel holdt hånden for munnen, et lite klynk unnslapp henne. Hun var usedvanlig følsom for dissonansen som Roten utstrålte, og synet av disse skapningene, selv på avstand, sendte frysninger nedover ryggraden hennes. Hennes empatiske forbindelse til Veven gjorde at hun følte smerten og forvrengningen som disse skapningene representerte.
 
@@ -34,13 +34,13 @@ Miel holdt hånden for munnen, et lite klynk unnslapp henne. Hun var usedvanlig 
 
 Sileus øyne var festet på kampen, men ikke bare på de fysiske bevegelsene. Han følte noe dypere, en rystelse i selve Veven. Det var ikke bare en kamp; det var et jordskjelv i virkeligheten. Den unge kvinnen, selv i sin desperate kamp, utstrålte en merkelig kraft, en resonans som var så ren at den nesten var smertefull for Sileus' sensitive sanser. Og mannen ved hennes side… han var også en anomali, en dissonans i resonansen, men ikke en ond en.
 
-Plutselig skjedde det. Rotspawn presset de to figurene bakover, mot elven. Den unge kvinnen, med en siste, desperat innsats, grep tak i den unge mannens hånd. Sammen snublet de, falt bakover, og forsvant under elvens virvlende overflate.
+Plutselig skjedde det. Råteyngel presset de to figurene bakover, mot elven. Den unge kvinnen, med en siste, desperat innsats, grep tak i den unge mannens hånd. Sammen snublet de, falt bakover, og forsvant under elvens virvlende overflate.
 
-Rotspawn stanset opp ved elvebredden, deres grønnbrune øyne flakket usikkert. De virket uvillige, eller ute av stand, til å følge etter. Det var som om elven Qi, med sin rene, vibrerende resonans, var en barriere de ikke kunne krysse. Lyden av gurgling var nå blandet med elvens brus, og så var det stille, bortsett fra elvens konstante sang.
+Råteyngel stanset opp ved elvebredden, deres grønnbrune øyne flakket usikkert. De virket uvillige, eller ute av stand, til å følge etter. Det var som om elven Qi, med sin rene, vibrerende resonans, var en barriere de ikke kunne krysse. Lyden av gurgling var nå blandet med elvens brus, og så var det stille, bortsett fra elvens konstante sang.
 
 Sileus trakk pusten dypt. "Veven har blitt forstyrret," sa han, stemmen hans fylt med en kryptisk tyngde. Han så ikke på de andre, men ut over elven, mot der de to figurene hadde forsvunnet. "Store bølger vil komme. Vi må se hvilke krusninger dette skaper."
 
-Arana senket buen litt, men holdt den fortsatt klar. "Hvem var de?" spurte hun, stemmen hes. "Og hvorfor krysset ikke Rotspawn elven?"
+Arana senket buen litt, men holdt den fortsatt klar. "Hvem var de?" spurte hun, stemmen hes. "Og hvorfor krysset ikke Råteyngel elven?"
 
 "Det vet jeg ikke," svarte Sileus, "men dette er ikke tilfeldig. Veven vibrerer med en ny tone. En tone jeg har ventet på." Han snudde seg mot gruppen, hans blikk skarpt og bestemt. "Vi kan ikke ignorere dette. Vi må følge elven nedstrøms. Se om vi finner dem. Se hva som har kommet til Elysia."
 
@@ -48,7 +48,7 @@ Miel nikket stille, hennes øyne fylt med en blanding av frykt og nysgjerrighet.
 
 Kaa, som hadde klatret ned fra treet, landet lydløst bak dem. Han ga fra seg et lavt grynt, et tegn på samtykke. Hans instinkter fortalte ham at Sileus hadde rett; dette var en uvanlig hendelse, og uvanlige hendelser krevde undersøkelse.
 
-Arana sukket, men det var ingen motstand i det. Hun stolte på Sileus' dømmekraft, selv om hun ikke alltid forsto hans kryptiske utsagn. Hun var en pragmatiker, og dette var en situasjon som krevde handling. "Nedstrøms, da," sa hun. "Men vi holder oss skjult. Rotspawn er kanskje ikke i elven, men de er fortsatt der ute."
+Arana sukket, men det var ingen motstand i det. Hun stolte på Sileus' dømmekraft, selv om hun ikke alltid forsto hans kryptiske utsagn. Hun var en pragmatiker, og dette var en situasjon som krevde handling. "Nedstrøms, da," sa hun. "Men vi holder oss skjult. Råteyngel er kanskje ikke i elven, men de er fortsatt der ute."
 
 Sileus nikket. "Enig. Vi beveger oss med forsiktighet. Fremtiden til Veven kan avhenge av dette."
 
@@ -58,7 +58,7 @@ Solen begynte å sige ned mot horisonten, og de lange skyggene strakte seg ut ov
 
 De beveget seg med en synkronisert rytme, et resultat av måneder med felles reise og felles fare. Arana, som alltid, var den som ledet an, hennes blikk skannet elvebredden og skogkanten med den samme intense årvåkenheten som en rovfugl speider etter bytte. Hvert skritt var kalkulert, hvert blad som knaste under foten hennes, var en del av et bevisst valg. Hun var en levende varsellampe, hennes kropp innstilt på den minste forstyrrelse. Selv om hun var en pragmatiker, dypt forankret i den fysiske verdens realiteter, hadde hun lært å stole på Sileus' uforklarlige fornemmelser. Hun visste at når Sileus snakket om "Veven" og "krusninger", var det noe som gikk langt utover hennes egen forståelse, men som likevel hadde en håndgripelig innvirkning på deres overlevelse.
 
-Miel fulgte tett bak Arana, hennes skritt stillere og mer ettertenksomme. Hun var den som følte verden dypest, hennes sanser åpne for de umerkbare vibrasjonene i Veven. Synet av Rotspawn, selv på avstand, hadde rystet henne. Det var ikke bare deres fysiske utseende som skremte henne, men den kvalmende dissonansen de utstrålte, en disharmoni som forvrengte alt levende rundt dem. Hennes fingre løp over en mosegrodd stein, som om hun søkte trøst i den stabile resonansen til det naturlige. Hun lengtet etter fred, etter et sted hvor Veven sang sin rene, uforstyrrede sang, men hun visste at den tiden var fjern. Hennes ønske om å finne de to som hadde forsvunnet i elven, var en blanding av medfølelse og en vag fornemmelse av at deres skjebne var uløselig knyttet til hennes egen.
+Miel fulgte tett bak Arana, hennes skritt stillere og mer ettertenksomme. Hun var den som følte verden dypest, hennes sanser åpne for de umerkbare vibrasjonene i Veven. Synet av Råteyngel, selv på avstand, hadde rystet henne. Det var ikke bare deres fysiske utseende som skremte henne, men den kvalmende dissonansen de utstrålte, en disharmoni som forvrengte alt levende rundt dem. Hennes fingre løp over en mosegrodd stein, som om hun søkte trøst i den stabile resonansen til det naturlige. Hun lengtet etter fred, etter et sted hvor Veven sang sin rene, uforstyrrede sang, men hun visste at den tiden var fjern. Hennes ønske om å finne de to som hadde forsvunnet i elven, var en blanding av medfølelse og en vag fornemmelse av at deres skjebne var uløselig knyttet til hennes egen.
 
 Kaa var en urolig ånd, aldri helt stille, selv når han beveget seg lydløst. Han beveget seg i en bue rundt de andre, hans hvite hår et glimt gjennom trærne. Han var en mester i å navigere i vanskelig terreng, og hans evne til å forsvinne og dukke opp igjen uten en lyd var nesten overnaturlig. Han klatret opp i trær for å få et fugleperspektiv over elven og elvebredden, hans lysgrå øyne skannet hver eneste skygge, hver eneste forstyrrelse. Han var en jeger av natur, og nå var han på sporet av noe nytt, noe uventet. Han forsto ikke Sileus' dype snakk om Veven, men han forsto tegnene, de usynlige sporene i luften som fortalte ham at noe betydningsfullt hadde skjedd. For ham handlet det om å finne, å spore, å overleve.
 

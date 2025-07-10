@@ -56,21 +56,21 @@ Ved bredden av det som måtte være en elv – en elv hvis vann var så krystall
 
 De var grønnbrune. Vridde, groteske skapninger, som om naturen selv hadde vrengt seg i smerte. De hadde uhyggelige, glinsende øyne som bare reflekterte en matt, ondskapsfull glød, og lange, krokete armer som endte i svarte, klolignende hender. Kroppene deres var dekket av en slimete, grønnbrun hud som så ut til å være for stramt strukket over skjelettene deres, og de beveget seg med en rykkete, unaturlig gange, som marionetter med ødelagte strenger. De hisset og freste, og lyden var som sandpapir mot en nerve.
 
-Rotspawn. Navnet dukket frem i tankene hans, selv om han aldri hadde hørt det før. Det var en instinktiv erkjennelse, en del av den uforklarlige kunnskapen denne nye verdenen syntes å presse inn i hodet hans.
+Råteyngel. Navnet dukket frem i tankene hans, selv om han aldri hadde hørt det før. Det var en instinktiv erkjennelse, en del av den uforklarlige kunnskapen denne nye verdenen syntes å presse inn i hodet hans.
 
 Kvinnen kjempet med en forbløffende intensitet. Hun var kledd i praktiske, mørke klær, og to korte sverd glimtet i hendene hennes. Hun beveget seg med en grasiøs, men brutal effektivitet, hvert slag presist og dødelig. Men hun var i undertall, kraftig i undertall. Hver gang hun felte en, kom to nye stormende frem fra skyggene. Håret hennes, mørkt og tykt, var allerede løst og pisket rundt ansiktet hennes, og hun hadde en lang, rød ripe langs kinnet. Hennes grønne øyne, selv på avstand, syntes å gløde av raseri og utmattelse.
 
 Elven, som han nå kunne se tydeligere, var ikke bare krystallklar. Den var massiv, bred og dyp, og strømmen var forrædersk. Vannet var en kaskade av virvelstrømmer og brusende fossefall, med steiner som stakk opp som skarpe tenner. Det var en elv som ikke ba om å bli krysset.
 
-En av Rotspawn-skapningene, større og mer motbydelig enn de andre, svingte en lang, klolignende arm i en bred bue. Kvinnen dukket unna, men ikke raskt nok. Kloen kuttet gjennom luften der hun hadde vært, og hun mistet balansen, snublet bakover mot elvebredden. Hun falt.
+En av Råteyngel-skapningene, større og mer motbydelig enn de andre, svingte en lang, klolignende arm i en bred bue. Kvinnen dukket unna, men ikke raskt nok. Kloen kuttet gjennom luften der hun hadde vært, og hun mistet balansen, snublet bakover mot elvebredden. Hun falt.
 
 Og det var da Leo handlet. Uten å tenke, uten et snev av den apathien som hadde definert hans tidligere liv, løp han.
 
 Han løp over det umulig grønne gresset, gjennom blomster som bøyde seg under føttene hans, mot elven og kvinnen i nød. Mynten i hånden hans pulserte nå med en feberaktig varme, gløden intensiverte seg, som om den heiet ham frem, eller kanskje trakk ham mot faren. Han var ikke en helt; han var bare en mann som var lei av å føle seg hjelpeløs.
 
-Han nådde elvebredden i det øyeblikket kvinnen, med en siste anstrengelse, sparket fra seg en av Rotspawn-skapningene som hadde kastet seg over henne. Hun kjempet seg opp på knærne, hånden hennes famlet etter et av sverdene hun hadde mistet i fallet. Men flere Rotspawn var over henne, klørne deres nådde ut, og den største av dem løftet en råtten, klolignende knyttneve for et dødelig slag.
+Han nådde elvebredden i det øyeblikket kvinnen, med en siste anstrengelse, sparket fra seg en av Råteyngel-skapningene som hadde kastet seg over henne. Hun kjempet seg opp på knærne, hånden hennes famlet etter et av sverdene hun hadde mistet i fallet. Men flere Råteyngel var over henne, klørne deres nådde ut, og den største av dem løftet en råtten, klolignende knyttneve for et dødelig slag.
 
-«Nei!» ropte Leo, stemmen hans hes og uvant. Han var der. Han kastet seg fremover, ikke mot Rotspawn, men mot kvinnen, mot hennes utstrakte hånd. Det var ikke tid til å tenke på konsekvensene, ikke tid til å gruble over hvorfor han gjorde dette. Det var bare et instinkt, et desperat behov for å gripe inn, å forhindre det uunngåelige.
+«Nei!» ropte Leo, stemmen hans hes og uvant. Han var der. Han kastet seg fremover, ikke mot Råteyngel, men mot kvinnen, mot hennes utstrakte hånd. Det var ikke tid til å tenke på konsekvensene, ikke tid til å gruble over hvorfor han gjorde dette. Det var bare et instinkt, et desperat behov for å gripe inn, å forhindre det uunngåelige.
 
 Han grep hånden hennes. Huden hennes var glatt, men fast, og en elektrisk strøm syntes å løpe mellom dem idet fingrene deres flettet seg sammen. Samtidig glimtet mynten i hans egen hånd enda sterkere, en grønn puls som speilet en lignende glød i hennes smaragdgrønne øyne.
 

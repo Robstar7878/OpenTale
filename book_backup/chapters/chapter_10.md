@@ -32,7 +32,7 @@ Arana holdt seg tilbake, hennes ansikt en maske av mistro. Hun så seg rundt, so
 
 Sileus smilte, denne gangen bredere. "Dette, Arana, er en av Elysias hjertekamre. Et sted hvor Veven er så ren og sterk at den nesten kan tas på. Og vi er her for å vekke den sovende kraften i Tia."
 
-Tia hadde stått stille, stirret på gropen med en intensitet som Leo aldri hadde sett før. Hennes grønne øyne glødet, og en svak, nesten umerkelig skjelving gikk gjennom kroppen hennes. Hun hadde kjent denne kraften før, da hun kjempet mot Rotspawn, men aldri så konsentrert, så rått.
+Tia hadde stått stille, stirret på gropen med en intensitet som Leo aldri hadde sett før. Hennes grønne øyne glødet, og en svak, nesten umerkelig skjelving gikk gjennom kroppen hennes. Hun hadde kjent denne kraften før, da hun kjempet mot Råteyngel, men aldri så konsentrert, så rått.
 
 "Aegions blod," sa Sileus, og stemmen hans fylte hulen med en merkelig resonans. "Det er her, Tia, at du vil begynne å forstå hva det betyr å bære den arven." Han beveget seg mot gropen, og de andre fulgte etter, som om de ble dratt av en usynlig tråd.
 

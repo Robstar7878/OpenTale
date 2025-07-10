@@ -48,7 +48,7 @@ Etter hvert som dagene gikk, merket Leo hvordan landskapet begynte å forandre s
 
 De møtte en familie som hadde flyktet fra en landsby som var blitt "slukt" av Forråtnelsen. Faren, en bredskuldret mann med et ansikt fullt av fortvilelse, fortalte om hvordan jorden hadde begynt å dø, hvordan avlingene hadde visnet, og hvordan husdyrene hadde blitt syke og apatiske. "Det var som om livet ble sugd ut av alt," sa han, stemmen hans var en tørr hvisken. "Og så kom de… de tingene. De grønn-brune. De jaktet i skyggene, og vi visste at vi måtte flykte."
 
-Leo kjente igjen beskrivelsen av Rotspawn, de vridde, groteske skapningene han hadde møtt ved elven Qi. Han hadde sett deres øyne, tomme og onde. Han hadde følt deres klør rive. Tanken på at disse skapningene nå var en del av hverdagen for disse menneskene, fylte ham med en kald gru.
+Leo kjente igjen beskrivelsen av Råteyngel, de vridde, groteske skapningene han hadde møtt ved elven Qi. Han hadde sett deres øyne, tomme og onde. Han hadde følt deres klør rive. Tanken på at disse skapningene nå var en del av hverdagen for disse menneskene, fylte ham med en kald gru.
 
 En kveld, da de slo leir utenfor den overfylte flyktningstrømmen, for å unngå den verste trengselen, så Leo en liten gutt som satt alene, stirret ut i mørket med tomme øyne. Gutten, kanskje åtte år gammel, var tynn og skitten, og han klamret seg til en tøybunke som om den var det eneste holdepunktet i verden. Leo nølte, usikker på hva han skulle si. Han var ingen trøster. Hans egen verden hadde lært ham å unngå smerte, ikke å møte den.
 

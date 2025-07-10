@@ -30,7 +30,7 @@ Kaa beveget seg, bare litt. Et nesten umerkelig nikk.
 
 "Sammen," fortsatte Sileus, stemmen hans ble mer insisterende, "har vi en sjanse. En liten sjanse, kanskje, men en sjanse likevel. Tia må nå Eleium for å finne denne personen moren din snakket om. Det er det første skrittet. Og på veien dit, vil vi lære mer. Vi vil kjempe. Og vi vil overleve." Han så på dem alle, blikket hans var alvorlig. "Frykten for Forråtnelsen er vår felles fiende. Og vår kombinerte styrke er vårt eneste våpen."
 
-Leo følte en underlig virvelvind i brystet. Frykt, ja, det hadde han nok av. Men også en gryende, ubehagelig følelse av ansvar. Han hadde sett Rotspawnene, kjent deres ondskap. Og han hadde sett Tia kjempe, en desperat, utmattet kamp. Han kunne ikke bare forlate dem. Han var her nå, på en eller annen uforståelig måte, og kanskje... kanskje var det en grunn til det. Kanskje var det ikke bare en grusom spøk fra universet.
+Leo følte en underlig virvelvind i brystet. Frykt, ja, det hadde han nok av. Men også en gryende, ubehagelig følelse av ansvar. Han hadde sett Råteyngelene, kjent deres ondskap. Og han hadde sett Tia kjempe, en desperat, utmattet kamp. Han kunne ikke bare forlate dem. Han var her nå, på en eller annen uforståelig måte, og kanskje... kanskje var det en grunn til det. Kanskje var det ikke bare en grusom spøk fra universet.
 
 "Så," sa Arana, øynene hennes smale, "vi blir en... gruppe. For å overleve. Og for å komme til Eleium." Hun snurret en pil mellom fingrene, men blikket hennes var på Sileus. "Hva er din rolle i alt dette, Sileus? Du vet mye. Kanskje for mye."
 

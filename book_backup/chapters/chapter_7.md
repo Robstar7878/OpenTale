@@ -14,7 +14,7 @@ Sileus, med sin uforklarlige evne til å overtale, manøvrerte seg gjennom folke
 
 «To rom i andre etasje,» sa han, og klappet Leo på skulderen. «Enkelt, men rent. Og viktigst av alt, trygt.»
 
-Rommene var enkle, med grove trevegger og ulltepper, og små, smale vinduer som så ut over den travle gaten. Luften var kjølig, men uten den klamme fuktigheten de hadde blitt vant til i Myrlandet. For Leo føltes det som et palass etter uker under åpen himmel, utsatt for elementene og den konstante trusselen fra Rotspawn. Han la fra seg den lille ryggsekken sin, som nå føltes mer som en byrde enn en eiendel, og sank ned på den harde sengen. Han kjente en bølge av utmattelse skylle over seg. For første gang på lenge kjente han en følelse av sikkerhet. En falsk sikkerhet, skulle det vise seg. Men for øyeblikket var den velkommen. Han lukket øynene og trakk pusten dypt, og den rene luften føltes som balsam for lungene.
+Rommene var enkle, med grove trevegger og ulltepper, og små, smale vinduer som så ut over den travle gaten. Luften var kjølig, men uten den klamme fuktigheten de hadde blitt vant til i Myrlandet. For Leo føltes det som et palass etter uker under åpen himmel, utsatt for elementene og den konstante trusselen fra Råteyngel. Han la fra seg den lille ryggsekken sin, som nå føltes mer som en byrde enn en eiendel, og sank ned på den harde sengen. Han kjente en bølge av utmattelse skylle over seg. For første gang på lenge kjente han en følelse av sikkerhet. En falsk sikkerhet, skulle det vise seg. Men for øyeblikket var den velkommen. Han lukket øynene og trakk pusten dypt, og den rene luften føltes som balsam for lungene.
 
 «Dette er bedre,» mumlet han, mer til seg selv enn til de andre.
 

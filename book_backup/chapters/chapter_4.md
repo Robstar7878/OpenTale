@@ -32,9 +32,9 @@ En underlig stillhet senket seg mellom dem. Det var en stillhet fylt med ugjenno
 
 "De... de grønne-brune," sa Leo, og stemmen hans var nesten en hvisken. "De fulgte ikke etter oss? Jeg så dem ikke på den andre siden."
 
-Tia ristet sakte på hodet. "Nei. De grønne-brune. Rotspawn. De kan ikke krysse elven Qi. Den er... en grense. En barriere. De kan komme til bredden, men de kan ikke krysse." Hun snudde seg og så på elven, øynene hennes mørke. "Det er derfor jeg prøvde å nå den. Jeg visste det. Det var vår eneste sjanse."
+Tia ristet sakte på hodet. "Nei. De grønne-brune. Råteyngel. De kan ikke krysse elven Qi. Den er... en grense. En barriere. De kan komme til bredden, men de kan ikke krysse." Hun snudde seg og så på elven, øynene hennes mørke. "Det er derfor jeg prøvde å nå den. Jeg visste det. Det var vår eneste sjanse."
 
-Leo så på elven. Den virket så vanlig, så ufarlig nå. Bare en elv. Men for Rotspawn var den en uoverkommelig barriere. Det var en underlig trøst, men også en skremmende påminnelse om hvor fremmed denne verdenen var. En elv som ikke bare bar vann, men også en grense mellom liv og død, mellom det korrupte og det som fortsatt var rent. Her var det ingen broer, ingen enkle overganger, bare det kalde, dype vannet som holdt det onde i sjakk.
+Leo så på elven. Den virket så vanlig, så ufarlig nå. Bare en elv. Men for Råteyngel var den en uoverkommelig barriere. Det var en underlig trøst, men også en skremmende påminnelse om hvor fremmed denne verdenen var. En elv som ikke bare bar vann, men også en grense mellom liv og død, mellom det korrupte og det som fortsatt var rent. Her var det ingen broer, ingen enkle overganger, bare det kalde, dype vannet som holdt det onde i sjakk.
 
 Minutter ble til timer, eller det føltes slik. Solen hadde nå sunket helt under horisonten, og de dype fargene på himmelen hadde bleknet til en mørk indigoblå, nesten svart. Stjernene begynte å glitre frem, klare og utallige på Elysias himmel, så mange at de nesten virket truende. Den skarpe, rene luften bar med seg en bitende kulde. Leo begynte å skjelve, og han merket at Tia også skalv. De våte klærne klamret seg til huden deres som et iskaldt klamt teppe.
 
@@ -54,7 +54,7 @@ Leo frøs. Hjertet hans begynte å hamre. Han lyttet, spent. Han hørte ingentin
 
 De trakk seg bakover, inn i skyggene av noen busker som vokste langs elvebredden. Leo grep tak i en vissen gren, en patetisk unnskyldning for et våpen, men det ga ham en illusjon av sikkerhet. Tia trakk de to korte sverdene sine fra slirene på ryggen, metallet glimtet svakt i det svinnende lyset. Hun holdt dem foran seg, klare til kamp, hennes holdning spent og krigersk.
 
-Skyggene i skogen beveget seg. Ikke som dyr, ikke som Rotspawn. Mer... menneskelig. Eller i det minste, humanoid. Fire skikkelser gled ut av mørket, stille som spøkelser. De var kledd i mørke, jordfargede klær, og de beveget seg med en letthet som antydet at de var vant til å ferdes i villmarken.
+Skyggene i skogen beveget seg. Ikke som dyr, ikke som Råteyngel. Mer... menneskelig. Eller i det minste, humanoid. Fire skikkelser gled ut av mørket, stille som spøkelser. De var kledd i mørke, jordfargede klær, og de beveget seg med en letthet som antydet at de var vant til å ferdes i villmarken.
 
 Den første, en høy, slank skikkelse, bar en lang, tvinnet trestokk. Han hadde en underlig, lappet kappe som virket å absorbere det svake lyset. Han stoppet, øynene hans skarpe og granskende.
 
@@ -74,17 +74,17 @@ Mannen med trestokken smilte svakt, et glimt av noe uleselig i øynene hans. "En
 
 Kvinnen med buen, Arana, tok et skritt frem. "Vi hørte ropene. Lyden av kamp." Øynene hennes flakket mellom Tia og Leo, som om hun prøvde å lese historien i deres gjørmete ansikter. "Hva skjedde her?"
 
-Tia nølte. Fortelle dem sannheten? Om Rotspawn, om elven, om den uforklarlige måten hun og Leo hadde havnet der? Det virket for utrolig, for farlig. Mistroen var tykk i luften, en nesten fysisk barriere mellom dem.
+Tia nølte. Fortelle dem sannheten? Om Råteyngel, om elven, om den uforklarlige måten hun og Leo hadde havnet der? Det virket for utrolig, for farlig. Mistroen var tykk i luften, en nesten fysisk barriere mellom dem.
 
 "Vi... vi ble angrepet," sa Tia, og valgte en mer generell sannhet. "Av... ting fra skogen. Vi søkte tilflukt i elven."
 
 Arana snørte munnen. "Ting fra skogen?" Hun kastet et blikk på mannen med trestokken. "Vi har ikke sett noe sånt her oppe, ikke på lenge."
 
-"Rotspawn," mumlet Leo, uten å tenke seg om. Ordet slapp ut før han kunne stoppe det.
+"Råteyngel," mumlet Leo, uten å tenke seg om. Ordet slapp ut før han kunne stoppe det.
 
-De fire fremmedes øyne utvidet seg litt. En dypere spenning senket seg. Rotspawn var ikke bare "ting fra skogen". De var en trussel, en pest, et tegn på at Forråtnelsen krøp nordover.
+De fire fremmedes øyne utvidet seg litt. En dypere spenning senket seg. Råteyngel var ikke bare "ting fra skogen". De var en trussel, en pest, et tegn på at Forråtnelsen krøp nordover.
 
-Mannen med trestokken, Sileus, nikket sakte. "Rotspawn. Det er alvorlig. Hvor kom de fra?"
+Mannen med trestokken, Sileus, nikket sakte. "Råteyngel. Det er alvorlig. Hvor kom de fra?"
 
 Tia og Leo vekslet et raskt blikk. De kunne ikke fortelle dem om hvordan de hadde dukket opp, om den merkelige mynten, om kampen ved elven Qi. Ikke ennå.
 
@@ -94,7 +94,7 @@ Sileus' blikk hvilte på Leo, så på mynten han fremdeles ubevisst fiklede med 
 
 "Vi har reist langt," sa Sileus, og brøt stillheten. "Vi søker ly for natten. Det er ikke trygt å være ute. Vi kan finne et sted sammen. Det er tryggere i antall." Han så på Tia. "Dere virker utmattet. Skadet."
 
-Arana, kvinnen med buen, sa ingenting, men øynene hennes var fortsatt fylt med mistro. Hun var klar til å handle om nødvendig. Den yngre kvinnen, Miel, så engstelig på dem, og Kaa, den stille mannen med det hvite håret, skannet fortsatt skogen, som om han forventet at Rotspawn skulle dukke opp når som helst.
+Arana, kvinnen med buen, sa ingenting, men øynene hennes var fortsatt fylt med mistro. Hun var klar til å handle om nødvendig. Den yngre kvinnen, Miel, så engstelig på dem, og Kaa, den stille mannen med det hvite håret, skannet fortsatt skogen, som om han forventet at Råteyngel skulle dukke opp når som helst.
 
 Tia veide ordene. De var slitne, kalde, og sårbare. De fire fremmede var kanskje mistenksomme, men de virket ikke fiendtlige. Og Sileus hadde rett – det var tryggere i antall. Spesielt mot det ukjente som lurer i Elysias natt.
 
@@ -134,7 +134,7 @@ De satt rundt bålet, en merkelig samling av fremmede, bundet sammen av nattens 
 
 "Hvor kommer dere fra, Leo?" spurte Sileus plutselig, stemmen hans brøt stillheten.
 
-Leo nølte. Fortelle dem om sin egen verden? Om biler, om skyskrapere, om en verden uten magi og Rotspawn? De ville aldri tro ham. De ville tro han var gal, eller en nar.
+Leo nølte. Fortelle dem om sin egen verden? Om biler, om skyskrapere, om en verden uten magi og Råteyngel? De ville aldri tro ham. De ville tro han var gal, eller en nar.
 
 "Jeg... jeg er ikke fra disse landene," sa Leo, og valgte en vag, men sannferdig formulering. "Jeg kom hit... plutselig. Uten å vite hvordan."
 
@@ -162,11 +162,11 @@ Sileus så på dem begge, øynene hans glimtet i bålets lys. "For å nå Eleium
 
 Arana snørte munnen, men sa ingenting. Miel så opp, et lite glimt av håp i øynene hennes. Kaa forble en stille skygge.
 
-Tia så på Leo. Han var redd, det visste hun. Men han hadde grepet hånden hennes da hun var i ferd med å drukne. Han hadde kalt ut navnet på Rotspawn uten å nøle. Kanskje han ikke var fra denne verden, men han var her nå.
+Tia så på Leo. Han var redd, det visste hun. Men han hadde grepet hånden hennes da hun var i ferd med å drukne. Han hadde kalt ut navnet på Råteyngel uten å nøle. Kanskje han ikke var fra denne verden, men han var her nå.
 
 "Hva sier du, Leo?" spurte Tia.
 
-Leo så på flammene. Han tenkte på den kalde, våte bussterminalen, på den kjedelige, men trygge jobben, på ensomheten. Han tenkte på Cecilia og Matt og den ydmykelsen. Og så tenkte han på elven Qi, på Rotspawn, på de hyper-levende fargene i Elysia, på den iskalde mynten i lommen. Han var her nå. Det var ingen vei tilbake, ikke ennå. Og disse menneskene, uansett hvor mistenksomme de var, hadde tilbudt ham varme, tørre klær og en trygg havn for natten. De var, i det minste for nå, hans eneste sjanse til å overleve.
+Leo så på flammene. Han tenkte på den kalde, våte bussterminalen, på den kjedelige, men trygge jobben, på ensomheten. Han tenkte på Cecilia og Matt og den ydmykelsen. Og så tenkte han på elven Qi, på Råteyngel, på de hyper-levende fargene i Elysia, på den iskalde mynten i lommen. Han var her nå. Det var ingen vei tilbake, ikke ennå. Og disse menneskene, uansett hvor mistenksomme de var, hadde tilbudt ham varme, tørre klær og en trygg havn for natten. De var, i det minste for nå, hans eneste sjanse til å overleve.
 
 "Ja," sa Leo, stemmen hans var fast. "Vi reiser med dere."
 
