@@ -18,7 +18,7 @@ from flask import (
 )
 
 import prompts
-from agents import BookAgents, check_openai_connection
+from agents import PROMPT_DEBUGGING_DIR, BookAgents, check_openai_connection
 from config import get_config
 
 app = Flask(__name__)
@@ -1097,4 +1097,14 @@ def parse_outline_to_chapters(outline_content, num_chapters):
 if __name__ == "__main__":
     # Check OpenAI connection on startup
     check_openai_connection(agent_config)
+
+    # Notify if in debug mode
+    if os.getenv("DEBUG", "False").lower() in ("true", "1", "t"):
+        print("=" * 50)
+        print("🚀 CAUTION: DEBUG mode is enabled.")
+        print(
+            f"📝 Prompts, requests, and responses will be saved to the '{PROMPT_DEBUGGING_DIR}' directory."
+        )
+        print("=" * 50)
+
     app.run(debug=True)

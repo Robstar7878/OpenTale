@@ -5,6 +5,9 @@ from typing import Dict, List, Optional
 
 from openai import OpenAI
 
+# Constants
+PROMPT_DEBUGGING_DIR = "prompt_debugging"
+
 
 def check_openai_connection(agent_config: Dict):
     """Checks if the OpenAI API connection is valid."""
@@ -29,6 +32,7 @@ class BookAgents:
         self.outline = outline
         self.world_elements = {}  # Track described locations/elements
         self.character_developments = {}  # Track character arcs
+        self.debug = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
 
         # Initialize OpenAI client
         self.client = OpenAI(
@@ -283,12 +287,15 @@ class BookAgents:
         }
 
         # Save the system prompts to a file for debugging
-        if not os.path.exists("prompt_debugging"):
-            os.makedirs("prompt_debugging")
-        for agent_name, prompt_content in self.system_prompts.items():
-            file_path = os.path.join("prompt_debugging", f"{agent_name}_prompt.txt")
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(prompt_content)
+        if self.debug:
+            if not os.path.exists(PROMPT_DEBUGGING_DIR):
+                os.makedirs(PROMPT_DEBUGGING_DIR)
+            for agent_name, prompt_content in self.system_prompts.items():
+                file_path = os.path.join(
+                    PROMPT_DEBUGGING_DIR, f"{agent_name}_prompt.txt"
+                )
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(prompt_content)
 
         # Return empty dict since we're not using actual agent objects anymore
         return {}
@@ -307,15 +314,17 @@ class BookAgents:
         ]
 
         # Save the messages for debugging
-        debug_dir = "prompt_debugging"
-        if not os.path.exists(debug_dir):
-            os.makedirs(debug_dir)
-        for message in messages:
-            role = message["role"]
-            content = message["content"]
-            file_path = os.path.join(debug_dir, f"{agent_name}_request_{role}.txt")
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(content)
+        if self.debug:
+            if not os.path.exists(PROMPT_DEBUGGING_DIR):
+                os.makedirs(PROMPT_DEBUGGING_DIR)
+            for message in messages:
+                role = message["role"]
+                content = message["content"]
+                file_path = os.path.join(
+                    PROMPT_DEBUGGING_DIR, f"{agent_name}_request_{role}.txt"
+                )
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
 
         # Call the API
         completion = self.client.chat.completions.create(
@@ -329,9 +338,12 @@ class BookAgents:
         response = completion.choices[0].message.content
 
         # Save the raw response for debugging
-        response_filepath = os.path.join(debug_dir, f"{agent_name}_response.txt")
-        with open(response_filepath, "w", encoding="utf-8") as f:
-            f.write(response)
+        if self.debug:
+            response_filepath = os.path.join(
+                PROMPT_DEBUGGING_DIR, f"{agent_name}_response.txt"
+            )
+            with open(response_filepath, "w", encoding="utf-8") as f:
+                f.write(response)
 
         # Clean up the response based on agent type
         if agent_name == "outline_creator":
