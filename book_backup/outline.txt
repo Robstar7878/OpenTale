@@ -1,103 +1,114 @@
 OUTLINE:
 
-Chapter 1: The Color of Drowning
+Chapter 1: The Color of Drowning (Drukningens Farger)
 - Key Events:
-  * Leo, a disillusioned young man, picks up an ancient, iridescent coin in his drab, rainy city, feeling an inexplicable pull.
-  * A sudden, disorienting shift pulls Leo from his world, dropping him into the hyper-vibrant, unsettling landscape of Elysia.
-  * He finds himself amidst a desperate battle, where Tia, armed with two short swords, is fighting a horde of grotesque Rotspawn. He instinctively grabs her hand, and they both fall into the surging river Qi.
-- Character Developments: Leo is introduced as a cynical outsider, immediately overwhelmed and disoriented by Elysia. Tia is introduced as a fierce, determined fighter.
-- Setting: Leo's gray, rainy city; the vividly colored plains by the river Qi in Elysia's untainted lands, vibrant but unsettling.
-- Tone: Disorienting, chaotic, jarring, a sudden plunge into the unknown.
+  * Reeling from a soul-crushing job at a carpet warehouse and a recent, humiliating breakup, an apathetic Leo finds a strange, unmarked coin in a gutter.
+  * Touching the coin dissolves his reality and transports him to the hyper-vibrant world of Elysia.
+  * He witnesses an unknown young woman being overwhelmed by monstrous creatures (Rotspawn) and impulsively runs to help her.
+  * As he grabs the woman's hand, the riverbank collapses, and they both fall into a raging, treacherous river.
+- Character Developments: Leo is introduced as disillusioned and resigned, worn down by his mundane job and the fact his ex-girlfriend, Cecilia, left him for his boss. The chapter marks his first impulsive, selfless act, which breaks through his apathy. The unknown woman is introduced as a fierce, but outnumbered, warrior armed with two short swords.
+- Setting: Begins in a bleak, gray, rainy modern city, defined by the synthetic smells of a carpet warehouse and urban decay. Transitions to the untainted lands of Elysia, a place of overwhelming sensory detail with impossibly vibrant colors. Ends in the chaotic, churning waters of the river Qi.
+- Tone: Starts as melancholic and apathetic. Shifts dramatically to wondrous and disorienting, before culminating in desperate, chaotic action.
 
-Chapter 2: The Chamber of Whispers
+Chapter 2: The Chamber of Whispers (Hviskningenes Kammer)
 - Key Events:
-  * Asakael, a shifting form of pure shadow with malevolent orange eyes, observes the failed capture of Tia through a scrying pool in his dark, dissonant chamber.
-  * He expresses his cold displeasure at the Rotspawn's incompetence, his voice a rasping sound like scraping sand.
-  * Asakael instructs his most trusted servant, a mysterious, cloaked figure (The Traitor), to infiltrate the group that will inevitably form around Tia, emphasizing the need to learn her weaknesses and deliver her to him to open the Gates.
-- Character Developments: Asakael is established as a calculating, malevolent entity. The Traitor's hidden identity and sinister purpose are set.
-- Setting: Asakael's chamber, a place of profound cold, decay, and oppressive darkness, radiating dissonance.
-- Tone: Ominous, cold, strategic, foreboding.
+  * The antagonist, Asakael, tortures and drains the life from a failed Rotspawn for not having found and captured the girl, whom he names as Tia.
+  * Asakael reveals his motivation: he needs Tia and her "Aegion's Blood" to open "the Gates" and tear the Weave apart, destroying the world.
+  * He tasks his most trusted agent, a mysterious cloaked figure known as "The Traitor," with infiltrating Tia's eventual group to exploit their weaknesses and capture her.
+- Character Developments: Asakael is established as a cruel, patient, and highly strategic villain with cosmic-level destructive goals. The Traitor is introduced as a significant, hidden threat, setting up future dramatic irony and suspense.
+- Setting: Asakael's Chamber, a place of profound, active darkness and cold. The atmosphere is thick with a metallic stench, and the very air vibrates with a corrupting Dissonance that oppresses the senses.
+- Tone: Chilling, malevolent, and strategic. It provides a stark shift in perspective to the antagonist, building a sense of dread and raising the story's stakes significantly.
 
-Chapter 3: The Watchers by the River
+Chapter 3: The Company of the Lost (De Fortaptes Kompani)
 - Key Events:
-  * Arana, Miel, Kaa, and Sileus, a disparate group of survivors, observe the chaotic battle between Tia, Leo, and the Rotspawn from the opposite bank of the river Qi.
-  * Sileus senses a profound disturbance in the Weave, a ripple of both intense dissonance and an unfamiliar resonance, drawing his attention to the falling figures.
-  * Witnessing Leo and Tia swept downstream, the group, swayed by Sileus's insistence on investigating the unusual Weave signature, decides to follow the current, believing it might lead them to answers or a new threat.
-- Character Developments: The core survivor group is introduced, with their distinct personalities hinted at (Arana's pragmatism, Miel's empathy, Kaa's quiet observation, Sileus's mysterious wisdom).
-- Setting: A dense, "normal" forest on the bank of the river Qi, vibrant and alive.
-- Tone: Observational, curious, a blend of caution and intrigue.
+  * A new group of four survivors — the pragmatic warrior Arana, the empathetic healer Miel, the silent scout Kaa, and the wise guide Sileus—is introduced.
+  * From the opposite bank of the river Qi, they witness the battle between Leo, the unknown woman, and the Rotspawn.
+  * Sensing a profound disturbance in the Weave, a ripple of both intense dissonance and an unfamiliar resonance seemingly coming from the young man, Sileus convinces the group to follow the river downstream to investigate.
+  * The chapter concludes as Kaa spots two bodies washed up on a sandbank.
+- Character Developments: The core skills and personalities of Arana (protector), Miel (empath), Kaa (scout), and Sileus (mystic guide) are established, forming a cohesive survival unit. Sileus's deep knowledge of the Weave and his role as a catalyst are revealed.
+- Setting: An ancient, vibrant forest in the untainted lands, bordering the powerful river Qi. The atmosphere is one of serene beauty undercut by the constant tension of survival.
+- Tone: Shifts from cautious survival to tense observation and finally to a sense of mystique and purpose, driven by Sileus's cryptic pronouncements about the Weave.
 
-Chapter 4: The Gasping Shore
+Chapter 4: The Gasping Shore (Gispebredden)
 - Key Events:
   * Leo and Tia are violently washed ashore further downstream, bruised, exhausted, and disoriented, their immediate priority being survival.
-  * They quickly confirm that the Rotspawn, despite their pursuit, cannot cross the river, establishing the Qi as a temporary barrier.
+  * They quickly confirm that the Rotspawn, despite their pursuit, for an unknown reason does not cross the river, establishing the Qi as a temporary barrier.
+  * Leo and Tia formally introduce themselves.
   * As twilight deepens, Sileus's group emerges from the treeline, leading to a tense, wary confrontation that eventually settles into a fragile truce, forcing the two groups to make camp together for the night.
-- Character Developments: Leo and Tia begin to rely on each other. The initial mistrust between the newly formed groups is palpable, but a shared need for safety forces a tentative alliance.
-- Setting: A muddy, overgrown riverbank by the Qi, the air growing colder as night falls.
-- Tone: Tense, exhausted, wary, a reluctant coming together.
+  * The newly formed group finds shelter, and over a campfire, Tia and Leo agree to travel with them toward Eleium.
+- Character Developments: Leo and Tia form an initial bond of shared survival, with Tia unexpectedly claiming him as her companion. Sileus establishes himself as a calm negotiator and leader. Arana's suspicion and Miel's compassion are further highlighted. The six individuals officially become a single, albeit fragile, company.
+- Setting: A cold, muddy riverbank at dusk, emphasizing vulnerability. Shifts to a small, sheltered campfire among rocks in a dark forest, creating a pocket of fragile warmth and safety.
+- Tone: Begins with exhaustion and pain, transitions to high tension and mistrust, and concludes with a sense of cautious alliance and the first glimmers of camaraderie.
 
-Chapter 5: The Burden of Blood
+Chapter 5: The Burden of Blood (Blodbyrden)
 - Key Events:
   * Around the campfire, Sileus begins to explain the fundamental nature of Elysia: the Weave, its resonance and dissonance, and the encroaching Rot.
   * He reveals the ancient legend of "Aegion's Blood" and, with a knowing gaze, tells Tia that she carries this rare, powerful lineage, causing her to react with disbelief and a deep sense of dread.
   * Despite Tia's denial and Arana's pragmatic skepticism about "legends," the group agrees on a common, immediate goal: to reach the perceived safety of the mountain city of Eleium.
+  * The chapter ends on a cliffhanger as Kaa senses a large, unnatural creature approaching.
 - Character Developments: Tia begins to grapple with her immense, unwanted destiny. Arana's skepticism and focus on practical survival are highlighted. Leo struggles to comprehend the new reality Sileus describes.
 - Setting: The flickering campfire on the riverbank, surrounded by the growing darkness of Elysia's night.
 - Tone: Revelatory, burdened, a mix of awe and apprehension.
 
-Chapter 6: A Hunter of Darkness
+Chapter 6: A Hunter of Darkness (En Mørkets Jeger)
 - Key Events:
   * While traveling through a dense forest, the group is ambushed by a Dark Wolf, a creature far more cunning and corrupted than the typical Rotspawn, its eyes glowing with malevolent intelligence.
   * Leo, seeing Arana in immediate danger, acts on instinct, impulsively pushing her out of the way but suffering a deep, painful wound in his leg from the creature's claws.
-  * Kaa displays his silent, deadly efficiency, dispatching the beast with precise movements, while Miel immediately tends to Leo's wound, expertly applying herbs to prevent the Rot's infection from setting in.
-- Character Developments: Leo shows a nascent, if clumsy, courage. Kaa proves his quiet competence. Miel's gentle healing skills are revealed, contrasting with the violence around them.
-- Setting: A dense, "normal" forest, its vibrant colors now ominous in the fading light.
-- Tone: Action-packed, tense, a harsh lesson in Elysia's dangers, with a glimmer of hope from Miel.
+  * Leo's distraction allows Kaa, Sileus, and Tia to work together and kill the beast.
+  * Miel uses her specialized herbs to treat Leo's wound, preventing the Rot's corruption from taking hold.
+  * The group makes a long, arduous journey toward their destination, Eleium.
+- Character Developments: Leo transitions from a passive observer to a reckless but courageous participant, earning the group's respect and finding a new sense of self-worth. Miel demonstrates her crucial ability to magically counteract the Rot. Kaa and Sileus reveal their formidable combat skills.
+- Setting: A dense, ancient forest that erupts into a violent battleground, followed by a tense night in a secluded clearing. The chapter ends with the group crossing vast, dry plains towards the distant mountains of Eleium.
+- Tone: Starts with suspense, explodes into brutal and chaotic action, then shifts to pained recovery, grim determination, and a slow, exhausting journey.
 
-Chapter 7: The Hungry Boar
+Chapter 7: The Hungry Boar (Det Sultne Villsvin)
 - Key Events:
-  * The group finally arrives at Eleium, the massive mountain city, its bustling streets and sheer scale overwhelming after their journey through the wilderness.
-  * They find temporary refuge at "The Hungry Boar" inn, a noisy, crowded establishment filled with weary travelers and displaced refugees.
-  * While Sileus discreetly makes inquiries about Tia's family or any information regarding Aegion's Blood, Leo, fiddling with his unique coin, unknowingly catches the attention of two shifty-looking men observing him from across the common room.
-- Character Developments: The group experiences the brief respite and overwhelming nature of "civilization" in Elysia. Leo's coin becomes a beacon for unwanted attention.
-- Setting: The bustling, crowded streets and the warm, but wary, common room of "The Hungry Boar" inn in Eleium.
-- Tone: Overwhelmed, cautiously hopeful, with an undercurrent of lurking danger.
+  * The group arrives at the bustling mountain city of Eleium and finds lodging at "The Hungry Boar" inn.
+  * Sileus investigates Tia's only lead but discovers her contact is unknown, leaving her without hope.
+  * While nervously fiddling with his strange coin, Leo attracts the attention of two shifty-looking men observing him from across the common room.
+  * Later that night, the two men break into the room, steal the coin from Leo, and knock him unconscious.
+- Character Developments: Tia's hope is crushed as her only lead proves to be a dead end, making her more vulnerable. Leo's nervous habit of fiddling with his coin as a comforting link to his old world inadvertently makes him a target.
+- Setting: The massive, bustling mountain city of Eleium, which feels both safe and overwhelming. The setting narrows to the loud, earthy common room of "The Hungry Boar" inn and finally to the simple, dark inn room where their safety is violated.
+- Tone: Initial relief and sensory overload upon reaching civilization, which shifts to deep disappointment and despair, then builds to a suspenseful dread, culminating in abrupt violence and shock.
 
-Chapter 8: The Shock of Resonance
+Chapter 8: The Resonance Shock (Resonanssjokket)
 - Key Events:
-  * In the dead of night, the two shady men from the inn break into the group's room, making a beeline for Leo to steal his coin, knocking him unconscious with a swift blow.
-  * As the thieves grab the coin, it reacts violently to their dissonance, emitting a blinding flash of shimmering energy and a high-pitched whine that injures one of them and alerts the group.
-  * Sileus, with unexpected speed and power, neutralizes the remaining thief with a precise strike of his staff, then proceeds to explain the true nature of the Weave, resonance, dissonance, and how Leo's coin was infused with the same power as Aegion's Blood.
-- Character Developments: Leo becomes an unwitting catalyst for a major revelation. Sileus's true power and knowledge are unveiled, stunning the group.
-- Setting: The cramped, dimly lit inn room in Eleium, suddenly filled with chaos and then profound understanding.
-- Tone: Violent, revelatory, shocking, a turning point in understanding Elysia.
+  * The two men's attack is thwarted when Leo's coin reacts violently to their dissonance and unleashes a powerful blast of energy in self-defense, injuring one attacker.
+  * Sileus skillfully incapacitates the second thief, revealing his hidden combat competence.
+  * Forced by the event, Sileus gives a major exposition on the world's core magic: The Weave, Resonance vs. Dissonance, and Asakael's goal of destroying it.
+  * Sileus reveals the truth about Tia's heritage ("Aegion's Blood") and the origin and function of Leo's coin as a living "meter" for the Weave's state.
+- Character Developments: Sileus transitions from a wise guide to the group's central mentor and lore-keeper, revealing his true depth of knowledge and power. Tia learns the reason she is hunted is tied to a cosmic power in her bloodline, shifting her burden from a curse to a potential weapon. Leo discovers his coin is a vital, living tool, cementing his role as an active participant rather than a bystander.
+- Setting: Confined entirely to the small, dark inn room in Eleium. The atmosphere is initially one of violent chaos, which transitions into one of intense, hushed revelation as Sileus explains the world's secrets.
+- Tone: Starts with abrupt, shocking violence and confusion. Shifts dramatically to a tone of awe, wonder, and gravity as the magical and philosophical underpinnings of the world are laid bare, raising the stakes from mere survival to a cosmic battle.
 
-Chapter 9: The Hidden Path
+Chapter 9: The Hidden Path (Den skjulte stien)
 - Key Events:
-  * Following the incident with the thieves, Sileus declares that Eleium is no longer safe, as the coin's powerful reaction will undoubtedly attract more dangerous attention.
-  * Sileus reveals his intimate knowledge of an old, forgotten route out of the city, a secret path through the mountain's lower reaches, allowing them to bypass the main gates.
-  * Under the pre-dawn light, the group quietly sneaks out of Eleium, leaving behind the precarious safety of the city for the uncertain wilderness once more.
-- Character Developments: The group's reliance on Sileus deepens, as his knowledge proves invaluable. A sense of urgency and constant threat is reinforced.
-- Setting: The dark, winding backstreets of Eleium and the shadowed, rocky paths leading out of the mountain city at dawn.
-- Tone: Urgent, secretive, a return to the wild, but with a new sense of purpose.
+  * Sileus declares Eleium unsafe, as the coin's energy burst will attract agents of the Rot.
+  * He reveals his knowledge of a secret passage and leads the group on a tense, pre-dawn escape through the city's back alleys.
+  * They journey through an ancient, claustrophobic tunnel system within the mountain, discovering signs of the Rot's influence even deep underground.
+  * The group successfully emerges into the wilderness at dawn, and after a few hours of travel, Sileus announces they have arrived at their secret destination.
+- Character Developments: Sileus's role as the indispensable, all-knowing guide is cemented, though Arana's skepticism of his convenient knowledge lingers. Leo feels his dependency on the group and experiences his coin reacting negatively to the Dissonance in the tunnels. The group is unified by their shared escape and new purpose.
+- Setting: Shifts from the tense inn room to the oppressive, dark back alleys of Eleium, then to the ancient and claustrophobic tunnels within the mountain, and finally to a secluded, wild mountain landscape at sunrise.
+- Tone: Dominated by urgency, suspense, and a sense of claustrophobia, which resolves into a feeling of grim purpose and the daunting scale of the journey ahead.
 
-Chapter 10: The Weave's First Wave
+Chapter 10: The Weave's First Greeting (Vevens første hilsen)
 - Key Events:
-  * The group arrives at a small, secluded Weave Pit, a natural depression where the Weave's energy is intensely concentrated, a place known only to Sileus.
-  * Sileus guides Tia in her first conscious attempt to "push" against the Weave, urging her to connect with the raw energy of the pit.
-  * Tia's initial attempts are uncontrolled bursts of power, causing flowers to bloom instantly in one spot while cracking rocks in another, with Leo's coin vibrating intensely during resonance and turning ice-cold during dissonance, serving as a crucial feedback tool for her training.
-- Character Developments: Tia begins her arduous journey of mastering Aegion's Blood, experiencing the overwhelming nature of her power. Leo becomes an indispensable, living gauge, directly connected to Tia's progress.
-- Setting: A small, hidden Weave Pit near Eleium, its natural beauty now a canvas for raw, uncontrolled magic.
-- Tone: Experimental, challenging, a mix of frustration and burgeoning power.
+  * Sileus leads the group to a small but powerful, hidden Vevsgrop (Weave Pit) to begin Tia's training.
+  * Tia attempts her first conscious "push" against the Weave, but her power is uncontrolled, causing chaotic bursts of both creation (Resonance), causing flowers to bloom instantly in one spot, and destruction (Dissonance), cracking rocks in another. 
+  * Leo's coin reacts violently to Tia's efforts—growing hot during Resonance and ice-cold during Dissonance — establishing it as a living feedback tool for her progress.
+- Character Developments: Tia begins her difficult training, shifting from a passive carrier to an active wielder of her power. Leo's role is cemented as a vital "meter" for the Weave, physically and magically linking him to Tia's struggle. Sileus is confirmed as a patient and knowledgeable mentor.
+- Setting: A massive, hidden, subterranean cavern housing the Weave Pit. The atmosphere is charged with a raw, pulsating, and luminescent magical energy, feeling both sacred and dangerous.
+- Tone: Begins with mystery and awe, moves into a tense and chaotic sequence of uncontrolled magic, and resolves into a tone of exhausted accomplishment and grim purpose.
 
-Chapter 11: Southward Toward Shadows
+Chapter 11: Southward Toward the Shadows (Sørover mot skyggene)
 - Key Events:
   * After a period of initial training, Sileus insists that to truly understand and combat the Rot, they must travel south, directly towards its source and the increasing danger.
-  * This decision sparks immediate tension within the group, with Arana vocally expressing her skepticism and discomfort with willingly moving deeper into corrupted territory.
-  * Despite the internal debate, the group reluctantly agrees, beginning the long, arduous journey across the vast, open plains of the Midlands, leaving the relative safety of the northern regions behind.
-- Character Developments: Sileus's leadership is asserted, but also begins to sow seeds of doubt. Arana's pragmatism clashes with the group's perceived mission.
-- Setting: The expansive, vibrant plains of the Midlands, gradually transitioning to more muted tones as they head south.
-- Tone: Foreboding, resolute, a journey into increasing peril.
+  * The decision is met with heavy resistance from Arana, who argues for the safety of the north, and fear from Miel, who is already feeling the physical effects of the weakening Weave.
+  * Sileus successfully persuades them by appealing to Tia's sense of duty, Miel's unique sensitivity as a warning system, and Arana's pragmatism in facing an unavoidable threat.
+  * As they travel south, the landscape becomes progressively more blighted, and the group begins to feel the psychological effects of the Dissonance (paranoia, irritability).
+- Character Developments: Sileus's leadership solidifies as he pushes the group into a deliberately dangerous mission, overriding their fears with his seemingly sound logic. Arana's role as the pragmatic dissenter is reinforced. Tia accepts the weight of her destiny and agrees to the perilous journey.
+- Setting: The journey takes the group from the edge of the untainted lands into the increasingly desolate and corrupted fields of the Midlands. The atmosphere shifts from hopeful departure to one of growing dread, oppression, and physical sickness as the air becomes tainted with a metallic tang.
+- Tone: Starts with tense debate and reluctant agreement. Evolves into a slow, oppressive journey marked by atmospheric decay and the psychological strain of entering enemy territory.
 
 Chapter 12: The Stream of Refugees
 - Key Events:
