@@ -1,5 +1,6 @@
 """Define the API client for book generation system"""
 
+import os
 from typing import Dict, List, Optional
 
 from openai import OpenAI
@@ -281,6 +282,14 @@ class BookAgents:
             """,
         }
 
+        # Save the system prompts to a file for debugging
+        if not os.path.exists("prompt_debugging"):
+            os.makedirs("prompt_debugging")
+        for agent_name, prompt_content in self.system_prompts.items():
+            file_path = os.path.join("prompt_debugging", f"{agent_name}_prompt.txt")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(prompt_content)
+
         # Return empty dict since we're not using actual agent objects anymore
         return {}
 
@@ -297,6 +306,17 @@ class BookAgents:
             {"role": "user", "content": prompt},
         ]
 
+        # Save the messages for debugging
+        debug_dir = "prompt_debugging"
+        if not os.path.exists(debug_dir):
+            os.makedirs(debug_dir)
+        for message in messages:
+            role = message["role"]
+            content = message["content"]
+            file_path = os.path.join(debug_dir, f"{agent_name}_request_{role}.txt")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(content)
+
         # Call the API
         completion = self.client.chat.completions.create(
             model=self.model,
@@ -307,6 +327,11 @@ class BookAgents:
 
         # Extract the response
         response = completion.choices[0].message.content
+
+        # Save the raw response for debugging
+        response_filepath = os.path.join(debug_dir, f"{agent_name}_response.txt")
+        with open(response_filepath, "w", encoding="utf-8") as f:
+            f.write(response)
 
         # Clean up the response based on agent type
         if agent_name == "outline_creator":

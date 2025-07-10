@@ -14,7 +14,6 @@ from flask import (
     redirect,
     render_template,
     request,
-    session,
     stream_with_context,
 )
 
@@ -23,7 +22,6 @@ from agents import BookAgents, check_openai_connection
 from config import get_config
 
 app = Flask(__name__)
-app.secret_key = "ai-book-writer-secret-key"  # For session management
 
 
 # Constants for file paths
@@ -118,8 +116,9 @@ def world():
     """Display world theme or chat interface"""
     # GET request - show world page with existing theme if available
     world_theme = get_world_theme()
+    settings = get_settings()
     return render_template(
-        "world.html", world_theme=world_theme, topic=session.get("topic", "")
+        "world.html", world_theme=world_theme, topic=settings.get("topic", "")
     )
 
 
@@ -131,9 +130,11 @@ def world_chat():
     chat_history = data.get("chat_history", [])
     topic = data.get("topic", "")
 
-    # Save topic to session if available
+    # Save topic to settings if available
     if topic:
-        session["topic"] = topic
+        settings = get_settings()
+        settings["topic"] = topic
+        save_settings(settings)
 
     # Initialize agents for world building
     book_agents = BookAgents(agent_config)
@@ -156,9 +157,11 @@ def world_chat_stream():
     chat_history = data.get("chat_history", [])
     topic = data.get("topic", "")
 
-    # Save topic to session if available
+    # Save topic to settings if available
     if topic:
-        session["topic"] = topic
+        settings = get_settings()
+        settings["topic"] = topic
+        save_settings(settings)
 
     # Initialize agents for world building
     book_agents = BookAgents(agent_config)
@@ -212,7 +215,7 @@ def finalize_world():
     # Generate the final world setting using the direct method
     world_theme = book_agents.generate_final_world(chat_history, topic)
 
-    # Clean and save world theme to session and file
+    # Clean and save world theme to file
     world_theme = world_theme.strip()
     world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
@@ -259,7 +262,7 @@ def finalize_world_stream():
         # Combine all chunks for the complete content
         complete_content = "".join(collected_content)
 
-        # Clean and save world theme to session and file once streaming is complete
+        # Clean and save world theme to file once streaming is complete
         world_theme = complete_content.strip()
         world_theme = re.sub(r"\n+", "\n", world_theme)
 

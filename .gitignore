@@ -172,3 +172,4 @@ cython_debug/
 
 
 book_output/*
+prompt_debugging
