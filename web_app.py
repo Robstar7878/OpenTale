@@ -453,14 +453,17 @@ def chapter(chapter_number):
         tense = request.form.get("tense", "Past tense")
 
         # Save to settings
-        if "chapters" not in settings:
-            settings["chapters"] = {}
-        if str(chapter_number) not in settings["chapters"]:
-            settings["chapters"][str(chapter_number)] = {}
+        settings_to_save = get_settings()
+        if "chapters" not in settings_to_save:
+            settings_to_save["chapters"] = {}
+        if str(chapter_number) not in settings_to_save["chapters"]:
+            settings_to_save["chapters"][str(chapter_number)] = {}
 
-        settings["chapters"][str(chapter_number)]["point_of_view"] = point_of_view
-        settings["chapters"][str(chapter_number)]["tense"] = tense
-        save_settings(settings)
+        settings_to_save["chapters"][str(chapter_number)]["point_of_view"] = (
+            point_of_view
+        )
+        settings_to_save["chapters"][str(chapter_number)]["tense"] = tense
+        save_settings(settings_to_save)
 
         # Generate chapter content
         world_theme = get_world_theme()
@@ -529,6 +532,7 @@ def chapter(chapter_number):
 
     master_prompt = get_master_prompt()
 
+    # Get chapter-specific settings or defaults
     # Get chapter-specific settings or defaults
     chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
     point_of_view = chapter_settings.get("point_of_view", "Third-person limited")

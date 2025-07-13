@@ -134,11 +134,13 @@ class BookAgents:
             Always provide specific, detailed content - never use placeholders.""",
             "outline_creator": f"""Generate a detailed {num_chapters}-chapter outline.
 
-            YOU MUST USE EXACTLY THIS FORMAT FOR EACH CHAPTER - NO DEVIATIONS:
+            Start with "OUTLINE:" and end with "END OF OUTLINE"
 
-            OUTLINE:
+            YOU MUST USE EXACTLY THIS FORMAT FOR EACH CHAPTER - NO DEVIATIONS:
             
-            Chapter 1: [Title]
+            Optional: ### [Act 1]: [Act Title] ([Act Title in local language if applicable])
+
+            Chapter 1: [Title] ([Title in local language if applicable])
             - Key Events:
               * [Event 1]
               * [Event 2]
@@ -147,7 +149,7 @@ class BookAgents:
             - Setting: [Specific location and atmosphere]
             - Tone: [Specific emotional and narrative tone]
 
-            Chapter 2: [Title]
+            Chapter 2: [Title] ([Title in local language if applicable])
             - Key Events:
               * [Event 1]
               * [Event 2]
@@ -157,8 +159,6 @@ class BookAgents:
             - Tone: [Specific emotional and narrative tone]
 
             [CONTINUE IN SEQUENCE FOR ALL {num_chapters} CHAPTERS]
-
-            END OF OUTLINE
 
             CRITICAL REQUIREMENTS:
             1. Create EXACTLY {num_chapters} chapters, numbered 1 through {num_chapters} in order

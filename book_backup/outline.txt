@@ -1,6 +1,6 @@
 OUTLINE:
 
-### **Act 1: Hero & Ordinary World**
+### Act 1: Hero & Ordinary World
 
 Chapter 1: The Color of Drowning (Drukningens Farge)
 - Key Events:
@@ -14,15 +14,15 @@ Chapter 1: The Color of Drowning (Drukningens Farge)
 
 Chapter 2: The Whisper in the Dark (Hviskningen i Mørket)
 - Key Events:
-    * **Timeline Placement:** This chapter takes place *before* the events of Chapter 1.
-    * Asakael tortures and drains the life from a failed Rot-Knight for a **previous, unsuccessful attempt** to capture the girl, whom he explicitly names Tia. This establishes that his hunt for her has been ongoing.
+    * Timeline Placement: This chapter takes place *before* the events of Chapter 1.
+    * Asakael tortures and drains the life from a failed Rot-Knight for a previous, unsuccessful attempt to capture the girl, whom he explicitly names Tia. This establishes that his hunt for her has been ongoing.
     * He reveals his motivation to himself: he needs Tia and her "Aegion's Blood" to open "the Gates" and not just destroy the Weave, but rewrite it into a realm of eternal torment.
-    * He summons his most effective, but clearly **compromised**, agent—a shadowed, cloaked figure referred to only as "The Traitor." The dynamic is one of coercion; the agent is acting under a terrible duress (the specifics of which are not yet revealed). Asakael tasks them with a new, long-term strategy: find and join any group that will inevitably form around Tia, earn their complete trust by becoming their staunchest protector, and secretly guide them toward their ultimate ruin.
+    * He summons his most effective, but clearly compromised, agent—a shadowed, cloaked figure referred to only as "The Traitor." The dynamic is one of coercion; the agent is acting under a terrible duress (the specifics of which are not yet revealed). Asakael tasks them with a new, long-term strategy: find and join any group that will inevitably form around Tia, earn their complete trust by becoming their staunchest protector, and secretly guide them toward their ultimate ruin.
 - Character Developments:
-    * **Asakael:** Established as a cruel, patient, and strategic villain with cosmic-level destructive goals. His villainy is deepened, showing he prefers to use not just brute force, but calculated psychological leverage and blackmail.
-    * **The Traitor:** The existence of a hidden, intelligent traitor is introduced to the audience, but their motivation is immediately framed as tragic and **coerced**, not born of malice. They are a prisoner of Asakael's will, forced into a role that goes against their nature. This creates immediate dramatic tension and a sense of helpless dread.
+    * Asakael: Established as a cruel, patient, and strategic villain with cosmic-level destructive goals. His villainy is deepened, showing he prefers to use not just brute force, but calculated psychological leverage and blackmail.
+    * The Traitor: The existence of a hidden, intelligent traitor is introduced to the audience, but their motivation is immediately framed as tragic and coerced, not born of malice. They are a prisoner of Asakael's will, forced into a role that goes against their nature. This creates immediate dramatic tension and a sense of helpless dread.
 - Setting: Asakael's Chamber, a place of profound, active darkness where the very air vibrates with a corrupting Dissonance and a metallic stench. The oppressive atmosphere of the chamber now also serves to emphasize the crushing weight of Asakael's will upon his captive agent.
-- Tone: Chilling, malevolent, and strategic, but now layered with a powerful undercurrent of **tragic inevitability**. The scene builds a sense of dread not just for the heroes, but for the trapped agent being forced down a dark path.
+- Tone: Chilling, malevolent, and strategic, but now layered with a powerful undercurrent of tragic inevitability. The scene builds a sense of dread not just for the heroes, but for the trapped agent being forced down a dark path.
 
 Chapter 3: Company of the Lost (De Fortaptes Kompani)
 - Key Events:
@@ -62,7 +62,7 @@ Chapter 6: A Moment of Instinct (Et Øyeblikks Instinkt)
 - Setting: A dense, ancient forest in the Untainted Lands that erupts into a violent battleground.
 - Tone: Starts with suspense, explodes into brutal action, and shifts to pained recovery and budding camaraderie.
 
-### **Act 2A: Exploring New World**
+### Act 2A: Exploring New World
 
 Chapter 7: The City on the Mountain (Byen på Fjellet)
 - Key Events:
@@ -119,13 +119,13 @@ Chapter 12: The Sunken City of Ull (Den Sunkne Byen Ull)
 - Setting: A temporary camp on the border of the Weeping Swamp, with the oppressive, murky expanse of Ull's ruins visible.
 - Tone: Grave, somber, and momentous, with a touch of ominous, mystifying foreshadowing.
 
-### **Act 2B: Bad Guys Close In**
+### Act 2B: Bad Guys Close In
 
 Chapter 13: The Weight of the Coin (Myntens Vekt)
 - Key Events:
   * Leo fully commits to the mission, no longer thinking of home.
   * He experiments with the coin, noticing that when he focuses on memories of his non-magical world, the temporal flickers around Tia seem to lessen.
-  * Unseen, after the group makes camp, **The Traitor** slips away to a secluded spot and uses a corrupted shard to report Leo's newfound ability to Asakael.
+  * Unseen, after the group makes camp, The Traitor slips away to a secluded spot and uses a corrupted shard to report Leo's newfound ability to Asakael.
 - Character Developments: Leo discovers the first hint of his unique ability to "ground" the paradox. The audience is shown that the enemy is now aware of this crucial development.
 - Setting: A temporary, dry patch of land on the outskirts of the Weeping Swamp.
 - Tone: Determined and focused, laced with a deep, unsettling dramatic irony as the hero's secret weapon is revealed to the enemy.
@@ -159,7 +159,7 @@ Chapter 16: Where Heroes Fell (Der Helter Falt)
 
 Chapter 17: The Pragmatist's Choice (Pragmatikerens Valg)
 - Key Events:
-  * At the ritual’s apex, with the group on the verge of being overwhelmed, **Arana** turns and shatters the ancient focusing crystal.
+  * At the ritual’s apex, with the group on the verge of being overwhelmed, Arana turns and shatters the ancient focusing crystal.
   * The backlash incapacitates Tia and wounds Miel.
   * With cold pity, she tells Leo "It was the only choice," before she grabs the stunned Sileus and vanishes into the swamp.
 - Character Developments: Arana's betrayal is shockingly revealed to the characters and the reader. The loss of the mentor and the group's staunchest "protector" is a devastating blow.
@@ -175,7 +175,7 @@ Chapter 18: The Voice of the Rot (Råskapens Røst)
 - Setting: The desolate, silent ruin after the battle, now filled with a horrifying, disembodied voice.
 - Tone: Utterly bleak, horrifying, and filled with absolute despair.
 
-### **Act 3: Defeat and Victory**
+### Act 3: Defeat and Victory
 
 Chapter 19: The Gray Silence (Den Grå Stillheten)
 - Key Events:
@@ -215,10 +215,10 @@ Chapter 22: The Obsidian Throne (Obsidiantronen)
 
 Chapter 23: The Tyrant's Fall (Tyrannens Fall)
 - Key Events:
-  * Desperate, Tia places her hand on the coin, triggering the terrible **Paradox of its Own Origin**, where the coin's recorded history of her life begins to resonate with her living timeline.
-  * This initiates the **Feedback Loop of Identity**, a magical regression that forces her consciousness to experience her entire past, present, and future simultaneously.
-  * Her physical form and mind begin to shred under the strain, suffering **Annihilation by Totality** as she is scattered across her own existence.
-  * As a last-second, desperate gamble inspired by Miel’s words, Leo acts on his one unique quality. He embraces his outsider nature, embraces his role as the **Temporal Anchor**, and anchors himself completely in his non-magical, linear home world, imposing the solid concept of "now" onto the paradox.
+  * Desperate, Tia places her hand on the coin, triggering the terrible Paradox of its Own Origin, where the coin's recorded history of her life begins to resonate with her living timeline.
+  * This initiates the Feedback Loop of Identity, a magical regression that forces her consciousness to experience her entire past, present, and future simultaneously.
+  * Her physical form and mind begin to shred under the strain, suffering Annihilation by Totality as she is scattered across her own existence.
+  * As a last-second, desperate gamble inspired by Miel’s words, Leo acts on his one unique quality. He embraces his outsider nature, embraces his role as the Temporal Anchor, and anchors himself completely in his non-magical, linear home world, imposing the solid concept of "now" onto the paradox.
   * This shatters the feedback loop, collapsing Tia's scattered self back into the present. Freed and now wielding the focused power of her entire condensed timeline, she and Leo together unleash a torrent of weaponized time that unravels and erases Asakael.
 - Character Developments: The final, symbiotic triumph. Tia makes the ultimate sacrifice, and Leo, in a moment of unplanned, desperate insight, embraces his outsider nature to save her and win the battle, fulfilling their intertwined arcs.
 - Setting: Asakael's Obsidian Throne room, which is unmade by the force of focused, weaponized time.
@@ -233,7 +233,7 @@ Chapter 24: Bittersweet Return (Bittersøt Retur)
 - Setting: A healed, vibrant landscape in Elysia; Leo's familiar, muted, modern world.
 - Tone: Bittersweet, reflective, and poignant, with a subtle undercurrent of unresolved dread.
 
-### **Epilogue**
+### Epilogue
 
 Chapter 25: Two Worlds (To Verdener)
 - Key Events:
