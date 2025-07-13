@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row mb-4">
+                <div class="row mb-2">
                     <div class="col-md-8">
                         <div class="accordion mb-4" id="chapterAccordion">
                             <div class="accordion-item">
@@ -61,6 +61,35 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="accordion-item">
+                               <h2 class="accordion-header">
+                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#styleCollapse">
+                                       Writing Style
+                                   </button>
+                               </h2>
+                               <div id="styleCollapse" class="accordion-collapse collapse" data-bs-parent="#chapterAccordion">
+                                   <div class="accordion-body">
+                                       <div class="row">
+                                           <div class="col-md-6 mb-3">
+                                               <label for="pointOfView" class="form-label">Point of View (POV)</label>
+                                               <select class="form-select" id="pointOfView" name="point_of_view">
+                                                   <option value="First-person limited" {% if point_of_view == 'First-person limited' %}selected{% endif %}>First-person limited</option>
+                                                   <option value="Second-person" {% if point_of_view == 'Second-person' %}selected{% endif %}>Second-person</option>
+                                                   <option value="Third-person limited" {% if point_of_view == 'Third-person limited' %}selected{% endif %}>Third-person limited</option>
+                                                   <option value="Third-person omniscient" {% if point_of_view == 'Third-person omniscient' %}selected{% endif %}>Third-person omniscient</option>
+                                               </select>
+                                           </div>
+                                           <div class="col-md-6 mb-3">
+                                               <label for="tense" class="form-label">Tense</label>
+                                               <select class="form-select" id="tense" name="tense">
+                                                   <option value="Past tense" {% if tense == 'Past tense' %}selected{% endif %}>Past tense</option>
+                                                   <option value="Present tense" {% if tense == 'Present tense' %}selected{% endif %}>Present tense</option>
+                                               </select>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
                         </div>
                         
                         <!-- Chat interface for chapter development -->
@@ -102,7 +131,7 @@
                             </ul>
                         </div>
                         
-                        <div class="card mt-3">
+                        <div class="card mb-3">
                             <div class="card-header bg-info text-white">
                                 Chapter Navigation
                             </div>
@@ -115,6 +144,17 @@
                                         </a>
                                     {% endif %}
                                 {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                Content Stats
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-1"><strong>Words:</strong> <span id="wordCount">0</span></p>
+                                <p class="mb-1"><strong>Characters:</strong> <span id="charCount">0</span></p>
+                                <p class="mb-0"><strong>Sentences:</strong> <span id="sentenceCount">0</span></p>
                             </div>
                         </div>
                     </div>
@@ -219,19 +259,25 @@ $(document).ready(function() {
             : "";
         
         const masterPrompt = $('#masterPrompt').val();
+        const pointOfView = $('#pointOfView').val();
+        const tense = $('#tense').val();
         
         $.ajax({
             type: 'POST',
             url: '/chapter/{{ chapter.chapter_number }}',
             data: {
                 additional_context: additionalContext,
-                master_prompt: masterPrompt
+                master_prompt: masterPrompt,
+                point_of_view: pointOfView,
+                tense: tense
             },
             success: function(response) {
                 $('#chapterContent').val(response.chapter_content);
                 $('#chapterContentContainer').removeClass('d-none');
                 $('#generatingIndicator').addClass('d-none');
                 $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
+                
+                updateContentStats();
                 
                 // Reset chat history after generating
                 chatHistory = [];
@@ -308,6 +354,48 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Update content stats
+    function updateContentStats() {
+        const content = $('#chapterContent').val() || '';
+        
+        /**
+         * Word Count (`wordCount`):
+         * Trims whitespace from the beginning and end of the text.
+         * Splits the text by any occurrence of one or more whitespace characters.
+         * Filters out any empty entries that might result from the split.
+         * The final count is the length of the resulting array.
+         */
+        const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0;
+
+      
+        /**
+         * Character Count (`charCount`):
+         * Counts every character in the string, including spaces and punctuation.
+         */
+        // const charCountNoNewlines = content.replace(/[\r\n]+/g, '').length;
+        // const charCount = charCountNoNewlines;
+        const charCount = content.length;
+
+        /**
+         * Sentence Count (`sentenceCount`):
+         */
+        const normalizedContent = content.replace(/[\r\n]+/g, ' ');
+        const sentences = normalizedContent
+            .split(/(?<=[.!?])\s+/)
+            .filter(sentence => sentence.trim().length > 0);
+        const sentenceCount = sentences.length;
+
+        $('#wordCount').text(wordCount);
+        $('#charCount').text(charCount);
+        $('#sentenceCount').text(sentenceCount);
+    }
+
+    // Initial calculation
+    updateContentStats();
+
+    // Update on keyup
+    $('#chapterContent').on('keyup', debounce(updateContentStats, 250));
 
     // Debounce function
     function debounce(func, wait) {

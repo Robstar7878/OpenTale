@@ -98,6 +98,10 @@ CHAPTER_GENERATION_PROMPT = """
 {master_prompt}
 
 Generate Chapter {chapter_number}: {chapter_title}
+The entire chapter must be in {tense} and from a {point_of_view} point of view. 
+Everything must be filtered through the senses, thoughts, and emotions of the specified POV character. 
+The reader only knows what the POV character knows.
+Include lots of realistic dialogue, deep point of view, and show more than tell. 
 
 Based on:
 - Chapter outline: {chapter_outline}

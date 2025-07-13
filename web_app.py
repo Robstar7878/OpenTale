@@ -443,10 +443,24 @@ def chapter(chapter_number):
             "error.html", message=f"Chapter {chapter_number} not found"
         )
 
+    settings = get_settings()
+
     if request.method == "POST":
         # Get any additional context from the chat interface
         additional_context = request.form.get("additional_context", "")
         master_prompt = request.form.get("master_prompt", "")
+        point_of_view = request.form.get("point_of_view", "Third-person limited")
+        tense = request.form.get("tense", "Past tense")
+
+        # Save to settings
+        if "chapters" not in settings:
+            settings["chapters"] = {}
+        if str(chapter_number) not in settings["chapters"]:
+            settings["chapters"][str(chapter_number)] = {}
+
+        settings["chapters"][str(chapter_number)]["point_of_view"] = point_of_view
+        settings["chapters"][str(chapter_number)]["tense"] = tense
+        save_settings(settings)
 
         # Generate chapter content
         world_theme = get_world_theme()
@@ -489,6 +503,8 @@ def chapter(chapter_number):
                 relevant_characters=characters,  # You might want to filter for relevant characters only
                 scene_details="",  # This would be filled if scenes were generated first
                 previous_context=previous_context,
+                point_of_view=point_of_view,
+                tense=tense,
             ),
         )
 
@@ -513,12 +529,19 @@ def chapter(chapter_number):
 
     master_prompt = get_master_prompt()
 
+    # Get chapter-specific settings or defaults
+    chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
+    point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
+    tense = chapter_settings.get("tense", "Past tense")
+
     return render_template(
         "chapter.html",
         chapter=chapter_data,
         chapter_content=chapter_content,
         chapters=chapters,
         master_prompt=master_prompt,
+        point_of_view=point_of_view,
+        tense=tense,
     )
 
 

@@ -14,12 +14,15 @@ Chapter 1: The Color of Drowning (Drukningens Farge)
 
 Chapter 2: The Whisper in the Dark (Hviskningen i Mørket)
 - Key Events:
-  * The antagonist, Asakael, tortures and drains the life from a failed Rot-Knight for not having found and captured the girl, whom he explicitly names Tia.
-  * He reveals his motivation: he needs Tia and her "Aegion's Blood" to open "the Gates" and tear the Weave apart.
-  * He tasks his most trusted, agent — a shadowed, cloaked figure referred to only as "The Traitor" — with infiltrating Tia's eventual group.
-- Character Developments: Asakael is established as a cruel, patient, and strategic villain with cosmic-level destructive goals. The existence of a hidden, intelligent traitor is introduced to the audience.
-- Setting: Asakael's Chamber, a place of profound, active darkness where the very air vibrates with a corrupting Dissonance and a metallic stench.
-- Tone: Chilling, malevolent, and strategic, building a sense of dread and suspense.
+    * **Timeline Placement:** This chapter takes place *before* the events of Chapter 1.
+    * Asakael tortures and drains the life from a failed Rot-Knight for a **previous, unsuccessful attempt** to capture the girl, whom he explicitly names Tia. This establishes that his hunt for her has been ongoing.
+    * He reveals his motivation to himself: he needs Tia and her "Aegion's Blood" to open "the Gates" and not just destroy the Weave, but rewrite it into a realm of eternal torment.
+    * He summons his most effective, but clearly **compromised**, agent—a shadowed, cloaked figure referred to only as "The Traitor." The dynamic is one of coercion; the agent is acting under a terrible duress (the specifics of which are not yet revealed). Asakael tasks them with a new, long-term strategy: find and join any group that will inevitably form around Tia, earn their complete trust by becoming their staunchest protector, and secretly guide them toward their ultimate ruin.
+- Character Developments:
+    * **Asakael:** Established as a cruel, patient, and strategic villain with cosmic-level destructive goals. His villainy is deepened, showing he prefers to use not just brute force, but calculated psychological leverage and blackmail.
+    * **The Traitor:** The existence of a hidden, intelligent traitor is introduced to the audience, but their motivation is immediately framed as tragic and **coerced**, not born of malice. They are a prisoner of Asakael's will, forced into a role that goes against their nature. This creates immediate dramatic tension and a sense of helpless dread.
+- Setting: Asakael's Chamber, a place of profound, active darkness where the very air vibrates with a corrupting Dissonance and a metallic stench. The oppressive atmosphere of the chamber now also serves to emphasize the crushing weight of Asakael's will upon his captive agent.
+- Tone: Chilling, malevolent, and strategic, but now layered with a powerful undercurrent of **tragic inevitability**. The scene builds a sense of dread not just for the heroes, but for the trapped agent being forced down a dark path.
 
 Chapter 3: Company of the Lost (De Fortaptes Kompani)
 - Key Events:
