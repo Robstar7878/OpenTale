@@ -103,12 +103,24 @@ Everything must be filtered through the senses, thoughts, and emotions of the sp
 The reader only knows what the POV character knows.
 Include lots of realistic dialogue, deep point of view, and show more than tell. 
 
-Based on:
-- Chapter outline: {chapter_outline}
-- World: {world_theme}
-- Characters: {relevant_characters}
-- Scenes: {scene_details}
-- Previous chapters: {previous_context}
+---
+Based on the following:
+- **Chapter outline:** 
+{chapter_outline}
+
+- **World:** 
+{world_theme}
+
+- **Characters:** 
+{relevant_characters}
+
+- **Scenes:** 
+{scene_details}
+
+- **Previous chapters:**
+ {previous_context}
+
+---
 
 Write a complete chapter that:
 1. Follows the outlined plot points
