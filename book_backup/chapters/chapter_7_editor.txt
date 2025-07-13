@@ -1,0 +1,145 @@
+FEEDBACK:
+The initial text provided is a good, but very brief, starting point for the chapter. It correctly establishes the sense of arrival and relief. However, to meet the chapter's goals as outlined, it needs significant expansion. The core directive of a 5000-word count requires building out every key event from the outline into a fully realized scene.
+
+Here are the specific areas for improvement, which I have addressed in the edited version:
+
+1.  **Alignment with Outline:** The provided text only covers the very first part of the first key event (arriving at Eleium). The subsequent events—the dead-end contact, the inn, the coin incident, and the theft—are missing and need to be written from scratch to fulfill the outline's requirements.
+2.  **Tone and Setting:** The outline calls for a shift from "initial relief" to "deep disappointment" and finally to "threat and mystery." This emotional arc needs to be carefully constructed throughout the chapter. The description of Eleium needs to incorporate the world-building details: the solemnity, the scent of pine, stone, and woodsmoke, and most importantly, the visual and emotional impact of the refugee camps, which are central to the city's atmosphere.
+3.  **Character Development:** The chapter is crucial for increasing Tia's vulnerability and highlighting Leo's unique position. Tia's dead-end contact cannot be a minor event; it must be a significant emotional blow. Leo's interaction with the coin needs to be a focal point, demonstrating both its mundane danger (attracting thieves) and its subtle temporal magic.
+4.  **Prose and Word Count:** To meet the 5000-word requirement and adhere to the Gaiman/Rowling style, the chapter needs substantial fleshing out. This includes detailed environmental descriptions, richer internal monologues for the POV character (Leo), and more nuanced character interactions and dialogue that reveal personality and advance the plot.
+
+SUGGEST:
+1.  **Expand the Arrival:** Dedicate more time to the group's final approach and their first impressions of Eleium. Use Leo's perspective to contrast the city's grandeur with the harsh reality of the refugee crisis. This establishes the "solemn atmosphere" from the world-building notes immediately.
+2.  **Dramatize the Dead End:** Build up the scene where Tia seeks her contact. Make the location specific and the disappointment palpable. Show her reaction—the crumbling of her composure—and how the group, especially Leo, rallies around her. This directly addresses the "Tia’s vulnerability increases" character development point.
+3.  **Flesh out "The Hungry Boar":** Create a vivid, memorable setting for the inn. Describe the clientele, the smells, the sounds. This is a classic Rowling-esque opportunity to make a location feel real and lived-in. It should feel like a temporary, and perhaps untrustworthy, sanctuary.
+4.  **Build Up the Coin Incidents:**
+    *   **The Observation:** Show the thieves not as cartoon villains, but as desperate men. Describe how they notice Leo's nervous habit of fiddling with the coin, mistaking it for wealth.
+    *   **The Temporal Slowdown:** This is a key Gaiman-esque moment of subtle, strange magic. Describe the event in detail from Leo's perspective: the sudden silence, the slow spin of the coin, the motes of dust hanging in the air. Crucially, show Tia's shared recognition, confirming it's real and strengthening the mysterious link between them.
+5.  **Craft the Climax:** The break-in should be tense and frightening. Build the atmosphere of the quiet inn room at night. The confrontation should be quick, confusing, and brutal from Leo's perspective, ending on the sharp, disorienting note of him being knocked unconscious and the coin being stolen. This provides a strong cliffhanger and fulfills the final key event of the outline.
+
+By implementing these suggestions, the chapter will not only meet the required length but will also be a rich, atmospheric, and pivotal part of the story that effectively develops the characters and plot as intended.
+
+---
+**EDITED_SCENE:**
+
+### Kapittel 7: Byen på Fjellet
+
+Reisen hadde tæret på dem, slipt kantene av håpet deres til en tynn, skjør flis. Dagene hadde smeltet sammen til en grøt av utmattelse og årvåkenhet, en endeløs marsj gjennom landskap som skrek i farger så intense at Leo noen ganger måtte myse. Men nå, endelig, var det annerledes. De siste timene hadde stien blitt brattere, luften kjøligere, og den bar med seg en skarp, ren duft av furu og fuktig stein som minnet Leo om turer i skogen han knapt kunne huske fra en annen verden, et annet liv.
+
+De så de første tegnene på sivilisasjon som ikke var ruiner eller midlertidige leirer: en smal, steinete sti som snirklet seg oppover, tydelig vedlikeholdt, og i det fjerne, en tynn røyksøyle som steg dovent opp fra en skjult dal.
+
+“Vi er nesten fremme,” sa Sileus, og stemmen hans, vanligvis en vev av gåter og dysterhet, var fylt med en sjelden, nesten guttaktig optimisme. Kappen hans var snudd med den dempede, jordfargede siden ut, men Leo kunne se glimt av de kaotiske fargene langs kanten, som et løfte om en annen virkelighet som lurte like under overflaten. “Eleium er en by bygget for å vare. En festning mot det som kommer.”
+
+Ordet ‘festning’ ga gjenklang i Leo. Alt han hadde sett hittil i Elysia føltes forgjengelig, enten det var den hyperlevende skjønnheten i skogene eller den råtnende stillheten i skyggene. Tanken på noe solid, noe varig, var som et glass kaldt vann etter dager i ørkenen.
+
+De fulgte stien som klatret ubønnhørlig oppover fjellsiden. Snart rundet de en massiv klippeformasjon, og synet som møtte dem tok pusten fra Leo. Det var ikke en by *på* et fjell. Det var som om fjellet selv *var* byen. Massive bygninger var hugget direkte inn i den grå steinen, terrasser og balkonger stakk ut fra klippeveggene som sopp på en gammel trestamme. Broer av stein og tre spant over svimlende kløfter, og utallige trapper og svingete veier forbandt de ulike nivåene. Byen steg oppover i etasjer, en vertikal labyrint av stein og vilje, kronet av et citadell på den øverste toppen, hvis spir klorte mot den dypblå himmelen.
+
+“Ved veven,” hvisket Miel, øynene hennes store av undring. Selv Arana, hvis ansikt vanligvis var en maske av pragmatisk skepsis, lot blikket gli over den utrolige arkitekturen med en anelse av ærefrykt. Kaa, som vanlig, sa ingenting, men han stanset, og den uopphørlige, rastløse bevegelsen i kroppen hans stilnet for et øyeblikk mens han tok inn synet.
+
+Veien ble bredere, brolagt med flate, ujevne steiner som var slitt glatte av utallige føtter, hover og kjerrehjul. Snart befant de seg på en bred, men bratt vei som ledet direkte mot byens hovedport.
+
+Porten til Eleium var et monument i seg selv. To massive treporter, forsterket med svarte jernbånd, var satt inn i en mektig buegang hugget ut av fjellet. På hver side av buegangen reiste det seg tårn av gråstein, bevoktet av vaktposter hvis hjelmer glinset i solen. Over porten vaiet et stort banner i vinden, brodert med byens emblem – et stilisert, snødekket fjell med en strålende sol som steg opp bak det. Det var et symbol på utholdenhet og håp, en direkte motsetning til den krypende dysterheten de hadde flyktet fra.
+
+En følelse av lettelse, så overveldende at den nesten gjorde ham svimmel, skylte over Leo. De hadde klart det. De var i sikkerhet.
+
+Men følelsen varte ikke.
+
+Da de nærmet seg den åpne porten, endret atmosfæren seg. Den friske fjelluften ble tyngre, fylt av den umiskjennelige lukten av for mange mennesker på for liten plass: sur svette, gammel frykt og den tette, søtlige eimen av sykdom. Og over alt sammen hang røyken fra tusenvis av små bål, en lukt som ikke lenger var et løfte om varme og mat, men et tegn på desperasjon.
+
+Innenfor porten var ikke Eleium den majestetiske, ordnede byen Leo hadde forestilt seg. Selve arkitekturen var der – de solide steinhusene, de brede gatene – men alt var oversvømmet. Hver eneste åpne plass, hvert torg, hver gatekrok var fylt med en kaotisk, sammenfiltret masse av telt, presenninger og skrøpelige skur bygget av drivved og filler. Dette var ikke en by; det var en beleiret festning, og flyktningene var hæren som hadde søkt tilflukt innenfor murene.
+
+Ansikter vendte seg mot dem da de gikk inn. Tomme, utslitte ansikter. Voksne med øyne som hadde sett for mye, og som nå bare så innover. Barn med alvorlige, gamle blikk, som lekte stille i søla med pinner og steiner. En konstant, lav summing av stemmer hang i luften – bekymrede samtaler, gråt som ble kvalt i et skittent teppe, en og annen hes hoste.
+
+Leo følte seg som en inntrenger, en turist i andres elendighet. Han trakk hetten på den slitte hettegenseren sin lenger ned, fingrene hans fant automatisk veien til lommen og den kalde, glatte mynten der inne. Han gned tommelen over de nesten usynlige slangene. Det var en nervøs vane han hadde utviklet, en liten, hemmelig handling som ga en illusjon av kontroll.
+
+“Så mye lidelse,” hvisket Miel ved siden av ham. Hun holdt hardt i vesken med urter, som om hun instinktivt ønsket å hjelpe, men var overveldet av omfanget.
+
+“Dette er prisen for å overleve,” sa Arana tørt, men Leo så at de harde øynene hennes flakket, tok inn de tynne kroppene og de fillete klærne. Hun så ikke lidelse; hun så svakhet, en sårbarhet som smittet. “De er heldige som kom seg hit i det hele tatt.”
+
+Sileus’ blikk var festet på noe lenger fremme, forbi de umiddelbare scenene av nød. “Hver by som står, bærer vekten av de som har falt. Kom, vi må finne Tias kontakt. Det er ingen tid å miste.”
+
+Tia, som hadde vært stille siden de fikk øye på byen, rettet ryggen. Et nytt lys av besluttsomhet kom inn i de grønne øynene hennes. For henne var ikke dette bare en trygg havn; det var et startpunkt. En mulighet til å slå tilbake. Hun ledet an, beveget seg gjennom folkemengden med en målrettethet som fikk folk til å vike til side.
+
+De beveget seg oppover gjennom byen, forbi de provisoriske leirene og inn i de mer etablerte bydelene. Her var gatene renere, og luften lettere. De så butikker med utskårne skilt, smier hvor lyden av hammer mot ambolt ga gjenklang mellom steinveggene, og velkledde borgere som skyndte seg forbi med blikk som bevisst unngikk flyktningenes områder nedenfor. Eleium var en by med to ansikter: den stolte, uinntagelige festningen på toppen, og den desperate, overfylte leiren ved foten.
+
+Tia stanset foran en smal bygning klemt mellom en baker og en pottemaker. Et falmet treskilt over døren viste en utskåret lærbit og en nål. En garver.
+
+“Det er her,” sa hun, stemmen knapt en hvisking. Hun tok et dypt åndedrag, som om hun samlet alt håp hun hadde igjen. “Han het Elian. En gammel venn av min far. Han sa jeg alltid ville finne hjelp her.”
+
+Hun løftet hånden og banket på den solide tredøren. Lyden var dump og endelig. De ventet. Stillheten som fulgte var tyngre enn summingen fra leirene. Tia banket på igjen, hardere denne gangen, et anstrøk av desperasjon i bevegelsen.
+
+Etter et øyeblikk ble en liten treluke i døren skjøvet til side, og et par mistenksomme, vannblå øyne kikket ut. De tilhørte en eldre kvinne med et ansikt som et krøllete pergament.
+
+“Hva vil dere?” spurte hun, stemmen var tynn og sprø.
+
+“Jeg søker Elian,” sa Tia, og prøvde å holde stemmen stødig. “Jeg er… datteren til en venn.”
+
+Kvinnens ansikt forandret seg. Mistenksomheten vek for en dyp, bunnløs sorg. “Elian er borte,” sa hun lavt. “Forråtnelsen tok ham. Ikke den som kryper i jorden, men den som kommer med de syke fra sør. En feber for to måneder siden.” Hun gjorde et tegn for å avverge ondskap. “Han er borte, jente. Det er ingen hjelp å finne her.”
+
+Treluken smalt igjen med et klikk som føltes som en dom.
+
+Leo så på Tia. Det var som om en usynlig tråd som hadde holdt henne oppreist, brast. Skuldrene hennes sank, og den intense gløden i øynene hennes sluknet, erstattet av et tomt, glassaktig mørke. Hun stirret på døren, på det lukkede ansiktet til en by som ikke hadde noen svar for henne. All den milslange flukten, all smerten, all kampen hadde ledet dem hit, til en lukket dør og et dødt håp.
+
+“Tia,” sa Leo forsiktig og tok et skritt mot henne.
+
+Hun snudde seg ikke. Hun bare sto der, en ensom skikkelse i en fremmed by som plutselig hadde blitt uendelig mye større og kaldere. Arana la en hånd på Miels arm for å stoppe henne fra å gå frem. Noen sår kunne ikke leges med urter.
+
+Det var Sileus som brøt stillheten. “Skjebnen er ikke en rett linje, men en elv med mange bielver,” sa han mildt. “Én kan tørke ut, men elven renner videre. Vi finner en annen vei.”
+
+Tia snudde seg sakte. Ansiktet hennes var en maske, men Leo så ristingen i hendene hennes. “Hvilken vei?” spurte hun, stemmen hul. “Jeg har ingen andre. Dette var alt.”
+
+Vekten av de ordene la seg over dem alle. Hennes siste kontakt, deres eneste ledetråd, var borte. De var ikke lenger en gruppe med et mål, men seks fortapte sjeler i en overfylt by som ikke ønsket dem velkommen.
+
+“Vi trenger et sted å hvile,” sa Arana, stemmen hennes var praktisk og jordnær, et anker i Tias virvelvind av fortvilelse. “Et tak over hodet. Varm mat. Vi tenker klarere da.” Hun hadde rett. De var utslitte, sultne og nå også motløse.
+
+De fant et vertshus i en av de trangere sidegatene, et stykke unna både de velstående hovedgatene og de støyende leirene. Skiltet over døren var et grovt utskåret villsvinhode med en sint mine og store, gule tenner. *Det Sultne Villsvin*. Navnet virket passende.
+
+Inne var det dunkelt og luktet av surt øl, gammel røyk og våt ull. Rommet var fylt med hardbarkede typer: fjellfolk med værbitte ansikter, leiesoldater som polerte våpnene sine ved bordene, og noen få skikkelser som satt alene i skyggene og så ut som de hadde mer til felles med mørket enn med lyset. En kraftig bygget vert med armer som trestammer og et ansikt som så ut som det hadde tapt flere slåsskammer enn det hadde vunnet, tørket av en benk med en skitten klut.
+
+Sileus tok seg av forhandlingene, og etter en utveksling av noen små, ukjente mynter fra en pung han holdt gjemt, sikret han dem to rom i andre etasje for natten. Maten var en tykk, brun lapskaus med seigt kjøtt og rotgrønnsaker, servert med hardt, mørkt brød. Det var ikke godt, men det var varmt og det fylte magen.
+
+De satt rundt et klissete trebord i et hjørne. Stemningen var trykkende. Tia spiste knapt, bare skjøv maten rundt på tallerkenen med skjeen sin. Miel kastet bekymrede blikk på henne. Arana spiste raskt og effektivt, øynene hennes sveipet konstant over rommet, vurderte mulige trusler. Kaa satt litt tilbaketrukket, ryggen mot veggen, og spiste i stillhet.
+
+Leo følte seg malplassert, en statist i et skuespill han ikke forsto. Han tok opp mynten sin igjen, lot den rulle mellom fingrene under bordet. Den kalde, glatte overflaten var en kjent, beroligende tekstur i denne fremmede, uforutsigbare verdenen. Han så opp og la merke til to menn ved et bord tvers over rommet. De var tynne, med innsunkne kinn og rastløse øyne som flakket overalt. Flyktninger, som så mange andre, men det var noe annerledes med dem. En anspent, rovdyraktig stillhet. Og de så på ham. Eller rettere sagt, de så på hendene hans, på den lille, nesten umerkelige bevegelsen av fingrene hans som fiklet med noe i lommen.
+
+Leo slapp mynten og la hendene flatt på bordet. Mennenes blikk gled umiddelbart bort, som om de aldri hadde sett i hans retning. Men Leo hadde sett det. En gnist av interesse. Av grådighet. Han kjente en kald knute i magen. I hans verden var en gammel, verdiløs mynt bare søppel. Her, i en by fylt til randen av desperate mennesker, kunne en hvilken som helst gjenstand som glinset, bli tolket som en skatt. Han var blitt et mål, ikke på grunn av en kosmisk profeti, men på grunn av vanlig, jordnær fattigdom. Ironien var til å ta og føle på.
+
+“Vi må bestemme oss for hva vi skal gjøre nå,” sa Arana og brøt stillheten.
+
+Sileus lente seg frem. “Tias kontakt var bare én tråd i Veven. Det finnes andre. Eleium er en by med hemmeligheter. Det finnes kunnskap her, gjemt i gamle biblioteker og i hodene på de som lytter til fjellets hvisking.”
+
+“Eventyr,” fnøs Arana. “Vi trenger en plan, Sileus, ikke poesi. Vi har knapt penger til en natt til på dette… stedet. Vinteren kommer til fjellene. Vi kan ikke bli her.”
+
+“Kanskje vi burde dra nordover,” foreslo Miel lavt. “Lenger bort fra… alt.”
+
+“Å flykte løser ingenting,” sa Tia, og det var første gang hun snakket med noe som lignet sin gamle styrke. Øynene hennes var mørke, men ilden var ikke helt slukket. “Forråtnelsen vil følge etter. Den stopper ikke før alt er borte.”
+
+Diskusjonen fortsatte, en dragkamp mellom Aranas harde pragmatisme og Sileus’ mystiske tro. Leo hørte bare halvparten. Tankene hans kvernet rundt de to mennene, rundt Tias knuste håp, rundt den absurde situasjonen han befant seg i. Han følte seg sliten helt inn i sjelen. Han ville bare hjem, til den grå, kjedelige, forutsigbare stillheten i leiligheten sin. En verden hvor den største trusselen var en sint sjef, ikke sjele-etende mørke og desperate tyver.
+
+Uten å tenke seg om, tok han mynten ut av lommen. Han ville bare kjenne vekten av den i hånden. Men fingrene hans var klumsete av tretthet, og den glatte metallskiven glapp ut av grepet hans.
+
+Den traff bordkanten med et lite klikk, spratt opp i luften og begynte å spinne på treoverflaten.
+
+Og så skjedde det noe merkelig.
+
+Alt ble stille. Den brummende samtalen i vertshuset, klirringen av krus, den sprakende lyden fra peisen – alt forsvant. Det var ikke bare stillhet; det var fraværet av lyd, en tykk, bomullsaktig stillhet som presset mot trommehinnene hans. Møllene som danset rundt en oljelampe i nærheten, frøs i luften, vingene deres urørlige. En dråpe kondens som var i ferd med å falle fra et krus, hang som en perfekt, skjelvende juvel. Verten, midt i en gjesp, var frosset med munnen på vidt gap.
+
+Tiden hadde stanset.
+
+Men mynten fortsatte å spinne. Saktere nå, som om den beveget seg gjennom honning. Leo kunne se de to sammenflettede slangene tydeligere enn noen gang før, etset inn i metallet som et evig symbol på en uendelig jakt. Den snurret og snurret, et enslig, bevegelig punkt i et frosset univers.
+
+Han løftet blikket, forvirret og skrekkslagen. Alle satt som statuer. Arana, midt i en setning, leppene formet rundt et ord. Sileus, med et ettertenksomt uttrykk. Miel, med øynene fulle av bekymring.
+
+Alle, unntatt én.
+
+Tvers over bordet møtte han Tias blikk. Øynene hennes var store, fylt med den samme sjokkerte undringen som han følte. Hun var ikke frosset. Hun så på ham, så på den spinnende mynten, og så tilbake på ham. En stum samtale fant sted mellom dem, et spørsmål og en bekreftelse. *Ser du dette? Ja. Jeg ser det også.*
+
+Like brått som den hadde stanset, startet verden igjen. Mynten vinglet, mistet farten og la seg flat på bordet med et siste, lite klirr. Støyen fra vertshuset kom tilbake som en bølge. Verten fullførte gjespet sitt. Møllene fortsatte sin desperate dans. Dråpen falt.
+
+Ingen andre hadde lagt merke til noe.
+
+Leo stirret på mynten, hjertet hamret i brystet. Det var ikke innbilning. Tia hadde sett det. Hva i alle dager var denne tingen?
+
+“Leo? Er alt i orden?” Miels stemme var bekymret. “Du ble helt blek.”
+
+“Jeg… jeg er bare sliten,” stammet han og skjøv mynten raskt tilbake i lommen. Han unngikk Tias bl

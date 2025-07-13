@@ -186,11 +186,16 @@
                                 <button type="submit" class="btn btn-success" id="saveChapterBtn">Save Chapter</button>
                                 <a href="/chapter_editor/{{ chapter.chapter_number }}" class="btn btn-warning">Perform Editor Role</a>
                             </div>
-                            {% if chapter.chapter_number < chapters|length %}
-                            <a href="/chapter/{{ chapter.chapter_number + 1 }}" class="btn btn-primary">Next Chapter &raquo;</a>
-                            {% else %}
-                            <a href="/outline" class="btn btn-primary">Back to Outline</a>
-                            {% endif %}
+                            <div>
+                                {% if chapter.chapter_number > 1 %}
+                                <a href="/chapter/{{ chapter.chapter_number - 1 }}" class="btn btn-primary">&laquo; Previous Chapter</a>
+                                {% endif %}
+                                {% if chapter.chapter_number < chapters|length %}
+                                <a href="/chapter/{{ chapter.chapter_number + 1 }}" class="btn btn-primary">Next Chapter &raquo;</a>
+                                {% else %}
+                                <a href="/outline" class="btn btn-primary">Back to Outline</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </form>
                     
