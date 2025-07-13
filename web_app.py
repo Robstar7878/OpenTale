@@ -549,6 +549,129 @@ def chapter(chapter_number):
     )
 
 
+@app.route("/chapter_editor/<int:chapter_number>", methods=["GET", "POST"])
+def chapter_editor(chapter_number):
+    """Generate or display a specific chapter for editing"""
+    chapters = get_chapters()
+
+    # Check if chapter exists
+    chapter_data = None
+    for ch in chapters:
+        if ch["chapter_number"] == chapter_number:
+            chapter_data = ch
+            break
+
+    if not chapter_data:
+        return render_template(
+            "error.html", message=f"Chapter {chapter_number} not found"
+        )
+
+    settings = get_settings()
+
+    if request.method == "POST":
+        # Get any additional context from the chat interface
+        additional_context = request.form.get("additional_context", "")
+        master_prompt = request.form.get("master_prompt", "")
+        point_of_view = request.form.get("point_of_view", "Third-person limited")
+        tense = request.form.get("tense", "Past tense")
+        chapter_content_to_edit = request.form.get("chapter_content", "")
+
+        # Save to settings
+        settings_to_save = get_settings()
+        if "chapters" not in settings_to_save:
+            settings_to_save["chapters"] = {}
+        if str(chapter_number) not in settings_to_save["chapters"]:
+            settings_to_save["chapters"][str(chapter_number)] = {}
+
+        settings_to_save["chapters"][str(chapter_number)]["point_of_view"] = (
+            point_of_view
+        )
+        settings_to_save["chapters"][str(chapter_number)]["tense"] = tense
+        save_settings(settings_to_save)
+
+        # Generate chapter content
+        world_theme = get_world_theme()
+        characters = get_characters()
+
+        # Get previous chapters context
+        previous_context = ""
+        if chapter_number > 1:
+            prev_chapter_path = os.path.join(
+                CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+            )
+            if os.path.exists(prev_chapter_path):
+                with open(prev_chapter_path, "r") as f:
+                    # Get a summary or the last few paragraphs
+                    content = f.read()
+                    previous_context = (
+                        content[-1000:] if len(content) > 1000 else content
+                    )
+
+        # Initialize agents for chapter generation
+        book_agents = BookAgents(agent_config, chapters)
+        book_agents.create_agents(world_theme, len(chapters))
+
+        # Add the additional context from chat to the chapter prompt
+        chapter_prompt = (
+            f"{chapter_data['prompt']}\n\n{additional_context}"
+            if additional_context
+            else chapter_data["prompt"]
+        )
+
+        # Generate the chapter
+        chapter_content = book_agents.generate_content(
+            "editor",
+            prompts.CHAPTER_EDITING_PROMPT.format(
+                master_prompt=master_prompt,
+                chapter_number=chapter_number,
+                chapter_title=chapter_data["title"],
+                chapter_outline=chapter_prompt,
+                world_theme=world_theme,
+                relevant_characters=characters,  # You might want to filter for relevant characters only
+                previous_context=previous_context,
+                point_of_view=point_of_view,
+                tense=tense,
+                chapter_content=chapter_content_to_edit,
+            ),
+        )
+
+        # Clean and save chapter content
+        chapter_content = chapter_content.strip()
+        chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number}_editor{TEXT_EXTENSION}"
+        )
+        with open(chapter_path, "w") as f:
+            f.write(chapter_content)
+
+        return jsonify({"chapter_content": chapter_content})
+
+    # GET request - show chapter page with existing content if available
+    chapter_content = ""
+    chapter_path = os.path.join(
+        CHAPTERS_DIR, f"chapter_{chapter_number}_editor{TEXT_EXTENSION}"
+    )
+    if os.path.exists(chapter_path):
+        with open(chapter_path, "r") as f:
+            chapter_content = f.read().strip()
+
+    master_prompt = get_master_prompt()
+
+    # Get chapter-specific settings or defaults
+    chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
+    point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
+    tense = chapter_settings.get("tense", "Past tense")
+
+    return render_template(
+        "chapter_editor.html",
+        chapter=chapter_data,
+        chapter_content=chapter_content,
+        chapters=chapters,
+        master_prompt=master_prompt,
+        point_of_view=point_of_view,
+        tense=tense,
+    )
+
+
 @app.route("/save_chapter/<int:chapter_number>", methods=["POST"])
 def save_chapter(chapter_number):
     """Save edited chapter content"""
@@ -559,6 +682,23 @@ def save_chapter(chapter_number):
 
     chapter_path = os.path.join(
         CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+    )
+    with open(chapter_path, "w") as f:
+        f.write(chapter_content)
+
+    return jsonify({"success": True})
+
+
+@app.route("/save_chapter_editor/<int:chapter_number>", methods=["POST"])
+def save_chapter_editor(chapter_number):
+    """Save edited chapter content (editor version)"""
+    chapter_content = request.form.get("chapter_content")
+
+    # Strip extra newlines at the beginning and normalize newlines
+    chapter_content = chapter_content.strip()
+
+    chapter_path = os.path.join(
+        CHAPTERS_DIR, f"chapter_{chapter_number}_editor{TEXT_EXTENSION}"
     )
     with open(chapter_path, "w") as f:
         f.write(chapter_content)

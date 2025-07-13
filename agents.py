@@ -69,7 +69,7 @@ Your responsibilities:
 3. Maintain world-building consistency
 4. Flag any continuity issues
 
-Outline Context:
+### Outline Context
 {outline_context}
 
 Format your responses as follows:
@@ -178,7 +178,7 @@ Initial Premise:
             
 Your role is to establish ALL settings and locations needed for the entire story based on a provided story arc.
 
-Outline Context:
+### Outline Context
 {outline_context}
 
 Your responsibilities:
@@ -214,7 +214,7 @@ WORLD_ELEMENTS:
 Your mission is to write scenes based on the provided outline context and the user's request, 
 adhering to the following directives and craft rules at all times.
 
-Outline Context:
+### Outline Context
 {outline_context}
 
 ---
@@ -242,7 +242,7 @@ Mark drafts with 'SCENE:' and final versions with 'SCENE FINAL:'
 Your mission is to review and improve the provided chapter content based on the provided outline context and the user's request, 
 adhering to the following directives at all times.
 
-Outline Context:
+### Outline Context
 {outline_context}
 
 ---

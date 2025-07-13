@@ -118,7 +118,7 @@ Based on the following:
 {scene_details}
 
 - **Previous chapters:**
- {previous_context}
+{previous_context}
 
 ---
 
@@ -135,15 +135,27 @@ The chapter should be at least 5000 words with a clear beginning, middle, and en
 
 # Chapter editing prompt
 CHAPTER_EDITING_PROMPT = """
+{master_prompt}
+
 Review and improve the following chapter:
 
 {chapter_content}
 
-Based on:
-- Chapter outline: {chapter_outline}
-- World: {world_theme}
-- Characters: {relevant_characters}
-- Previous chapters: {previous_context}
+---
+Based on the following:
+- **Chapter outline:** 
+{chapter_outline}
+
+- **World:** 
+{world_theme}
+
+- **Characters:** 
+{relevant_characters}
+
+- **Previous chapters:**
+{previous_context}
+
+---
 
 Provide a comprehensive edit that:
 1. Improves prose quality and flow
