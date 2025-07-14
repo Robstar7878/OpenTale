@@ -9,7 +9,7 @@
             <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
                 <h2 class="h4 mb-0">Review Chapter {{ chapter.chapter_number }}: {{ chapter.title }}</h2>
                 <div>
-                    <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-light btn-sm">&laquo; Back to Author Chapter View</a>
+                    <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-warning btn-sm">&laquo; Author Chapter View</a>
                     {% if chapter.chapter_number > 1 %}
                     <a href="/chapter_editor/{{ chapter.chapter_number - 1 }}" class="btn btn-light btn-sm">&laquo; Previous Chapter</a>
                     {% endif %}
@@ -19,6 +19,12 @@
                 </div>
             </div>
             <div class="card-body">
+                {% if not has_review %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>This chapter has not been reviewed yet.</strong> The content below is the original version. Use the editing tools, like `Execute Editor Role`, to create the first review.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
                 <div class="row mb-2">
                     <div class="col-md-8">
                         <div class="accordion mb-4" id="chapterAccordion">
@@ -187,7 +193,7 @@
                         <div class="d-flex justify-content-between">
                             <div>
                                 <button type="submit" class="btn btn-success" id="saveChapterBtn">Save Chapter Review Content</button>
-                                <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-warning">Back to Author Chapter View</a>
+                                <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-warning">Go to Author Chapter View</a>
                             </div>
                             <div>
                                 {% if chapter.chapter_number > 1 %}
@@ -280,34 +286,75 @@ $(document).ready(function() {
         const tense = $('#tense').val();
         const chapterContent = $('#originalChapterContent').val(); // Use original content for editing
 
-        $.ajax({
-            type: 'POST',
-            url: '/chapter_editor/{{ chapter.chapter_number }}',
-            data: {
-                additional_context: additionalContext,
-                master_prompt: masterPrompt,
-                point_of_view: pointOfView,
-                tense: tense,
-                chapter_content: chapterContent // This is the original content
-            },
-            success: function(response) {
-                // The response will contain the newly edited content, which goes into the editor text area
-                $('#chapterContent').val(response.chapter_content);
-                $('#chapterContentContainer').removeClass('d-none');
-                $('#generatingIndicator').addClass('d-none');
-                $('#editorChapterBtn').prop('disabled', false);
+        const requestData = {
+            additional_context: additionalContext,
+            master_prompt: masterPrompt,
+            point_of_view: pointOfView,
+            tense: tense,
+            chapter_content: chapterContent // This is the original content
+        };
 
-                updateContentStats();
+        let fullContent = '';
+        $('#chapterContent').val(''); // Clear previous content
 
-                // Reset chat history after generating
-                chatHistory = [];
-                $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been edited! You can continue to add details or make changes to refine it further.</p></div>');
+        fetch(`/chapter_editor_stream/{{ chapter.chapter_number }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            error: function() {
-                alert('Error editing chapter. Please try again.');
-                $('#generatingIndicator').addClass('d-none');
-                $('#editorChapterBtn').prop('disabled', false);
+            body: JSON.stringify(requestData)
+        }).then(response => {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            function readStream() {
+                return reader.read().then(({ value, done }) => {
+                    if (done) {
+                        // End of stream
+                        $('#generatingIndicator').addClass('d-none');
+                        $('#editorChapterBtn').prop('disabled', false);
+                        updateContentStats();
+
+                        // Reset chat history after generating
+                        chatHistory = [];
+                        $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been edited! You can continue to add details or make changes to refine it further.</p></div>');
+                        return;
+                    }
+
+                    // Decode the chunk
+                    const chunk = decoder.decode(value);
+
+                    // Process each event in the chunk
+                    chunk.split('\n\n').forEach(event => {
+                        if (event.startsWith('data: ')) {
+                            try {
+                                const jsonData = event.substring(6); // Remove 'data: ' prefix
+                                const data = JSON.parse(jsonData);
+
+                                if (data.content === '[DONE]') {
+                                    // This will be handled by the done flag
+                                    return;
+                                }
+
+                                if (data.content) {
+                                    fullContent += data.content;
+                                    $('#chapterContent').val(fullContent);
+                                    $('#chapterContentContainer').removeClass('d-none');
+                                }
+                            } catch (e) {
+                                console.error('Error parsing JSON:', e, jsonData);
+                            }
+                        }
+                    });
+                    return readStream();
+                });
             }
+            return readStream();
+        }).catch(error => {
+            console.error('Fetch error:', error);
+            alert('Error editing chapter. Please try again.');
+            $('#generatingIndicator').addClass('d-none');
+            $('#editorChapterBtn').prop('disabled', false);
         });
     });
 

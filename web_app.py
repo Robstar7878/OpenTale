@@ -660,7 +660,8 @@ def chapter_editor(chapter_number):
     editor_chapter_path = os.path.join(
         CHAPTERS_DIR, f"chapter_{chapter_number}_editor{TEXT_EXTENSION}"
     )
-    if os.path.exists(editor_chapter_path):
+    has_review = os.path.exists(editor_chapter_path)
+    if has_review:
         with open(editor_chapter_path, "r", encoding="utf-8") as f:
             chapter_content = f.read().strip()
 
@@ -680,6 +681,107 @@ def chapter_editor(chapter_number):
         master_prompt=master_prompt,
         point_of_view=point_of_view,
         tense=tense,
+        has_review=has_review,
+    )
+
+
+@app.route("/chapter_editor_stream/<int:chapter_number>", methods=["POST"])
+def chapter_editor_stream(chapter_number):
+    """Generate or display a specific chapter"""
+    chapters = get_chapters()
+
+    # Check if chapter exists
+    chapter_data = None
+    for ch in chapters:
+        if ch["chapter_number"] == chapter_number:
+            chapter_data = ch
+            break
+
+    if not chapter_data:
+        return Response(
+            json.dumps({"error": f"Chapter {chapter_number} not found"}),
+            status=404,
+            mimetype="application/json",
+        )
+
+    data = request.json
+    # Get any additional context from the chat interface
+    additional_context = data.get("additional_context", "")
+    master_prompt = data.get("master_prompt", "")
+    point_of_view = data.get("point_of_view", "Third-person limited")
+    tense = data.get("tense", "Past tense")
+    chapter_content = data.get("chapter_content", "")
+
+    # Generate chapter content
+    world_theme = get_world_theme()
+    characters = get_characters()
+
+    # Get previous chapters context
+    previous_context = ""
+    if chapter_number > 1:
+        prev_chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+        )
+        if os.path.exists(prev_chapter_path):
+            with open(prev_chapter_path, "r") as f:
+                # Get a summary or the last few paragraphs
+                content = f.read()
+                previous_context = content[-1000:] if len(content) > 1000 else content
+
+    # Initialize agents for chapter generation
+    book_agents = BookAgents(agent_config, chapters)
+    book_agents.create_agents(world_theme, len(chapters))
+
+    # Add the additional context from chat to the chapter prompt
+    chapter_prompt = (
+        f"{chapter_data['prompt']}\n\n{additional_context}"
+        if additional_context
+        else chapter_data["prompt"]
+    )
+
+    # Generate the chapter
+    stream = book_agents.generate_content_stream(
+        "editor",
+        prompts.CHAPTER_EDITING_PROMPT.format(
+            master_prompt=master_prompt,
+            chapter_number=chapter_number,
+            chapter_title=chapter_data["title"],
+            chapter_outline=chapter_prompt,
+            world_theme=world_theme,
+            relevant_characters=characters,
+            previous_context=previous_context,
+            point_of_view=point_of_view,
+            tense=tense,
+            chapter_content=chapter_content,
+        ),
+    )
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },  # Disable buffering in Nginx if used
     )
 
 

@@ -1,3 +1,39 @@
+FEEDBACK:
+Takk for innsendingen. Dette er en solid start på et avgjørende kapittel, men det har flere områder som trenger betydelig utdyping og forbedring for å møte de etablerte kravene, spesielt med tanke på lengde, dybde og overholdelse av disposisjonen.
+
+1.  **Overholdelse av disposisjon:**
+    *   **Kritisk manglende hendelse:** Det mest betydningsfulle avviket fra disposisjonen er fraværet av den sentrale hendelsen der Leo mister mynten og tiden ser ut til å bremse opp for ham og Tia. Dette øyeblikket er avgjørende for å demonstrere myntens temporale egenskaper og styrke båndet mellom Leo og Tia. Det må legges til.
+    *   **Overfladisk behandling:** Mens ankomsten, vertshuset og den dårlige nyheten er til stede, blir de behandlet svært overfladisk. Disposisjonen krever en følelse av "lettelse og sanseoverbelastning som surner til dyp skuffelse og en lagdelt følelse av trussel og mystikk." Den nåværende teksten hopper for raskt gjennom disse fasene.
+
+2.  **Karakterkonsistens og -utvikling:**
+    *   **Leo:** Hans reaksjon på byen er nevnt, men ikke utforsket i dybden. Følelsen av å være en fremmed, en anomali fra en verden av asfalt og rette linjer, kan forsterkes betraktelig. Hans nervøse fikling med mynten er et godt utgangspunkt, men det må kobles til den dypere følelsen av at den er hans eneste anker.
+    *   **Tia:** Hennes sårbarhet er nevnt, men skuffelsen over at kontakten hennes er en blindvei, føles forbigående. Dette skulle være et knusende slag mot hennes siste, konkrete håp. Reaksjonen hennes må gis mer vekt og rom.
+    *   **Gruppedynamikk:** Interaksjonene er for enkle. Aranas årvåkenhet, Miels lettelse, Kaas stille observasjoner og Sileus' veiledning kan vises gjennom mer detaljerte handlinger og interne refleksjoner, ikke bare korte beskrivelser.
+
+3.  **Verdensbygging og setting:**
+    *   **Eleium:** Byen beskrives som "robust", men mangler den "høytidelige atmosfæren" og de visuelle detaljene fra disposisjonen, som furu, stein, røyken fra flyktningleirene, og den generelle spenningen. Byen føles mer som en kulisse enn et levende, pustende sted preget av en pågående krise.
+    *   **Sensoriske detaljer:** Teksten mangler den rike, sensoriske beskrivelsen som kreves for å skape en Gaiman/Rowling-aktig stil. Luktene, lydene og den taktile følelsen av byen er underutviklet.
+
+4.  **Prosakvalitet og tone:**
+    *   **Lengde:** Kapittelet er betydelig kortere enn det påkrevde minimum på 5000 ord. Dette krever ikke bare polering, men en massiv utvidelse av hver scene.
+    *   **Stil:** Prosaen er funksjonell, men mangler den lyriske, eventyrlige kvaliteten til Gaiman eller den rike, karakterdrevne detaljrikdommen til Rowling. Det er behov for flere metaforer, dypere psykologisk innsikt og en mer stemningsfull tone.
+    *   **Spenningskurve:** Angrepet på slutten skjer for brått. Det er en logisk brist i hvordan to tyver så enkelt kan overmanne en gruppe som inkluderer Sileus og den hyper-årvåkne Kaa. Angrepet må bygges opp med mer spenning og utføres på en mer troverdig måte.
+
+SUGGEST:
+1.  **Utvid ankomsten:** Beskriv reisen opp de siste bakkene mot Eleium i detalj. La karakterene reagere individuelt på synet av byen. Dykk dypt inn i Leos sinn; sammenlign byens vertikale, organiske struktur med den flate, logiske verdenen han kommer fra. Vis Tias desperate håp som en fysisk spenning i kroppen hennes.
+2.  **Gjør byen levende:** Ta gruppen med på en lengre spasertur gjennom gatene før de finner vertshuset. Beskriv kontrasten mellom de solide, permanente bygningene og de skrøpelige teltene i flyktningleirene. La dem observere innbyggerne – de hardføre fjellfolkene og de fortvilte flyktningene. Vev inn luktene av furu, kald stein og røyken fra tusenvis av ildsteder.
+3.  **Bygg opp scenen i vertshuset:** La dem nyte øyeblikket av normalitet og trygghet lenger. Utvid samtalen. Når Sileus kommer med den dårlige nyheten, la stillheten som følger henge tungt i luften. Vis Tias knuste håp gjennom hennes handlinger og kroppsspråk.
+4.  **Innlem den manglende nøkkelscenen:** Etter den dårlige nyheten, la Leo, i sin nervøsitet, miste mynten. Beskriv øyeblikket i detalj: lyden av mynten som treffer gulvet strekkes ut, en dråpe øl som henger i luften, den plutselige stillheten i Leos hode. La ham og Tia utveksle et forvirret, gjenkjennende blikk. Dette er et avgjørende øyeblikk.
+5.  **Forsterk trusselen:** Gi de to tyvene mer karakter. Beskriv dem ikke bare som skygger, men som rovdyr som ser et bytte. La dem observere ikke bare mynten, men også gruppens dynamikk, og identifisere Leo som det svakeste leddet.
+6.  **Gjør innbruddet mer troverdig og skremmende:** Bygg spenningen langsomt. En knirkende gulvplanke, en skygge som ikke stemmer. Forklar hvordan de klarer å nøytralisere Sileus og Kaa – kanskje med et sovepulver i drikken deres tidligere, eller en rask, brutal og stille handling mens de sover. Gjør Leos kamp mer desperat og hans tap av bevissthet mer voldsomt.
+7.  **Øk lengden og dybden:** Fyll ut alle scener med rikere beskrivelser, dypere interne monologer for Leo og Tia, og mer meningsfulle interaksjoner mellom alle gruppemedlemmene. Hver del av kapittelet kan utvides for å bygge atmosfære og karakterutvikling, slik at det når den påkrevde lengden og dybden.
+
+Jeg vil nå implementere disse forslagene for å levere et fullstendig redigert og utvidet kapittel.
+
+---
+
+**EDITED_SCENE:**
+
 **Kapittel 7: Byen på Fjellet**
 
 Eleium var en by bygget av stein og trass, en festning født av fjellets eget hjerte. Den klatret oppover de stupbratte sidene av fjellet Aethel, ikke med den tilfeldige sjarmen til en landsby som hadde vokst organisk, men med den hardbarkede, bevisste staheten til et folk som nektet å bøye av. Generasjoners kamp mot iskalde vinder og den ulmende, psykologiske giften fra Forråtnelsen i sør var meislet inn i hver eneste steinblokk. Gatene var ikke asfalterte, men brolagt med grå, ujevn stein som var slitt glatt av utallige føtter, vognhjul og århundrer med regn. Fra de mange, små og dyptliggende vinduene glimtet det imidlertid som øyne fulle av et uknuselig liv, og tynne, hvite røyksøyler steg mot den klare, tynne fjelluften som små, spøkelsesaktige åndedrag fra byens kollektive lunge.

@@ -1,3 +1,30 @@
+FEEDBACK:
+Dette er en solid start på kapittelet. Strukturen følger disposisjonen perfekt, og introduksjonen av de fire karakterene er klar og funksjonell. Du etablerer deres grunnleggende roller og dynamikk på en effektiv måte. Handlingen der de observerer kampen og bestemmer seg for å følge elven, er også godt håndtert.
+
+For å løfte kapittelet til det nivået som kreves, og for å møte stil- og lengdekravene, er det imidlertid flere områder som kan forbedres og utdypes betydelig.
+
+1.  **Prosakvalitet og Stil (Rowling/Gaiman):** Den nåværende stilen er litt for direkte og fortellende. For å etterligne Rowling og Gaiman, trenger vi mer stemningsfulle beskrivelser, en sterkere narrativ stemme og en dypere følelse av undring og historie. Verden må føles mer levende og karakterene mer komplekse. Vi må *vise* mer og *fortelle* mindre.
+2.  **Verdensbygging og Atmosfære:** Den innledende beskrivelsen av Elysia er god, men den kan gjøres enda mer slående. I henhold til verdensbeskrivelsen er Elysia et sted med "hyper-virkelige" farger og en sensorisk overbelastning for en utenforstående. Selv for de som bor der, bør denne intensiteten skinne gjennom i beskrivelsene. Den underliggende spenningen kan også utdypes. Hva betyr det at Veven er "intakt" her? Hvordan føles det?
+3.  **Karakterdybde:** Introduksjonene er gode sammendrag, men for å nå 5000 ord og skape en dypere tilknytning til leseren, må vi tilbringe mer tid med hver karakter. Vi må se verden gjennom deres øyne og forstå deres indre liv.
+    *   **Sileus:** Disposisjonen spesifiserer at han sanser tre distinkte ting: Dissonans, Resonans, og en "temporalt merkelig" forstyrrelse fra Leo. Den nåværende teksten forenkler dette til "en ny tone". Dette er et kritisk punkt for foreshadowing og må utdypes betraktelig. Hvordan føles disse tre tingene for ham? Hvordan skiller de seg fra hverandre?
+    *   **Arana:** Disposisjonen sier at hennes motstand fremstår som et "rimelig motpunkt". I den nåværende teksten er hun litt for rask til å bli enig. Vi bør la henne uttrykke sin pragmatiske skepsis mer tydelig. Hennes beslutning om å følge Sileus' innfall bør føles som en kalkulert risiko, ikke blind tillit.
+    *   **Miel og Kaa:** Deres roller er klare, men vi kan gi dem mer å gjøre. Vis Miels empatiske forbindelse til naturen gjennom en konkret handling. Vis Kaas nesten overmenneskelige speiderferdigheter ved at han oppdager noe de andre går glipp av.
+4.  **Lengde:** Kapittelet er for øyeblikket betydelig kortere enn kravet på 5000 ord. Utvidelsen bør ikke være fyllstoff, men en mulighet til å implementere punktene over: dypere karakterisering, rikere verdensbygging, mer stemningsfull prosa og mer detaljerte scener.
+
+SUGGEST:
+1.  **Utvid Introduksjonen:** Start med en mer Gaiman-aktig beskrivelse av Elysia og skogen. Introduser eksplisitt at vi er i "Elysia". Beskriv skogen som en levende, tenkende enhet, full av hemmeligheter. Bruk de sensoriske detaljene fra verdensbeskrivelsen – de hyper-mettede fargene, duftene, følelsen av den intakte Veven.
+2.  **Dybdeintervjuer med Karakterene:** Gi hver av de fire karakterene et eget "øyeblikk" før handlingen starter.
+    *   **Arana:** Vis henne mens hun vedlikeholder utstyret sitt, tenker på rasjoner, og reflekterer kynisk over Sileus' "eventyr". La leseren forstå *hvorfor* hun er så pragmatisk.
+    *   **Miel:** La henne ha en stille interaksjon med en plante eller et dyr. Beskriv hvordan hun fysisk føler Veven, og hvordan den kommende Dissonansen kjennes ut som en fysisk smerte eller kvalme for henne.
+    *   **Kaa:** Vis ham i aksjon. La ham bevege seg gjennom skogen som et spøkelse, oppdage gamle spor etter Råteyngel, og demonstrere sin unike, tause kompetanse.
+    *   **Sileus:** Utvid hans perspektiv dramatisk. Beskriv hvordan han opplever Veven som en konstant symfoni. Når forstyrrelsen inntreffer, beskriv de tre separate "tonene" i detalj: Dissonansen fra Råteyngelen som en skjærende, sur tone; Resonansen fra Tia som en ren, krystallklar klokke; og den temporale forstyrrelsen fra Leo som noe helt annet – et ekko, en tone som spilles baklengs, en hikke i tidens rytme. Dette er avgjørende for plottet.
+3.  **Brems ned Observasjonen:** Når kampen på den andre siden av elven starter, beskriv den mer detaljert fra gruppens perspektiv. Sakte film. Hva ser de? Hvordan reagerer de individuelt? Dette bygger spenning og gir rom for mer karakterutvikling.
+4.  **Utvid Dialogen:** Gi Arana en tydeligere stemme i diskusjonen etterpå. La henne argumentere mot å følge etter, og fremme det trygge alternativet. Sileus må overbevise henne med tyngden av sin overbevisning, ikke bare med en enkel kommando. Dette vil gjøre deres dynamikk mer interessant og troverdig.
+5.  **Bygg mot Klimakset:** Bruk de siste avsnittene til å bygge en sterkere atmosfære. Beskriv solnedgangen over Elysia, hvordan lyset og skyggene forandrer landskapet, og hvordan gruppens nye formål gir dem en følelse av både håp og gru. Avslutt med Kaas oppdagelse, men la det lande med mer tyngde.
+
+Ved å implementere disse endringene, vil kapittelet ikke bare nå lengdekravet, men også bli en rikere, mer engasjerende og stemningsfull opplevelse som legger et solid grunnlag for karakterene og mysteriene som kommer.
+
+EDITED_SCENE:
 **Kapittel 3: De Fortaptes Kompani**
 
 Dette var Elysia. Ikke en drøm, selv om den ofte føltes som en, men en verden malt med en feberhet pensel. For en som kom fra en verden av dempede farger og forutsigbare gråtoner, ville Elysia vært et sanseangrep, en nesten kvalmende overflod av liv. Himmelen var ikke bare blå; den var en avgrunn av kobolt og asurblå, så dyp at man kunne føle man falt oppover bare ved å se på den. Gresset var ikke bare grønt; det var en levende smaragd, hvert strå pulserende med en indre glød. Og skogen… skogen var en katedral bygget av tid selv.

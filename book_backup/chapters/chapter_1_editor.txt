@@ -1,3 +1,24 @@
+FEEDBACK:
+Utkastet er et solid utgangspunkt. Det fanger effektivt Leos apati og den grå, deprimerende stemningen i hans verden. Overgangen til Elysia er til stede, og de viktigste hendelsene fra disposisjonen er inkludert.
+
+For å heve kapittelet til det nivået som kreves, og for å nå målet om 5000 ord, vil jeg fokusere på følgende forbedringer:
+
+1.  **Dybde i Leos apati:** Kapittelet forteller oss at Leo er apatisk og knust, men vi trenger å *føle* det dypere. Jeg vil utvide hans indre monolog, la ham dvele ved de små, ydmykende detaljene fra jobben og bruddet. Ved å vise oss mer av hans indre liv, blir hans plutselige, impulsive handling på slutten enda mer virkningsfull. Dette er i tråd med Rowling-stilen, som ofte bruker en tett, personlig synsvinkel.
+2.  **Sensorisk berikelse:** Både den grå verdenen og den fargerike Elysia kan beskrives med større sensorisk detaljrikdom. Jeg vil legge til flere spesifikke lukter, lyder og teksturer for å gjøre begge verdener mer levende. Gaimans stil utmerker seg ved å gjøre det verdslige magisk og det magiske taktilt.
+    *   **Leos verden:** Jeg vil beskrive lukten av våt betong, den kvalmende duften av syntetiske tepper, og den konstante, lave summingen av en by som ikke bryr seg.
+    *   **Elysia:** Jeg vil forsterke den "sensoriske overbelastningen" som er nevnt i disposisjonen. Fargene skal ikke bare være sterke, men nesten *for* sterke, nesten kvalmende i sin intensitet, som en "feberdrøm" beskrevet i verdensbyggingen.
+3.  **Tempo og oppbygging:** Noen hendelser skjer litt for fort. Jeg vil senke tempoet i nøkkeløyeblikk:
+    *   **Funn av mynten:** Selve øyeblikket han finner mynten kan bygges opp mer. Hans nysgjerrighet må føles som det første lille bruddet i hans apatiske rustning.
+    *   **Overgangen:** Realitetens oppløsning kan gjøres mer surrealistisk og desorienterende, som beskrevet i disposisjonen, ved å bryte ned sansene hans én etter én.
+    *   **Kampen:** Tias kamp mot Råteynglene kan beskrives mer detaljert for å etablere henne som en dyktig, men overveldet kriger, og for å bygge opp spenningen før Leo griper inn.
+4.  **Verdensbygging og terminologi:** Jeg vil integrere de etablerte begrepene ("Råteyngel", elven "Qi") og sørge for at beskrivelsene er i tråd med den detaljerte verdensinformasjonen. Råteynglene vil få en mer grotesk og spesifikk beskrivelse, og elven Qi vil bli fremstilt som den farlige, frådende kraften den er.
+5.  **Lengde:** For å nå målet om 5000 ord, vil jeg utvide alle deler av kapittelet ved å legge til mer indre monolog, dypere beskrivelser, og mer detaljerte handlingssekvenser. Dette vil gi en rikere og mer engasjerende leseopplevelse.
+
+SUGGEST:
+Jeg foreslår å utvide kapittelet betydelig ved å følge punktene over. Vi vil starte med å fordype oss i Leos miserable tilværelse, og male et levende bilde av hans daglige slit og den grå verdenen som speiler hans indre tomhet. Deretter vil vi bygge opp spenningen rundt funnet av mynten, gjøre selve overgangen til en kaotisk og uforglemmelig opplevelse, og til slutt presentere Elysia som et overveldende og nesten skremmende vakkert sted. Handlingen ved elvebredden vil bli utvidet for å gi Tias kamp mer vekt og Leos inngripen større betydning, og lede til en mer dramatisk og kaotisk avslutning i elvens kalde favn. Dette vil ikke bare nå ordmålet, men også skape et sterkere fundament for karakterene og historien som følger.
+
+EDITED_SCENE:
+
 **Kapittel 1: Drukningens Farger**
 
 Det fantes dager da regnet bare var vann, og så fantes det dager som denne. Dager da himmelen gråt et skittent, utmattet regn som ikke ga liv, men stjal det; et regn som trakk fargen ut av alt det berørte, og etterlot seg en verden som var like grå og motløs som Leos eget hjerte. Han trasket hjemover, en følelse av fuktighet som hadde krøpet inn under den tynne jakken hans og lagt seg på huden som et kaldt, klamt løfte om en enda verre morgendag. For i Leos verden var morgendagen alltid verre.

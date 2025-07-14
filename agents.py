@@ -418,6 +418,27 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
 
         return response
 
+    def generate_content_stream(self, agent_name: str, prompt: str):
+        """Generate content using the OpenAI API with the specified agent system prompt (streaming)"""
+        if agent_name not in self.system_prompts:
+            raise ValueError(
+                f"Agent '{agent_name}' not found. Available agents: {list(self.system_prompts.keys())}"
+            )
+
+        messages = [
+            {"role": "system", "content": self.system_prompts[agent_name]},
+            {"role": "user", "content": prompt},
+        ]
+
+        stream = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            stream=True,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+        return stream
+
     def generate_chat_response(self, chat_history, topic, user_message) -> str:
         """Generate a chat response based on conversation history"""
         # Format the messages for the API call
