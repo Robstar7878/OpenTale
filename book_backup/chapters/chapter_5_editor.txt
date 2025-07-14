@@ -1,130 +1,212 @@
 FEEDBACK:
-Takk for innsendingen. Den vedlagte teksten er en god avslutning på forrige kapittel (Kapittel 4: En Skjør Våpenhvile), men den utgjør ikke innholdet for Kapittel 5. Kjernedirektivet krever at hvert kapittel er på minst 5000 ord. Den nåværende teksten er for kort til å kunne redigeres som et fullverdig kapittel.
+Takk for innsendingen. Dette er en solid start på et avgjørende kapittel. Atmosfæren rundt leirbålet er godt etablert, og den sentrale konflikten mellom Sileus' mystikk og Aranas pragmatisme er tydelig. Dialogen er funksjonell og fører handlingen fremover.
 
-For å overholde direktivene og levere et komplett kapittel, har jeg tatt utgangspunkt i disposisjonen for Kapittel 5 og utvidet det til en fullverdig scene som oppfyller lengdekravet.
+For å løfte kapittelet til sitt fulle potensial og i tråd med den detaljerte disposisjonen, er det flere områder vi må fokusere på:
 
-**Gjennomgang av Disposisjonen for Kapittel 5:**
-
-*   **Nøkkelhendelser:** Sileus forklarer legenden om Aegions Blod og identifiserer Tia. Arana avfeier det som farlige eventyr og argumenterer for en pragmatisk overlevelsesstrategi, noe som appellerer til Leos skepsis. Dette er den sentrale konflikten i kapittelet, og jeg har bygget scenen rundt denne avsløringen og den påfølgende debatten.
-*   **Karakterutvikling:** Tias kamp med sin nye skjebne er gjort til en sentral del av hennes indre monolog. Aranas rolle som den fornuftige, pragmatiske stemmen er forsterket gjennom hennes overbevisende og logiske argumenter, som effektivt skjuler hennes sanne agenda ved å bygge tillit hos Leo.
-*   **Setting:** Leirbålet er brukt som et sentralt element. Det er en liten, sårbar lomme av lys og varme i en overveldende mørk og ukjent verden, noe som speiler gruppens situasjon. Beskrivelsene fokuserer på flakkende skygger, knitrende flammer og den trykkende stillheten i skogen rundt dem.
-*   **Tone:** Kapittelet starter med en skjør følelse av fellesskap, går over i en avslørende og skjebnetung tone under Sileus' fortelling, og lander i en anspent atmosfære preget av kynisk dissens fra Arana.
+1.  **Dybde og Ordantall:** Kapittelet er for øyeblikket betydelig kortere enn det påkrevde minimum på 5000 ord. For å nå dette målet må vi utvide hver scene, fordype oss i karakterenes indre liv og legge til de manglende hendelsene fra disposisjonen.
+2.  **Manglende Nøkkelhendelser:** Disposisjonen spesifiserer flere hendelser som ikke er med i den nåværende teksten:
+    *   Den formelle, om enn skjøre, alliansen med det umiddelbare målet om å nå Eleium, der Arana etablerer praktiske overlevelsesregler. Dette er avgjørende for å sementere hennes rolle som den "ansvarlige" lederen.
+    *   Innføringen av "Weaveheart"-blomstene (Vevshjerte), som får Leos mynt til å vibrere. Dette er en viktig del av foreshadowingen for Leos rolle og myntens natur.
+    *   En endret cliffhanger. Disposisjonen spesifiserer at Kaa sanser en trussel, noe som fører til at gruppen forbereder seg på et bakhold. Dette er en mer spent og karakterdrevet avslutning enn den generiske knurringen i den nåværende versjonen.
+3.  **Karakterutvikling og Subtekst:**
+    *   **Arana:** Hennes rolle som "den pragmatiske stemmen" er en fasade. I henhold til den overordnede disposisjonen er hun forræderen. Hennes argumenter mot Sileus må derfor være mesterlig manipulerende. De må virke så fornuftige og omsorgsfulle at de overbeviser ikke bare Leo, men også leseren, samtidig som hennes sanne formål er å så splid og undergrave gruppens større mål. Hennes pragmatisme er et våpen.
+    *   **Tia:** Hennes reaksjon på å være bæreren av Aegions Blod må være mer dyptgående. Vi må se henne kjempe med denne nye, knusende byrden, og hvordan det farger hennes syn på seg selv og sin fortid.
+    *   **Leo:** Hans reaksjon på Aranas argumenter er viktig. Han er en outsider, og hennes logikk appellerer direkte til hans verdensbilde. Vi må se denne indre bekreftelsen tydeligere.
+4.  **Prosa og Stil:** Vi kan lene oss tyngre inn i den etterspurte stilen til Gaiman/Rowling. Dette innebærer å tilføre mer sanselig detaljrikdom, utforske de mytiske og eventyrlige aspektene Sileus presenterer, og gi karakterenes indre monologer mer plass.
 
 SUGGEST:
-For å nå den nødvendige lengden og dybden, har jeg utvidet scenen betydelig:
+Jeg vil omstrukturere og utvide kapittelet betydelig:
 
-1.  **Atmosfærebygging:** Kapittelet starter med en lengre sekvens som etablerer stemningen rundt leirbålet. Leos perspektiv brukes til å beskrive de andre medlemmene i gruppen og hans egen følelse av fremmedgjøring og sårbarhet. Dette bygger opp til den sentrale samtalen.
-2.  **Sileus' Fortelling:** I stedet for en kort forklaring, er Sileus' historie om Aegions Blod blitt en lengre, mytisk fortelling. Dette gir den vekten av en ekte legende og gjør avsløringen mer virkningsfull. Jeg har flettet inn detaljer fra verdensbyggingen, som Vevsgropene og Asakaels dvale.
-3.  **Karakterenes Reaksjoner:** Hver karakters reaksjon på Sileus' historie er beskrevet i detalj. Tias sjokk og fornektelse, Leos vantro, Miels stille undring og Aranas skarpe, avvisende latter.
-4.  **Aranas Motargument:** Aranas tale er utformet for å være ekstremt overbevisende. Hun appellerer til logikk, frykt og gruppens umiddelbare behov for overlevelse. Dette er avgjørende for å etablere henne som en troverdig, men villedende, pragmatiker.
-5.  **Utdypende Dialog:** Jeg har lagt til en lengre, privat samtale mellom Arana og Leo. Her manipulerer Arana ham subtilt ved å validere hans skepsis og posisjonere seg som den eneste andre fornuftige personen i gruppen. Dette bygger tilliten som er nødvendig for hennes senere svik.
-6.  **Indre Monolog:** Både Leo og Tia får betydelig plass til indre monologer. Leo sliter med å forene denne magiske verdenen med sin egen logiske virkelighet. Tia begynner å ransake sine egne minner og instinkter for tegn på denne skjulte kraften, og starter prosessen med å "grapple with her destiny".
+1.  **Utvide Leirbålscenen:** Jeg vil berike beskrivelsene og fordype meg i Leos observasjoner av de andre. Sileus' fortelling vil bli fremstilt mer som en mytisk legende og mindre som et informasjonsdryss. Aranas motargument vil bli skjerpet for å være mer overbevisende og subtilt manipulerende, og Tias reaksjon vil bli utforsket i større dybde i hennes samtale med Miel.
+2.  **Innføre Allianse-scenen:** Etter den intense diskusjonen vil jeg legge til en ny scene der Arana tar kommandoen med sin praktiske tilnærming. Hun vil etablere klare regler for reisen til Eleium, noe som styrker hennes posisjon som gruppens taktiker og beskytter, og som alle, inkludert Leo, ser på som den eneste fornuftige veien videre.
+3.  **Tilføye Reisen og Vevshjerte-scenen:** Jeg vil skrive en helt ny seksjon som beskriver starten på reisen deres neste dag. Dette gir en mulighet til å beskrive Elysias landskap og introdusere Vevshjerte-blomstene. Miels oppdagelse og Leos påfølgende fysiske reaksjon på mynten vil være et sentralt øyeblikk som knytter ham direkte til verdens magi, til tross for hans skeptisisme.
+4.  **Bygge om til Ny Cliffhanger:** Jeg vil erstatte den nåværende avslutningen med den som er skissert i disposisjonen. Spenningen vil bygge seg gradvis opp mens de reiser gjennom skogen, og kulminere i Kaas tause, plutselige varsel, som tvinger hele gruppen til å fryse og forberede seg på en usett trussel.
 
-Resultatet er et fullstendig kapittel som oppfyller alle kravene i disposisjonen og direktivene, og som driver handlingen og karakterutviklingen fremover på en meningsfull måte.
+Denne tilnærmingen vil sikre at kapittelet oppfyller alle kravene i disposisjonen, når det nødvendige ordantallet, og utvikler karakterene og plottet på en mer kompleks og engasjerende måte.
 
 EDITED_SCENE:
 ### Kapittel 5: Blodbyrden
 
-Natten i Elysia var ikke bare en fravær av lys; den var en tilstedeværelse. En tung, fløyelsmyk dyne som la seg over landskapet, fylt av lyder som var like fremmede for Leo som fargene om dagen. Han satt med ryggen mot en kald stein, et grovt ullteppe trukket tett rundt skuldrene. Varmen fra leirbålet var en skjør festning mot den gjennomtrengende kulden som sivet ut fra den fuktige jorden og den mørke, truende skogen som omringet dem.
+Natten i Elysia var ikke et tomrom, men en tilstedeværelse. Den var en levende, pustende enhet, en tung, fløyelsmyk dyne som la seg over landskapet og kvalte de nesten aggressive fargene fra dagen. Den var fylt av lyder – et fjernt, klagende rop fra en skapning Leo ikke hadde navn på, den tørre raslingen av blader som kunne være vinden eller noe helt annet, og den dype, evige bass-sangen fra elven Qi. Leo satt med ryggen mot en kald, fuktig stein, et grovt ullteppe trukket så tett rundt skuldrene at det føltes som et skrøpelig panser. Varmen fra leirbålet var en skjør festning, en liten, dansende øy av lys og varme i et hav av gjennomtrengende kulde som sivet opp fra jorden og ut fra den mørke, truende skogen som omringet dem.
 
-Ilden var sentrum i deres lille, midlertidige univers. Den kastet dansende, oransje lys på ansiktene til hans nye følgesvenner, og malte dem med flakkende skygger som ga dem et nesten mytisk preg. Sileus, den underlige veiviseren, satt med korslagte ben og stirret inn i flammene, øynene hans som to glør som reflekterte ilden. Et lite, hemmelighetsfullt smil lekte i munnviken hans, som om han leste historier i de knitrende kubbene som bare han kunne se. Ved siden av ham satt Miel, den unge helbrederen. Hun var en studie i stille bekymring, øynene hennes flakket nervøst mot mørket utenfor lyssirkelen, fingrene hennes plukket fraværende på kanten av teppet. Hun virket like skjør som en tørr kvist, men Leo hadde sett styrken i hendene hennes da hun hadde stelt sårene deres tidligere.
+Ilden var sentrum i deres lille, usannsynlige univers. Den kastet oransje lys på ansiktene til hans nye følgesvenner, og malte dem med flakkende skygger som ga dem et nesten mytisk preg, som figurer fra en glemt historie han hadde snublet inn i. Sileus, den underlige veiviseren, satt med korslagte ben og stirret inn i flammene, øynene hans som to glør som reflekterte ilden og hemmelighetene den fortalte. Et lite, nesten umerkelig smil lekte i munnviken hans, som om han leste ord i de knitrende kubbene som var uforståelige for alle andre.
 
-På den andre siden av bålet satt Arana og Kaa, to sider av samme overlevelsesmynt. Kaa var en statue av våkenhet. Han satt helt stille, men hele hans vesen var spent, som en spent buestreng. De nesten hvite øynene hans beveget seg konstant, de skannet mørket, lyttet etter lyder Leo ikke kunne høre. Han var en del av natten, ikke en inntrenger i den. Arana, derimot, var jordet og solid. Hun vedlikeholdt buen sin med rolige, effektive bevegelser, hver handling presis og uten et eneste overflødig gram energi. Blikket hennes var skarpt og kalkulerende, og da det sveipet over Leo, følte han seg veid og målt. Hun var en vokter, men en vokter som krevde at du beviste din verdi.
+Ved siden av ham satt Miel, den unge helbrederen. Hun var en studie i stille, nesten febrilsk bekymring, øynene hennes flakket konstant mot mørket utenfor lyssirkelen, som om hun forventet at det skulle strekke ut usynlige hender for å gripe dem. Fingrene hennes plukket fraværende på kanten av teppet. Hun virket like skjør som en vissen blomsterstilk, men Leo hadde sett styrken i hendene hennes, den rolige konsentrasjonen da hun hadde renset og stelt sårene deres ved elvebredden. Hun var redd, ja, men ikke paralysert. En annen type mot, tenkte Leo, en som ikke krevde sverd.
 
-Og så var det Tia. Hun satt nærmest Leo, men virket likevel uendelig langt borte. Hun hadde trukket knærne opp under haken, og blikket hennes var festet på den andre siden av elven Qi, der de hadde unnsluppet de grusomme skapningene. Utmattelsen hadde meislet nye, harde linjer i det unge ansiktet hennes. Hun var en kriger, det var det ingen tvil om, men nå, i bålets skinn, så Leo en sårbarhet i henne som han ikke hadde lagt merke til i kampens hete. En byrde som virket tyngre enn de to kortsverdene på ryggen hennes.
+På den andre siden av bålet satt Arana og Kaa, to sider av samme overlevelsesmynt. Kaa var en statue av intens våkenhet. Han satt helt stille, så stille at han nesten forsvant inn i skyggene, men hele hans vesen var spent som en spent buestreng. De nesten hvite, isgrå øynene hans beveget seg konstant i det bleke ansiktet, en systematisk skanning av mørket, en lytting etter lyder Leo ikke kunne skille fra nattens generelle sus. Han var ikke en inntrenger i natten; han var en del av den. Arana, derimot, var jordet, solid, et anker av praktisk virkelighet. Hun vedlikeholdt buen sin med rolige, effektive bevegelser, hver handling presis og uten et eneste overflødig gram energi. Blikket hennes var skarpt og kalkulerende, og da det sveipet over Leo, følte han seg veid, målt og plassert i en kategori. Vokter, tenkte han. Men en vokter som krevde at du beviste din verdi, at du ikke var en byrde.
 
-Stillheten mellom dem var ikke komfortabel. Den var fylt av uuttalte spørsmål og den gnagende usikkerheten som følger med å stole på fremmede i en verden som aktivt prøvde å drepe deg. Det var Leo som til slutt brøt den. Stemmen hans var rusten, nesten et kvekk.
+Og så var det Tia. Hun satt nærmest Leo, men virket likevel uendelig langt borte. Hun hadde trukket knærne opp under haken, armene foldet stramt rundt dem, og blikket hennes var festet på den andre siden av elven Qi. Der ute i mørket, hvor de hadde unnsluppet de grusomme skapningene. Utmattelsen hadde meislet nye, harde linjer i det unge ansiktet hennes, men under det lå det noe annet. En forvirring, en fortvilelse. Hun var en kriger, det var det ingen tvil om, Leo hadde sett henne kjempe med en blanding av raseri og desperat eleganse. Men nå, i bålets skjøre skinn, så han en sårbarhet i henne som han ikke hadde lagt merke til i kampens hete. En byrde som virket tyngre enn de to kortsverdene på ryggen hennes.
+
+Stillheten mellom dem var ikke komfortabel. Den var tykk og tung, fylt av uuttalte spørsmål og den gnagende usikkerheten som følger med å overlate sitt liv i hendene på fremmede, i en verden som aktivt prøvde å drepe deg. Det var Leo som til slutt brøt den, drevet av et behov for å forstå, for å få bare ett lite, logisk fotfeste i denne galskapen. Stemmen hans var rusten, nesten et kvekk.
 
 "Hvorfor?"
 
-Alle blikkene vendte seg mot ham. Han svelget, og tvang seg til å fortsette, til å rette spørsmålet dit det hørte hjemme. Han så på Tia.
+Alle blikkene vendte seg mot ham. Overraskelse, nysgjerrighet, irritasjon. Han svelget, fuktet de tørre leppene, og tvang seg til å fortsette, til å rette spørsmålet dit det hørte hjemme. Han så på Tia.
 
 "Hvorfor jaktet de... de tingene... på deg? Hva var de?"
 
-Tia rykket til, som om han hadde stukket henne. Hun ristet på hodet, uten å møte blikket hans. "Jeg vet ikke. De kalles Råteyngel. De er en del av Forråtnelsen som sprer seg fra sør."
+Tia rykket til, som om ordene hans var fysiske piler. Hun ristet på hodet, uten å møte blikket hans, og stirret ned i fanget sitt. "Jeg vet ikke. De kalles Råteyngel. De er en manifestasjon av Forråtnelsen som sprer seg fra sør." Stemmen hennes var dempet, nesten uten luft.
 
-"Men de jaktet ikke bare," insisterte Leo, og en flik av hans gamle, frustrerte jeg kom til overflaten. "De var etter deg. Spesifikt deg. Som om du var... viktig."
+"Men de jaktet ikke bare," insisterte Leo, og en flik av hans gamle, frustrerte jeg fra lagerjobben kom til overflaten – behovet for at ting skulle gi mening, selv når de ikke gjorde det. "De var etter deg. Spesifikt deg. De ignorerte meg fullstendig til jeg tok tak i deg. Det var som om du var... viktig."
 
-Arana sluttet å stramme buestrengen. "Gutten har et poeng. Det var ikke et tilfeldig angrep. De ignorerte elvebredden helt til du dukket opp, Tia. De var koordinerte."
+Arana sluttet å gni voksen inn i buestrengen. Lyden av stillheten fra hennes hender var nesten like høy som Leos ord. "Gutten har et poeng," sa hun, stemmen hennes var lav og direkte. "Det var ikke et tilfeldig angrep. Det var et jaktlag. De ignorerte elvebredden helt til du dukket opp, Tia. De var koordinerte, og de var fokuserte."
 
-Det var da Sileus løftet hodet. Smilet hans var borte, erstattet av et alvor som forandret hele ansiktet hans. Han så ikke på Leo eller Arana, men rett på Tia, og blikket hans var fylt av en blanding av ærefrykt og sorg.
+Det var da Sileus løftet hodet fra flammene. Smilet hans var borte, erstattet av et alvor som forandret hele ansiktet hans, ga det en eldgammel tyngde. Han så ikke på Leo eller Arana, men rett på Tia, og blikket hans var fylt av en forvirrende blanding av ærefrykt og dyp sorg.
 
-"Fordi hun *er* viktig," sa han, stemmen hans var lav, men bar gjennom knitringen fra bålet. "Viktigere enn hun selv vet. Viktigere enn noen av dere kan forestille dere."
+"Fordi hun *er* viktig," sa han, stemmen hans var lav, men den bar gjennom knitringen fra bålet som en kirkeklokke. "Viktigere enn hun selv vet. Viktigere enn noen av dere kan forestille dere."
 
-Tia så endelig opp, et glimt av irritasjon i de grønne øynene. "Sileus, ikke begynn med dine gåter og gamle historier. Vi er slitne og såret. Vi trenger svar, ikke spådommer."
+Tia så endelig opp, og et glimt av irritasjon brant i de grønne øynene hennes. "Sileus, ikke begynn med dine gåter og gamle historier. Vi er slitne, vi er såret, og vi er redde. Vi trenger svar, ikke spådommer."
 
-"En historie er noen ganger det eneste sanne svaret vi har," svarte Sileus mildt. "Spesielt en historie som verden har gjort sitt beste for å glemme." Han flyttet blikket sitt rundt sirkelen, og holdt hver av dem fast et øyeblikk, selv den uutgrunnelige Kaa. "Dere har alle sett virkningene av Forråtnelsen. Dere har sett landet bli sykt, dere har kjent stanken av Dissonans i luften. Dere kjemper mot symptomene, mot Råteyngelen som kryper ut av skyggene. Men dere kjemper ikke mot selve sykdommen. Fordi dere har glemt hva som holder denne verdenen frisk."
+"En historie er noen ganger det eneste sanne svaret vi har," svarte Sileus mildt, men med en urokkelig autoritet. "Spesielt en historie som verden har gjort sitt beste for å glemme." Han flyttet blikket sitt rundt sirkelen, og holdt hver av dem fast et øyeblikk, selv den uutgrunnelige Kaa, som for første gang så ut til å lytte intenst. "Dere har alle sett virkningene av Forråtnelsen. Dere har sett landet bli sykt, dere har kjent stanken av Dissonans i luften som en metallisk klump i halsen. Dere kjemper mot symptomene, mot Råteyngelen som kryper ut av de mørklagte skogene. Men dere kjemper ikke mot selve sykdommen. Fordi dere har glemt hva som holder denne verden frisk."
 
-Han lente seg fremover, og skyggene danset over det furete ansiktet hans. "Denne verdenen, Elysia, er vevd sammen av tråder av ren energi. En stor, usynlig billedvev som vi kaller Veven. Når Veven er sterk og harmonisk, blomstrer livet. Vannet er rent, jorden er fruktbar, og luften er fylt av det vi kaller Resonans. Men det finnes en kraft som ønsker å rive denne Veven i stykker. En tomhet som heter Asakael. Han sprer Dissonans, forgifter trådene, og fra disse råtnende fibrene kryper hans yngel frem."
+Han lente seg fremover, og skyggene danset over det furete ansiktet hans, noe som fikk ham til å se både eldre og tidløs ut. "Tenk dere denne verdenen, Elysia, som en vevstol. En enorm, usynlig vevstol der alt er vevd sammen av tråder av ren energi. Liv, stein, vann, lys. En stor, kosmisk billedvev som vi kaller Veven. Når Veven er sterk og harmonisk, når trådene synger i takt, da blomstrer livet. Vannet er rent, jorden er fruktbar, og luften er fylt av en energi vi kaller Resonans."
 
-Leo følte en kald iling nedover ryggraden, til tross for varmen fra bålet. Han hadde kjent den følelsen før. Den kalde, kvalmende følelsen da han rørte ved mynten for første gang. Han fiklet med den i lommen, den lille, runde metallbiten føltes plutselig tyngre.
+Leo kjente en kald iling nedover ryggraden, til tross for varmen fra bålet. Han hadde kjent den følelsen før. Den kalde, kvalmende følelsen da han rørte ved mynten for første gang. Uten å tenke over det, lot han fingrene gli ned i lommen, og kjente den kjølige, glatte overflaten. Den føltes plutselig tyngre, mer betydningsfull.
 
-"I årtusener har denne kampen pågått," fortsatte Sileus, stemmen hans tok en nesten messende tone. "Men Veven har et eget forsvar. En motgift. En legende som er så gammel at den nesten har forsvunnet inn i mytenes tåke. Legenden om Aegions Blod."
+"Men det finnes en kraft som ønsker å rive denne Veven i stykker," fortsatte Sileus, stemmen hans tok en nesten messende tone, som en prest som forteller om skapelsen. "En tomhet, en vilje til intet, som heter Asakael. Han er ikke bare en ødelegger; han er en anti-vever. Han sprer Dissonans, forgifter trådene, får dem til å vibrere i utakt, til de råtner og går i oppløsning. Og fra disse råtnende fibrene kryper hans yngel frem."
 
-Miel lente seg fremover, øynene hennes store og fylt av undring. Arana himlet med øynene, men forble stille.
+"I årtusener har denne kampen pågått i det stille," sa Sileus. "Men Veven har et eget forsvar. En motgift. En legende så gammel at den nesten har forsvunnet inn i mytenes tåke, som dugg for solen. Legenden om Aegions Blod."
 
-"For uminnelige tider siden, da verden var yngre og Veven sang en klarere sang, fantes det steder med enorm kraft. Dype, urørte daler og kløfter der Vevens energi var så konsentrert at den ble nesten fysisk. Vi kaller dem Vevsgroper. Fugler fløy aldri over dem. Vann rant aldri ned i dem. De var hellige og farlige steder. Legenden forteller om en ung kvinne, en jeger, som under en jakt falt ned i en slik Vevsgrop. Hun skulle ha dødd, knust mot steinene i dypet. Men det gjorde hun ikke. Hun lå i ukevis på bunnen av gropen, badet i den rene, rå kraften fra Veven, fanget mellom liv og død."
+Miel lente seg ubevisst fremover, øynene hennes store og fylt av barnlig undring. Arana himlet med øynene, en nesten lydløs bevegelse av forakt, men forble stille. Hun lot den gamle mannen spinne sitt garn.
 
-Sileus' stemme ble en hvisken. "Da hennes folk endelig fant henne og bar henne opp, var hun forandret. Hun våknet fra sin lange søvn, og blodet som rant i hennes årer var ikke lenger bare blod. Det var blitt ett med Vevens Resonans. Det bar på en kraft til å reparere de revnede trådene, til å rense Dissonansen, til å tvinge Forråtnelsen tilbake. De kalte det Aegions Blod. En kraft som gikk i arv, fra mor til datter, en hemmelig blodslinje av voktere."
+"For uminnelige tider siden, da verden var yngre og Veven sang en klarere sang, fantes det steder med enorm, uberørt kraft. Dype, urørte daler og kløfter der Vevens energi var så konsentrert at den ble nesten fysisk. Vi kaller dem Vevsgroper. Fugler fløy aldri over dem. Vann rant aldri ned i dem. De var hellige og farlige steder. Legenden forteller om en ung kvinne, en jeger ved navn Aegion, som under en jakt falt ned i en slik Vevsgrop. Hun skulle ha dødd, knust mot steinene i dypet. Men det gjorde hun ikke. Hun lå i ukevis på bunnen av gropen, badet i den rene, rå kraften fra Veven, fanget i et skumringsland mellom liv og død."
 
-Han stoppet opp, og stillheten som fulgte var tykk og forventningsfull. Leo så på Tia. Fargen hadde forsvunnet fra ansiktet hennes. Hun stirret på Sileus med en blanding av vantro og en gryende, forferdelig gjenkjennelse.
+Sileus' stemme ble en hvisken, som om han delte en hellig hemmelighet. "Da hennes folk endelig fant henne og bar henne opp i lyset, var hun forandret. Hun våknet fra sin lange søvn, og blodet som rant i hennes årer var ikke lenger bare blod. Det var blitt ett med Vevens Resonans. Det bar på en kraft til å reparere de revnede trådene, til å rense Dissonansen med sin blotte tilstedeværelse, til å tvinge Forråtnelsen tilbake. De kalte det Aegions Blod. En kraft som gikk i arv, fra mor til datter, en hemmelig blodslinje av voktere og helbredere for selve verden."
 
-"Men kraften hadde en annen, farligere side," fortsatte Sileus, blikket hans nå låst på Tia. "Evnen til å reparere Veven ga også en dypere forståelse av dens natur. Bæreren kunne ikke bare reparere, men også åpne. Åpne Portene. Rifter i selve verdens stoff, til den rå, kosmiske energien som ligger utenfor tiden. En makt så stor at den kunne forsegle Asakael for evig... eller, i feil hender, gi ham nøkkelen til å omskrive hele virkeligheten."
+Han stoppet opp, og stillheten som fulgte var tykk og forventningsfull. Leo turte nesten ikke å puste. Han så på Tia. Fargen hadde forsvunnet fra ansiktet hennes. Hun stirret på Sileus med en blanding av vantro og en gryende, forferdelig gjenkjennelse, som en som ser et mareritt ta form foran øynene sine.
 
-Han trakk pusten dypt. "Asakael og hans tjenere jaktet på denne blodslinjen i århundrer, for å utslette den eller ta kontroll over den. Familien ble tvunget til å leve i skjul, til å glemme sin egen arv for å overleve. Legenden ble til et eventyr, fortalt rundt leirbål for å skremme barn. Men blodet glemmer aldri."
+"Men kraften hadde en annen, langt farligere side," fortsatte Sileus, blikket hans nå låst på Tia som en nøkkel i en lås. "Evnen til å reparere Veven ga også en dypere forståelse av dens natur, en intim forbindelse til dens innerste hemmeligheter. Bæreren kunne ikke bare reparere, men også åpne. Åpne Portene. Rifter i selve verdens stoff, til den rå, kosmiske energien som ligger utenfor tiden. En makt så stor at den kunne forsegle Asakael og hans tomhet for evig... eller, i feil hender, gi ham nøkkelen til å omskrive hele virkeligheten til et rike av evig pinsel."
 
-Sileus reiste seg sakte. Han gikk de få skrittene bort til Tia og sto foran henne. Han løftet ikke en hånd, han rørte henne ikke, men intensiteten i blikket hans var som en fysisk berøring.
+Han trakk pusten dypt, og det hørtes ut som om selve luften var tung å puste. "Asakael og hans tjenere jaktet på denne blodslinjen i århundrer, for å utslette den eller ta kontroll over den. Familien ble tvunget til å leve i skjul, til å glemme sin egen arv for å overleve. Legenden ble til et eventyr, fortalt rundt leirbål for å skremme barn fra å gå seg vill i skogen. Men blodet," sa han, og nå var det ingen mildhet i stemmen hans, bare en knusende visshet, "blodet glemmer aldri."
 
-"Asakael har våknet fra sin lange dvale. Forråtnelsen sprer seg raskere enn på tusen år. Han leter ikke lenger bare etter tilfeldige ofre. Han leter etter nøkkelen. Han leter etter den siste datteren av Aegions blodslinje."
+Sileus reiste seg sakte, bevegelsene hans var som en del av en eldgammel seremoni. Han gikk de få skrittene bort til Tia og sto foran henne. Han løftet ikke en hånd, han rørte henne ikke, men intensiteten i blikket hans var som en fysisk berøring, som holdt henne fast.
 
-Han senket stemmen til en øm, men knusende hvisken. "Han leter etter deg, Tia."
+"Asakael har våknet fra sin lange dvale. Forråtnelsen sprer seg raskere enn på tusen år. Han leter ikke lenger bare etter tilfeldige ofre eller svake punkter i Veven. Han leter etter nøkkelen. Han leter etter den siste datteren av Aegions blodslinje."
 
-Stillheten som fulgte var absolutt. Selv ilden syntes å holde pusten. Tia satt som frosset, øynene hennes vidåpne av sjokk. Leppene hennes beveget seg, men ingen lyd kom ut.
+Han senket stemmen til en øm, men knusende hvisken som bare var ment for henne, men som alle hørte i den tause natten. "Han leter etter deg, Tia."
 
-Så, fra den andre siden av bålet, kom en lyd som knuste øyeblikket som et glass som treffer stein. En kort, tørr, humorløs latter.
+Stillheten som fulgte var absolutt, et vakuum der selv ilden syntes å holde pusten. Tia satt som frosset, øynene hennes vidåpne av sjokk, leppene hennes beveget seg, men ingen lyd kom ut. Hun var ikke lenger en kriger, ikke en overlevende. Hun var en myte, en skjebne, en forferdelig byrde.
+
+Så, fra den andre siden av bålet, kom en lyd som knuste øyeblikket som et glass som treffer stein. En kort, tørr, fullstendig humorløs latter.
 
 Det var Arana.
 
-"Ved alle falne byer, Sileus," sa hun, og stemmen hennes var like skarp som en av pilspissene hennes. "Av alle eventyrene du har dratt ut av den fargerike kappen din, er dette det mest farlige jeg noensinne har hørt."
+"Ved alle de falne byenes rustne porter, Sileus," sa hun, og stemmen hennes var like skarp som en av pilspissene hennes. "Av alle de eventyrene du har dratt ut av den fargerike kappen din i løpet av årene jeg har kjent deg, er dette det mest farlige jeg noensinne har hørt."
 
-Sileus snudde seg sakte mot henne, ansiktet hans en maske av tålmodighet. "Det er ikke et eventyr, Arana. Det er sannheten."
+Sileus snudde seg sakte mot henne, ansiktet hans en maske av tålmodighet som var i ferd med å slå sprekker. "Det er ikke et eventyr, Arana. Det er den kalde, harde sannheten."
 
-"Sannheten?" Arana reiste seg, og bevegelsene hennes var fylt av en anspent, sint energi. "La meg fortelle deg hva som er sannheten, gamle mann. Sannheten er den kalde bakken vi sover på. Sannheten er den tomme magen og frykten for hva som gjemmer seg i mørket. Sannheten er de forvridde, siklende Råteynglene som prøvde å rive oss i filler i dag. Det er det som er ekte!"
+"Sannheten?" Arana reiste seg, og bevegelsene hennes var fylt av en anspent, sint energi. Hun var en panter som var blitt trengt opp i et hjørne. "La meg fortelle deg hva som er sannheten, gamle mann. Sannheten er den kalde bakken vi sover på. Sannheten er de tomme magene våre og frykten for hva som gjemmer seg i mørket der ute. Sannheten er de forvridde, siklende Råteynglene som prøvde å rive oss i filler i dag. Deres klør, deres stank, deres hat. Det er det som er ekte!"
 
-Hun gestikulerte vilt mot Tia, som fortsatt satt som lammet. "Og nå vil du legge denne... denne byrden på hennes skuldre? En eller annen tapt prinsesse fra en glemt legende? Vet du hva som skjer når man begynner å tro på slike historier? Man blir uforsiktig. Man begynner å tro at man er spesiell, usårbar. Man tar sjanser man ikke burde ta, og man ender opp død. Og man drar alle rundt seg med seg i fallet."
+Hun gestikulerte vilt mot Tia, som fortsatt satt som lammet. "Og nå vil du legge denne... denne *byrden* på hennes skuldre? En eller annen tapt prinsesse fra en glemt legende? Vet du hva som skjer når folk begynner å tro på slike historier, Sileus? De blir uforsiktige. De begynner å tro at de er spesielle, at de er usårbare. De tar sjanser de ikke burde ta, de stoler på en skjebne som ikke finnes, og de ender opp døde. Og enda verre, de drar alle de bryr seg om med seg i fallet."
 
-Argumentet hennes traff Leo med en uventet kraft. Det ga gjenklang i hver fiber av hans logiske, kjedelige, magiløse verdenssyn. Dette var galskap. Magisk blod. Vever og porter. Det var som å ha falt ned i en av de fantasy-bøkene han pleide å se folk lese på bussen. Aranas ord var et anker av fornuft i et hav av irrasjonalitet.
+Argumentet hennes traff Leo med en uventet kraft. Det ga gjenklang i hver fiber av hans logiske, kjedelige, magiløse verdenssyn. Dette var galskap. Magisk blod. Vever og porter. Det var som å ha falt ned i en av de dårlige fantasy-bøkene han pleide å se folk lese på bussen. Aranas ord var et anker av fornuft i et hav av irrasjonalitet. Hun snakket et språk han forsto.
 
-"Vi overlevde i dag på grunn av Tias sverd, Kaa's kniver og min bue," fortsatte Arana, stemmen hennes ble lavere, mer intens. "Vi overlevde fordi vi var raskere, smartere og mer desperate enn det som jaktet på oss. Ikke fordi en eller annen guddommelig kraft våket over oss. Å fokusere på noe annet er selvmord. Vårt eneste mål er å komme oss til Eleium. Finne et trygt sted. Overleve. Alt annet er en luksus vi ikke har råd til."
+"Vi overlevde i dag på grunn av Tias sverd, Kaas kniver og min bue," fortsatte Arana, stemmen hennes ble lavere, mer intens og overbevisende. "Vi overlevde fordi vi var raskere, smartere og mer desperate enn det som jaktet på oss. Ikke fordi en eller annen guddommelig kraft våket over oss. Å fokusere på noe annet er ikke bare en distraksjon, det er selvmord. Vårt eneste mål, vårt *eneste* fornuftige mål, er å komme oss til Eleium. Finne et trygt sted. Overleve. Alt annet er en luksus vi ikke har råd til, en farlig drøm som vil få oss drept."
 
-Hun så direkte på Leo. "Du ser det, ikke sant? Du er ikke herfra. Du har ikke vokst opp med disse fortellingene. Du ser galskapen for det den er."
+Hun så direkte på Leo, og for første gang så han ikke bare en hard kriger, men en som forsto. "Du ser det, ikke sant?" sa hun, nesten mildt. "Du er ikke herfra. Du har ikke vokst opp med disse fortellingene i morsmelken. Du ser galskapen for det den er."
 
-Leo kunne bare nikke, stumt. Han følte seg sett. Forstått.
+Leo kunne bare nikke, stumt. Han følte seg sett. Forstått. For et øyeblikk var han ikke en fortapt raring, men den eneste fornuftige personen i rommet, sammen med henne.
 
-Sileus sukket, en lyd av dyp tretthet. "Din pragmatisme er ditt skjold, Arana. Men den er også ditt fengsel. Den hindrer deg i å se skogen for bare trær."
+Sileus sukket, en lyd av dyp, eldgammel tretthet. "Din pragmatisme har alltid vært ditt skjold, Arana. Men den er også ditt fengsel. Den hindrer deg i å se skogen for bare trær."
 
-"Jeg foretrekker trærne," freste Arana. "De kan i det minste brukes til å bygge et ly eller lage et spyd. Dine usynlige skoger gir oss ingenting." Hun satte seg ned igjen med et drønn, tok opp buen sin og begynte å jobbe med den med en fornyet, nesten voldelig intensitet. Diskusjonen var, for hennes del, over.
+"Jeg foretrekker trærne," freste Arana tilbake. "De kan i det minste brukes til å bygge et ly eller lage et spyd. Dine usynlige skoger og magiske blodslinjer gir oss ingenting annet enn et større mål på ryggen." Hun satte seg ned igjen med et drønn, tok opp buen sin og begynte å jobbe med den med en fornyet, nesten voldelig intensitet. Diskusjonen var, for hennes del, over.
 
-En dyp, uoverstigelig kløft hadde åpnet seg i den lille sirkelen rundt bålet. På den ene siden sto Sileus, med sine gamle legender og sin tunge skjebne. På den andre sto Arana, med sin harde, jordnære realisme. Og i midten satt Tia, knust under vekten av en identitet hun aldri hadde bedt om, og Leo, en forvirret tilskuer som bare ønsket at ingenting av dette var virkelig.
+En dyp, uoverstigelig kløft hadde åpnet seg i den lille sirkelen rundt bålet. På den ene siden sto Sileus, med sine gamle legender og sin tunge skjebne. På den andre sto Arana, med sin harde, jordnære realisme som virket så uendelig mye tryggere. Og i midten satt Tia, knust under vekten av en identitet hun aldri hadde bedt om, og Leo, en forvirret tilskuer som bare ønsket at ingenting av dette var virkelig.
 
-Tia fant endelig stemmen sin. Den var skjør, knapt en hvisken. "Det er ikke sant," sa hun, mer til seg selv enn til noen andre. "Det er bare en gammel historie. En skremmende historie." Hun reiste seg brått, trakk teppet tettere rundt seg og gikk bort fra bålet, mot kanten av lyset der mørket presset på. Hun trengte luft. Hun trengte å være alene.
+Tia fant endelig stemmen sin. Den var skjør, knapt en hvisken. "Det er ikke sant," sa hun, mer til seg selv enn til noen andre. "Det kan ikke være sant. Det er bare en gammel historie. En skremmende historie." Hun reiste seg brått, trakk teppet tettere rundt seg som om hun plutselig frøs, og gikk bort fra bålet, mot kanten av lyset der mørket presset på. Hun trengte luft. Hun trengte å være alene med det monsteret Sileus nettopp hadde skapt.
 
-Miel så etter henne med bekymrede øyne, og etter et øyeblikk reiste hun seg og fulgte stille etter.
+Miel så etter henne med bekymrede øyne, og etter et øyeblikks nøling reiste hun seg og fulgte stille etter, med en liten, dampende leirkopp i hånden.
 
-Leo ble sittende igjen, fanget i den anspente stillheten. Han så på Sileus, som igjen hadde vendt blikket mot flammene, og på Arana, som nektet å se opp fra arbeidet sitt. Kaa var som alltid en skygge. Leo følte seg mer alene enn noensinne. Han hadde funnet en gruppe, men det føltes som om han allerede måtte velge side i en krig han ikke forsto. Og hans fornuft, hans instinkter, alt i ham skrek at Arana hadde rett.
+Leo ble sittende igjen, fanget i den anspente stillheten. Han så på Sileus, som igjen hadde vendt blikket mot flammene, ansiktet hans nå fullt av sorg. Han så på Arana, som nektet å se opp fra arbeidet sitt, hver bevegelse et statement om hva som var viktig. Kaa var som alltid en skygge, uleselig. Leo følte seg mer alene enn noensinne. Han hadde funnet en gruppe, men det føltes som om han allerede hadde valgt side i en krig han ikke forsto. Og hans fornuft, hans instinkter, alt i ham skrek at Arana hadde rett. Eventyr var for bøker. I den virkelige verden var det bare overlevelse som telte.
 
 ***
 
-Senere den natten, da de andre hadde lagt seg for å sove, tok Leo den første vakten. Det var Aranas forslag. "La gutten gjøre nytte for seg," hadde hun sagt, men tonen var ikke ondskapsfull, bare praktisk. "Og la ham se hva natten her virkelig innebærer."
+Borte fra bålets dømmende lys, sto Tia ved elvebredden og stirret ut i mørket. Månen, en tynn sigd av sølv, kastet et spøkelsesaktig lys på det virvlende, svarte vannet. Lyden av elven var en konstant, dyp rumling som fylte tomrommet ordene hadde etterlatt seg. Hun skalv, men det var ikke lenger bare av kulde.
 
-Han satt på den samme steinen, men nå føltes den kaldere, hardere. Bålet var redusert til glør som pulserte som et døende hjerte. Stillheten var total, bortsett fra den evige mumlingen fra elven og den fjerne, spøkelsesaktige lyden av vinden i tretoppene. Hver skygge var en potensiell trussel, hver rasling i løvet fikk hjertet hans til å hoppe. Dette var Aranas sannhet, tenkte han. Dette var ekte.
+*Aegions Blod.*
 
-Han hørte en myk bevegelse bak seg og snudde seg brått, hånden grep instinktivt etter en tykk gren han hadde lagt ved siden av seg.
+Navnet ga ekko i hodet hennes, et fremmed, altfor stort ord for en umulig idé. Hun var Tia. En overlevende. En kriger fordi hun måtte være det for å leve. Hun var datter av jegere som hadde lært henne å spore, å slåss, å lese vinden og jorden, å overleve i en verden som ble stadig mørkere og farligere. De hadde aldri nevnt legender. De hadde aldri snakket om magisk blod eller skjebner vevd inn i verdens stoff. De hadde snakket om å finne mat, unngå Råteyngel og alltid, alltid være på vakt. Det var deres religion.
 
-"Bare meg," hvisket en stemme. Det var Arana. Hun kom lydløst frem og satte seg ved siden av ham, ikke for nærme, men nok til at han følte den rolige selvtilliten som strålte fra henne.
+Miel kom og stilte seg stille ved siden av henne. Hun sa ingenting, bare rakte Tia den lille, varme leirkoppen med dampende urtete. Tia tok imot den med takknemlige, skjelvende hender. Varmen spredte seg gjennom fingrene hennes, et lite, fysisk anker i en storm av uvirkelighet.
 
-"Du klarer deg," sa hun, og det hørtes nesten ut som en kompliment. "Du er redd, men du løper ikke. Det er mer enn man kan si om mange."
+"Tror du på det?" hvisket Tia, uten å se på henne. Spørsmålet hang i den kalde luften.
 
-"Har ikke noe sted å løpe til," mumlet Leo. "Vet ikke engang hvilken retning som er 'hjem'."
+Miel var stille en stund, og så bare på elven. "Jeg vet ikke hva jeg skal tro," sa hun til slutt, stemmen hennes var like myk som mose. "Men jeg tror på Sileus. Jeg har sett ham lese tegn i landet som ingen andre ser. Han kjente lukten av Råteyngel lenge før vi så dem. Han visste at elven ville være en barriere. Han ser ting som er skjult for oss andre."
 
-Arana nikket sakte, blikket hennes var festet på mørket. "Jeg vet hvordan det føles. Å miste alt som er kjent." Hun var stille en lang stund. "Sileus er ikke en ond mann," sa hun til slutt, og overrasket Leo. "Han er vis, på sin måte. Han kjenner stiene, plantene, stjernene. Men han er besatt av fortiden. Av historier. Og historier er farlige. De gir falskt håp
+"Men dette?" Tias stemme sprakk. "Dette er ikke et tegn i jorden, Miel. Dette er... alt. Han sier at jeg er grunnen til at de jakter på oss. At jeg var grunnen til at landsbyen min... " Hun klarte ikke å fullføre setningen. Skyldfølelsen var en fysisk vekt i brystet, en isblokk som presset mot lungene. Hvis Sileus hadde rett, var ikke massakren i hjemmet hennes en tilfeldig, meningsløs tragedie. Det var hennes feil. Hennes arv. En pris betalt i blodet til alle hun elsket.
+
+"Det er ikke din feil," sa Miel bestemt, men mildt, og la en hånd på Tias arm. "Hvis det er sant, er det ikke noe du valgte. Det er som fargen på øynene dine eller håret ditt. Det er bare... en del av deg."
+
+Tia ristet på hodet, en voldsom, avvisende bevegelse. "Det føles ikke sånn. Det føles som en forbannelse." Hun begynte å ransake fortiden sin, desperat etter bevis, enten for eller imot. Hadde hun noen gang følt noe spesielt? En uforklarlig dragning mot visse steder? Hun husket som barn at hun noen ganger kunne se et svakt, nesten usynlig skimmer i luften, spesielt i de dype, urørte skogene, som om luften selv vibrerte av varme på en kald dag. Moren hennes hadde avfeid det som tretthet i øynene. Hun husket en uforklarlig følelse av ro, av å være *hjemme*, når hun var dypt inne i de delene av skogen Forråtnelsen ennå ikke hadde rørt, og en kvalmende, fysisk uro nær de blightede områdene. Var det bare velutviklede instinkter, slik faren hadde lært henne, eller var det... Resonans? Dissonans?
+
+Ordene til Sileus var som gift og medisin på samme tid. De ga en forferdelig forklaring, men de ga også *en* forklaring. Kanskje hun ikke bare var et tilfeldig offer for en meningsløs ondskap. Kanskje det var en grunn. Men byrden av den grunnen føltes for tung å bære.
+
+"Arana har rett," sa Tia lavt, stemmen hennes var hul. "Det er tryggere å ikke tro på det. Det er lettere. Det er tryggere å bare være en jente med to sverd som prøver å overleve til i morgen."
+
+"Kanskje," sa Miel ettertenksomt. "Men er det *sannheten*? Sileus sa at de jaktet på deg for å åpne Portene. For å omskrive hele virkeligheten til noe forferdelig. Hvis det er sant, er det ikke nok å bare overleve, Tia. Da må vi kjempe. Da er det ikke lenger bare vår kamp."
+
+Tia drakk resten av teen i en slurk, den varme væsken gjorde lite for å dempe den iskalde frykten i magen hennes. Hun så på den lille, spinkle jenta ved siden av seg, som snakket om å kjempe mot kosmiske krefter som om det var den mest naturlige tingen i verden. Kanskje Miels tro var en form for styrke i seg selv. En styrke Tia ikke lenger følte at hun hadde.
+
+Da de kom tilbake til bålet, var stemningen like anspent. Arana så opp, og blikket hennes var skarpt, men ikke ukjærlig da det falt på Tia.
+
+"Vi må bestemme oss," sa Arana, og stemmen hennes var nå rolig og kontrollert. Hun snakket til hele gruppen. "Uavhengig av Sileus' eventyr, har vi et umiddelbart problem. Vi er seks stykker, sårbare og langt fra trygghet. Vi trenger en plan."
+
+Sileus så på henne. "Planen er å forstå byrden Tia bærer."
+
+"Nei," sa Arana bestemt. "Det er et mål for en annen dag, kanskje. Planen for *nå* er å overleve. Og for å overleve, trenger vi regler." Hun reiste seg og begynte å gå frem og tilbake foran bålet, en kommandør som la slagplanen foran sine soldater.
+
+"Fra nå av reiser vi som en enhet. Kaa går foran, som våre øyne og ører. Jeg tar bakvakten. Sileus, Miel og Tia i midten." Hun stoppet og så på Leo. "Du går sammen med dem. Hold deg i midten, og gjør som du får beskjed om."
+
+Leo nikket. Det var logisk. Det var trygt.
+
+"Vi holder vakter om natten," fortsatte hun. "To timer hver. Ingen unntak. Vi rasjonerer maten vi har. Ingen spiser alene. Vi deler alt. Og viktigst av alt: vi unngår kamp med mindre vi absolutt må. Vårt mål er ikke å være helter. Vårt mål er å komme levende til Eleium. Er det forstått?"
+
+Hun så rundt på dem, en etter en. Kaa ga et knapt, nesten usynlig nikk. Miel nikket nervøst. Sileus sukket, men motsa henne ikke. Han visste at hun hadde rett i det praktiske. Tia, med et nytt, hardt uttrykk i ansiktet, nikket også. Hun kunne gjemme seg bak Aranas regler, bak det praktiske. Det var enklere enn å møte Sileus' blikk.
+
+Til slutt så Arana på Leo igjen. "Er du med på dette? Ingen fripassasjerer."
+
+"Jeg er med," sa Leo uten å nøle. Det var den første avgjørelsen han hadde tatt i denne verden som føltes helt og holdent riktig.
+
+"Godt," sa Arana, og satte seg ned igjen, tydeligvis fornøyd. "Da har vi en avtale. En skjør en, kanskje, men en avtale. Vi er et kompani. Kompaniet av de fortapte, kanskje, men likevel et kompani." Hun smilte et lite, stramt smil. "Nå, sov. Vi har en lang marsj foran oss i morgen."
+
+***
+
+Neste morgen våknet Leo til en verden som var blitt gjenfødt. Den tunge, truende natten var borte, erstattet av et lys så klart og rent at det nesten gjorde vondt i øynene. Fargene var tilbake med en overveldende intensitet; gresset var en umulig smaragdgrønn farge, og himmelen en dyp, pulserende blå. Luften var kjølig og skarp og fylt med duften av fuktig jord og en søtlig, ukjent blomsterduft.
+
+De spiste en mager frokost med tørket kjøtt og nøtter i stillhet, og brøt raskt leir under Aranas effektive kommando. De krysset elven på et grunnere sted lenger nedstrøms, det iskalde vannet slikket dem opp til knærne og minnet dem om nattens flukt. På den andre siden ventet en gammel, tett skog. Trærne var enorme, med tykke, mosegrodde stammer og et tak av blader så tett at sollyset bare slapp igjennom i flakkende, gylne flekker.
+
+De fulgte Aranas plan til punkt og prikke. Kaa beveget seg lydløst fremst, en spøkelsesaktig skikkelse som smeltet sammen med skyggene. Arana fulgte bakerst, buen i hånden, blikket hennes konstant i bevegelse. Leo gikk i midten, klemt mellom Sileus og Miel, med Tia rett foran seg. Han følte seg klønete og malplassert, joggeskoene hans lagde altfor mye lyd på skogbunnen sammenlignet med de andres myke skinnstøvler.
+
+Etter et par timers marsj stoppet Miel brått. Hun pekte mot en liten lysning. "Se," hvisket hun.
+
+I lysningen, badet i en stripe sollys, vokste en klynge med de vakreste blomstene Leo noensinne hadde sett. De var ikke store, men hver av dem hadde kronblader som så ut til å være vevd av selve lyset. De skiftet farge i en langsom, pulserende rytme, fra dyp fiolett til asurblå, og i midten av hver blomst glødet et lite punkt av rent, hvitt lys.
+
+"Vevshjerter," sa Miel med ærefrykt i stemmen. "De vokser bare der Veven er spesielt sterk og ren. Der Resonansen er nesten perfekt."
+
+Mens hun snakket, kjente Leo en merkelig følelse. Det startet som en svak kribling i lommen. Han stanset og la hånden over den gamle mynten. Kriblingen ble sterkere, en distinkt, varm vibrasjon som pulserte i takt med blomstenes skiftende farger. Det var ikke en ubehagelig følelse, tvert imot. Det var som en svak, elektrisk strøm, en følelse av... gjenklang.
+
+Han så opp og møtte Tias blikk. Hun så på ham, så ned på lommen hans, og det var et uttrykk av forvirret undring i ansiktet hennes. "Kjenner du det?" hvisket hun.
+
+Leo kunne bare nikke, ute av stand til å formulere et svar. Mynten hadde vært kald og død siden han kom hit. Nå var den levende. Den reagerte på disse blomstene. Den reagerte på dette stedet. Den reagerte på *Veven*. Aranas kalde, harde realisme føltes plutselig litt mindre solid.
+
+Sileus, som hadde sett det hele, smilte et av sine hemmelighetsfulle smil. "Verden har mange måter å snakke til oss på," sa han lavt. "Man må bare lære seg å lytte med mer enn bare ørene."
+
+Arana, som hadde kommet tilbake fra sin posisjon bakerst, fnøs. "Vakre, ja vel. Kan vi spise dem?"
+
+"Nei," sa Miel. "De er ikke for å spises. De er for å... være."
+
+"Da er de unyttige for oss," konkluderte Arana tørt. "Kom igjen. Vi mister dagslys."
+
+De fortsatte marsjen, men noe hadde forandret seg for Leo. Den vibrerende mynten i lommen var et konstant, fysisk bevis på at Sileus' historier kanskje ikke bare var historier. Det var en hemmelighet han delte med Tia, en uforklarlig forbindelse som summet mellom dem.
+
+De gikk i flere timer. Skogen ble tettere, eldre. Lyset ble svakere. Stillheten ble dypere. Den søte duften av Vevshjerter ble borte, erstattet av den fuktige lukten av jord og råtnende løv. Leo kjente at mynten i lommen hans gradvis mistet sin varme, vibrasjonen ble svakere og svakere, til den til slutt døde helt ut og bare var en kald metallbit igjen. Den varme, trygge følelsen ble erstattet av en snikende uro.
+
+Det var da det skjedde.
+
+Det var ikke en lyd. Det var fraværet av den. Fuglesangen, som hadde vært en konstant, munter bakgrunnsstøy, døde brått ut. Den svake susingen av vind i bladene opphørte. En total, unaturlig stillhet senket seg over skogen, så brå og absolutt at det føltes som om verden holdt pusten.
+
+Foran dem, kanskje tjue meter inn i skogen, stivnet Kaa. Han stoppet ikke bare; han frøs midt i en bevegelse, den ene foten løftet fra bakken. Han ble en del av landskapet, en stein, en trestamme. Hele kroppen hans var en eneste, spent muskel, hodet vendt litt på skrå, de isgrå øynene festet på et punkt i skyggene som Leo ikke kunne se.
+
+Bak Leo hørte han en nesten lydløs bevegelse. Arana hadde allerede en pil på strengen, buen hevet, ansiktet hennes en maske av dødelig konsentrasjon. Miel ga fra seg et lite, kvalt gisp og krøp tettere inntil Sileus. Tia hadde trukket begge sverdene sine, de korte bladene fanget det svake lyset i skumringen.
+
+Leo sto som lammet, hjertet hamret i brystet. Han kjente en isende kulde spre seg fra mynten i lommen, en kulde som ikke kom fra metallet, men fra den plutselige, overveldende følelsen av Dissonans i luften. Noe var der ute i skyggene. Noe stort. Noe unaturlig. Og det ventet på dem. Gruppen sto urørlig, fanget i den trykkende stillheten, og ventet på at bakholdet skulle springe.

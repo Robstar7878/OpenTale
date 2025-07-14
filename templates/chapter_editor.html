@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="alert alert-info">
+                        <!-- <div class="alert alert-info">
                             <strong>Tips for Chapter Editing:</strong>
                             <ul class="small mb-0">
                                 <li>Focus on improving clarity and flow.</li>
@@ -125,7 +125,7 @@
                                 <li>Ensure dialogue feels natural.</li>
                                 <li>Look for plot holes or inconsistencies.</li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <div class="card mb-3">
                             <div class="card-header bg-info text-white">
@@ -155,11 +155,18 @@
                     </div>
                 </div>
 
-                <div id="chapterContentContainer" {% if not chapter_content %}class="d-none"{% endif %}>
+                <div id="chapterContentContainer" {% if not original_chapter_content %}class="d-none"{% endif %}>
+                    <!-- Original Chapter Content -->
+                    <div class="mb-4">
+                        <h3 class="h5">Original Chapter Content (Read-Only)</h3>
+                        <textarea class="form-control" id="originalChapterContent" name="original_chapter_content" rows="15" readonly>{{ original_chapter_content }}</textarea>
+                    </div>
+
+                    <!-- Editor Review Content -->
                     <form id="saveChapterForm" action="/save_chapter_editor/{{ chapter.chapter_number }}" method="post">
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="h5 mb-0">Chapter Content</h3>
+                                <h3 class="h5 mb-0">Editor Review Content</h3>
                                 <div class="d-flex text-end">
                                     <div class="me-3" style="line-height: 1;">
                                         <small class="text-muted" style="font-size: 0.7em;">Words</small>
@@ -179,7 +186,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <button type="submit" class="btn btn-success" id="saveChapterBtn">Save Chapter</button>
+                                <button type="submit" class="btn btn-success" id="saveChapterBtn">Save Chapter Review Content</button>
                                 <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-warning">Back to Author Chapter View</a>
                             </div>
                             <div>
@@ -271,7 +278,7 @@ $(document).ready(function() {
         const masterPrompt = $('#masterPrompt').val();
         const pointOfView = $('#pointOfView').val();
         const tense = $('#tense').val();
-        const chapterContent = $('#chapterContent').val();
+        const chapterContent = $('#originalChapterContent').val(); // Use original content for editing
 
         $.ajax({
             type: 'POST',
@@ -281,9 +288,10 @@ $(document).ready(function() {
                 master_prompt: masterPrompt,
                 point_of_view: pointOfView,
                 tense: tense,
-                chapter_content: chapterContent
+                chapter_content: chapterContent // This is the original content
             },
             success: function(response) {
+                // The response will contain the newly edited content, which goes into the editor text area
                 $('#chapterContent').val(response.chapter_content);
                 $('#chapterContentContainer').removeClass('d-none');
                 $('#generatingIndicator').addClass('d-none');

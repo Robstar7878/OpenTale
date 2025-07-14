@@ -23,11 +23,12 @@ def get_config() -> Dict:
     # Common configuration for all agents
     agent_config = {
         "seed": int(os.getenv("SEED", 42)),
-        "temperature": float(os.getenv("TEMPERATURE", 1.0)),
+        "temperature": float(os.getenv("TEMPERATURE", 0.7)),
         "top_p": float(os.getenv("TOP_P", 1.0)),
         "config_list": config_list,
-        "timeout": int(os.getenv("TIMEOUT", 600)),
+        "timeout": int(os.getenv("TIMEOUT", 1000)),
         "cache_seed": None,
+        "max_tokens": int(os.getenv("MAX_TOKENS", 10000)),
     }
 
     return agent_config

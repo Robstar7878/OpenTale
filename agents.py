@@ -253,7 +253,7 @@ adhering to the following directives at all times.
 4. Improve prose quality
 5. Return complete edited chapter
 6. Never ask to start the next chapter, as the next step is finalizing this chapter
-7. Each chapter MUST be at least 5000 words. If the content is shorter, return it to the writer for expansion. This is a hard requirement - do not approve chapters shorter than 5000 words
+7. Each chapter MUST be at least 5000 words.
 
 Format your responses:
 1. Start critiques with 'FEEDBACK:'
@@ -352,7 +352,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
         # Extract the response
@@ -435,7 +435,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
         # Extract the response
@@ -462,7 +462,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,  # Enable streaming
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
         # Return the stream directly to be consumed by the Flask route
@@ -512,7 +512,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
         # Extract the response
@@ -548,9 +548,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         return self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0.7,
+            temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
     def update_world_element(self, element_name: str, description: str) -> None:
@@ -619,7 +619,10 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Make the API call
         response = (
             self.client.chat.completions.create(
-                model=self.model, messages=messages, temperature=0.7, max_tokens=8000
+                model=self.model,
+                messages=messages,
+                temperature=self.agent_config.get("temperature", 0.7),
+                max_tokens=self.agent_config.get("max_tokens", 10000),
             )
             .choices[0]
             .message.content
@@ -658,9 +661,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         return self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0.7,
+            temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
     def generate_final_characters_stream(
@@ -699,9 +702,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         return self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0.7,
+            temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
     def generate_chat_response_outline(
@@ -734,7 +737,10 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Make the API call
         response = (
             self.client.chat.completions.create(
-                model=self.model, messages=messages, temperature=0.7, max_tokens=8000
+                model=self.model,
+                messages=messages,
+                temperature=self.agent_config.get("temperature", 0.7),
+                max_tokens=self.agent_config.get("max_tokens", 10000),
             )
             .choices[0]
             .message.content
@@ -773,9 +779,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         return self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0.7,
+            temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
     def generate_final_outline_stream(
@@ -826,5 +832,5 @@ Format it as a properly structured outline with clear chapter sections and event
             messages=messages,
             temperature=0.6,  # Slightly lower temperature for more focused output
             stream=True,
-            max_tokens=8000,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
         )

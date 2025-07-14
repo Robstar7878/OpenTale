@@ -646,12 +646,22 @@ def chapter_editor(chapter_number):
         return jsonify({"chapter_content": chapter_content})
 
     # GET request - show chapter page with existing content if available
+    # Load original chapter content
+    original_chapter_content = ""
+    original_chapter_path = os.path.join(
+        CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+    )
+    if os.path.exists(original_chapter_path):
+        with open(original_chapter_path, "r", encoding="utf-8") as f:
+            original_chapter_content = f.read().strip()
+
+    # Load editor review content, which will be the main content for the editor view
     chapter_content = ""
-    chapter_path = os.path.join(
+    editor_chapter_path = os.path.join(
         CHAPTERS_DIR, f"chapter_{chapter_number}_editor{TEXT_EXTENSION}"
     )
-    if os.path.exists(chapter_path):
-        with open(chapter_path, "r") as f:
+    if os.path.exists(editor_chapter_path):
+        with open(editor_chapter_path, "r", encoding="utf-8") as f:
             chapter_content = f.read().strip()
 
     master_prompt = get_master_prompt()
@@ -664,7 +674,8 @@ def chapter_editor(chapter_number):
     return render_template(
         "chapter_editor.html",
         chapter=chapter_data,
-        chapter_content=chapter_content,
+        original_chapter_content=original_chapter_content,
+        chapter_content=chapter_content,  # This is the editor content
         chapters=chapters,
         master_prompt=master_prompt,
         point_of_view=point_of_view,
