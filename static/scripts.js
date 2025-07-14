@@ -170,3 +170,67 @@ function loadFormFromLocalStorage(formId, storageKey) {
         }
     }
 } 
+
+/**
+ * Calculates various text statistics for a given string of content.
+ *
+ * @param {string} content The text content to analyze.
+ * @returns {{wordCount: number, charCount: number, sentenceCount: number}} An object containing the word count, character count, and sentence count.
+ */
+function calculateTextStats(content) {
+    /**
+     * The `\p{...}` syntax in the regex below is a Unicode property escape.
+     * It allows matching characters based on properties, like being a "Letter" or "Number",
+     * which makes the logic work for many different languages and scripts.
+     * The 'u' flag on the regex is required to enable this.
+     *
+     * Key escapes used:
+     * - \p{L}: Any Unicode letter (e.g., a, Å, α).
+     * - \p{N}: Any Unicode number (e.g., 1, ٣).
+     * - \p{Lu}: Any uppercase Unicode letter (e.g., A, B, C).
+     */
+
+    if (typeof content !== 'string' || content.length === 0) {
+        return { wordCount: 0, charCount: 0, sentenceCount: 0 };
+    }
+
+    // --- Character Counts ---
+
+    // Counts characters after removing all line breaks.
+    const charCount = content.replace(/[\r\n]+/g, '').length;
+
+    /**
+     * Word Count (`wordCount`):
+     * Splits text by whitespace, then counts only the segments that contain at least one
+     * Unicode letter (`\p{L}`) or number (`\p{N}`). This correctly filters out items
+     * that consist only of punctuation.
+     */
+    const words = content
+        .trim()
+        .split(/\s+/)
+        .filter(w => /\p{L}|\p{N}/u.test(w));
+    const wordCount = words.length;
+
+    /**
+     * Sentence Count (`sentenceCount`):
+     * Splits text by matching the boundary between sentences. The regex uses a lookbehind
+     * and lookahead to find sentence-ending punctuation (. ! ?) followed by whitespace
+     * and a new sentence that must start with a Unicode uppercase letter (`\p{Lu}`) or a number (`\p{N}`).
+     */
+    const normalizedContent = content.replace(/[\r\n]+/g, ' ');
+    const sentenceSplitRegex = new RegExp(
+        `(?<=[.!?])` +      // Preceded by sentence-ending punctuation.
+        `\\s+` +            // Match the whitespace separator.
+        `(?=[\\p{Lu}\\p{N}])`, // Followed by a Unicode uppercase letter or number.
+        'gu'
+    );
+
+    const sentences = normalizedContent
+        .split(sentenceSplitRegex)
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+    const sentenceCount = sentences.length > 0 ? sentences.length : (content.trim().length > 0 ? 1 : 0);
+
+
+    return { wordCount, charCount, sentenceCount };
+}
