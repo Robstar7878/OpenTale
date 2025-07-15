@@ -35,6 +35,7 @@ MASTER_PROMPT_FILE = os.path.join(BOOK_OUTPUT_DIR, f"master_prompt{TEXT_EXTENSIO
 SETTINGS_FILE = os.path.join(BOOK_OUTPUT_DIR, "settings.json")
 OUTLINE_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "outline.json")
 CHAPTERS_DIR = os.path.join(BOOK_OUTPUT_DIR, "chapters")
+PREVIOUS_CHAPTER_CONTEXT_LENGTH = 2000
 
 
 # Ensure book_output directory exists
@@ -194,10 +195,7 @@ def world_chat_stream():
     return Response(
         stream_with_context(generate()),
         mimetype="text/event-stream",
-        headers={
-            "Cache-Control": "no-cache",
-            "X-Accel-Buffering": "no",
-        },  # Disable buffering in Nginx if used
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
 
@@ -479,9 +477,7 @@ def chapter(chapter_number):
                 with open(prev_chapter_path, "r") as f:
                     # Get a summary or the last few paragraphs
                     content = f.read()
-                    previous_context = (
-                        content[-1000:] if len(content) > 1000 else content
-                    )
+                    previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
 
         # Initialize agents for chapter generation
         book_agents = BookAgents(agent_config, chapters)
@@ -533,7 +529,6 @@ def chapter(chapter_number):
     master_prompt = get_master_prompt()
 
     # Get chapter-specific settings or defaults
-    # Get chapter-specific settings or defaults
     chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
     point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
     tense = chapter_settings.get("tense", "Past tense")
@@ -546,6 +541,127 @@ def chapter(chapter_number):
         master_prompt=master_prompt,
         point_of_view=point_of_view,
         tense=tense,
+    )
+
+
+@app.route("/chapter_stream/<int:chapter_number>", methods=["POST"])
+def chapter_stream(chapter_number):
+    """Generate or display a specific chapter"""
+    chapters = get_chapters()
+
+    # Check if chapter exists
+    chapter_data = None
+    for ch in chapters:
+        if ch["chapter_number"] == chapter_number:
+            chapter_data = ch
+            break
+
+    if not chapter_data:
+        return Response(
+            json.dumps({"error": f"Chapter {chapter_number} not found"}),
+            status=404,
+            mimetype="application/json",
+        )
+
+    # Get any additional context from the chat interface
+    data = request.json
+    additional_context = data.get("additional_context", "")
+    master_prompt = data.get("master_prompt", "")
+    point_of_view = data.get("point_of_view", "Third-person limited")
+    tense = data.get("tense", "Past tense")
+
+    # Save to settings
+    settings_to_save = get_settings()
+    if "chapters" not in settings_to_save:
+        settings_to_save["chapters"] = {}
+    if str(chapter_number) not in settings_to_save["chapters"]:
+        settings_to_save["chapters"][str(chapter_number)] = {}
+
+    settings_to_save["chapters"][str(chapter_number)]["point_of_view"] = point_of_view
+    settings_to_save["chapters"][str(chapter_number)]["tense"] = tense
+    save_settings(settings_to_save)
+
+    # Generate chapter content
+    world_theme = get_world_theme()
+    characters = get_characters()
+
+    # Get previous chapters context
+    previous_context = ""
+    if chapter_number > 1:
+        prev_chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+        )
+        if os.path.exists(prev_chapter_path):
+            with open(prev_chapter_path, "r") as f:
+                # Get a summary or the last few paragraphs
+                content = f.read()
+                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+
+    # Initialize agents for chapter generation
+    book_agents = BookAgents(agent_config, chapters)
+    book_agents.create_agents(world_theme, len(chapters))
+
+    # Add the additional context from chat to the chapter prompt
+    chapter_prompt = (
+        f"{chapter_data['prompt']}\n\n{additional_context}"
+        if additional_context
+        else chapter_data["prompt"]
+    )
+
+    # Generate the chapter
+    stream = book_agents.generate_content_stream(
+        "writer",
+        prompts.CHAPTER_GENERATION_PROMPT.format(
+            master_prompt=master_prompt,
+            chapter_number=chapter_number,
+            chapter_title=chapter_data["title"],
+            chapter_outline=chapter_prompt,
+            world_theme=world_theme,
+            relevant_characters=characters,  # You might want to filter for relevant characters only
+            scene_details="",  # This would be filled if scenes were generated first
+            previous_context=previous_context,
+            point_of_view=point_of_view,
+            tense=tense,
+        ),
+    )
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Collect all chunks to save the complete response
+        collected_content = []
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                collected_content.append(content)
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Combine all chunks for the complete content
+        complete_content = "".join(collected_content)
+
+        # Save chapter content to file
+        chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+        )
+        with open(chapter_path, "w", encoding="utf-8") as f:
+            f.write(complete_content)
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
 
@@ -603,9 +719,7 @@ def chapter_editor(chapter_number):
                 with open(prev_chapter_path, "r") as f:
                     # Get a summary or the last few paragraphs
                     content = f.read()
-                    previous_context = (
-                        content[-1000:] if len(content) > 1000 else content
-                    )
+                    previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
 
         # Initialize agents for chapter generation
         book_agents = BookAgents(agent_config, chapters)
@@ -726,7 +840,7 @@ def chapter_editor_stream(chapter_number):
             with open(prev_chapter_path, "r") as f:
                 # Get a summary or the last few paragraphs
                 content = f.read()
-                previous_context = content[-1000:] if len(content) > 1000 else content
+                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
 
     # Initialize agents for chapter generation
     book_agents = BookAgents(agent_config, chapters)
@@ -778,10 +892,7 @@ def chapter_editor_stream(chapter_number):
     return Response(
         stream_with_context(generate()),
         mimetype="text/event-stream",
-        headers={
-            "Cache-Control": "no-cache",
-            "X-Accel-Buffering": "no",
-        },  # Disable buffering in Nginx if used
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
 
@@ -908,9 +1019,7 @@ def scene(chapter_number):
             if os.path.exists(prev_chapter_path):
                 with open(prev_chapter_path, "r") as f:
                     content = f.read()
-                    previous_context = (
-                        content[-1000:] if len(content) > 1000 else content
-                    )
+                    previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
 
         # Initialize agents
         book_agents = BookAgents(agent_config, chapters)

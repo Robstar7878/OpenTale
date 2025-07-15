@@ -1,7 +1,7 @@
 {
   "num_characters": "10",
   "num_chapters": "25",
-  "topic": "--- **WORLD SETTING: ELYSIA -",
+  "topic": "verden: --- **WORLD SETTING: ELYSIA",
   "chapters": {
     "2": {
       "point_of_view": "Third-person limited",
@@ -24,6 +24,18 @@
       "tense": "Past tense"
     },
     "7": {
+      "point_of_view": "Third-person limited",
+      "tense": "Past tense"
+    },
+    "9": {
+      "point_of_view": "Third-person limited",
+      "tense": "Past tense"
+    },
+    "10": {
+      "point_of_view": "Third-person limited",
+      "tense": "Past tense"
+    },
+    "8": {
       "point_of_view": "Third-person limited",
       "tense": "Past tense"
     }

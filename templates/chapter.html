@@ -275,33 +275,75 @@ $(document).ready(function() {
         const masterPrompt = $('#masterPrompt').val();
         const pointOfView = $('#pointOfView').val();
         const tense = $('#tense').val();
-        
-        $.ajax({
-            type: 'POST',
-            url: '/chapter/{{ chapter.chapter_number }}',
-            data: {
-                additional_context: additionalContext,
-                master_prompt: masterPrompt,
-                point_of_view: pointOfView,
-                tense: tense
+
+        const requestData = {
+            additional_context: additionalContext,
+            master_prompt: masterPrompt,
+            point_of_view: pointOfView,
+            tense: tense,
+        };
+
+        let fullContent = '';
+        $('#chapterContent').val(''); // Clear previous content
+
+        fetch(`/chapter_stream/{{ chapter.chapter_number }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            success: function(response) {
-                $('#chapterContent').val(response.chapter_content);
-                $('#chapterContentContainer').removeClass('d-none');
-                $('#generatingIndicator').addClass('d-none');
-                $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
-                
-                updateContentStats();
-                
-                // Reset chat history after generating
-                chatHistory = [];
-                $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been generated! You can continue to add details or make changes to refine it further.</p></div>');
-            },
-            error: function() {
-                alert('Error generating chapter. Please try again.');
-                $('#generatingIndicator').addClass('d-none');
-                $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
+            body: JSON.stringify(requestData)
+        }).then(response => {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            function readStream() {
+                return reader.read().then(({ value, done }) => {
+                    if (done) {
+                        // End of stream
+                        $('#generatingIndicator').addClass('d-none');
+                        $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
+                        updateContentStats();
+
+                        // Reset chat history after generating
+                        chatHistory = [];
+                        $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been generated! You can continue to add details or make changes to refine it further.</p></div>');
+                        return;
+                    }
+
+                    // Decode the chunk
+                    const chunk = decoder.decode(value);
+
+                    // Process each event in the chunk
+                    chunk.split('\n\n').forEach(event => {
+                        if (event.startsWith('data: ')) {
+                            try {
+                                const jsonData = event.substring(6); // Remove 'data: ' prefix
+                                const data = JSON.parse(jsonData);
+
+                                if (data.content === '[DONE]') {
+                                    // This will be handled by the done flag
+                                    return;
+                                }
+
+                                if (data.content) {
+                                    fullContent += data.content;
+                                    $('#chapterContent').val(fullContent);
+                                    $('#chapterContentContainer').removeClass('d-none');
+                                }
+                            } catch (e) {
+                                console.error('Error parsing JSON:', e, jsonData);
+                            }
+                        }
+                    });
+                    return readStream();
+                });
             }
+            return readStream();
+        }).catch(error => {
+            console.error('Fetch error:', error);
+            alert('Error generating chapter. Please try again.');
+            $('#generatingIndicator').addClass('d-none');
+            $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
         });
     });
     

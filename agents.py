@@ -430,6 +430,19 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             {"role": "user", "content": prompt},
         ]
 
+        # Save the messages for debugging
+        if self.debug:
+            if not os.path.exists(PROMPT_DEBUGGING_DIR):
+                os.makedirs(PROMPT_DEBUGGING_DIR)
+            for message in messages:
+                role = message["role"]
+                content = message["content"]
+                file_path = os.path.join(
+                    PROMPT_DEBUGGING_DIR, f"{agent_name}_stream_request_{role}.txt"
+                )
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+
         stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
@@ -437,7 +450,28 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
         )
-        return stream
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        def stream_wrapper():
+            """A wrapper to save the full response while streaming"""
+            full_response_content = []
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    full_response_content.append(content)
+                yield chunk
+
+            # After the stream is exhausted, save the complete response
+            response_filepath = os.path.join(
+                PROMPT_DEBUGGING_DIR, f"{agent_name}_stream_response.txt"
+            )
+            with open(response_filepath, "w", encoding="utf-8") as f:
+                f.write("".join(full_response_content))
+
+        return stream_wrapper()
 
     def generate_chat_response(self, chat_history, topic, user_message) -> str:
         """Generate a chat response based on conversation history"""
