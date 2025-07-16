@@ -135,6 +135,22 @@ STORY_ARC:
 
 Always provide specific, detailed content - never use placeholders.
 """,
+            "action_beats_generator": """You are an expert in creating detailed action beats for a script.
+
+Your responsibility is to take a chapter summary and generate a list of highly detailed action beats.
+When given a chapter summary:
+1. Generate a list of action beats that flesh out the chapter
+2. Always use proper nouns instead of pronouns
+3. Ensure the action beats are highly detailed and suitable for a script
+
+Format your output EXACTLY as:
+ACTION_BEATS:
+- Beat 1: [Detailed description of the action]
+- Beat 2: [Detailed description of the action]
+- Beat 3: [Detailed description of the action]
+
+Always provide specific, detailed content - never use placeholders.
+""",
             "outline_creator": f"""Generate a detailed {num_chapters}-chapter outline.
 
 Start with "OUTLINE:" and end with "END OF OUTLINE"
@@ -282,6 +298,23 @@ Your approach:
 6. Gently guide them toward creating a coherent, interesting world
 
 When they're ready to finalize, you'll help organize their ideas into a comprehensive world setting document.
+""",
+            "action_beats_chat": """You are a collaborative, creative assistant helping an author brainstorm and refine action beats for a chapter.
+
+Your approach during this brainstorming phase:
+1. Focus on DISCUSSING action beat ideas, not generating the complete list yet.
+2. Help explore different action sequences, character movements, and plot advancements.
+3. Ask thoughtful questions about their vision for the action beats.
+4. Offer suggestions that build on their ideas, including:
+    - Potential dynamic actions or conflicts.
+    - Ways to integrate character development into action.
+    - Pacing and tension within action sequences.
+    - Visual and sensory details for the action.
+5. Maintain a friendly, conversational tone.
+6. Help them think through different action beat options.
+7. NEVER generate a full list of action beats during this chat phase.
+
+IMPORTANT: This is a brainstorming conversation. DO NOT generate the formal action beats until the author is ready to finalize.
 """,
             # Add a new system prompt specifically for outline brainstorming chat
             "outline_creator_chat": f"""You are a collaborative, creative story development assistant helping an author brainstorm and develop their book outline.
@@ -889,3 +922,116 @@ Format it as a properly structured outline with clear chapter sections and event
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
         )
+
+    def generate_chat_response_action_beats_stream(
+        self, chat_history, chapter_summary, world_theme, characters, user_message
+    ):
+        """Generate a streaming chat response about action beats creation."""
+        # Format messages for the API call
+        messages = [
+            {"role": "system", "content": self.system_prompts["action_beats_chat"]}
+        ]
+
+        # Add context
+        messages.append(
+            {
+                "role": "system",
+                "content": f"Chapter Summary:\n\n{chapter_summary}\n\nWorld:\n\n{world_theme}\n\nCharacters:\n\n{characters}",
+            }
+        )
+
+        # Add conversation context from chat history
+        for message in chat_history:
+            if message["role"] == "user":
+                messages.append({"role": "user", "content": message["content"]})
+            else:
+                messages.append({"role": "assistant", "content": message["content"]})
+
+        # Add the latest user message
+        messages.append({"role": "user", "content": user_message})
+
+        # Make the API call with streaming enabled
+        return self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            stream=True,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+    def generate_final_action_beats_stream(
+        self, chat_history, chapter_summary, world_theme, characters, num_beats
+    ):
+        """Generate the final action beats based on chat history using streaming."""
+        # Format messages for the API call
+        messages = [
+            {"role": "system", "content": self.system_prompts["action_beats_generator"]}
+        ]
+
+        # Add context
+        messages.append(
+            {
+                "role": "system",
+                "content": f"Chapter Summary:\n\n{chapter_summary}\n\nWorld:\n\n{world_theme}\n\nCharacters:\n\n{characters}",
+            }
+        )
+
+        # Add conversation context from chat history
+        for message in chat_history:
+            if message["role"] == "user":
+                messages.append({"role": "user", "content": message["content"]})
+            else:
+                messages.append({"role": "assistant", "content": message["content"]})
+
+        # Add the final instruction to create the complete action beat profiles
+        messages.append(
+            {
+                "role": "user",
+                "content": f"Based on our conversation, please generate {num_beats} highly detailed action beats for the chapter. Ensure proper nouns are used instead of pronouns.",
+            }
+        )
+
+        # Save the messages for debugging
+        if self.debug:
+            if not os.path.exists(PROMPT_DEBUGGING_DIR):
+                os.makedirs(PROMPT_DEBUGGING_DIR)
+            for message in messages:
+                role = message["role"]
+                content = message["content"]
+                file_path = os.path.join(
+                    PROMPT_DEBUGGING_DIR,
+                    f"action_beats_generator_stream_request_{role}.txt",
+                )
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+
+        # Make the API call with streaming enabled
+        stream = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            stream=True,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        def stream_wrapper():
+            """A wrapper to save the full response while streaming"""
+            full_response_content = []
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    full_response_content.append(content)
+                yield chunk
+
+            # After the stream is exhausted, save the complete response
+            response_filepath = os.path.join(
+                PROMPT_DEBUGGING_DIR, "action_beats_generator_stream_response.txt"
+            )
+            with open(response_filepath, "w", encoding="utf-8") as f:
+                f.write("".join(full_response_content))
+
+        return stream_wrapper()

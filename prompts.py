@@ -95,8 +95,6 @@ Write engaging, immersive prose that advances the story while staying true to th
 
 # Chapter generation prompt
 CHAPTER_GENERATION_PROMPT = """
-{master_prompt}
-
 Generate Chapter {chapter_number}: {chapter_title}
 The entire chapter must be in {tense} and from a {point_of_view} point of view. 
 Everything must be filtered through the senses, thoughts, and emotions of the specified POV character. 
@@ -114,11 +112,17 @@ Based on the following:
 - **Characters:** 
 {relevant_characters}
 
-- **Scenes:** 
+- **Scenes:**
 {scene_details}
+
+- **Action Beats:**
+{action_beats}
 
 - **Previous chapters:**
 {previous_context}
+
+- **Additional Prompt:**
+{master_prompt}
 
 ---
 
@@ -135,8 +139,6 @@ The chapter should be at least 5000 words with a clear beginning, middle, and en
 
 # Chapter editing prompt
 CHAPTER_EDITING_PROMPT = """
-{master_prompt}
-
 Review and improve the following chapter:
 
 {chapter_content}
@@ -152,8 +154,17 @@ Based on the following:
 - **Characters:** 
 {relevant_characters}
 
+- **Scenes:**
+{scene_details}
+
+- **Action Beats:**
+{action_beats}
+
 - **Previous chapters:**
 {previous_context}
+
+- **Additional Prompt:**
+{master_prompt}
 
 ---
 
@@ -167,4 +178,20 @@ Provide a comprehensive edit that:
 7. Ensures the chapter is at least 5000 words
 
 Return the complete edited chapter.
+"""
+
+
+# Action beats generation prompt
+ACTIONBEATS_GENERATION_PROMPT = """
+For Chapter {chapter_number}: {chapter_title}
+
+Take the following chapter summary, and generate a list of {num_beats} highly detailed action beats for a script, with additional story information to fully flesh out the chapter. Make sure to always use proper nouns instead of pronouns.
+
+Based on the chapter summary:
+{chapter_summary}
+
+And considering:
+- World: {world_theme}
+- Characters: {relevant_characters}
+- Previous chapters: {previous_context}
 """

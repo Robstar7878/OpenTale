@@ -21,8 +21,8 @@
                         <a href="/world" class="btn btn-outline-light {% if request.path == '/world' %}active{% endif %}">World</a>
                         <a href="/characters" class="btn btn-outline-light {% if request.path == '/characters' %}active{% endif %}">Characters</a>
                         <a href="/outline" class="btn btn-outline-light {% if request.path == '/outline' %}active{% endif %}">Outline</a>
-                        {% if request.path.startswith('/chapter/') %}
-                            <a href="#" class="btn btn-outline-light active">Chapter</a>
+                        {% if chapters %}
+                        <a href="/chapters" class="btn btn-outline-light {% if request.path == '/chapters' %}active{% endif %}">Chapters</a>
                         {% endif %}
                     </div>
                 </div>
@@ -42,6 +42,8 @@
                 <div class="progress-bar bg-success" role="progressbar" style="width: 70%;">Outline</div>
             {% elif request.path.startswith('/chapter') %}
                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Chapters</div>
+            {% elif request.path.startswith('/action_beats_chat') %}
+                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Action Beats</div>
             {% endif %}
         </div>
 

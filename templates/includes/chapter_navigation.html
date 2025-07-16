@@ -1,0 +1,33 @@
+<div class="col-12 mt-4">
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h3 class="h5 mb-0">Chapter Navigation</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% for chapter in chapters %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="h6 card-title d-flex justify-content-between align-items-center">
+                                <span>Chapter {{ chapter.chapter_number }}: {{ chapter.title }}</span>
+                                {% if chapter.has_content %}<span class="badge bg-success">Has Content</span>{% endif %}
+                            </h4>
+                            <p class="card-text small">{{ chapter.prompt[:100] }}{% if chapter.prompt|length > 100 %}...{% endif %}</p>
+                            <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-sm btn-outline-primary">
+                                {% if chapter.has_content %}
+                                Edit This Chapter
+                                {% elif chapter.chapter_number == 1 %}
+                                Start Writing
+                                {% else %}
+                                Write This Chapter
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

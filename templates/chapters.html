@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}OpenTale - Chapters{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if not chapters %}
+    <div class="col-12 mb-4">
+        <div class="alert alert-warning">
+            <strong>No chapters have been created yet.</strong> Please go to the <a href="/outline" class="alert-link">Outline</a> page to generate chapters.
+        </div>
+    </div>
+    {% else %}
+    {% include 'includes/chapter_navigation.html' %}
+    {% endif %}
+</div>
+{% endblock %}
