@@ -11,7 +11,10 @@
                         <div class="card-body">
                             <h4 class="h6 card-title d-flex justify-content-between align-items-center">
                                 <span>Chapter {{ chapter.chapter_number }}: {{ chapter.title }}</span>
-                                {% if chapter.has_content %}<span class="badge bg-success">Has Content</span>{% endif %}
+                                <div class="d-flex flex-column">
+                                  {% if chapter.has_content %}<span class="badge bg-success mb-1">Has Content</span>{% endif %}
+                                  {% if chapter.has_been_reviewed %}<span class="badge bg-info">Reviewed</span>{% endif %}
+                                </div>
                             </h4>
                             <p class="card-text small">{{ chapter.prompt[:100] }}{% if chapter.prompt|length > 100 %}...{% endif %}</p>
                             <a href="/chapter/{{ chapter.chapter_number }}" class="btn btn-sm btn-outline-primary">

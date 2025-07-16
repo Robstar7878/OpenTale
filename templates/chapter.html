@@ -150,6 +150,18 @@
                                     <button id="sendMessageBtn" class="btn btn-primary">Send</button>
                                 </div>
                                 
+                                {% if not chapter_content %}
+                                <div class="alert alert-info mt-3">
+                                    <h5 class="alert-heading">How to Generate Chapter Content</h5>
+                                    <p>You have two main options for generating the content for this chapter:</p>
+                                    <hr>
+                                    <p class="mb-1"><strong>1. Generate with Action Beats:</strong></p>
+                                    <p class="small">For fine-grained control, go to the <strong>Action Beats (Optional)</strong> section. Use the editor to create a detailed, step-by-step outline of scenes and events. When you generate the chapter, this structure will be used.</p>
+                                    
+                                    <p class="mb-1"><strong>2. Generate without Action Beats:</strong></p>
+                                    <p class="small">For a more hands-off approach, use the <strong>Chapter Development Chat</strong> to provide general guidance, themes, or specific details. The AI will then write the chapter based on the main chapter outline and your chat input.</p>
+                                </div>
+                                {% endif %}
                                 <div class="mt-3 d-flex">
                                     {% if chapter_content %}
                                     <button type="button" class="btn btn-warning me-2" id="regenerateChapterBtn">Regenerate Chapter</button>
@@ -185,6 +197,7 @@
                         <div>Generating chapter content... This may take several minutes.</div>
                     </div>
                 </div>
+                
                 
                 <div id="chapterContentContainer" {% if not chapter_content %}class="d-none"{% endif %}>
                     <form id="saveChapterForm" action="/save_chapter/{{ chapter.chapter_number }}" method="post">

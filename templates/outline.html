@@ -87,6 +87,13 @@
                     <button id="sendMessageBtn" class="btn btn-primary">Send</button>
                 </div>
                 
+                {% if not outline %}
+                <div class="alert alert-info mt-3">
+                    <h5 class="alert-heading">Ready to Create Your Outline?</h5>
+                    <p>Use the chat to discuss your story with the AI. Provide details about the plot, characters, and major events. The more context you give, the better the outline will be.</p>
+                    <p class="mb-0">When you're done brainstorming, click the button below to generate the chapter-by-chapter outline.</p>
+                </div>
+                {% endif %}
                 <div class="mt-3">
                     <button id="finalizeChatBtn" class="btn btn-success">Create Chapter Outline</button>
                 </div>

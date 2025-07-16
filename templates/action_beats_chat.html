@@ -69,6 +69,18 @@
                     <button id="sendMessageBtn" class="btn btn-primary">Send</button>
                 </div>
                 
+                {% if not action_beats_content %}
+                <div class="alert alert-info mt-3">
+                    <h5 class="alert-heading">How to Generate Action Beats</h5>
+                    <p>You have two main options for generating the action beats for this chapter:</p>
+                    <hr>
+                    <p class="mb-1"><strong>1. Use the Chat for Detailed Guidance:</strong></p>
+                    <p class="small">Engage in a conversation in the chat below. Provide specific ideas, scenes, or character interactions. Your entire chat history, along with world, character, and previous chapter context, will be used to create a detailed set of action beats tailored to your input.</p>
+                    
+                    <p class="mb-1"><strong>2. Generate Directly:</strong></p>
+                    <p class="small">If you prefer a quicker start, simply click the "Generate Action Beats" button. The AI will automatically create a set of action beats based on the chapter summary, world and character context, a summary of the previous chapter, and the requested number of beats.</p>
+                </div>
+                {% endif %}
                 <div class="mt-3">
                     <button id="finalizeChatBtn" class="btn btn-success">
                         {% if action_beats_content %}Regenerate Action Beats{% else %}Generate Action Beats{% endif %}
