@@ -56,6 +56,55 @@ class BookAgents:
             )
         return "\n".join(context_parts)
 
+    def _save_debug_messages(
+        self, messages: List[Dict], agent_name: str, request_type: str
+    ):
+        """Saves the request messages for debugging, grouping by role."""
+        if not self.debug:
+            return
+
+        if not os.path.exists(PROMPT_DEBUGGING_DIR):
+            os.makedirs(PROMPT_DEBUGGING_DIR)
+
+        # Group messages by role to combine content for the same role
+        grouped_messages = {}
+        for message in messages:
+            role = message["role"]
+            content = message["content"]
+            if role not in grouped_messages:
+                grouped_messages[role] = []
+            grouped_messages[role].append(content)
+
+        # Write combined messages to files
+        for role, contents in grouped_messages.items():
+            file_path = os.path.join(
+                PROMPT_DEBUGGING_DIR,
+                f"{agent_name}_{request_type}_{role}.txt",
+            )
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write("\n\n---\n\n".join(contents))
+
+    def _create_debug_stream_wrapper(self, stream, agent_name: str, response_name: str):
+        """Creates a wrapper to save the full response from a stream while streaming."""
+
+        def stream_wrapper():
+            """A wrapper to save the full response while streaming"""
+            full_response_content = []
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    full_response_content.append(content)
+                yield chunk
+
+            # After the stream is exhausted, save the complete response
+            response_filepath = os.path.join(
+                PROMPT_DEBUGGING_DIR, f"{agent_name}_{response_name}.txt"
+            )
+            with open(response_filepath, "w", encoding="utf-8") as f:
+                f.write("".join(full_response_content))
+
+        return stream_wrapper()
+
     def create_agents(self, initial_prompt, num_chapters) -> Dict:
         """Set up system prompts for each agent type"""
         outline_context = self._format_outline_context()
@@ -340,7 +389,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
 """,
         }
 
-        # Save the system prompts to a file for debugging
+        # Save the raw system prompts to a file for debugging
         if self.debug:
             if not os.path.exists(PROMPT_DEBUGGING_DIR):
                 os.makedirs(PROMPT_DEBUGGING_DIR)
@@ -368,17 +417,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         ]
 
         # Save the messages for debugging
-        if self.debug:
-            if not os.path.exists(PROMPT_DEBUGGING_DIR):
-                os.makedirs(PROMPT_DEBUGGING_DIR)
-            for message in messages:
-                role = message["role"]
-                content = message["content"]
-                file_path = os.path.join(
-                    PROMPT_DEBUGGING_DIR, f"{agent_name}_request_{role}.txt"
-                )
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(content)
+        self._save_debug_messages(messages, agent_name, "request")
 
         # Call the API
         completion = self.client.chat.completions.create(
@@ -399,55 +438,56 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             with open(response_filepath, "w", encoding="utf-8") as f:
                 f.write(response)
 
-        # Clean up the response based on agent type
-        if agent_name == "outline_creator":
-            # Extract just the outline part
-            start = response.find("OUTLINE:")
-            end = response.find("END OF OUTLINE")
-            if start != -1 and end != -1:
-                cleaned_response = response[start : end + len("END OF OUTLINE")]
-                return cleaned_response
-        elif agent_name == "writer":
-            # Handle writer's scene format
-            if "SCENE FINAL:" in response:
-                parts = response.split("SCENE FINAL:")
-                if len(parts) > 1:
-                    return parts[1].strip()
-        elif agent_name == "world_builder":
-            # Extract the world elements part
-            start = response.find("WORLD_ELEMENTS:")
-            if start != -1:
-                return response[start:].strip()
-            else:
-                # Try to find any content that looks like world-building
-                for marker in [
-                    "Time Period",
-                    "Setting:",
-                    "Locations:",
-                    "Major Locations",
-                ]:
-                    if marker in response:
-                        return response
-        elif agent_name == "story_planner":
-            # Extract the story arc part
-            start = response.find("STORY_ARC:")
-            if start != -1:
-                return response[start:].strip()
-        elif agent_name == "character_generator":
-            # Extract the character profiles part
-            start = response.find("CHARACTER_PROFILES:")
-            if start != -1:
-                return response[start:].strip()
-            else:
-                # Try to find any content that looks like character profiles
-                for marker in [
-                    "Character 1:",
-                    "Main Character:",
-                    "Protagonist:",
-                    "CHARACTER_PROFILES",
-                ]:
-                    if marker in response:
-                        return response
+        # Disable the clean-up logic for now
+        # # Clean up the response based on agent type
+        # if agent_name == "outline_creator":
+        #     # Extract just the outline part
+        #     start = response.find("OUTLINE:")
+        #     end = response.find("END OF OUTLINE")
+        #     if start != -1 and end != -1:
+        #         cleaned_response = response[start : end + len("END OF OUTLINE")]
+        #         return cleaned_response
+        # elif agent_name == "writer":
+        #     # Handle writer's scene format
+        #     if "SCENE FINAL:" in response:
+        #         parts = response.split("SCENE FINAL:")
+        #         if len(parts) > 1:
+        #             return parts[1].strip()
+        # elif agent_name == "world_builder":
+        #     # Extract the world elements part
+        #     start = response.find("WORLD_ELEMENTS:")
+        #     if start != -1:
+        #         return response[start:].strip()
+        #     else:
+        #         # Try to find any content that looks like world-building
+        #         for marker in [
+        #             "Time Period",
+        #             "Setting:",
+        #             "Locations:",
+        #             "Major Locations",
+        #         ]:
+        #             if marker in response:
+        #                 return response
+        # elif agent_name == "story_planner":
+        #     # Extract the story arc part
+        #     start = response.find("STORY_ARC:")
+        #     if start != -1:
+        #         return response[start:].strip()
+        # elif agent_name == "character_generator":
+        #     # Extract the character profiles part
+        #     start = response.find("CHARACTER_PROFILES:")
+        #     if start != -1:
+        #         return response[start:].strip()
+        #     else:
+        #         # Try to find any content that looks like character profiles
+        #         for marker in [
+        #             "Character 1:",
+        #             "Main Character:",
+        #             "Protagonist:",
+        #             "CHARACTER_PROFILES",
+        #         ]:
+        #             if marker in response:
+        #                 return response
 
         return response
 
@@ -464,17 +504,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         ]
 
         # Save the messages for debugging
-        if self.debug:
-            if not os.path.exists(PROMPT_DEBUGGING_DIR):
-                os.makedirs(PROMPT_DEBUGGING_DIR)
-            for message in messages:
-                role = message["role"]
-                content = message["content"]
-                file_path = os.path.join(
-                    PROMPT_DEBUGGING_DIR, f"{agent_name}_stream_request_{role}.txt"
-                )
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(content)
+        self._save_debug_messages(messages, agent_name, "stream_request")
 
         stream = self.client.chat.completions.create(
             model=self.model,
@@ -488,23 +518,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             return stream
 
         # If debugging is enabled, wrap the stream to save the full response at the end
-        def stream_wrapper():
-            """A wrapper to save the full response while streaming"""
-            full_response_content = []
-            for chunk in stream:
-                content = chunk.choices[0].delta.content
-                if content:
-                    full_response_content.append(content)
-                yield chunk
-
-            # After the stream is exhausted, save the complete response
-            response_filepath = os.path.join(
-                PROMPT_DEBUGGING_DIR, f"{agent_name}_stream_response.txt"
-            )
-            with open(response_filepath, "w", encoding="utf-8") as f:
-                f.write("".join(full_response_content))
-
-        return stream_wrapper()
+        return self._create_debug_stream_wrapper(stream, agent_name, "stream_response")
 
     def generate_chat_response(self, chat_history, topic, user_message) -> str:
         """Generate a chat response based on conversation history"""
@@ -517,6 +531,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         for entry in chat_history:
             role = "user" if entry["role"] == "user" else "assistant"
             messages.append({"role": role, "content": entry["content"]})
+
+        # Save the messages for debugging
+        self._save_debug_messages(messages, "world_builder_chat", "chat_request")
 
         # Call the API
         completion = self.client.chat.completions.create(
@@ -544,6 +561,9 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
 
+        # Save the messages for debugging
+        self._save_debug_messages(messages, "world_builder_chat", "chat_stream_request")
+
         # Call the API with streaming enabled
         stream = self.client.chat.completions.create(
             model=self.model,
@@ -553,8 +573,13 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             max_tokens=self.agent_config.get("max_tokens", 10000),
         )
 
-        # Return the stream directly to be consumed by the Flask route
-        return stream
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "world_builder_chat", "chat_stream_response"
+        )
 
     def generate_final_world(self, chat_history, topic) -> str:
         """Generate final world setting based on chat history"""
@@ -595,6 +620,11 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             }
         )
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "world_builder_specialist", "final_world_request"
+        )
+
         # Call the API
         completion = self.client.chat.completions.create(
             model=self.model,
@@ -632,13 +662,26 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             }
         )
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "world_builder", "final_world_stream_request"
+        )
+
         # Make the API call with streaming enabled
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "world_builder", "final_world_stream_response"
         )
 
     def update_world_element(self, element_name: str, description: str) -> None:
@@ -704,6 +747,11 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "character_generator", "chat_characters_request"
+        )
+
         # Make the API call
         response = (
             self.client.chat.completions.create(
@@ -745,13 +793,26 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "character_generator", "chat_characters_stream_request"
+        )
+
         # Make the API call with streaming enabled
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "character_generator", "chat_characters_stream_response"
         )
 
     def generate_final_characters_stream(
@@ -786,13 +847,26 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
             }
         )
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "character_generator", "final_characters_stream_request"
+        )
+
         # Make the API call with streaming enabled
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "character_generator", "final_characters_stream_response"
         )
 
     def generate_chat_response_outline(
@@ -821,6 +895,11 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
 
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
+
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "outline_creator_chat", "chat_outline_request"
+        )
 
         # Make the API call
         response = (
@@ -863,13 +942,26 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "outline_creator_chat", "chat_outline_stream_request"
+        )
+
         # Make the API call with streaming enabled
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "outline_creator_chat", "chat_outline_stream_response"
         )
 
     def generate_final_outline_stream(
@@ -914,13 +1006,26 @@ Format it as a properly structured outline with clear chapter sections and event
             }
         )
 
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "outline_creator", "final_outline_stream_request"
+        )
+
         # Make the API call with streaming enabled, with higher temperature for more coherent responses
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=0.6,  # Slightly lower temperature for more focused output
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "outline_creator", "final_outline_stream_response"
         )
 
     def generate_chat_response_action_beats_stream(
@@ -950,13 +1055,25 @@ Format it as a properly structured outline with clear chapter sections and event
         # Add the latest user message
         messages.append({"role": "user", "content": user_message})
 
+        self._save_debug_messages(
+            messages, "action_beats_chat", "chat_action_beats_stream_request"
+        )
+
         # Make the API call with streaming enabled
-        return self.client.chat.completions.create(
+        stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.agent_config.get("temperature", 0.7),
             stream=True,
             max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "action_beats_chat", "chat_action_beats_stream_response"
         )
 
     def generate_final_action_beats_stream(
@@ -992,18 +1109,9 @@ Format it as a properly structured outline with clear chapter sections and event
         )
 
         # Save the messages for debugging
-        if self.debug:
-            if not os.path.exists(PROMPT_DEBUGGING_DIR):
-                os.makedirs(PROMPT_DEBUGGING_DIR)
-            for message in messages:
-                role = message["role"]
-                content = message["content"]
-                file_path = os.path.join(
-                    PROMPT_DEBUGGING_DIR,
-                    f"action_beats_generator_stream_request_{role}.txt",
-                )
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(content)
+        self._save_debug_messages(
+            messages, "action_beats_generator", "final_action_beats_stream_request"
+        )
 
         # Make the API call with streaming enabled
         stream = self.client.chat.completions.create(
@@ -1018,20 +1126,6 @@ Format it as a properly structured outline with clear chapter sections and event
             return stream
 
         # If debugging is enabled, wrap the stream to save the full response at the end
-        def stream_wrapper():
-            """A wrapper to save the full response while streaming"""
-            full_response_content = []
-            for chunk in stream:
-                content = chunk.choices[0].delta.content
-                if content:
-                    full_response_content.append(content)
-                yield chunk
-
-            # After the stream is exhausted, save the complete response
-            response_filepath = os.path.join(
-                PROMPT_DEBUGGING_DIR, "action_beats_generator_stream_response.txt"
-            )
-            with open(response_filepath, "w", encoding="utf-8") as f:
-                f.write("".join(full_response_content))
-
-        return stream_wrapper()
+        return self._create_debug_stream_wrapper(
+            stream, "action_beats_generator", "final_action_beats_stream_response"
+        )
