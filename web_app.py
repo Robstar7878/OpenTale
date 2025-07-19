@@ -3,6 +3,7 @@ Flask web application for OpenTale
 """
 
 import json
+import math
 import os
 import re
 
@@ -98,6 +99,45 @@ def get_chapters():
     return chapters
 
 
+def get_paginated_chapters(page, per_page):
+    """Helper to get paginated chapters."""
+    all_chapters = get_chapters()
+    total_chapters = len(all_chapters)
+    total_pages = math.ceil(total_chapters / per_page) if per_page > 0 else 1
+
+    start_index = (page - 1) * per_page
+    end_index = start_index + per_page
+    paginated_chapters = all_chapters[start_index:end_index]
+
+    return {
+        "chapters": paginated_chapters,
+        "total_pages": total_pages,
+        "current_page": page,
+        "total_chapters": total_chapters,
+        "per_page": per_page,
+    }
+
+
+def get_paginated_chapters_from_request(request, chapters, chapter_number):
+    chapters_per_page = request.args.get("per_page", 10, type=int)
+
+    if "page" in request.args:
+        page = request.args.get("page", 1, type=int)
+    else:
+        # Find the page for the active chapter if no page is specified
+        try:
+            active_chapter_index = [c["chapter_number"] for c in chapters].index(
+                chapter_number
+            )
+            page = math.ceil((active_chapter_index + 1) / chapters_per_page)
+        except (ValueError, ZeroDivisionError):
+            page = 1  # Chapter not found or per_page is 0, fallback to page 1
+
+    chapters_paginated = get_paginated_chapters(page, chapters_per_page)
+
+    return chapters_paginated
+
+
 def get_action_beats(chapter_number):
     """Get action beats for a specific chapter from file."""
     action_beats_path = os.path.join(
@@ -137,7 +177,11 @@ def save_settings(settings):
 @app.route("/")
 def index():
     """Render the home page"""
-    return render_template("index.html")
+
+    # Get chapter list
+    chapters = get_chapters()
+
+    return render_template("index.html", chapters=chapters)
 
 
 @app.route("/world", methods=["GET"])
@@ -146,8 +190,13 @@ def world():
     # GET request - show world page with existing theme if available
     world_theme = get_world_theme()
     settings = get_settings()
+    chapters = get_chapters()
+
     return render_template(
-        "world.html", world_theme=world_theme, topic=settings.get("topic", "")
+        "world.html",
+        world_theme=world_theme,
+        topic=settings.get("topic", ""),
+        chapters=chapters,
     )
 
 
@@ -332,6 +381,9 @@ def characters():
     # Load world theme from file
     world_theme = get_world_theme()
 
+    # Get chapter list
+    chapters = get_chapters()
+
     settings = get_settings()
     num_characters = settings.get("num_characters", 3)
 
@@ -340,6 +392,7 @@ def characters():
         characters=characters_content,
         world_theme=world_theme,
         num_characters=num_characters,
+        chapters=chapters,
     )
 
 
@@ -575,12 +628,18 @@ def chapter(chapter_number):
     point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
     tense = chapter_settings.get("tense", "Past tense")
 
+    # Get chapter navigation pagination
+    chapters_paginated = get_paginated_chapters_from_request(
+        request, chapters, chapter_number
+    )
+
     return render_template(
         "chapter.html",
         chapter=chapter_data,
         chapter_content=chapter_content,
         action_beats_content=action_beats_content,
         chapters=chapters,  # Pass the full chapters list for total count
+        chapters_paginated=chapters_paginated,
         master_prompt=master_prompt,
         point_of_view=point_of_view,
         tense=tense,
@@ -769,10 +828,16 @@ def chapter_editor(chapter_number):
     point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
     tense = chapter_settings.get("tense", "Past tense")
 
+    # Get chapter navigation pagination
+    chapters_paginated = get_paginated_chapters_from_request(
+        request, chapters, chapter_number
+    )
+
     return render_template(
         "chapter_editor.html",
         chapter=chapter_data,
-        chapters=chapters,
+        chapters=chapters,  # Pass the full chapters list for total count
+        chapters_paginated=chapters_paginated,
         original_chapter_content=original_chapter_content,
         chapter_content=chapter_content,
         has_review=has_review,
@@ -1616,6 +1681,49 @@ def parse_outline_to_chapters(outline_content, num_chapters):
         json.dump(chapters, f, indent=2)
 
     return chapters
+
+
+# API routes
+@app.route("/api/chapters", methods=["GET"])
+def api_chapters():
+    """API endpoint to get all chapters."""
+    all_chapters = get_chapters()
+
+    return jsonify({all_chapters})
+
+
+@app.route("/api/paginated_chapters", methods=["GET"])
+def api_paginated_chapters():
+    """API endpoint to get paginated chapters."""
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 10, type=int)
+
+    data = get_paginated_chapters(page, per_page)
+
+    return jsonify(
+        {
+            "chapters": data["chapters"],
+            "total_pages": data["total_pages"],
+            "current_page": data["current_page"],
+            "total_chapters": data["total_chapters"],
+        }
+    )
+
+
+@app.route("/api/chapter/<int:chapter_number>", methods=["GET"])
+def api_chapter(chapter_number):
+    """API endpoint to get a specific chapter by number."""
+    chapters = get_chapters()
+
+    # Find the chapter data
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
+
+    if not chapter_data:
+        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+
+    return jsonify(chapter_data)
 
 
 if __name__ == "__main__":

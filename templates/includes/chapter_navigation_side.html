@@ -2,9 +2,9 @@
     <div class="card-header bg-info text-white">
         Chapter Navigation
     </div>
-    <div class="list-group list-group-flush">
-        {% for ch in chapters %}
-                <a href="/{{ 'chapter_editor' if is_editor_view else 'chapter' }}/{{ ch.chapter_number }}"
+    <div class="list-group list-group-flush" data-total-chapters="{{ chapters_paginated.total_chapters }}">
+        {% for ch in chapters_paginated.chapters %}
+                <a href="/{{ 'chapter_editor' if is_editor_view else 'chapter' }}/{{ ch.chapter_number }}?per_page={{ chapters_paginated.per_page }}"
                    class="list-group-item list-group-item-action chapter-link {% if ch.chapter_number == chapter.chapter_number %}active{% endif %}"
                    data-chapter-number="{{ ch.chapter_number }}">
                     <div class="d-flex justify-content-between align-items-center">
@@ -16,7 +16,11 @@
                     </div>
                 </a>
         {% endfor %}
-        <!-- <div class="p-2">
+        <div class="p-2">
+            <p class="small text-muted mb-1 text-center">
+                Page {{ chapters_paginated.current_page }} of {{ chapters_paginated.total_pages }}
+                ({{ chapters_paginated.total_chapters }} chapters)
+            </p>
             <label for="chaptersPerPage" class="form-label small mb-1">Chapters per page:</label>
             <select class="form-select form-select-sm mb-2" id="chaptersPerPage">
                 <option value="5">5</option>
@@ -26,10 +30,11 @@
             </select>
         </div>
         <div class="d-flex justify-content-between p-2">
-            <button class="btn btn-sm btn-outline-secondary" id="firstPageBtn" data-page="first" {% if chapter.chapter_number == 1 %}disabled{% endif %}>&laquo;&laquo; First</button>
-            <button class="btn btn-sm btn-outline-secondary" id="prevPageBtn" data-page="prev">&laquo; Prev</button>
-            <button class="btn btn-sm btn-outline-secondary" id="nextPageBtn" data-page="next">&raquo; Next</button>
-            <button class="btn btn-sm btn-outline-secondary" id="lastPageBtn" data-page="last" {% if chapter.chapter_number == chapters|length %}disabled{% endif %}>Last &raquo;&raquo;</button>
-        </div> -->
+            <button class="btn btn-sm btn-outline-secondary" id="firstChapterBtn" data-page="first" {% if chapter.chapter_number == 1 %}disabled{% endif %}>&laquo;&laquo; First</button>
+            <button class="btn btn-sm btn-outline-secondary" id="prevPageBtn" data-page="prev">&laquo; Prev Page</button>
+            <button class="btn btn-sm btn-outline-secondary" id="nextPageBtn" data-page="next">Next Page &raquo;</button>
+            <button class="btn btn-sm btn-outline-secondary" id="lastChapterBtn" data-page="last" {% if chapter.chapter_number == chapters|length %}disabled{% endif %}>Last &raquo;&raquo;</button>
+        </div>
+        </div>{{chapter.chapter_number}} -> {{chapters|length}}</div>
     </div>
 </div>

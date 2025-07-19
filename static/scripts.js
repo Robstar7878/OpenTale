@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle active navigation links
     highlightActiveNav();
+
+    // Handle chapter pagination
+    handleChapterPagination();
 });
 
 /**
@@ -233,4 +236,78 @@ function calculateTextStats(content) {
 
 
     return { wordCount, charCount, sentenceCount };
+}
+
+/**
+ * Handle chapter navigation pagination
+ */
+function handleChapterPagination() {
+    const chaptersPerPageSelect = document.getElementById('chaptersPerPage');
+    const prevPageBtn = document.getElementById('prevPageBtn');
+    const nextPageBtn = document.getElementById('nextPageBtn');
+    const firstChapterBtn = document.getElementById('firstChapterBtn');
+    const lastChapterBtn = document.getElementById('lastChapterBtn');
+    const chapterNavContainer = document.querySelector('.list-group[data-total-chapters]');
+
+    if (!chaptersPerPageSelect && !prevPageBtn && !nextPageBtn && !firstChapterBtn && !lastChapterBtn) {
+        return; // Exit if no pagination controls are on this page
+    }
+
+    const url = new URL(window.location.href);
+    const currentPage = parseInt(url.searchParams.get('page') || '1', 10);
+    const perPage = parseInt(url.searchParams.get('per_page') || '10', 10);
+
+    if (chaptersPerPageSelect) {
+        chaptersPerPageSelect.value = perPage;
+        chaptersPerPageSelect.addEventListener('change', (e) => {
+            const newPerPage = e.target.value;
+            url.searchParams.set('per_page', newPerPage);
+            url.searchParams.set('page', '1'); // Reset to first page
+            window.location.href = url.toString();
+        });
+    }
+
+    if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                url.searchParams.set('page', currentPage - 1);
+                window.location.href = url.toString();
+            }
+        });
+    }
+
+    if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', () => {
+            url.searchParams.set('page', currentPage + 1);
+            window.location.href = url.toString();
+        });
+    }
+
+    const updateChapterView = (newChapterNumber) => {
+        const currentPath = window.location.pathname;
+        const pathParts = currentPath.split('/').filter(p => p); // filter out empty strings
+        if (pathParts.length >= 2) {
+            const view = pathParts[0];
+            url.pathname = `/${view}/${newChapterNumber}`;
+            window.location.href = url.toString();
+        }
+    };
+
+    if (firstChapterBtn) {
+        firstChapterBtn.addEventListener('click', () => {
+            url.searchParams.set('page', '1');
+            updateChapterView(1);
+        });
+    }
+
+    if (lastChapterBtn && chapterNavContainer) {
+        lastChapterBtn.addEventListener('click', () => {
+            const totalChapters = parseInt(chapterNavContainer.dataset.totalChapters, 10);
+            if (totalChapters) {
+                const totalPages = Math.ceil(totalChapters / perPage);
+                url.searchParams.set('page', totalPages);
+                updateChapterView(totalChapters);
+            }
+        });
+    }
 }

@@ -23,7 +23,7 @@
                         <a href="/characters" class="btn btn-outline-light {% if request.path == '/characters' %}active{% endif %}">Characters</a>
                         <a href="/outline" class="btn btn-outline-light {% if request.path == '/outline' %}active{% endif %}">Outline</a>
                         {% if chapters %}
-                        <a href="/chapters" class="btn btn-outline-light {% if request.path == '/chapters' %}active{% endif %}">Chapters</a>
+                        <a href="/chapters" class="btn btn-outline-light {% if request.path.startswith('/chapter') %}active{% endif %}">Chapters</a>
                         {% endif %}
                     </div>
                 </div>
