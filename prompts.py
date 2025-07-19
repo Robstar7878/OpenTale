@@ -51,7 +51,10 @@ Make each character complex and three-dimensional, with strengths, flaws, and di
 
 # Outline generation prompt
 OUTLINE_GENERATION_PROMPT = """
-Based on the world:
+Based on the synopsis:
+{synopsis}
+
+The world:
 {world_theme}
 
 And the characters:
@@ -69,6 +72,30 @@ For each chapter include:
 
 Ensure the outline follows a satisfying story structure with a clear beginning, middle, and end.
 The plot should build logically with rising action, climax, and resolution.
+"""
+
+# Synopsis generation prompt
+SYNOPSIS_GENERATION_PROMPT = """
+Given the following genre, premise and story information, give me a highly detailed synopsis for a story in the traditional three act structure. Each act should be clearly labeled and should build toward the ending I've described. Make sure to include plenty of conflict, and include a main character.
+
+GENRE: {genre}
+PREMISE: {premise}
+ENDING: {ending}
+OTHER INFORMATION: {other_information}
+"""
+
+# Synopsis suggestions prompt
+SYNOPSIS_SUGGESTIONS_PROMPT = """
+Based on the general topic: {topic}
+
+Create a brief overview of potential story elements for a book. Include:
+1. 2-3 potential premises or story hooks
+2. 3-5 key plot points that would make the story interesting
+3. Brief suggestions for the tone and genre
+4. Any potential conflicts or tensions that could exist in the story
+
+This is a preliminary summary to help guide the creation of a more detailed synopsis.
+Keep it concise but inspiring, focusing on elements that would spark the imagination.
 """
 
 # Scene generation prompt

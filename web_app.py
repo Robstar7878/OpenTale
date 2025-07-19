@@ -22,14 +22,12 @@ import prompts
 from agents import PROMPT_DEBUGGING_DIR, BookAgents, check_openai_connection
 from config import get_config
 
-app = Flask(__name__)
-
-
 # Constants for file paths
 BOOK_OUTPUT_DIR = "book_output"
 TEXT_EXTENSION = ".txt"
 WORLD_FILE = os.path.join(BOOK_OUTPUT_DIR, f"world{TEXT_EXTENSION}")
 CHARACTERS_FILE = os.path.join(BOOK_OUTPUT_DIR, f"characters{TEXT_EXTENSION}")
+SYNOPSIS_FILE = os.path.join(BOOK_OUTPUT_DIR, f"synopsis{TEXT_EXTENSION}")
 OUTLINE_FILE = os.path.join(BOOK_OUTPUT_DIR, f"outline{TEXT_EXTENSION}")
 CHAPTERS_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "chapters.json")
 MASTER_PROMPT_FILE = os.path.join(BOOK_OUTPUT_DIR, f"master_prompt{TEXT_EXTENSION}")
@@ -38,6 +36,8 @@ OUTLINE_JSON_FILE = os.path.join(BOOK_OUTPUT_DIR, "outline.json")
 CHAPTERS_DIR = os.path.join(BOOK_OUTPUT_DIR, "chapters")
 PREVIOUS_CHAPTER_CONTEXT_LENGTH = 2000
 
+app = Flask(__name__)
+app.secret_key = "ai-book-writer-secret-key"  # For session management
 
 # Ensure book_output directory exists
 os.makedirs(CHAPTERS_DIR, exist_ok=True)
@@ -67,6 +67,14 @@ def get_outline():
     """Get outline from file."""
     if os.path.exists(OUTLINE_FILE):
         with open(OUTLINE_FILE, "r") as f:
+            return f.read().strip()
+    return ""
+
+
+def get_synopsis():
+    """Get synopsis from file."""
+    if os.path.exists(SYNOPSIS_FILE):
+        with open(SYNOPSIS_FILE, "r") as f:
             return f.read().strip()
     return ""
 
@@ -184,9 +192,156 @@ def index():
     return render_template("index.html", chapters=chapters)
 
 
+@app.route("/synopsis", methods=["GET"])
+def synopsis():
+    """Display synopsis or chat interface"""
+    synopsis_content = get_synopsis()
+    settings = get_settings()
+    chapters = get_chapters()
+
+    return render_template(
+        "synopsis.html",
+        synopsis=synopsis_content,
+        topic=settings.get("topic", ""),
+        chapters=chapters,
+    )
+
+
+@app.route("/synopsis_chat_stream", methods=["POST"])
+def synopsis_chat_stream():
+    """Handle ongoing chat for synopsis building with streaming response"""
+    data = request.json
+    user_message = data.get("message", "")
+    chat_history = data.get("chat_history", [])
+    topic = data.get("topic", "")
+
+    # Save topic to settings if available
+    if topic:
+        settings = get_settings()
+        settings["topic"] = topic
+        save_settings(settings)
+
+    # Initialize agents for synopsis building
+    book_agents = BookAgents(agent_config)
+    book_agents.create_agents(topic, 0)
+
+    # Generate streaming response
+    stream = book_agents.generate_chat_response_synopsis_stream(
+        chat_history, topic, user_message
+    )
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@app.route("/finalize_synopsis_stream", methods=["POST"])
+def finalize_synopsis_stream():
+    """Finalize the synopsis based on chat history with streaming response"""
+    data = request.json
+    chat_history = data.get("chat_history", [])
+    topic = data.get("topic", "")
+
+    if not chat_history:
+        return jsonify(
+            {
+                "error": "Chat history is empty. Please chat with the AI first to build your synopsis."
+            }
+        ), 400
+
+    # Initialize agents for synopsis building
+    book_agents = BookAgents(agent_config)
+    book_agents.create_agents(topic, 0)
+
+    # Generate the final synopsis using streaming
+    stream = book_agents.generate_final_synopsis_stream(chat_history, topic)
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Collect all chunks to save the complete response
+        collected_content = []
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                collected_content.append(content)
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Combine all chunks for the complete content
+        complete_content = "".join(collected_content)
+
+        # Clean and save synopsis to file once streaming is complete
+        synopsis_content = complete_content.strip()
+        synopsis_content = re.sub(r"\n+", "\n", synopsis_content)
+
+        with open(SYNOPSIS_FILE, "w") as f:
+            f.write(synopsis_content)
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@app.route("/save_synopsis", methods=["POST"])
+def save_synopsis():
+    """Save edited synopsis"""
+    synopsis_content = request.form.get("synopsis")
+    synopsis_content = synopsis_content.replace("\r\n", "\n")
+    synopsis_content = re.sub(r"\n{2,}", "\n\n", synopsis_content)
+
+    # Strip extra newlines at the beginning and normalize newlines
+    synopsis_content = synopsis_content.strip()
+    synopsis_content = re.sub(r"\n+", "\n", synopsis_content.strip())
+
+    # Save to file
+    with open(SYNOPSIS_FILE, "w") as f:
+        f.write(synopsis_content)
+
+    return jsonify({"success": True})
+
+
 @app.route("/world", methods=["GET"])
 def world():
-    """Display world theme or chat interface"""
+    # Check if synopsis exist
+    if not os.path.exists(SYNOPSIS_FILE):
+        flash("You need to create a synopsis first.", "warning")
+        return redirect("/synopsis")
+
     # GET request - show world page with existing theme if available
     world_theme = get_world_theme()
     settings = get_settings()
@@ -219,7 +374,9 @@ def world_chat():
     book_agents.create_agents(topic, 0)
 
     # Generate response using the direct chat method
-    ai_response = book_agents.generate_chat_response(chat_history, topic, user_message)
+    ai_response = book_agents.generate_chat_response_world(
+        chat_history, topic, user_message
+    )
 
     # Clean the response
     ai_response = ai_response.strip()
@@ -246,7 +403,7 @@ def world_chat_stream():
     book_agents.create_agents(topic, 0)
 
     # Generate streaming response
-    stream = book_agents.generate_chat_response_stream(
+    stream = book_agents.generate_chat_response_world_stream(
         chat_history, topic, user_message
     )
 
@@ -374,12 +531,18 @@ def save_world():
 
 @app.route("/characters", methods=["GET"])
 def characters():
+    # Check if synopsis exist
+    if not os.path.exists(SYNOPSIS_FILE):
+        flash("You need to create a synopsis first.", "warning")
+        return redirect("/synopsis")
+
     """Display characters or character creation chat interface"""
     # GET request - show characters page with existing characters if available
     characters_content = get_characters()
 
     # Load world theme from file
     world_theme = get_world_theme()
+    synopsis = get_synopsis()
 
     # Get chapter list
     chapters = get_chapters()
@@ -391,6 +554,7 @@ def characters():
         "characters.html",
         characters=characters_content,
         world_theme=world_theme,
+        synopsis=synopsis,
         num_characters=num_characters,
         chapters=chapters,
     )
@@ -415,7 +579,11 @@ def save_characters():
 
 @app.route("/outline", methods=["GET", "POST"])
 def outline():
-    # Check if world theme and characters exist
+    # Check if synopsis, world theme and characters exist
+    if not os.path.exists(SYNOPSIS_FILE):
+        flash("You need to create a synopsis first.", "warning")
+        return redirect("/synopsis")
+
     if not os.path.exists(WORLD_FILE):
         flash("You need to create a world setting first.", "warning")
         return redirect("/world")
@@ -430,6 +598,9 @@ def outline():
 
     with open(CHARACTERS_FILE, "r") as f:
         characters = f.read()
+
+    with open(SYNOPSIS_FILE, "r") as f:
+        synopsis = f.read()
 
     # GET request - just show the page
     outline_content = ""
@@ -447,6 +618,7 @@ def outline():
         "outline.html",
         world_theme=world_theme,
         characters=characters,
+        synopsis=synopsis,
         outline=outline_content,
         chapters=chapters,
         num_chapters=num_chapters,
@@ -455,6 +627,11 @@ def outline():
 
 @app.route("/chapters", methods=["GET"])
 def chapters_list():
+    # Check if synopsis exist
+    if not os.path.exists(SYNOPSIS_FILE):
+        flash("You need to create a synopsis first.", "warning")
+        return redirect("/synopsis")
+
     """Display the list of chapters"""
     chapters = get_chapters()
     return render_template("chapters.html", chapters=chapters)
@@ -1433,15 +1610,16 @@ def outline_chat():
     chat_history = data.get("chat_history", [])
     num_chapters = data.get("num_chapters", 10)
 
-    # Get world_theme and characters for context
+    # Get world_theme, characters and synopsis for context
     world_theme = get_world_theme()
     characters = get_characters()
+    synopsis = get_synopsis()
 
     # Ensure we have world and characters
-    if not world_theme or not characters:
+    if not world_theme or not characters or not synopsis:
         return jsonify(
             {
-                "error": "World theme or characters not found. Please complete previous steps first."
+                "error": "World theme, characters, or synopsis not found. Please complete previous steps first."
             }
         )
 
@@ -1451,7 +1629,7 @@ def outline_chat():
 
     # Generate response using the direct chat method
     ai_response = book_agents.generate_chat_response_outline(
-        chat_history, world_theme, characters, user_message
+        chat_history, world_theme, characters, synopsis, user_message
     )
 
     # Clean the response
@@ -1468,15 +1646,16 @@ def outline_chat_stream():
     chat_history = data.get("chat_history", [])
     num_chapters = data.get("num_chapters", 10)
 
-    # Get world_theme and characters for context
+    # Get world_theme, characters and synopsis for context
     world_theme = get_world_theme()
     characters = get_characters()
+    synopsis = get_synopsis()
 
     # Ensure we have world and characters
-    if not world_theme or not characters:
+    if not world_theme or not characters or not synopsis:
         return jsonify(
             {
-                "error": "World theme or characters not found. Please complete previous steps first."
+                "error": "World theme, characters, or synopsis not found. Please complete previous steps first."
             }
         )
 
@@ -1486,7 +1665,7 @@ def outline_chat_stream():
 
     # Generate streaming response
     stream = book_agents.generate_chat_response_outline_stream(
-        chat_history, world_theme, characters, user_message
+        chat_history, world_theme, characters, synopsis, user_message
     )
 
     def generate():
@@ -1522,15 +1701,16 @@ def finalize_outline_stream():
     chat_history = data.get("chat_history", [])
     num_chapters = data.get("num_chapters", 10)
 
-    # Get world_theme and characters for context
+    # Get world_theme, characters and synopsis for context
     world_theme = get_world_theme()
     characters = get_characters()
+    synopsis = get_synopsis()
 
     # Ensure we have world and characters
-    if not world_theme or not characters:
+    if not world_theme or not characters or not synopsis:
         return jsonify(
             {
-                "error": "World theme or characters not found. Please complete previous steps first."
+                "error": "World theme, characters, or synopsis not found. Please complete previous steps first."
             }
         )
 
@@ -1540,7 +1720,7 @@ def finalize_outline_stream():
 
     # Generate the final outline using streaming
     stream = book_agents.generate_final_outline_stream(
-        chat_history, world_theme, characters, num_chapters
+        chat_history, world_theme, characters, synopsis, num_chapters
     )
 
     def generate():

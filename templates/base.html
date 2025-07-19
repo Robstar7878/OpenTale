@@ -19,6 +19,7 @@
                 <div class="progress-tracker">
                     <div class="btn-group" role="group">
                         <a href="/" class="btn btn-outline-light {% if request.path == '/' %}active{% endif %}">Home</a>
+                        <a href="/synopsis" class="btn btn-outline-light {% if request.path == '/synopsis' %}active{% endif %}">Synopsis</a>
                         <a href="/world" class="btn btn-outline-light {% if request.path == '/world' %}active{% endif %}">World</a>
                         <a href="/characters" class="btn btn-outline-light {% if request.path == '/characters' %}active{% endif %}">Characters</a>
                         <a href="/outline" class="btn btn-outline-light {% if request.path == '/outline' %}active{% endif %}">Outline</a>
@@ -32,19 +33,32 @@
     </header>
 
     <main class="container py-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         <div class="progress mb-4">
             {% if request.path == '/' %}
                 <div class="progress-bar bg-success" role="progressbar" style="width: 10%;">Start</div>
+            {% elif request.path == '/synopsis' %}
+                <div class="progress-bar bg-success" role="progressbar" style="width: 20%;">Synopsis</div>
             {% elif request.path == '/world' %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: 30%;">World</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: 40%;">World</div>
             {% elif request.path == '/characters' %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: 50%;">Characters</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: 60%;">Characters</div>
             {% elif request.path == '/outline' %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: 70%;">Outline</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: 80%;">Outline</div>
             {% elif request.path.startswith('/chapter') %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Chapters</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: 95%;">Chapters</div>
             {% elif request.path.startswith('/action_beats_chat') %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Action Beats</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: 95%;">Action Beats</div>
             {% endif %}
         </div>
 

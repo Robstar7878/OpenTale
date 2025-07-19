@@ -159,30 +159,17 @@ CHARACTER_PROFILES:
 Always provide specific, detailed content - never use placeholders.
 Ensure characters fit logically within the established world setting.
 """,
-            "story_planner": """You are an expert story arc planner focused on overall narrative structure.
+            "story_planner": """You are an expert story planner. Your task is to create a detailed story synopsis based on a conversation with an author.
 
-Your sole responsibility is creating the high-level story arc.
-When given an initial story premise:
-1. Identify major plot points and story beats
-2. Map character arcs and development
-3. Note major story transitions
-4. Plan narrative pacing
+From the provided conversation, you must extract the following information:
+- **Genre**: The genre of the story.
+- **Premise**: The core idea or setup of the story.
+- **Ending**: The intended conclusion of the story.
+- **Other Information**: Any other relevant details provided by the author.
 
-Format your output EXACTLY as:
-STORY_ARC:
-- Major Plot Points:
-[List each major event that drives the story]
+Then, using this information, generate a highly detailed synopsis for the story in the traditional three-act structure. Each act must be clearly labeled. The synopsis should build toward the described ending, include plenty of conflict, and feature a main character.
 
-- Character Arcs:
-[For each main character, describe their development path]
-
-- Story Beats:
-[List key emotional and narrative moments in sequence]
-
-- Key Transitions:
-[Describe major shifts in story direction or tone]
-
-Always provide specific, detailed content - never use placeholders.
+The final output should be only the complete synopsis.
 """,
             "action_beats_generator": """You are an expert in creating detailed action beats for a script.
 
@@ -387,6 +374,26 @@ IMPORTANT: This is a brainstorming conversation. DO NOT generate the formal outl
 
 The book has {num_chapters} chapters total, but during this chat focus on story elements, not chapter structure.
 """,
+            "story_planner_chat": """You are a collaborative, creative story development assistant helping an author brainstorm and develop their book synopsis.
+
+Your primary goal is to guide the author to define three key elements for their story:
+1.  **Genre**: What kind of story is it (e.g., fantasy, sci-fi, thriller, romance)?
+2.  **Premise**: What is the core idea or setup of the story?
+3.  **Ending**: How does the story conclude?
+
+Your approach:
+*   Start by asking the author for the **genre** of their story.
+*   Once the genre is provided, ask for the **premise**.
+*   After the premise, ask for the **ending**.
+*   You can also ask for "other information" to enrich the synopsis.
+*   Offer creative suggestions and ask clarifying questions to help them flesh out these elements.
+*   Maintain a friendly, conversational tone.
+*   NEVER generate a full synopsis during this chat phase. This is for brainstorming only.
+
+After identifying an element, **ALWAYS continue the conversation by asking further questions** to help the user refine their ideas or move on to the next key element (premise after genre, ending after premise, etc.). Do not stop at just identifying the element.
+
+Let's start! What genre is your story?
+""",
         }
 
         # Save the raw system prompts to a file for debugging
@@ -520,7 +527,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # If debugging is enabled, wrap the stream to save the full response at the end
         return self._create_debug_stream_wrapper(stream, agent_name, "stream_response")
 
-    def generate_chat_response(self, chat_history, topic, user_message) -> str:
+    def generate_chat_response_world(self, chat_history, topic, user_message) -> str:
         """Generate a chat response based on conversation history"""
         # Format the messages for the API call
         messages = [
@@ -546,7 +553,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # Extract the response
         return completion.choices[0].message.content
 
-    def generate_chat_response_stream(self, chat_history, topic, user_message):
+    def generate_chat_response_world_stream(self, chat_history, topic, user_message):
         """Generate a streaming chat response based on conversation history"""
         # Format the messages for the API call
         messages = [
@@ -579,6 +586,85 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         # If debugging is enabled, wrap the stream to save the full response at the end
         return self._create_debug_stream_wrapper(
             stream, "world_builder_chat", "chat_stream_response"
+        )
+
+    def generate_chat_response_synopsis_stream(self, chat_history, topic, user_message):
+        """Generate a streaming chat response about synopsis building."""
+        # Format the messages for the API call
+        messages = [
+            {"role": "system", "content": self.system_prompts["story_planner_chat"]}
+        ]
+
+        # Add conversation history
+        for entry in chat_history:
+            role = "user" if entry["role"] == "user" else "assistant"
+            messages.append({"role": role, "content": entry["content"]})
+
+        # Add the latest user message
+        messages.append({"role": "user", "content": user_message})
+
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "story_planner_chat", "chat_synopsis_stream_request"
+        )
+
+        # Call the API with streaming enabled
+        stream = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            stream=True,  # Enable streaming
+            max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "story_planner_chat", "chat_synopsis_stream_response"
+        )
+
+    def generate_final_synopsis_stream(self, chat_history, topic):
+        """Generate the final synopsis based on the chat history using streaming."""
+        # Format messages for the API call
+        messages = [{"role": "system", "content": self.system_prompts["story_planner"]}]
+
+        # Add conversation context from chat history
+        for message in chat_history:
+            if message["role"] == "user":
+                messages.append({"role": "user", "content": message["content"]})
+            else:
+                messages.append({"role": "assistant", "content": message["content"]})
+
+        # Add the final instruction to create the complete synopsis
+        messages.append(
+            {
+                "role": "user",
+                "content": f"Based on our conversation about '{topic}', please create a comprehensive and detailed synopsis. Extract the genre, premise, and ending, and then generate the full synopsis in a traditional three-act structure. This will be the final synopsis for the book.",
+            }
+        )
+
+        # Save the messages for debugging
+        self._save_debug_messages(
+            messages, "story_planner", "final_synopsis_stream_request"
+        )
+
+        # Make the API call with streaming enabled
+        stream = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=self.agent_config.get("temperature", 0.7),
+            stream=True,
+            max_tokens=self.agent_config.get("max_tokens", 10000),
+        )
+
+        if not self.debug:
+            return stream
+
+        # If debugging is enabled, wrap the stream to save the full response at the end
+        return self._create_debug_stream_wrapper(
+            stream, "story_planner", "final_synopsis_stream_response"
         )
 
     def generate_final_world(self, chat_history, topic) -> str:
@@ -870,7 +956,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         )
 
     def generate_chat_response_outline(
-        self, chat_history, world_theme, characters, user_message
+        self, chat_history, world_theme, characters, synopsis, user_message
     ):
         """Generate a chat response about outline creation."""
         # Format messages for the API call
@@ -882,7 +968,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         messages.append(
             {
                 "role": "system",
-                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}",
+                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}\n\nThe Story Synopsis is:\n\n{synopsis}",
             }
         )
 
@@ -916,7 +1002,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         return response
 
     def generate_chat_response_outline_stream(
-        self, chat_history, world_theme, characters, user_message
+        self, chat_history, world_theme, characters, synopsis, user_message
     ):
         """Generate a streaming chat response about outline creation."""
         # Format messages for the API call
@@ -928,7 +1014,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         messages.append(
             {
                 "role": "system",
-                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}",
+                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}\n\nThe Story Synopsis is:\n\n{synopsis}",
             }
         )
 
@@ -965,7 +1051,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         )
 
     def generate_final_outline_stream(
-        self, chat_history, world_theme, characters, num_chapters=10
+        self, chat_history, world_theme, characters, synopsis, num_chapters=10
     ):
         """Generate the final outline based on chat history using streaming."""
         # Format messages for the API call
@@ -977,7 +1063,7 @@ The book has {num_chapters} chapters total, but during this chat focus on story 
         messages.append(
             {
                 "role": "system",
-                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}",
+                "content": f"The book takes place in the following world:\n\n{world_theme}\n\nThe characters include:\n\n{characters}\n\nThe Story Synopsis is:\n\n{synopsis}",
             }
         )
 
