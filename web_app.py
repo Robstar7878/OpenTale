@@ -321,12 +321,6 @@ def finalize_synopsis_stream():
 def save_synopsis():
     """Save edited synopsis"""
     synopsis_content = request.form.get("synopsis")
-    synopsis_content = synopsis_content.replace("\r\n", "\n")
-    synopsis_content = re.sub(r"\n{2,}", "\n\n", synopsis_content)
-
-    # Strip extra newlines at the beginning and normalize newlines
-    synopsis_content = synopsis_content.strip()
-    synopsis_content = re.sub(r"\n+", "\n", synopsis_content.strip())
 
     # Save to file
     with open(SYNOPSIS_FILE, "w") as f:
@@ -515,12 +509,6 @@ def finalize_world_stream():
 def save_world():
     """Save edited world theme"""
     world_theme = request.form.get("world_theme")
-    world_theme = world_theme.replace("\r\n", "\n")
-    world_theme = re.sub(r"\n{2,}", "\n\n", world_theme)
-
-    # Strip extra newlines at the beginning and normalize newlines
-    world_theme = world_theme.strip()
-    world_theme = re.sub(r"\n+", "\n", world_theme.strip())
 
     # Save to file
     with open(WORLD_FILE, "w") as f:
@@ -564,11 +552,6 @@ def characters():
 def save_characters():
     """Save edited characters"""
     characters_content = request.form.get("characters")
-    characters_content = characters_content.replace("\r\n", "\n")
-    characters_content = re.sub(r"\n{2,}", "\n\n", characters_content)
-
-    # Strip extra newlines at the beginning and normalize newlines
-    characters_content = characters_content.strip()
 
     # Save to file
     with open(CHARACTERS_FILE, "w") as f:
@@ -1768,6 +1751,7 @@ def finalize_outline_stream():
 def parse_outline_to_chapters(outline_content, num_chapters):
     """Helper function to parse outline content into structured chapter format"""
 
+    # Clean content to simplofy chapter extraction
     outline_content = outline_content.replace("\r\n", "\n")
     outline_content = re.sub(r"\n{2,}", "\n\n", outline_content)
 
