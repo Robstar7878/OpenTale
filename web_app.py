@@ -1104,6 +1104,104 @@ def chapter_editor_stream(chapter_number):
     )
 
 
+@app.route("/inline_llm_continue_stream", methods=["POST"])
+def inline_llm_continue_stream():
+    """Get a streaming response from the LLM based on the provided context."""
+    data = request.json
+    context = data.get("context", "")
+
+    if not context:
+        return Response(
+            json.dumps({"error": "No context provided"}),
+            status=400,
+            mimetype="application/json",
+        )
+
+    book_agents = BookAgents(agent_config)
+    book_agents.create_agents("", 0)  # No initial prompt or chapters needed
+
+    stream = book_agents.generate_content_stream(
+        "writer",
+        prompts.INLINE_CONTINUE_PROMPT.format(
+            context=context,
+        ),
+    )
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@app.route("/inline_llm_revise_stream", methods=["POST"])
+def inline_llm_revise_stream():
+    """Get a streaming response from the LLM based on the provided context."""
+    data = request.json
+    context = data.get("context", "")
+
+    if not context:
+        return Response(
+            json.dumps({"error": "No context provided"}),
+            status=400,
+            mimetype="application/json",
+        )
+
+    book_agents = BookAgents(agent_config)
+    book_agents.create_agents("", 0)  # No initial prompt or chapters needed
+
+    stream = book_agents.generate_content_stream(
+        "writer",
+        prompts.INLINE_REVISE_PROMPT.format(
+            context=context,
+        ),
+    )
+
+    def generate():
+        # Send a heartbeat to establish the connection
+        yield 'data: {"content": ""}\n\n'
+
+        # Iterate through the stream to get each chunk
+        for chunk in stream:
+            if (
+                chunk.choices
+                and len(chunk.choices) > 0
+                and chunk.choices[0].delta
+                and chunk.choices[0].delta.content is not None
+            ):
+                content = chunk.choices[0].delta.content
+                # Send each token as it arrives
+                yield f"data: {json.dumps({'content': content})}\n\n"
+
+        # Send completion marker
+        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
 @app.route("/save_chapter/<int:chapter_number>", methods=["POST"])
 def save_chapter(chapter_number):
     """Save edited chapter content"""

@@ -222,3 +222,18 @@ And considering:
 - Characters: {relevant_characters}
 - Previous chapters: {previous_context}
 """
+
+# Inline continue prompt
+INLINE_CONTINUE_PROMPT = """Instructions:
+Continue the story below without repeating the story unless it is for literary effect. Include only the text you are adding. You should read what is before the tag and match the same style and tone, so the next text fits into the narrative properly.
+
+Story:
+{context}
+"""
+
+# Inline revise prompt
+INLINE_REVISE_PROMPT = """Instructions:
+You will be doing a revision of text within the passage tags [passage][/passage]. You will include only text and not tags. Follow any instructions found in between [ ] inside of the passage.
+
+[passage]{context}[/passage]
+"""
