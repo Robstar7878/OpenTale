@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "includes/quill_editor.html" import quill_editor %}
 
 {% block title %}OpenTale - Chapter Editor - {{ chapter.chapter_number }}{% endblock %}
 
@@ -108,7 +109,7 @@
                                             {% if action_beats_content %}
                                                 <form id="saveActionBeatsForm" action="/save_action_beats/{{ chapter.chapter_number }}" method="post">
                                                     <div class="mb-3">
-                                                        <textarea class="form-control" id="actionBeatsContent" name="action_beats_content" rows="10">{{ action_beats_content }}</textarea>
+                                                        {{ quill_editor('actionBeatsEditor', 'action_beats_content', action_beats_content) }}
                                                     </div>
                                                     <div class="d-flex justify-content-between">
                                                         <button type="submit" class="btn btn-success btn-sm" id="saveActionBeatsBtn">Save Action Beats</button>
@@ -209,7 +210,7 @@
                                 </div>
                             </div>
                         </div>
-                        <textarea class="form-control" id="originalChapterContent" name="original_chapter_content" rows="15" readonly>{{ original_chapter_content }}</textarea>
+                        {{ quill_editor('originalChapterContentEditor', 'original_chapter_content', original_chapter_content) }}
                     </div>
 
                     <!-- Editor Review Content -->
@@ -232,7 +233,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <textarea class="form-control" id="chapterContent" name="chapter_content" rows="20">{{ chapter_content }}</textarea>
+                            {{ quill_editor('chapterContentEditor', 'chapter_content', chapter_content) }}
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
@@ -328,8 +329,8 @@ $(document).ready(function() {
         const masterPrompt = $('#masterPrompt').val();
         const pointOfView = $('#pointOfView').val();
         const tense = $('#tense').val();
-        const action_beats_content = $('#actionBeatsContent').val();
-        const chapterContent = $('#originalChapterContent').val(); // Use original content for editing
+        const action_beats_content = $('#actionBeatsEditor-hidden').val();
+        const chapterContent = $('#originalChapterContentEditor-hidden').val(); // Use original content for editing
 
         const requestData = {
             additional_context: additionalContext,
@@ -341,7 +342,10 @@ $(document).ready(function() {
         };
 
         let fullContent = '';
-        $('#chapterContent').val(''); // Clear previous content
+        const chapterQuill = $('#chapterContentEditor').data('quill');
+        if(chapterQuill) {
+            chapterQuill.setText('');
+        }
 
         fetch(`/chapter_editor_stream/{{ chapter.chapter_number }}`, {
             method: 'POST',
@@ -384,7 +388,16 @@ $(document).ready(function() {
 
                                 if (data.content) {
                                     fullContent += data.content;
-                                    $('#chapterContent').val(fullContent);
+                                    if(chapterQuill) {
+                                        const html = new showdown.Converter().makeHtml(fullContent);
+                                        chapterQuill.clipboard.dangerouslyPasteHTML(html);                                    
+
+                                        // Scroll to bottom to follow updates
+                                        chapterQuill.setSelection(chapterQuill.getLength(), 0);
+
+                                        // Make sure to update the hidden input as well
+                                        window.updateHiddenInput(chapterQuill)
+                                    }
                                     $('#chapterContentContainer').removeClass('d-none');
                                 }
                             } catch (e) {
@@ -509,20 +522,26 @@ $(document).ready(function() {
 
     // Update content stats
     function updateContentStats() {
-        const content = $('#chapterContent').val() || '';
-        const stats = calculateTextStats(content);
-        $('#wordCount').text(stats.wordCount);
-        $('#charCount').text(stats.charCount);
-        $('#sentenceCount').text(stats.sentenceCount);
+        const chapterQuill = $('#chapterContentEditor').data('quill');
+        if (chapterQuill) {
+            const content = chapterQuill.getText();
+            const stats = calculateTextStats(content);
+            $('#wordCount').text(stats.wordCount);
+            $('#charCount').text(stats.charCount);
+            $('#sentenceCount').text(stats.sentenceCount);
+        }
     }
 
     // Update original content stats
     function updateOriginalContentStats() {
-        const content = $('#originalChapterContent').val() || '';
-        const stats = calculateTextStats(content);
-        $('#originalWordCount').text(stats.wordCount);
-        $('#originalCharCount').text(stats.charCount);
-        $('#originalSentenceCount').text(stats.sentenceCount);
+        const originalChapterQuill = $('#originalChapterContentEditor').data('quill');
+        if (originalChapterQuill) {
+            const content = originalChapterQuill.getText();
+            const stats = calculateTextStats(content);
+            $('#originalWordCount').text(stats.wordCount);
+            $('#originalCharCount').text(stats.charCount);
+            $('#originalSentenceCount').text(stats.sentenceCount);
+        }
     }
 
     // Initial calculation
@@ -530,7 +549,10 @@ $(document).ready(function() {
     updateOriginalContentStats();
 
     // Update on keyup
-    $('#chapterContent').on('keyup', debounce(updateContentStats, 250));
+    const chapterQuill = $('#chapterContentEditor').data('quill');
+    if(chapterQuill) {
+        chapterQuill.on('text-change', debounce(updateContentStats, 250));
+    }
 
     // Save master prompt with debounce
     const saveMasterPrompt = debounce(function() {

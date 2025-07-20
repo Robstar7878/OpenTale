@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "includes/quill_editor.html" import quill_editor %}
 
 {% block title %}OpenTale - Book Outline{% endblock %}
 
@@ -120,7 +121,7 @@
                 <form id="saveOutlineForm" action="/save_outline" method="post">
                     <div class="mb-3">
                         <label for="outlineContent" class="form-label">Edit your book outline if needed:</label>
-                        <textarea class="form-control" id="outlineContent" name="outline" rows="20">{{ outline }}</textarea>
+                        {{ quill_editor('outlineEditor', 'outline', outline) }}
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-success" id="saveOutlineBtn">Save Changes</button>
@@ -304,17 +305,11 @@ $(document).ready(function() {
         
         // Disable button
         $(this).prop('disabled', true);
-        
-        // Prepare the textarea in the result container
-        $('#outlineContent').val('');
-        
+            
         // Show result container
         $('#outlineResultContainer').show();
-        
-        // Create a typing cursor for streaming effect
+
         let outlineText = '';
-        const outlineTextarea = $('#outlineContent');
-        outlineTextarea.val('');
         
         // Make a streaming request for the final outline
         fetch('/finalize_outline_stream', {
@@ -362,11 +357,18 @@ $(document).ready(function() {
                                 // Append new content
                                 outlineText += data.content;
                                 
-                                // Update the textarea with all content so far
-                                outlineTextarea.val(outlineText);
-                                
-                                // Scroll textarea to bottom to follow updates
-                                outlineTextarea.scrollTop(outlineTextarea[0].scrollHeight);
+                                // Update the Quill editor with all content so far
+                                const quill = $('#outlineEditor').data('quill');
+                                if (quill) {
+                                    const html = new showdown.Converter().makeHtml(outlineText);
+                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
+
+                                    // Scroll to bottom to follow updates
+                                    quill.setSelection(quill.getLength(), 0);
+
+                                    // Make sure to update the hidden input as well
+                                    window.updateHiddenInput(quill)
+                                }
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);
                             }

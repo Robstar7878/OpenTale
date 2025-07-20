@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "includes/quill_editor.html" import quill_editor %}
 
 {% block title %}OpenTale - World Setting{% endblock %}
 
@@ -63,8 +64,8 @@
             <div class="card-body">
                 <form id="saveWorldForm" action="/save_world" method="post">
                     <div class="mb-3">
-                        <label for="worldTheme" class="form-label">Edit your world setting if needed:</label>
-                        <textarea class="form-control" id="worldTheme" name="world_theme" rows="12">{{ world_theme }}</textarea>
+                        <label for="worldEditor" class="form-label">Edit your world setting if needed:</label>
+                        {{ quill_editor('worldEditor', 'world_theme', world_theme) }}
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-success" id="saveWorldBtn">Save Changes</button>
@@ -93,8 +94,6 @@
 $(document).ready(function() {
     // Chat history
     let chatHistory = [];
-    
-    // World theme display is already handled with the style attribute in the HTML
     
     // Send user message
     $('#sendMessageBtn').click(function() {
@@ -229,16 +228,10 @@ $(document).ready(function() {
         // Disable button
         $(this).prop('disabled', true);
         
-        // Prepare the textarea in the result container
-        $('#worldTheme').val('');
-        
         // Show result container
         $('#worldResultContainer').show();
-        
-        // Create a typing cursor for streaming effect
+
         let worldText = '';
-        const worldTextarea = $('#worldTheme');
-        worldTextarea.val('');
         
         // Make a streaming request for the final world setting
         fetch('/finalize_world_stream', {
@@ -283,11 +276,18 @@ $(document).ready(function() {
                                 // Append new content
                                 worldText += data.content;
                                 
-                                // Update the textarea with all content so far
-                                worldTextarea.val(worldText);
-                                
-                                // Scroll textarea to bottom to follow updates
-                                worldTextarea.scrollTop(worldTextarea[0].scrollHeight);
+                                // Update the Quill editor with all content so far
+                                const quill = $('#worldEditor').data('quill');
+                                if (quill) {
+                                    const html = new showdown.Converter().makeHtml(worldText);
+                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
+
+                                    // Scroll to bottom to follow updates
+                                    quill.setSelection(quill.getLength(), 0);
+
+                                    // Make sure to update the hidden input as well
+                                    window.updateHiddenInput(quill)
+                                }                                
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);
                             }

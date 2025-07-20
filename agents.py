@@ -392,7 +392,7 @@ Your approach:
 
 After identifying an element, **ALWAYS continue the conversation by asking further questions** to help the user refine their ideas or move on to the next key element (premise after genre, ending after premise, etc.). Do not stop at just identifying the element.
 
-Let's start! What genre is your story?
+When they're ready to finalize, you'll help organize their ideas into a overview with genre, premise and ending.
 """,
         }
 

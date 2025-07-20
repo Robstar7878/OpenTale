@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "includes/quill_editor.html" import quill_editor %}
 
 {% block title %}OpenTale - Character Creation{% endblock %}
 
@@ -95,7 +96,7 @@
                 <form id="saveCharactersForm" action="/save_characters" method="post">
                     <div class="mb-3">
                         <label for="charactersContent" class="form-label">Edit your characters if needed:</label>
-                        <textarea class="form-control" id="charactersContent" name="characters" rows="15">{{ characters }}</textarea>
+                        {{ quill_editor('charactersEditor', 'characters', characters) }}
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-success" id="saveCharactersBtn">Save Changes</button>
@@ -264,17 +265,11 @@ $(document).ready(function() {
         // Disable button
         $(this).prop('disabled', true);
         
-        // Prepare the textarea in the result container
-        $('#charactersContent').val('');
-        
         // Show result container
         $('#charactersResultContainer').show();
-        
-        // Create a typing cursor for streaming effect
+
         let charactersText = '';
-        const charactersTextarea = $('#charactersContent');
-        charactersTextarea.val('');
-        
+                
         // Make a streaming request for the final characters
         fetch('/finalize_characters_stream', {
             method: 'POST',
@@ -318,11 +313,18 @@ $(document).ready(function() {
                                 // Append new content
                                 charactersText += data.content;
                                 
-                                // Update the textarea with all content so far
-                                charactersTextarea.val(charactersText);
-                                
-                                // Scroll textarea to bottom to follow updates
-                                charactersTextarea.scrollTop(charactersTextarea[0].scrollHeight);
+                                // Update the Quill editor with all content so far
+                                const quill = $('#charactersEditor').data('quill');
+                                if (quill) {
+                                    const html = new showdown.Converter().makeHtml(charactersText);
+                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
+
+                                    // Scroll to bottom to follow updates
+                                    quill.setSelection(quill.getLength(), 0);
+
+                                    // Make sure to update the hidden input as well
+                                    window.updateHiddenInput(quill)
+                                }
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);
                             }

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "includes/quill_editor.html" import quill_editor %}
 
 {% block title %}OpenTale - Story Synopsis{% endblock %}
 
@@ -64,7 +65,7 @@
                 <form id="saveSynopsisForm" action="/save_synopsis" method="post">
                     <div class="mb-3">
                         <label for="synopsis" class="form-label">Edit your synopsis if needed:</label>
-                        <textarea class="form-control" id="synopsis" name="synopsis" rows="12">{{ synopsis }}</textarea>
+                        {{ quill_editor('synopsisEditor', 'synopsis', synopsis) }}
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-success" id="saveSynopsisBtn">Save Changes</button>
@@ -236,18 +237,12 @@ $(document).ready(function() {
         
         // Disable button
         $(this).prop('disabled', true);
-        
-        // Prepare the textarea in the result container
-        $('#synopsis').val('');
-        
+            
         // Show result container
         $('#synopsisResultContainer').show();
-        
-        // Create a typing cursor for streaming effect
+
         let synopsisText = '';
-        const synopsisTextarea = $('#synopsis');
-        synopsisTextarea.val('');
-        
+                
         // Make a streaming request for the final synopsis
         fetch('/finalize_synopsis_stream', {
             method: 'POST',
@@ -291,11 +286,18 @@ $(document).ready(function() {
                                 // Append new content
                                 synopsisText += data.content;
                                 
-                                // Update the textarea with all content so far
-                                synopsisTextarea.val(synopsisText);
-                                
-                                // Scroll textarea to bottom to follow updates
-                                synopsisTextarea.scrollTop(synopsisTextarea[0].scrollHeight);
+                                // Update the Quill editor with all content so far
+                                const quill = $('#synopsisEditor').data('quill');
+                                if (quill) {
+                                    const html = new showdown.Converter().makeHtml(synopsisText);
+                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
+
+                                    // Scroll to bottom to follow updates
+                                    quill.setSelection(quill.getLength(), 0);
+
+                                    // Make sure to update the hidden input as well
+                                    window.updateHiddenInput(quill)
+                                }
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);
                             }

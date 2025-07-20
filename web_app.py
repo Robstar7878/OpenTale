@@ -665,11 +665,6 @@ def generate_chapters():
 def save_outline():
     """Save edited outline and generate chapters structure"""
     outline_content = request.form.get("outline")
-    outline_content = outline_content.replace("\r\n", "\n")
-    outline_content = re.sub(r"\n{2,}", "\n\n", outline_content)
-
-    # Strip extra newlines at the beginning and normalize newlines
-    outline_content = outline_content.strip()
 
     # Save to file
     with open(OUTLINE_FILE, "w") as f:
@@ -1772,6 +1767,13 @@ def finalize_outline_stream():
 
 def parse_outline_to_chapters(outline_content, num_chapters):
     """Helper function to parse outline content into structured chapter format"""
+
+    outline_content = outline_content.replace("\r\n", "\n")
+    outline_content = re.sub(r"\n{2,}", "\n\n", outline_content)
+
+    # Strip extra newlines at the beginning and normalize newlines
+    outline_content = outline_content.strip()
+
     chapters = []
     try:
         # Extract just the outline content (between OUTLINE: and END OF OUTLINE)

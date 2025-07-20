@@ -1,0 +1,4 @@
+{% macro quill_editor(id, name, content) %}
+    <div id="{{ id }}" class="quill-editor" style="height: 300px;"></div>
+    <input type="hidden" id="{{ id }}-hidden" name="{{ name }}" data-initial-content='{{ content | tojson }}'>
+{% endmacro %}
