@@ -311,3 +311,55 @@ function handleChapterPagination() {
         });
     }
 }
+
+/**
+ * Shows a Bootstrap modal with a title and pre-formatted content.
+ * @param {string} title The title of the modal.
+ * @param {string} content The pre-formatted content to display.
+ */
+function showModalWithContent(title, content) {
+    // Remove any existing modals
+    const existingModal = document.getElementById('dynamicModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.className = 'modal fade';
+    modal.id = 'dynamicModal';
+    modal.tabIndex = -1;
+    modal.innerHTML = `
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">${title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre><code>${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="copyModalContent">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const bsModal = new bootstrap.Modal(modal);
+
+    // Handle copy button click
+    document.getElementById('copyModalContent').addEventListener('click', function() {
+        copyToClipboard(content);
+    });
+
+    // Clean up after modal is hidden
+    modal.addEventListener('hidden.bs.modal', function() {
+        modal.remove();
+    });
+
+    bsModal.show();
+}

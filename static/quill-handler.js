@@ -86,17 +86,43 @@ $(document).ready(function() {
      * @param {jQuery} hiddenInput The jQuery object for the hidden input field.
      * @returns {Quill} The initialized Quill instance.
      */
+    // Define custom icons
+    const icons = Quill.import('ui/icons');
+    icons['divider'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+    icons['showHtml'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
+    icons['showMarkdown'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9.5 16.5H7.5v-6h2v6zm4-6h-2v6h2v-2.5l2 2.5v-6l-2 2.5V10.5z"/></svg>';
+
     function initializeEditor(editorId, hiddenInput) {
         const quill = new Quill(`#${editorId}`, {
             theme: 'snow',
             modules: {
-                toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    ['bold', 'italic', 'underline'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    ['link'],
-                    ['clean']
-                ]
+                toolbar: {
+                    container: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['link'],
+                        ['divider', 'showHtml', 'showMarkdown'],
+                        ['clean']
+                    ],
+                    handlers: {
+                       'divider': function() {
+                           const range = this.quill.getSelection(true);
+                           this.quill.insertEmbed(range.index, 'divider', true, 'user');
+                           this.quill.setSelection(range.index + 1, 0, 'user');
+                       },
+                       'showHtml': function() {
+                           let html = this.quill.getSemanticHTML().replace(/(\u00A0|&nbsp;)/g, ' ');
+                           // Add newlines before block-level elements for better readability
+                           html = html.replace(/<(p|h1|h2|h3|ol|ul|li|blockquote|pre|hr)/g, '\n<$1').trim();
+                           showModalWithContent('Raw HTML', html);
+                       },
+                       'showMarkdown': function() {
+                           const markdown = hiddenInput.val();
+                           showModalWithContent('Markdown', markdown);
+                       }
+                    }
+                }
             },
             formats: ['bold', 'italic', 'underline', 'strike', 'blockquote', 'header', 'list', 'link', 'highlight', 'note', 'divider'],
         });
