@@ -91,8 +91,15 @@ $(document).ready(function() {
     icons['divider'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
     icons['showHtml'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
     icons['showMarkdown'] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9.5 16.5H7.5v-6h2v6zm4-6h-2v6h2v-2.5l2 2.5v-6l-2 2.5V10.5z"/></svg>';
+    icons['increaseFontSize'] = '<svg viewBox="0 0 18 18"><line class="ql-stroke" x1="9" y1="5" x2="9" y2="13"></line><line class="ql-stroke" x1="5" y1="9" x2="13" y2="9"></line></svg>';
+    icons['decreaseFontSize'] = '<svg viewBox="0 0 18 18"><line class="ql-stroke" x1="5" y1="9" x2="13" y2="9"></line></svg>';
 
     function initializeEditor(editorId, hiddenInput) {
+        const FONT_SIZE_KEY = 'quill-font-size';
+        const MIN_FONT_SIZE = 10;
+        const MAX_FONT_SIZE = 30;
+        const FONT_STEP = 1;
+
         const quill = new Quill(`#${editorId}`, {
             theme: 'snow',
             modules: {
@@ -101,31 +108,55 @@ $(document).ready(function() {
                         [{ 'header': [1, 2, 3, false] }],
                         ['bold', 'italic', 'underline'],
                         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['link'],
-                        ['divider', 'showHtml', 'showMarkdown'],
+                        ['divider'],
+                        ['showHtml', 'showMarkdown'],
+                        ['increaseFontSize', 'decreaseFontSize'],
                         ['clean']
                     ],
                     handlers: {
-                       'divider': function() {
-                           const range = this.quill.getSelection(true);
-                           this.quill.insertEmbed(range.index, 'divider', true, 'user');
-                           this.quill.setSelection(range.index + 1, 0, 'user');
-                       },
-                       'showHtml': function() {
-                           let html = this.quill.getSemanticHTML().replace(/(\u00A0|&nbsp;)/g, ' ');
-                           // Add newlines before block-level elements for better readability
-                           html = html.replace(/<(p|h1|h2|h3|ol|ul|li|blockquote|pre|hr)/g, '\n<$1').trim();
-                           showModalWithContent('Raw HTML', html);
-                       },
-                       'showMarkdown': function() {
-                           const markdown = hiddenInput.val();
-                           showModalWithContent('Markdown', markdown);
-                       }
+                        'divider': function() {
+                            const range = this.quill.getSelection(true);
+                            this.quill.insertEmbed(range.index, 'divider', true, 'user');
+                            this.quill.setSelection(range.index + 1, 0, 'user');
+                        },
+                        'showHtml': function() {
+                            let html = this.quill.getSemanticHTML().replace(/(\u00A0|&nbsp;)/g, ' ');
+                            html = html.replace(/<(p|h1|h2|h3|ol|ul|li|blockquote|pre|hr)/g, '\n<$1').trim();
+                            showModalWithContent('Raw HTML', html);
+                        },
+                        'showMarkdown': function() {
+                            const markdown = hiddenInput.val();
+                            showModalWithContent('Markdown', markdown);
+                        },
+                        'increaseFontSize': function() {
+                            const editor = this.quill.container.querySelector('.ql-editor');
+                            let currentSize = parseInt(window.getComputedStyle(editor).getPropertyValue('--quill-font-size'), 10) || 16;
+                            if (currentSize < MAX_FONT_SIZE) {
+                                const newSize = currentSize + FONT_STEP;
+                                editor.style.setProperty('--quill-font-size', `${newSize}px`);
+                                localStorage.setItem(FONT_SIZE_KEY, newSize);
+                            }
+                        },
+                        'decreaseFontSize': function() {
+                            const editor = this.quill.container.querySelector('.ql-editor');
+                            let currentSize = parseInt(window.getComputedStyle(editor).getPropertyValue('--quill-font-size'), 10) || 16;
+                            if (currentSize > MIN_FONT_SIZE) {
+                                const newSize = currentSize - FONT_STEP;
+                                editor.style.setProperty('--quill-font-size', `${newSize}px`);
+                                localStorage.setItem(FONT_SIZE_KEY, newSize);
+                            }
+                        }
                     }
                 }
             },
             formats: ['bold', 'italic', 'underline', 'strike', 'blockquote', 'header', 'list', 'link', 'highlight', 'note', 'divider'],
         });
+
+        // Load saved font size
+        const savedSize = localStorage.getItem(FONT_SIZE_KEY);
+        if (savedSize) {
+            quill.container.querySelector('.ql-editor').style.setProperty('--quill-font-size', `${savedSize}px`);
+        }
 
         // Load initial content from the data attribute
         const initialContentJSON = hiddenInput.data('initial-content');
