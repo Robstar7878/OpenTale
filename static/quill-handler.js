@@ -198,10 +198,13 @@ $(document).ready(function() {
                             if (abortController) {
                                 abortController.abort();
                                 abortController = null;
-                                if (llmInsertedRange) {
-                                    quill.deleteText(llmInsertedRange.index, llmInsertedRange.length, 'api');
-                                    llmInsertedRange = null;
-                                }
+                            }
+                            
+                            if (llmInsertedRange) {
+                                quill.deleteText(llmInsertedRange.index, llmInsertedRange.length, 'api');
+                                llmInsertedRange = null;
+                                currentCarotRange = null;
+                            } else {
                                 window.hideCarot(quill);
                             }
 
