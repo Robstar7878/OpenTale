@@ -114,6 +114,37 @@ $(document).ready(function() {
         const FONT_STEP = 1;
 
         let lastLlmRange = null;
+        let currentCarotRange = null;
+        let llmInsertedRange = null;
+        let abortController = null;
+
+        /**
+         * Displays a caret '|>' at a specific position or end of the editor.
+         * @param {Quill} quill The Quill instance.
+         * @param {number} [insertAt] The index to insert the caret. Defaults to end of document.
+         */
+        window.showCarot = function(quill, insertAt) {
+            if (insertAt === undefined || insertAt === null) {
+                const range = quill.getSelection() || { index: quill.getLength(), length: 0 };
+                insertAt = range.index + range.length;
+            }
+            const caretText = '|>';
+            quill.insertText(insertAt, caretText, 'api');
+            currentCarotRange = { index: insertAt, length: caretText.length };
+            quill.setSelection(insertAt + caretText.length, 0, 'api');
+        };
+
+        /**
+         * Hides the previously displayed caret '|>'.
+         * @param {Quill} quill The Quill instance.
+         */
+        window.hideCarot = function(quill) {
+            if (currentCarotRange) {
+                quill.deleteText(currentCarotRange.index, currentCarotRange.length, 'api');
+                currentCarotRange = null;
+            }
+        };
+
         const quill = new Quill(`#${editorId}`, {
             theme: 'snow',
             modules: {
@@ -163,6 +194,17 @@ $(document).ready(function() {
                         },
                         'runLlm': async function() {
                             const quill = this.quill;
+
+                            if (abortController) {
+                                abortController.abort();
+                                abortController = null;
+                                if (llmInsertedRange) {
+                                    quill.deleteText(llmInsertedRange.index, llmInsertedRange.length, 'api');
+                                    llmInsertedRange = null;
+                                }
+                                window.hideCarot(quill);
+                            }
+
                             lastLlmRange = quill.getSelection() || { index: quill.getLength(), length: 0 };
                             const range = lastLlmRange;
                             let context = '';
@@ -173,17 +215,22 @@ $(document).ready(function() {
                                 llm_api = '/inline_llm_revise_stream';
                                 context = quill.getText(range.index, range.length);
                                 insertAt = range.index + range.length;
+                                quill.insertText(insertAt, ' ', 'user');
+                                insertAt += 1;
                             } else {
                                 llm_api = '/inline_llm_continue_stream';
-                                context = quill.getText();
+                                window.cleanEditorMarksAndContent(quill);
+                                context = quill.getText(0, range.index);
                                 insertAt = range.index;
                             }
                             
-                            // Insert a space if we are appending to existing text
-                            if (range.length > 0) {
-                                quill.insertText(insertAt, ' ', 'user');
-                                insertAt += 1;
-                            }
+                            window.showCarot(quill, insertAt);
+
+                            let llmInsertAt = insertAt + 2;
+                            llmInsertedRange = { index: insertAt, length: 2 };
+
+                            abortController = new AbortController();
+                            const signal = abortController.signal;
 
                             try {
                                 const response = await fetch(llm_api, {
@@ -192,6 +239,7 @@ $(document).ready(function() {
                                         'Content-Type': 'application/json',
                                     },
                                     body: JSON.stringify({ context: context }),
+                                    signal: signal
                                 });
 
                                 if (!response.body) {
@@ -221,10 +269,12 @@ $(document).ready(function() {
                                                     if (data.content === '[DONE]') {
                                                         return;
                                                     }
+                                                    
                                                     if (data.content) {
-                                                        quill.insertText(insertAt, data.content, 'highlight', true, 'api');
-                                                        insertAt += data.content.length;
-                                                        quill.setSelection(insertAt, 0, 'api');
+                                                        quill.insertText(llmInsertAt, data.content, 'highlight', true, 'api');
+                                                        llmInsertedRange.length += data.content.length;
+                                                        llmInsertAt += data.content.length;
+                                                        quill.setSelection(llmInsertAt, 0, 'api');
                                                     }
                                                 } catch (e) {
                                                     console.error('Error parsing stream data:', e);
@@ -234,16 +284,46 @@ $(document).ready(function() {
                                     }
                                 }
                             } catch (error) {
-                                console.error('Error fetching LLM stream:', error);
+                                if (error.name === 'AbortError') {
+                                    console.log('LLM stream aborted by user.');
+                                } else {
+                                    console.error('Error fetching LLM stream:', error);
+                                }
+                            } finally {
+                                abortController = null;
                             }
                         },
                         'accept': function() {
-                            window.cleanEditorMarks(this.quill);
+                            const quill = this.quill;
+                            if (currentCarotRange) {
+                                quill.deleteText(currentCarotRange.index, currentCarotRange.length, 'api');
+                                if (llmInsertedRange) {
+                                    llmInsertedRange.index = currentCarotRange.index;
+                                    llmInsertedRange.length -= currentCarotRange.length;
+                                }
+                                currentCarotRange = null;
+                            }
+                            window.cleanEditorMarks(quill);
+                            llmInsertedRange = null;
                         },
                         'reject': function() {
-                            window.cleanEditorMarksAndContent(this.quill);
-                            if (lastLlmRange) {
-                                this.quill.setSelection(lastLlmRange.index, 0, 'user');
+                            const quill = this.quill;
+                            if (abortController) {
+                                abortController.abort();
+                                abortController = null;
+                            }
+                            
+                            if (llmInsertedRange) {
+                                const originalIndex = llmInsertedRange.index;
+                                quill.deleteText(llmInsertedRange.index, llmInsertedRange.length, 'api');
+                                quill.setSelection(originalIndex, 0, 'user');
+                                llmInsertedRange = null;
+                                currentCarotRange = null;
+                            } else {
+                                window.hideCarot(quill);
+                                if (lastLlmRange) {
+                                    quill.setSelection(lastLlmRange.index, 0, 'user');
+                                }
                             }
                         }
                     }
