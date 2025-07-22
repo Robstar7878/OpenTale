@@ -335,6 +335,7 @@ Your approach:
 
 When they're ready to finalize, you'll help organize their ideas into a comprehensive world setting document.
 """,
+            # Add a special system prompt for conversational action beats building
             "action_beats_chat": """You are a collaborative, creative assistant helping an author brainstorm and refine action beats for a chapter.
 
 Your approach during this brainstorming phase:
@@ -352,7 +353,7 @@ Your approach during this brainstorming phase:
 
 IMPORTANT: This is a brainstorming conversation. DO NOT generate the formal action beats until the author is ready to finalize.
 """,
-            # Add a new system prompt specifically for outline brainstorming chat
+            # Add a special system prompt for conversational outline brainstorming
             "outline_creator_chat": f"""You are a collaborative, creative story development assistant helping an author brainstorm and develop their book outline.
 
 Your approach during this brainstorming phase:
@@ -374,7 +375,8 @@ IMPORTANT: This is a brainstorming conversation. DO NOT generate the formal outl
 
 The book has {num_chapters} chapters total, but during this chat focus on story elements, not chapter structure.
 """,
-            "story_planner_chat": """You are a collaborative, creative story development assistant helping an author brainstorm and develop their book synopsis.
+            # Add a special system prompt for conversational synopsis brainstorming
+            "story_synopsis_chat": """You are a collaborative, creative story development assistant helping an author brainstorm and develop their book synopsis.
 
 Your primary goal is to guide the author to define three key elements for their story:
 1.  **Genre**: What kind of story is it (e.g., fantasy, sci-fi, thriller, romance)?
@@ -393,6 +395,21 @@ Your approach:
 After identifying an element, **ALWAYS continue the conversation by asking further questions** to help the user refine their ideas or move on to the next key element (premise after genre, ending after premise, etc.). Do not stop at just identifying the element.
 
 When they're ready to finalize, you'll help organize their ideas into a overview with genre, premise and ending.
+""",
+            # Add a special system prompt for inline writing
+            "inline_writer": """You are an expert creative writer, a master storyteller who brings scenes to life with breathtaking detail and deep emotional resonance.
+
+Your mission is to write text adhering to the following directives and craft rules at all times.
+
+---
+### Craft & Style Rules (Your Authorial Voice)
+*   **Show, Don't Tell:** This is your primary storytelling technique. Reveal character, plot, and world-building through character actions, subtext, body language, and sensory information, not exposition.
+*   **Prose and Cadence:** Create engaging, dynamic prose. Employ a varied sentence structure, mixing short, punchy sentences for tension with longer, descriptive sentences for atmosphere.
+*   **Details Matter:** Use rich, vivid details to immerse the reader. Add a lot of details, and describe the environment and characters where it makes sense.
+*   **Authentic, Purposeful Dialogue:** Dialogue must sound like real people talking. Every line must either reveal character, advance the plot, or build tension. Each character's voice must be distinct and consistent with their profile.
+*   **Grounded Tone:** Avoid clichés, melodrama, and overly sentimental prose. Keep the emotional expression authentic and grounded.
+*   **Forbidden Words:** You are forbidden from using the following words: **peril, fraught, thwart, dire, that, feel/feeling/felt, back, just, then, ail, look, maybe, knew/know**. Use stronger verbs and more descriptive phrasing instead.
+
 """,
         }
 
@@ -592,7 +609,7 @@ When they're ready to finalize, you'll help organize their ideas into a overview
         """Generate a streaming chat response about synopsis building."""
         # Format the messages for the API call
         messages = [
-            {"role": "system", "content": self.system_prompts["story_planner_chat"]}
+            {"role": "system", "content": self.system_prompts["story_synopsis_chat"]}
         ]
 
         # Add conversation history
@@ -605,7 +622,7 @@ When they're ready to finalize, you'll help organize their ideas into a overview
 
         # Save the messages for debugging
         self._save_debug_messages(
-            messages, "story_planner_chat", "chat_synopsis_stream_request"
+            messages, "story_synopsis_chat", "chat_synopsis_stream_request"
         )
 
         # Call the API with streaming enabled
@@ -622,7 +639,7 @@ When they're ready to finalize, you'll help organize their ideas into a overview
 
         # If debugging is enabled, wrap the stream to save the full response at the end
         return self._create_debug_stream_wrapper(
-            stream, "story_planner_chat", "chat_synopsis_stream_response"
+            stream, "story_synopsis_chat", "chat_synopsis_stream_response"
         )
 
     def generate_final_synopsis_stream(self, chat_history, topic):

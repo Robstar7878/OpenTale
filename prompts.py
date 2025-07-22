@@ -235,5 +235,11 @@ Story:
 INLINE_REVISE_PROMPT = """Instructions:
 You will be doing a revision of text within the passage tags [passage][/passage]. You will include only text and not tags. Follow any instructions found in between [ ] inside of the passage.
 
+Additional Context if Available (Ignore if not present):
+{documents}
+
 [passage]{context}[/passage]
+
+Additional instructions for the revision if available (Ignore if not found):
+{user_input}
 """

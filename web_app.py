@@ -1121,7 +1121,7 @@ def inline_llm_continue_stream():
     book_agents.create_agents("", 0)  # No initial prompt or chapters needed
 
     stream = book_agents.generate_content_stream(
-        "writer",
+        "inline_writer",
         prompts.INLINE_CONTINUE_PROMPT.format(
             context=context,
         ),
@@ -1166,13 +1166,17 @@ def inline_llm_revise_stream():
             mimetype="application/json",
         )
 
+    master_prompt = get_master_prompt()
+
     book_agents = BookAgents(agent_config)
     book_agents.create_agents("", 0)  # No initial prompt or chapters needed
 
     stream = book_agents.generate_content_stream(
-        "writer",
+        "inline_writer",
         prompts.INLINE_REVISE_PROMPT.format(
             context=context,
+            documents="",
+            user_input=master_prompt,
         ),
     )
 
