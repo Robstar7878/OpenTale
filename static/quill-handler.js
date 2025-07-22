@@ -195,18 +195,8 @@ $(document).ready(function() {
                         'runLlm': async function() {
                             const quill = this.quill;
 
-                            if (abortController) {
-                                abortController.abort();
-                                abortController = null;
-                            }
-                            
-                            if (llmInsertedRange) {
-                                quill.deleteText(llmInsertedRange.index, llmInsertedRange.length, 'api');
-                                llmInsertedRange = null;
-                                currentCarotRange = null;
-                            } else {
-                                window.hideCarot(quill);
-                            }
+                            // Reset any existing LLM state by calling the reject handler.
+                            this.handlers.reject.call(this);
 
                             lastLlmRange = quill.getSelection() || { index: quill.getLength(), length: 0 };
                             const range = lastLlmRange;
