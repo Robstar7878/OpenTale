@@ -327,7 +327,8 @@ $(document).ready(function() {
         };
 
         let fullContent = '';
-        const chapterQuill = $('#chapterContentEditor').data('quill');
+        const chapterContentEditorElement = document.getElementById('chapterContentEditor');
+        const chapterQuill = chapterContentEditorElement ? chapterContentEditorElement.quill : null;
         if(chapterQuill) {
             chapterQuill.setText('');
         }
@@ -372,16 +373,13 @@ $(document).ready(function() {
                                 }
 
                                 if (data.content) {
+
+                                    // Append new content
                                     fullContent += data.content;
-                                    if(chapterQuill) {
-                                        const html = new showdown.Converter().makeHtml(fullContent);
-                                        chapterQuill.clipboard.dangerouslyPasteHTML(html);                                    
 
-                                        // Scroll to bottom to follow updates
-                                        chapterQuill.setSelection(chapterQuill.getLength(), 0);
-
-                                        // Make sure to update the hidden input as well
-                                        window.updateHiddenInput(chapterQuill)
+                                    // Update the Quill editor with all content so far
+                                    if(chapterContentEditorElement && chapterContentEditorElement.quillHandler) {
+                                        chapterContentEditorElement.quillHandler.updateEditorWithMarkdown(fullContent);
                                     }
                                     $('#chapterContentContainer').removeClass('d-none');
                                 }
@@ -521,7 +519,8 @@ $(document).ready(function() {
     updateContentStats();
 
     // Update on keyup
-    const chapterQuill = $('#chapterContentEditor').data('quill');
+    const chapterContentEditorElement = document.getElementById('chapterContentEditor');
+    const chapterQuill = chapterContentEditorElement ? chapterContentEditorElement.quill : null;
     if(chapterQuill) {
         chapterQuill.on('text-change', debounce(updateContentStats, 250));
     }

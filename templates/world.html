@@ -277,17 +277,10 @@ $(document).ready(function() {
                                 worldText += data.content;
                                 
                                 // Update the Quill editor with all content so far
-                                const quill = $('#worldEditor').data('quill');
-                                if (quill) {
-                                    const html = new showdown.Converter().makeHtml(worldText);
-                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
-
-                                    // Scroll to bottom to follow updates
-                                    quill.setSelection(quill.getLength(), 0);
-
-                                    // Make sure to update the hidden input as well
-                                    window.updateHiddenInput(quill)
-                                }                                
+                                const editorElement = document.getElementById('worldEditor');
+                                if (editorElement && editorElement.quillHandler) {
+                                    editorElement.quillHandler.updateEditorWithMarkdown(worldText);
+                                }
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);
                             }

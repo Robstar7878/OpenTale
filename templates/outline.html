@@ -358,16 +358,9 @@ $(document).ready(function() {
                                 outlineText += data.content;
                                 
                                 // Update the Quill editor with all content so far
-                                const quill = $('#outlineEditor').data('quill');
-                                if (quill) {
-                                    const html = new showdown.Converter().makeHtml(outlineText);
-                                    quill.clipboard.dangerouslyPasteHTML(html);                                    
-
-                                    // Scroll to bottom to follow updates
-                                    quill.setSelection(quill.getLength(), 0);
-
-                                    // Make sure to update the hidden input as well
-                                    window.updateHiddenInput(quill)
+                                const editorElement = document.getElementById('outlineEditor');
+                                if (editorElement && editorElement.quillHandler) {
+                                    editorElement.quillHandler.updateEditorWithMarkdown(outlineText);
                                 }
                             } catch (e) {
                                 console.error('Error parsing JSON:', e, jsonData);

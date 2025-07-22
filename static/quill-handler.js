@@ -88,6 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
             this.abortController = null;
 
             this.quill = this.initializeEditor();
+
+            // Store the Quill instance on the DOM element for easy access, similar to jQuery's .data()
+            this.editorNode.quill = this.quill;
+            // Also store the handler instance itself for access to its methods
+            this.editorNode.quillHandler = this;
+
             this.loadInitialContent();
             this.loadFontSize();
             this.updateHiddenInput(); // Set initial state
@@ -283,13 +289,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (initialContentJSON) {
                 try {
                     const markdownContent = JSON.parse(initialContentJSON);
-                    const html = showdownConverter.makeHtml(markdownContent);
-                    this.quill.clipboard.dangerouslyPasteHTML(html);
+                    this.updateEditorWithMarkdown(markdownContent);
                 } catch (e) {
                     console.error('Error parsing initial content:', e);
                     this.quill.clipboard.dangerouslyPasteHTML(initialContentJSON);
                 }
             }
+        }
+
+        updateEditorWithMarkdown(markdownContent) {
+            const html = showdownConverter.makeHtml(markdownContent);
+            this.quill.clipboard.dangerouslyPasteHTML(html);
+
+            // Scroll to bottom to follow updates
+            this.quill.setSelection(this.quill.getLength(), 0, 'api');
+
+            // Make sure to update the hidden input as well
+            this.updateHiddenInput();
         }
 
         // --- Font Size ---
@@ -313,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize all Quill editors on the page
     document.querySelectorAll('.quill-editor').forEach(editorNode => {
-        // Store the instance on the DOM element for potential external access
-        editorNode.quillHandler = new QuillHandler(editorNode.id);
+        // The QuillHandler constructor now attaches the instance to the editorNode.
+        new QuillHandler(editorNode.id);
     });
 });
