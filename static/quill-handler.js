@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Define custom icons
         const icons = Quill.import('ui/icons');
-        icons['divider'] = '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" /></svg>';
-        icons['showHtml'] = '<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" stroke="currentColor" fill="none" stroke-width="2" /><polyline points="8 6 2 12 8 18" stroke="currentColor" fill="none" stroke-width="2" /></svg>';
-        icons['showMarkdown'] = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2zM9.5 16.5H7.5v-6h2v6zm4-6h-2v6h2v-2.5l2 2.5v-6l-2 2.5V10.5z"/></svg>';
-        icons['increaseFontSize'] = '<svg viewBox="0 0 18 18"><line class="ql-stroke" x1="9" y1="5" x2="9" y2="13"></line><line class="ql-stroke" x1="5" y1="9" x2="13" y2="9"></line></svg>';
-        icons['decreaseFontSize'] = '<svg viewBox="0 0 18 18"><line class="ql-stroke" x1="5" y1="9" x2="13" y2="9"></line></svg>';
-        icons['runLlm'] = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" fill="none" stroke-width="2" /></svg>';
-        icons['accept'] = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke="currentColor" fill="none" stroke-width="2" /></svg>';
-        icons['reject'] = '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" /><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" /></svg>';
+        icons['divider'] = '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/></svg>';
+        icons['showHtml'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
+        icons['showMarkdown'] = '<svg viewBox="0 0 128 128" fill="currentColor"><path d="M12 24.3c-5.8 0-10.6 4.9-10.6 10.7v57.9c0 5.8 4.8 10.7 10.6 10.7h104.1c5.8 0 10.6-4.9 10.6-10.7V35c0-5.8-4.8-10.7-10.6-10.7H12zm0 9.5h104.1c.6 0 1.1.4 1.1 1.1v57.9c0 .7-.5 1.1-1.1 1.1H12c-.6 0-1.1-.4-1.1-1.1V35c0-.7.5-1.1 1.1-1.1z"/><path d="M20.7 84.1V43.9h11.7l11.7 14.8 11.7-14.8h11.7v40.2H55.8V61l-11.7 14.8-11.7-14.8V84.1H20.7zm73.1 0L76.3 64.6h11.7V43.9h11.7v20.7h11.7z"/></svg>';
+        icons['increaseFontSize'] = '<svg viewBox="0 0 18 18" stroke="currentColor" stroke-width="2"><line x1="9" y1="5" x2="9" y2="13"/><line x1="5" y1="9" x2="13" y2="9"/></svg>';
+        icons['decreaseFontSize'] = '<svg viewBox="0 0 18 18" stroke="currentColor" stroke-width="2"><line x1="5" y1="9" x2="13" y2="9"/></svg>';
+        icons['runLlm'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+        icons['accept'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+        icons['reject'] = '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
     }
 
     registerCustomQuillFeatures();

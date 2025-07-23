@@ -99,34 +99,20 @@ function showNotification(message, type = 'info') {
  * @param {string} text - The text to copy
  * @returns {boolean} - Whether the copy was successful
  */
-function copyToClipboard(text) {
-    // Create a temporary textarea element
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'absolute';
-    textarea.style.left = '-9999px';
-    document.body.appendChild(textarea);
-    
-    // Select and copy the text
-    textarea.select();
-    let success = false;
-    
-    try {
-        success = document.execCommand('copy');
-        if (success) {
-            showNotification('Copied to clipboard!', 'success');
-        } else {
-            showNotification('Failed to copy to clipboard', 'error');
-        }
-    } catch (err) {
-        console.error('Failed to copy', err);
-        showNotification('Failed to copy to clipboard', 'error');
+async function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+        showNotification('Clipboard API not available', 'error');
+        return false;
     }
-    
-    // Clean up
-    document.body.removeChild(textarea);
-    return success;
+    try {
+        await navigator.clipboard.writeText(text);
+        showNotification('Copied to clipboard!', 'success');
+        return true;
+    } catch (err) {
+        console.error('Failed to copy text: ', err);
+        showNotification('Failed to copy to clipboard', 'error');
+        return false;
+    }
 }
 
 /**
@@ -334,14 +320,17 @@ function showModalWithContent(title, content) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">${title}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="d-flex align-items-center ms-auto">
+                        <button type="button" class="btn btn-primary btn-sm me-2" id="copyModalContentTop">Copy to Clipboard</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <pre><code>${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="copyModalContent">Copy to Clipboard</button>
+                    <button type="button" class="btn btn-primary ms-auto" id="copyModalContentBottom">Copy to Clipboard</button>
                 </div>
             </div>
         </div>
@@ -351,8 +340,11 @@ function showModalWithContent(title, content) {
 
     const bsModal = new bootstrap.Modal(modal);
 
-    // Handle copy button click
-    document.getElementById('copyModalContent').addEventListener('click', function() {
+    // Handle copy button clicks
+    document.getElementById('copyModalContentTop').addEventListener('click', function() {
+        copyToClipboard(content);
+    });
+    document.getElementById('copyModalContentBottom').addEventListener('click', function() {
         copyToClipboard(content);
     });
 
