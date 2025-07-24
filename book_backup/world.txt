@@ -1,98 +1,108 @@
-### **WORLD BIBLE: ELYSIA - THE FEVERED DREAM**
-**OVERVIEW:**
-Elysia is a world of stark, unsettling duality, a "fevered dream" for the uninitiated. To an outsider like Leo, it feels both hyper-real and fundamentally irrational, swinging wildly between overwhelming, almost sickening beauty and a deep, abyssal darkness. This duality stems from a cosmic conflict between two forces: **Aegion’s Blood**, a latent power of harmony and restoration, and **Asakael**, an active entity of corruption and destruction. The very fabric of reality, **The Weave**, is their battleground. While parts of Elysia remain protected by an intact Weave, the encroaching "Rot" from Asakael's influence is forcing a great migration, creating a world on the brink of collapse where time itself is not absolute.
----
-### **I. THE LAND AND ITS SCARS: GEOGRAPHY**
-Elysia's geography is a direct reflection of The Weave's integrity. The Rot spreads relentlessly from the deep south, pushing northwards.
-**A. UNTAINTED LANDS (WEAVE INTACT)**
-These lands are a sensory assault of life. Colors possess a vibrant, hyper-real quality; the sky is a profound, cloudless blue, and the grass is an emerald green that feels impossibly soft.
-- **Atmosphere:** Pleasant, vibrant, and intensely alive. Sounds are crisp and natural—birdsong, rustling leaves, clear water. Smells are fresh, earthy, and sweet with pollen.
-- **Key Regions:** The fertile **Midlands** and the **Northern Lands**. These regions contain prosperous towns, crystalline rivers like the **River Qi**, and the rare, powerful **Weave Pits**.
-**[MAJOR LOCATION] ELEIUM**
-- **Physical Description:** The largest city in Elysia, a sprawling mountain fortress carved into and built upon the steep slopes of **Mount Aethel**. Its architecture is a testament to resilience, a blend of natural rock formations and sturdy, multi-tiered stone buildings. This is not a city of gentle charm, but one of conscious, hardened stubbornness, born from generations spent taming the harsh mountain itself. For centuries, its primary adversaries were icy winds and treacherous slopes.
-- **Atmosphere:** The city is now grappling with a new, insidious threat. While the air remains clear and cool, a palpable tension has settled over Eleium. The psychological poison of the Rot, carried north with the desperate refugees, is a recent phenomenon that has begun to seep into the city's spirit. This manifests as an undercurrent of suspicion and anxiety that clashes with the city's proud, defiant nature.
-- **Key Features:** Impressive defensive walls and gates—monuments to a time when threats were purely physical. Steep, winding streets now feel constricted, filled with the murmur of worried conversations. Public squares are overflowing with refugee tents, a constant, visual reminder of the encroaching southern blight. A central Citadel houses a leadership struggling to apply old solutions to a new kind of problem.
-- **Sensory Details:** The feel of cool, solid stone underfoot, once a symbol of security, now feels brittle against an invisible threat. The echo of voices bouncing off mountain faces carries whispers of paranoia. The sight of proud, native citizens eyeing the wary refugees with a mixture of pity and fear. The scent of pine and stone is now often tinged with the smell of too many people living in close quarters.
-**B. CORRUPTED LANDS: THE ROT (WEAVE DAMAGED)**
-These are the blighted zones where Asakael's influence has taken hold.
-**[MAJOR LOCATION] THE SOUTHERN VALLEYS (THE METALLIC BLIGHT)**
-- **Physical Description:** The origin point of the current Rot. Jagged, dark mountains are wreathed in a perpetual, sickly miasma. Valley floors are barren or choked with dark, thorny vegetation that seems to writhe. Rivers are sluggish and murky.
-- **Atmosphere:** Oppressive, heavy, and eerily silent. A palpable sense of dread hangs in the air. This environment induces a creeping paranoia that makes people withdrawn, avoidant, and vulnerable.
-- **Key Features:** Twisted, black-barked trees with oily leaves. Rocky outcrops resembling monstrous faces. Patches of luminescent, cold fungi.
-- **Sensory Details:** A sharp, **metallic tang in the air**, like rust and old blood, that burns the nose and throat. An unnerving silence broken only by the mournful wind.
-**[MAJOR LOCATION] THE WEEPING SWAMP**
-- **Physical Description:** A vast, murky wetland between the Southern Valleys and the Midlands. Stagnant water reflects a perpetually bruised purple-grey sky. Gnarled, skeletal trees rise from the water, draped in sickly moss. The ground is a treacherous mix of solid earth and sucking mud. It is also a graveyard of **fallen cities**, like the ruined **Ull**, now half-submerged and blackened by fire.
-- **Atmosphere:** Cold, damp, and insidious. A feeling of decay and unending despair permeates the area, fostering profound hopelessness.
-- **Key Features:** Pools of black, viscous liquid. Skeletal remains of creatures half-submerged in the mire. The ruins of former cities consumed by the swamp. This is the primary habitat of Rotspawn.
-- **Sensory Details:** A heavy, earthy smell of rotting vegetation mixed with a cold, metallic undertone. The feeling of dampness seeping into one's bones. The squelch of mud and the rustle of things moving just beneath the water's surface.
-**[MAJOR LOCATION] RAUM**
-- **Physical Description:** A city on the very edge of the Weeping Swamp, acting as a desperate buffer to the Midlands. Its stone and timber structures show signs of neglect and decay. A faint, sickly green glow from the swamp is often visible at night.
-- **Atmosphere:** Desperate and tense. The city is overcrowded with refugees who haven't yet reached Eleium, and resources are stretched thin. Hope is a fragile commodity.
-- **Key Features:** Makeshift barricades and watchtowers facing the swamp. Overburdened markets. Public spaces filled with the sick and dying.
-- **Sensory Details:** A constant chill in the air. The visible signs of the Rot's advance on the city's outskirts. The quiet desperation in the eyes of its inhabitants.
-**C. THE ANCIENT UNDERGROUND: THE WEAVERS' PATHS**
-- **Physical Description:** A sprawling, monumental network of tunnels and caverns of unknown origin. They range from smoothly carved passages where the rock appears *braided* or *interlaced* to rough-hewn natural caves. They were built by **"The Weavers,"** colossal, ancient beings who understood and manipulated the Weave, creating this network to connect and amplify **Weave Pits**.
-- **Atmosphere:** Varies from the profound, ancient silence of untouched sections to the oppressive, heavy air of tunnels tainted by the Rot seeping down from the surface.
-- **Key Features:** Elaborate, forgotten carvings on walls, too large for human handiwork. In one deep cavern, a depiction of two serpents chasing each other's tails—an **Ouroboros**. Strange, glowing mineral formations and vast, silent underground lakes.
-- **Sensory Details:** The echoing drip of water, the scent of damp earth, the feel of cold stone. In corrupted sections, the air grows heavy, and the walls might show a grey, sickly, spreading growth.
----
-### **II. THE UNSEEN WORLD: MAGIC & MYSTERIES**
-**THE WEAVE:**
-The fundamental "magical physics" of Elysia, a tangible network of energy that binds all things and possesses both spatial and **temporal dimensions**.
-- **Perception:** Those with Aegion's Blood perceive it as a **faint shimmer**. For Leo, his coin provides a physical **tingling** sensation when the Weave is strong and a cold, nauseating sensation when it is corrupt.
-- **Resonance & Dissonance:** The Weave's natural, harmonious state is **Resonance**. Asakael's influence creates **Dissonance**, a corrupted state that negatively affects mind, body, and environment.
-**ASAKAEL'S CORRUPTION:**
-Asakael’s power actively poisons the world. When he manifests, he creates **new, negative connections in the Weave**, causing "accidents" and spreading the Rot. His goal is to hijack the Weave and control Tia's power to rewrite reality into a realm of eternal, conscious torment.
-**AEGION’S BLOOD:**
-A rare power carried in Tia's bloodline that embodies pure Resonance.
-- **Origin:** An ancestor fell into a Weave Pit and their blood was infused with its power.
-- **Abilities:** Its primary function is to **"repair the Weave,"** mending its torn fibers. This is physically and mentally taxing. Its secret, world-altering ability is to open and close **The Gates**.
-**THE GATES:**
-Rifts to a raw, cosmic energy outside of normal time. Opening a Gate is a world-altering event, appearing as a swirling vortex of light and shadow with a bone-deep hum. This power can be used to permanently seal Asakael away or, if he controls it, to unmake the world.
-**WEAVE PITS:**
-Rare, natural formations where the Weave is exceptionally strong. They can be deep chasms or circular valleys. Birds instinctively avoid flying over them, and water mysteriously does not seep into them. They are nodes of raw, untainted power, often connected by the Weavers' Paths.
----
-### **III. KEY ARTIFACT: LEO'S COIN (THE PARADOX)**
-- **Physical Description:** A simple, worn coin of an unknown, slightly iridescent metal. Its surface is smooth from age, but a faint etching of an **Ouroboros** (two serpents chasing each other's tails) is visible.
-- **The Paradox of Origin:** The coin is a closed temporal loop. It is a normal coin from Leo's world that, at the story's climax, is super-charged with temporal energy and thrown back in time, landing where Leo finds it. **It is an artifact from its own future, containing the living memory of its own journey.**
-- **Function as a Weave Meter:** It tingles warmly in areas of strong Resonance (especially near Tia) and grows cold and nauseating in areas of Dissonance, acting as Leo's early warning system.
-- **Function as a Temporal Time Bomb:** Its true nature is a paradox. When Tia, the **Bearer of Aegion’s Blood**, touches the coin, her living timeline collides with the coin's *recorded* timeline. This creates a catastrophic feedback loop—**Annihilation by Totality**—forcing her to experience her past, present, and future simultaneously, threatening to erase her from existence.
-- **Leo's Role (The Temporal Anchor):** As an outsider from a linear reality, Leo is a "glitch" in the paradox. By anchoring himself mentally in his own world, he can impose the singular concept of "now" onto the temporal storm, stabilizing Tia and the coin's power.
----
-### **IV. PEOPLE & POLITICS: SOCIETY & CULTURE**
-**THE GREAT MIGRATION:**
-The spreading Rot has forced a mass migration northward from the Southern Valleys. This has created a massive refugee crisis, straining resources and fueling social tension in cities like Raum and, most critically, Eleium.
-**CULTURAL RESPONSES:**
-- **The Day of Colors:** An annual festival in untainted lands, a joyous and deliberate defiance of the encroaching darkness, celebrated with feasting, music, and brightly colored banners.
-- **Folk Beliefs:** Many common folk believe the Rot is caused by "sour winds," leading to the ritualistic wearing of cloth masks to protect themselves.
-**FACTIONS OF ELEIUM:**
-The city's stubborn, physically resilient culture is fracturing as it faces a new psychological threat.
-- **The Stonewatch:** A traditionalist, isolationist faction. They believe Eleium's duty is to its own walls and citizens. They advocate for closing the gates to refugees, whom they see as a drain on resources and carriers of mental corruption.
-- **The Open Hand:** A humanitarian guild of healers and providers. Overwhelmed but dedicated, they believe compassion is the only true defiance of Asakael's despair and work to help every refugee they can.
-- **The Seekers of the Weave:** A small, mystical group (likely connected to Sileus). They believe the solution lies not in walls or charity, but in rediscovering the ancient ways of The Weavers to fight the Rot at its source. They are viewed as dangerous radicals by the other factions.
-**ECONOMY UNDER STRAIN:**
-With the Rot poisoning agriculture, the economy is in crisis. New resources have become priceless.
-- **Glimmerwood:** A rare wood from northern forests that burns with a pure, bright light that repels Tainted creatures, making it invaluable for torches.
-- **Resonant Crystals:** Rare crystals from the mountains near Eleium that hum softly in the presence of a healthy Weave, used as talismans and divining tools.
----
-### **V. THE NATURAL WORLD: FLORA & FAUNA**
-- **Untainted Lands:** Flora is hyper-saturated and vibrant. Fauna is naturally colored and behaves according to its species.
-- **Corrupted Lands:** A distinction exists between two types of corrupted life:
-    - **The Tainted:** Local flora and fauna warped by ambient Dissonance. Plants are twisted and black; animals are emaciated, discolored, unnervingly silent, and behave erratically. They are tragic victims of the Rot.
-    - **Rotspawn:** Beings actively and maliciously *created* by Asakael from corrupted earth, wood, and bone. They are extensions of his will, serving as his soldiers. They are unnatural in form and uniformly hostile, representing a direct, organized threat.
----
-### **VI. ECHOES OF THE PAST: HISTORY & LEGENDS**
-- **Asakael's Millennial Sleep:** Before the current era, Asakael was defeated and entered a long dormancy. During this peace, knowledge of his true nature and the power of Aegion's Blood faded into myth.
-- **The Forgotten Bloodline:** The knowledge of Aegion's Blood was lost due to its rarity and the active, ruthless suppression of its bearers by Asakael's followers in the ancient past. This forced the bloodline into a tradition of secrecy for survival.
-- **The Weavers:** Ancient, colossal beings who created the Weavers' Paths. Their civilization predates recorded history, and their carvings (like the Ouroboros) suggest a profound understanding of the Weave's spatial and temporal dimensions.
-- **Sileus's Knowledge:** As a dedicated scholar of obscure texts, Sileus is one of the few living people who has pieced together these forgotten truths. The discovery of the Ouroboros carving and the Paradox Coin's nature, however, represents a truth beyond even his understanding, one he may fear to reveal.
----
-### **RECURRING ELEMENTS & DYNAMIC SHIFTS**
-- **Recurring Elements:** The duality of Day (hyper-real beauty) and Night (active darkness); the constant sensory input (overload/deprivation) for Leo; the creeping progression of the Rot from south to north; the ever-present refugee crisis; the coin as a tangible connection to the Weave.
-- **Changes Over Time:** Untainted lands will slowly show signs of corruption as the story progresses. The city of Raum will deteriorate further. Conversely, if Tia succeeds, small pockets of land may begin to heal. Asakael's direct manifestations (Rotspawn) will become more frequent and powerful. The Weavers' Paths may become more dangerous as the Rot seeps in.
----
-### **TRANSITIONS BETWEEN LOCATIONS**
-- **Untainted to Corrupted:** Travel involves a gradual, unsettling shift. The air grows heavy, colors become sickly, natural sounds die out, and Leo's coin grows cold.
-- **Day to Night:** A dramatic, immediate transformation where active shadows consume the world, forcing a retreat to fortified, lit spaces.
-- **Into the Underground:** Entrances are hidden and require exploration. Travel is characterized by echoes, darkness, and navigating the encroachment of the Rot, balanced by the discovery of ancient wonders.
-- **Refugee Routes:** The main roads north towards Raum and Eleium are choked with migrants, creating scenes of desperation, conflict, and the immense human cost of the Rot.
+### **LEO'S WORLD**
+
+This world is defined by its mundane reality and oppressive normalcy. It serves as the baseline against which Elysia's "fevered dream" quality is measured. Its physics are absolute, its timeline is linear, and its palette is muted.
+
+**\[LEO’S CITY - A MODERN METROPOLIS\]**
+
+-   **Physical Description:** A sprawling, modern city defined by concrete, glass, and asphalt. The architecture is utilitarian and anonymous, dominated by blocky office buildings and dense residential complexes. A constant, drizzling rain leaves the streets perpetually slick and grey, reflecting the muted neon signs of bodegas and bars. The city is in a state of quiet decay, with graffiti covering crumbling brickwork and litter collecting in overflowing bins and gutters.
+-   **Atmosphere:** Melancholic, oppressive, and monotonous. The perpetual grey wash of rain and cloud cover creates a sense of being trapped indoors even when outside. There's a feeling of isolation and weariness that permeates the city's inhabitants, who rush from place to place with heads down.
+-   **Key Features:**
+-   **The Carpet Warehouse:** A vast, soul-crushing building with towering steel shelves holding immense rolls of carpet. The air is thick with the smell of synthetic fibers and dust. Lighting is provided by humming, flickering fluorescent tubes that cast a sterile, greenish light. It contains a small, depressing breakroom and the slightly nicer office of Paul, the boss.
+-   **The Gutter:** A specific, grimy gutter on a rain-slicked side street, filled with murky water, cigarette butts, and urban detritus. This is the liminal space where the Paradox Coin waits, a tiny, overlooked anomaly in a world of oppressive normalcy.
+-   **Sensory Details:** The constant sound of traffic and rain. The smell of wet pavement, car exhaust, and damp fabric. The sight of grey skies, grey buildings, and reflections in puddles. The feeling of being perpetually damp and cold.
+
+* * *
+
+### **ELYSIA**
+
+Elysia is a world of stark, unsettling duality, a "fevered dream" for the uninitiated. Its reality is shaped by a cosmic conflict between Resonance (harmony) and Dissonance (corruption), making it swing wildly between overwhelming beauty and abyssal darkness. Its geography is a direct reflection of this conflict, with the land degrading as one travels from the pristine north to the corrupted south.
+
+#### **I. GEOGRAPHY: A LAND OF DUELING REALITIES**
+
+**THE UNTAINTED LANDS (NORTH)**
+
+-   **\[THE NORTHERN MIDLANDS\]**
+-   **Physical Description:** A vast expanse of rolling, vibrant green hills, ancient forests, and sun-drenched fields. The colors here are hyper-saturated; the grass is a deep, impossible emerald, and the sky is a piercing, cloudless azure. The land feels profoundly alive and untamed.
+-   **Key Features:** The Crumbling Riverbank where Leo arrives; Wayside Campfire Sites used by travelers.
+-   **\[THE RIVER QI (NORTHERN REACHES)\]**
+-   **Physical Description:** A wide, powerful, and crystal-clear waterway with a swift current. Its banks are lush and fertile. It represents the pure, untamed energy of the Untainted Lands.
+-   **\[ELEIUM - THE MOUNTAIN BASTION\]**
+-   **Physical Description:** A massive, multi-tiered city built into and upon the slopes of a great mountain. Its architecture is a fusion of natural rock and hewn stone, connected by steep, winding streets.
+-   **Atmosphere:** A city of fading hope. Its proud, defiant nature is being eroded by a new, creeping paranoia brought by a flood of refugees.
+-   **Key Features:** The choked Main Gate; Refugee Squares crowded with tents; the cramped boarding house where the group stays.
+
+**THE CONTESTED LANDS (THE BORDER)**
+
+-   **\[RAUM - THE DESPERATE CITY\]**
+-   **Physical Description:** A fortified city of weathered timber and crumbling stone, perched on the last hill before the Weeping Swamp. Its defensive walls face south, bristling with makeshift watchtowers.
+-   **Atmosphere:** Desperate, grim, and on the verge of collapse. Hope is a dwindling resource. This is the final, crumbling wall of order before utter despair.
+-   **Key Features:** The southern wall overlooking the swamp; overcrowded markets; public spaces serving as open-air infirmaries.
+-   **\[THE WEEPING SWAMP\]**
+-   **Physical Description:** A vast, misty wetland under a perpetually bruised purple-grey sky. Skeletal, gnarled trees rise from stagnant water. The ground is a treacherous labyrinth of sucking mud and tangled roots.
+-   **Atmosphere:** Utterly hopeless and insidious. The environment itself is a hostile entity, fostering despair and draining the will to live.
+-   **Key Features:** Pools of black, viscous liquid; skeletal remains of strange creatures; the blackened, half-submerged ruins of the city of Ull.
+
+**THE CORRUPTED LANDS (SOUTH)**
+
+-   **\[ULL - THE RUINED CITY & THE OBSIDIAN VAULT\]**
+-   **Physical Description:** The blackened, skeletal ruins of a once-great southern city, now half-sunk into the Weeping Swamp. Deep beneath it lies a hidden vault.
+-   **Atmosphere:** A place of profound tragedy and active menace, a tomb haunted by Asakael's forces.
+-   **Key Features:**
+-   **The Subterranean Vault:** A large, circular chamber with a high ceiling supported by massive pillars of hewn, black obsidian.
+-   **The Flawed Pillar:** One specific obsidian pillar with a deep, milky-white, crystalline fracture—an obvious, critical weak point that Arana targets.
+-   **\[THE SOUTHERN VALLEYS\]**
+-   **Physical Description:** A nightmarish, twisted landscape of jagged, black mountains and barren, cracked earth choked with writhing, thorny vegetation. The River Qi flows here as a thick, black sludge.
+-   **Atmosphere:** Oppressive, malevolent, and sanity-draining. This is not just a blighted land; it is an actively hostile environment.
+-   **\[ASAKAEL'S LAIR - THE CRATER OF NEGATION\]**
+-   **Physical Description:** Not a structure, but the *absence* of one. A crater of pure non-existence, a sphere of perfect blackness that does not reflect light. Reality itself seems to fray at its edges.
+-   **Atmosphere:** Absolute, conceptual horror. It exerts a crushing metaphysical pressure, a feeling of being actively unmade.
+
+**THE ANCIENT UNDERGROUND**
+
+-   **\[THE WEAVER'S PATHS\]**
+-   **Physical Description:** A vast, ancient subterranean network. The tunnels vary from smooth, circular passages where the rock appears *braided* to rough-hewn natural caverns. Faint, ethereal light is cast by strange minerals or fungi.
+-   **Key Features:** The Ouroboros Chamber, a large cavern with a colossal carving of two serpents chasing tails, with Leo's coin depicted at its center.
+
+#### **II. THE UNSEEN WORLD: MAGIC & MYSTERIES**
+
+-   **\[THE WEAVE\]:** The fundamental "magical physics" of Elysia, a tangible network of energy with spatial and temporal dimensions. Its natural state is **Resonance** (harmony), while its corrupted state is **Dissonance**.
+-   **\[ASAKAEL'S CORRUPTION\]:** The entity Asakael actively poisons The Weave, creating Dissonance that corrupts the land, its creatures, and people's minds. His lair is the source of this corruption.
+-   **\[AEGION'S BLOOD\]:** A rare power in Tia's bloodline that embodies pure Resonance. Its primary function is to repair The Weave. Its ultimate, secret ability is to trigger **Annihilation by Totality** when combined with the Paradox Coin.
+-   **\[THE GATE\]:** A shimmering, vertical rift in the air created by the overload of temporal energy. It is a swirling vortex of light and shadow that serves as a controlled portal between worlds.
+
+#### **III. KEY ARTIFACTS**
+
+-   **\[LEO'S COIN (THE PARADOX)\]**
+-   **Physical Description:** A simple, worn coin of an unknown, iridescent metal, bearing a faint etching of an Ouroboros (two serpents chasing tails).
+-   **Function:** It is a closed temporal loop. At the story's end, it is sent back in time to the gutter where Leo finds it. It functions as a **Weave Meter**, growing warm near Resonance and cold near Dissonance. Its true power is to act as the catalyst for the **Annihilation by Totality** when touched by Tia.
+
+#### **IV. PEOPLE & SOCIETY**
+
+-   **\[THE GREAT MIGRATION\]:** The spread of the Rot has forced a mass migration north, creating a massive refugee crisis that strains resources and fuels social tension in cities like Raum and Eleium.
+-   **\[FACTIONS OF ELEIUM\]:** The city's leadership is fractured.
+-   **The Stonewatch:** Isolationists who want to close the gates to refugees.
+-   **The Open Hand:** Humanitarians trying to help the refugees.
+-   **The Seekers of the Weave:** Mystics like Sileus who believe the Rot must be fought at its source.
+-   **\[ECONOMY UNDER STRAIN\]:** With agriculture failing, new resources like **Glimmerwood** (burns with a pure light) and **Resonant Crystals** (hum near a healthy Weave) have become priceless.
+
+#### **V. FLORA & FAUNA**
+
+-   **\[THE TAINTED\]:** Local flora and fauna warped by ambient Dissonance. Plants are twisted and black; animals are emaciated, discolored, and unnervingly silent. They are tragic victims.
+-   **\[ROTSPAWN\]:** Monstrous beings actively and maliciously *created* by Asakael from corrupted earth, wood, and bone. They are extensions of his will and serve as his soldiers (e.g., the Rot-Knights).
+
+#### **VI. HISTORY & LEGENDS**
+
+-   **\[THE WEAVERS\]:** Ancient, colossal beings who created the Weaver's Paths. Their carvings suggest a profound, forgotten understanding of The Weave's temporal dimensions.
+-   **\[THE FORGOTTEN BLOODLINE\]:** The knowledge of Aegion’s Blood was lost over time, forced into secrecy by past persecution from Asakael’s followers. Tia’s mother sending her to Eleium was a desperate attempt to reconnect with this lost history.
+
+* * *
+
+**RECURRING ELEMENTS & DYNAMIC SHIFTS**
+
+-   **Recurring Locations:** The River Qi, Eleium, Ull, The Weaver's Paths, and Leo's City all appear multiple times, with their atmosphere and function changing based on the story's progression.
+-   **Changes Over Time:** The central dynamic shift is the relentless spread of the Rot from south to north. Untainted lands will show signs of corruption, and cities like Raum will deteriorate further as the story progresses.
+
+**TRANSITIONS BETWEEN LOCATIONS**
+
+-   **The Descent:** Travel from north to south is a journey of environmental and psychological decay, where color, life, and hope are gradually leached from the world.
+-   **Surface to Underground:** Entering the Weaver's Paths is a transition from the living world to an ancient, silent, and timeless space, marked by echoes and strange, faint light.
