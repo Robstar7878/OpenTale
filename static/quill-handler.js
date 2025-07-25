@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         Quill.register(HighlightBlot);
         Quill.register(DividerBlot);
 
+        // Register the fullscreen toggle module
+        Quill.register('modules/toggleFullscreen', QuillToggleFullscreenButton);
+
         // Define custom icons
         const icons = Quill.import('ui/icons');
         icons['divider'] = '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/></svg>';
@@ -126,7 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             ['clean']
                         ],
                         handlers: this.getToolbarHandlers()
-                    }
+                    },
+                    toggleFullscreen: true
                 },
                 formats: ['bold', 'italic', 'underline', 'strike', 'blockquote', 'header', 'list', 'link', 'highlight', 'divider']
             });
