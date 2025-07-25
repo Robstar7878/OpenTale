@@ -166,8 +166,10 @@
                                 <div class="mt-3 d-flex">
                                     {% if chapter_content %}
                                     <button type="button" class="btn btn-warning me-2" id="regenerateChapterBtn">Regenerate Chapter</button>
+                                    <button type="button" class="btn btn-info" id="showPromptBtn">Show Regenerate Chapter Prompt</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success me-2" id="generateChapterBtn">Generate Chapter</button>
+                                    <button type="button" class="btn btn-info" id="showPromptBtn">Show Generate Chapter Prompt</button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -547,6 +549,48 @@ $(document).ready(function() {
 
     $('#masterPrompt').on('keyup', saveMasterPrompt);
 
+    // Show prompt
+    $('#showPromptBtn').click(function() {
+        const additionalContext = chatHistory.length > 0
+            ? "\n\nAdditional user requirements:\n" +
+              chatHistory.filter(msg => msg.role === 'user')
+                        .map(msg => "- " + msg.content)
+                        .join("\n")
+            : "";
+        
+        const masterPrompt = $('#masterPrompt').val();
+        const pointOfView = $('#pointOfView').val();
+        const tense = $('#tense').val();
+        const action_beats_content = $('#actionBeatsEditor-hidden').val();
+
+        const requestData = {
+            additional_context: additionalContext,
+            master_prompt: masterPrompt,
+            point_of_view: pointOfView,
+            tense: tense,
+            action_beats_content: action_beats_content
+        };
+
+        fetch(`/chapter_prompt/{{ chapter.chapter_number }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.prompt) {
+                showModalWithContent('Chapter Generation Prompt', data.prompt);
+            } else {
+                alert('Error fetching prompt.');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            alert('Error fetching prompt. Please try again.');
+        });
+    });
 });
 </script>
 {% endblock %}

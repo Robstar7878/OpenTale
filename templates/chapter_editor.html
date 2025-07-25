@@ -159,6 +159,7 @@
 
                                 <div class="mt-3 d-flex">
                                     <button type="button" class="btn btn-warning me-2" id="executeChapterReviewBtn">Execute Chapter Review</button>
+                                    <button type="button" class="btn btn-info" id="showPromptBtn">Show Execute Chapter Review Prompt</button>
                                 </div>
                             </div>
                         </div>
@@ -576,6 +577,51 @@ $(document).ready(function() {
     }, 500); // 500ms delay
 
     $('#masterPrompt').on('keyup', saveMasterPrompt);
+
+    // Show prompt
+    $('#showPromptBtn').click(function() {
+        const additionalContext = chatHistory.length > 0
+            ? "\n\nAdditional user requirements:\n" +
+              chatHistory.filter(msg => msg.role === 'user')
+                        .map(msg => "- " + msg.content)
+                        .join("\n")
+            : "";
+        
+        const masterPrompt = $('#masterPrompt').val();
+        const pointOfView = $('#pointOfView').val();
+        const tense = $('#tense').val();
+        const action_beats_content = $('#actionBeatsEditor-hidden').val();
+        const chapterContent = $('#originalChapterContentEditor-hidden').val();
+
+        const requestData = {
+            additional_context: additionalContext,
+            master_prompt: masterPrompt,
+            point_of_view: pointOfView,
+            tense: tense,
+            action_beats_content: action_beats_content,
+            chapter_content: chapterContent
+        };
+
+        fetch(`/chapter_editor_prompt/{{ chapter.chapter_number }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.prompt) {
+                showModalWithContent('Chapter Editing Prompt', data.prompt);
+            } else {
+                alert('Error fetching prompt.');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            alert('Error fetching prompt. Please try again.');
+        });
+    });
 });
 </script>
 {% endblock %}

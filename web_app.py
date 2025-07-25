@@ -924,6 +924,142 @@ def chapter_stream(chapter_number):
     )
 
 
+@app.route("/chapter_prompt/<int:chapter_number>", methods=["POST"])
+def chapter_prompt(chapter_number):
+    """Returns the fully formatted prompt for a chapter."""
+    chapters = get_chapters()
+
+    # Check if chapter exists
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
+
+    if not chapter_data:
+        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+
+    # Get data from the request
+    data = request.json
+    additional_context = data.get("additional_context", "")
+    master_prompt = data.get("master_prompt", "")
+    point_of_view = data.get("point_of_view", "Third-person limited")
+    tense = data.get("tense", "Past tense")
+    action_beats = data.get("action_beats_content", "")
+
+    # Get context from files
+    world_theme = get_world_theme()
+    characters = get_characters()
+
+    # Get previous chapter context
+    previous_context = ""
+    if chapter_number > 1:
+        prev_chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+        )
+        if os.path.exists(prev_chapter_path):
+            with open(prev_chapter_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+
+    # Combine chapter prompt with additional context
+    chapter_prompt_content = (
+        f"{chapter_data['prompt']}\n\n{additional_context}"
+        if additional_context
+        else chapter_data["prompt"]
+    )
+
+    # Initialize agents to get system prompt
+    book_agents = BookAgents(agent_config, chapters)
+    book_agents.create_agents(world_theme, len(chapters))
+    system_prompt = book_agents.system_prompts.get("writer", "")
+
+    # Format the user prompt
+    user_prompt = prompts.CHAPTER_GENERATION_PROMPT.format(
+        master_prompt=master_prompt,
+        chapter_number=chapter_number,
+        chapter_title=chapter_data["title"],
+        chapter_outline=chapter_prompt_content,
+        world_theme=world_theme,
+        relevant_characters=characters,
+        scene_details="",
+        action_beats=action_beats,
+        previous_context=previous_context,
+        point_of_view=point_of_view,
+        tense=tense,
+    )
+
+    # Combine system and user prompts
+    full_prompt = (
+        f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
+    )
+
+    return jsonify({"prompt": full_prompt})
+
+
+@app.route("/chapter_editor_prompt/<int:chapter_number>", methods=["POST"])
+def chapter_editor_prompt(chapter_number):
+    """Returns the fully formatted prompt for chapter editing."""
+    chapters = get_chapters()
+
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
+
+    if not chapter_data:
+        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+
+    data = request.json
+    additional_context = data.get("additional_context", "")
+    master_prompt = data.get("master_prompt", "")
+    point_of_view = data.get("point_of_view", "Third-person limited")
+    tense = data.get("tense", "Past tense")
+    action_beats = data.get("action_beats_content", "")
+    chapter_content = data.get("chapter_content", "")
+
+    world_theme = get_world_theme()
+    characters = get_characters()
+
+    previous_context = ""
+    if chapter_number > 1:
+        prev_chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+        )
+        if os.path.exists(prev_chapter_path):
+            with open(prev_chapter_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+
+    chapter_prompt_content = (
+        f"{chapter_data['prompt']}\n\n{additional_context}"
+        if additional_context
+        else chapter_data["prompt"]
+    )
+
+    book_agents = BookAgents(agent_config, chapters)
+    book_agents.create_agents(world_theme, len(chapters))
+    system_prompt = book_agents.system_prompts.get("editor", "")
+
+    user_prompt = prompts.CHAPTER_EDITING_PROMPT.format(
+        master_prompt=master_prompt,
+        chapter_number=chapter_number,
+        chapter_title=chapter_data["title"],
+        chapter_outline=chapter_prompt_content,
+        world_theme=world_theme,
+        relevant_characters=characters,
+        scene_details="",
+        action_beats=action_beats,
+        previous_context=previous_context,
+        point_of_view=point_of_view,
+        tense=tense,
+        chapter_content=chapter_content,
+    )
+
+    full_prompt = (
+        f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
+    )
+
+    return jsonify({"prompt": full_prompt})
+
+
 @app.route("/chapter_editor/<int:chapter_number>", methods=["GET"])
 def chapter_editor(chapter_number):
     """Generate or display a specific chapter for editing"""
