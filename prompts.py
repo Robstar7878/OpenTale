@@ -154,7 +154,7 @@ Based on the following:
 ---
 
 Write a complete chapter that:
-1. Follows the outlined plot points
+1. Follows the outlined plot points and action beats if provided
 2. Maintains consistent character voices and development
 3. Incorporates world-building details naturally
 4. Creates engaging prose with a mix of dialogue, action, and description
@@ -198,11 +198,12 @@ Based on the following:
 Provide a comprehensive edit that:
 1. Improves prose quality and flow
 2. Ensures character consistency
-3. Enhances descriptive elements
-4. Strengthens dialogue and character interactions
-5. Maintains continuity with established world and plot
-6. Fixes any grammatical or structural issues
-7. Ensures the chapter is at least 5000 words
+3. Ensures consistency with the outlined plot points and action beats if provided
+4. Enhances descriptive elements
+5. Strengthens dialogue and character interactions
+6. Maintains continuity with established world and plot
+7. Fixes any grammatical or structural issues
+8. Ensures the chapter is at least 5000 words
 
 Return the complete edited chapter.
 """
