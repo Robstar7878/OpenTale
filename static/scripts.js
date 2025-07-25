@@ -265,7 +265,7 @@ function showModalWithContent(title, content) {
                     </div>
                 </div>
                 <div class="modal-body">
-                    <pre><code id="modalContent">${content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
+                    <pre><code id="modalContent">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                 </div>
                 <div class="modal-footer d-flex">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

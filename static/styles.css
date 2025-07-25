@@ -100,6 +100,9 @@ body {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+.ql-editor p {
+    margin-bottom: 1em; /* Adjust the value to control spacing */
+}
 .ql-toolbar {
     display: flex;
     align-items: center;

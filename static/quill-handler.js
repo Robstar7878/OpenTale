@@ -28,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tables: false,
         strikethrough: false,
         tasklists: false,
-        simplifiedAutoLink: true
+        simplifiedAutoLink: true,
+        simpleLineBreaks: false, // Ensure single line breaks don't create new paragraphs
+        noHeaderId: true // Avoid adding IDs to headers
     });
 
     // Define and register custom Quill blots and icons
