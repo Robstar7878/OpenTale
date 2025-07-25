@@ -258,16 +258,20 @@ function showModalWithContent(title, content) {
                 <div class="modal-header">
                     <h5 class="modal-title">${title}</h5>
                     <div class="d-flex align-items-center ms-auto">
-                        <button type="button" class="btn btn-primary btn-sm me-2" id="copyModalContentTop">Copy to Clipboard</button>
+                        <button type="button" class="btn btn-link btn-sm me-2 copy-icon" id="copyModalContentTop" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy to Clipboard">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="modal-body">
-                    <pre><code>${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+                    <pre><code id="modalContent">${content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
                 </div>
                 <div class="modal-footer d-flex">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary ms-auto" id="copyModalContentBottom">Copy to Clipboard</button>
+                    <button type="button" class="btn btn-link btn-sm ms-auto copy-icon" id="copyModalContentBottom" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to Clipboard">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -283,6 +287,89 @@ function showModalWithContent(title, content) {
     });
     document.getElementById('copyModalContentBottom').addEventListener('click', function() {
         copyToClipboard(content);
+    });
+
+    // Clean up after modal is hidden
+    modal.addEventListener('hidden.bs.modal', function() {
+        modal.remove();
+    });
+
+    bsModal.show();
+}
+
+/**
+ * Shows a Bootstrap modal with two tabs, each containing pre-formatted content and a copy-to-clipboard button.
+ * @param {string} title The title of the modal.
+ * @param {string} tab1Title The title of the first tab.
+ * @param {string} tab1Content The pre-formatted content for the first tab.
+ * @param {string} tab2Title The title of the second tab.
+ * @param {string} tab2Content The pre-formatted content for the second tab.
+ */
+function showDualContentModal(title, tab1Title, tab1Content, tab2Title, tab2Content) {
+    // Remove any existing modals
+    const existingModal = document.getElementById('dualContentModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.className = 'modal fade';
+    modal.id = 'dualContentModal';
+    modal.tabIndex = -1;
+    modal.style.zIndex = 1050; /* Ensure modal is on top */
+    modal.innerHTML = `
+        <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">${title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-body-scrollable">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1-pane" type="button" role="tab" aria-controls="tab1-pane" aria-selected="true">${tab1Title}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2-pane" type="button" role="tab" aria-controls="tab2-pane" aria-selected="false">${tab2Title}</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="tab1-pane" role="tabpanel" aria-labelledby="tab1-tab" tabindex="0">
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="button" class="btn btn-link btn-sm copy-icon" id="copyTab1Content" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy to Clipboard">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                            <pre><code id="tab1Content">${tab1Content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
+                        </div>
+                        <div class="tab-pane fade" id="tab2-pane" role="tabpanel" aria-labelledby="tab2-tab" tabindex="0">
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="button" class="btn btn-link btn-sm copy-icon" id="copyTab2Content" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy to Clipboard">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                            <pre><code id="tab2Content">${tab2Content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const bsModal = new bootstrap.Modal(modal);
+
+    // Handle copy button clicks
+    document.getElementById('copyTab1Content').addEventListener('click', function() {
+        copyToClipboard(tab1Content);
+    });
+    document.getElementById('copyTab2Content').addEventListener('click', function() {
+        copyToClipboard(tab2Content);
     });
 
     // Clean up after modal is hidden

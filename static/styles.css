@@ -117,3 +117,38 @@ body {
 .ql-stat-value {
     font-weight: bold;
 }
+
+/* Styles for scrollable modal body */
+.modal-body-scrollable {
+    max-height: calc(100vh - 150px); /* Adjusted for more aggressive scrollbar */
+    overflow-y: auto;
+}
+
+.modal-body-scrollable pre {
+    max-height: 100%; /* Ensure pre tag doesn't overflow its parent */
+    overflow-y: auto; /* Add scrollbar to pre tag if content overflows */
+    user-select: text; /* Ensure text is selectable */
+}
+
+.modal-body-scrollable pre code {
+    user-select: text; /* Ensure text inside code tag is selectable */
+}
+
+/* Style for copy icon buttons */
+.copy-icon {
+    color: #6c757d; /* Bootstrap secondary color */
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.copy-icon:hover {
+    color: #0d6efd; /* Bootstrap primary color */
+    background-color: rgba(13, 110, 253, 0.1); /* Light primary background */
+}
+
+/* Ensure modal backdrop is below the modal */
+.modal-backdrop {
+    z-index: 1049 !important;
+}

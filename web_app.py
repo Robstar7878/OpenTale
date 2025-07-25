@@ -896,8 +896,7 @@ def _handle_chapter_stream(chapter_number, agent_name):
     # If requested, return the full prompt for debugging instead of generating
     if show_prompt:
         system_prompt = book_agents.system_prompts.get(agent_name, "")
-        full_prompt = f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
-        return jsonify({"prompt": full_prompt})
+        return jsonify({"system_prompt": system_prompt, "user_prompt": user_prompt})
 
     # Generate the content stream from the selected agent
     stream = book_agents.generate_content_stream(agent_name, user_prompt)

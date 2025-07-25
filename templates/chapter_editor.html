@@ -546,9 +546,18 @@ $(document).ready(function() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.prompt) {
+            if (data.system_prompt && data.user_prompt) {
+                showDualContentModal(
+                    'Chapter Editing Prompt',
+                    'System Prompt',
+                    data.system_prompt,
+                    'User Prompt',
+                    data.user_prompt
+                );
+            } else if (data.prompt) {
                 showModalWithContent('Chapter Editing Prompt', data.prompt);
-            } else {
+            }
+            else {
                 alert('Error fetching prompt.');
             }
         })
