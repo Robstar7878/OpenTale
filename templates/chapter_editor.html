@@ -196,20 +196,6 @@
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="h5 mb-0">Original Chapter Content (Read-Only)</h3>
-                            <div class="d-flex text-end">
-                                <div class="me-3" style="line-height: 1;">
-                                    <small class="text-muted" style="font-size: 0.7em;">Words</small>
-                                    <div id="originalWordCount" class="h5 mb-0">0</div>
-                                </div>
-                                <div class="me-3" style="line-height: 1;">
-                                    <small class="text-muted" style="font-size: 0.7em;">Characters</small>
-                                    <div id="originalCharCount" class="h5 mb-0">0</div>
-                                </div>
-                                <div style="line-height: 1;">
-                                    <small class="text-muted" style="font-size: 0.7em;">Sentences</small>
-                                    <div id="originalSentenceCount" class="h5 mb-0">0</div>
-                                </div>
-                            </div>
                         </div>
                         {{ quill_editor('originalChapterContentEditor', 'original_chapter_content', original_chapter_content) }}
                     </div>
@@ -219,20 +205,6 @@
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="h5 mb-0">Editor Review Content</h3>
-                                <div class="d-flex text-end">
-                                    <div class="me-3" style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Words</small>
-                                        <div id="wordCount" class="h5 mb-0">0</div>
-                                    </div>
-                                    <div class="me-3" style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Characters</small>
-                                        <div id="charCount" class="h5 mb-0">0</div>
-                                    </div>
-                                    <div style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Sentences</small>
-                                        <div id="sentenceCount" class="h5 mb-0">0</div>
-                                    </div>
-                                </div>
                             </div>
                             {{ quill_editor('chapterContentEditor', 'chapter_content', chapter_content) }}
                         </div>
@@ -365,8 +337,6 @@ $(document).ready(function() {
                         // End of stream
                         $('#generatingIndicator').addClass('d-none');
                         $('#executeChapterReviewBtn').prop('disabled', false);
-                        updateContentStats();
-
                         // Reset chat history after generating
                         chatHistory = [];
                         $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been edited! You can continue to add details or make changes to refine it further.</p></div>');
@@ -519,42 +489,6 @@ $(document).ready(function() {
         };
     }
 
-    // Update content stats
-    function updateContentStats() {
-        const chapterContentEditorElement = document.getElementById('chapterContentEditor');
-        const chapterQuill = chapterContentEditorElement ? chapterContentEditorElement.quill : null;
-        if (chapterQuill) {
-            const content = chapterQuill.getText();
-            const stats = calculateTextStats(content);
-            $('#wordCount').text(stats.wordCount);
-            $('#charCount').text(stats.charCount);
-            $('#sentenceCount').text(stats.sentenceCount);
-        }
-    }
-
-    // Update original content stats
-    function updateOriginalContentStats() {
-        const originalChapterContentEditorElement = document.getElementById('originalChapterContentEditor');
-        const originalChapterQuill = originalChapterContentEditorElement ? originalChapterContentEditorElement.quill : null;
-        if (originalChapterQuill) {
-            const content = originalChapterQuill.getText();
-            const stats = calculateTextStats(content);
-            $('#originalWordCount').text(stats.wordCount);
-            $('#originalCharCount').text(stats.charCount);
-            $('#originalSentenceCount').text(stats.sentenceCount);
-        }
-    }
-
-    // Initial calculation
-    updateContentStats();
-    updateOriginalContentStats();
-
-    // Update on keyup
-    const chapterContentEditorElement = document.getElementById('chapterContentEditor');
-    const chapterQuill = chapterContentEditorElement ? chapterContentEditorElement.quill : null;
-    if(chapterQuill) {
-        chapterQuill.on('text-change', debounce(updateContentStats, 250));
-    }
 
     // Save master prompt with debounce
     const saveMasterPrompt = debounce(function() {

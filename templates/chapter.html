@@ -207,20 +207,6 @@
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="h5 mb-0">Chapter Content</h3>
-                                <div class="d-flex text-end">
-                                    <div class="me-3" style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Words</small>
-                                        <div id="wordCount" class="h5 mb-0">0</div>
-                                    </div>
-                                    <div class="me-3" style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Characters</small>
-                                        <div id="charCount" class="h5 mb-0">0</div>
-                                    </div>
-                                    <div style="line-height: 1;">
-                                        <small class="text-muted" style="font-size: 0.7em;">Sentences</small>
-                                        <div id="sentenceCount" class="h5 mb-0">0</div>
-                                    </div>
-                                </div>
                             </div>
                             {{ quill_editor('chapterContentEditor', 'chapter_content', chapter_content) }}
                         </div>
@@ -351,8 +337,6 @@ $(document).ready(function() {
                         // End of stream
                         $('#generatingIndicator').addClass('d-none');
                         $('#generateChapterBtn, #regenerateChapterBtn').prop('disabled', false);
-                        updateContentStats();
-
                         // Reset chat history after generating
                         chatHistory = [];
                         $('#chatMessages').html('<div class="text-center p-3"><p>Chapter has been generated! You can continue to add details or make changes to refine it further.</p></div>');
@@ -505,27 +489,6 @@ $(document).ready(function() {
         };
     }
     
-    // Update content stats
-    function updateContentStats() {
-        const chapterQuill = $('#chapterContentEditor').data('quill');
-        if (chapterQuill) {
-            const content = chapterQuill.getText();
-            const stats = calculateTextStats(content);
-            $('#wordCount').text(stats.wordCount);
-            $('#charCount').text(stats.charCount);
-            $('#sentenceCount').text(stats.sentenceCount);
-        }
-    }
-
-    // Initial calculation
-    updateContentStats();
-
-    // Update on keyup
-    const chapterContentEditorElement = document.getElementById('chapterContentEditor');
-    const chapterQuill = chapterContentEditorElement ? chapterContentEditorElement.quill : null;
-    if(chapterQuill) {
-        chapterQuill.on('text-change', debounce(updateContentStats, 250));
-    }
 
     // Save master prompt with debounce
     const saveMasterPrompt = debounce(function() {
