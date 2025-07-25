@@ -988,6 +988,7 @@ def chapter_editor(chapter_number):
 
     master_prompt = get_master_prompt()
     action_beats_content = get_action_beats(chapter_number)
+    settings = get_settings()
 
     # Get point of view and tense from settings
     chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
@@ -999,6 +1000,7 @@ def chapter_editor(chapter_number):
         request, chapters, chapter_number
     )
 
+    # Render the chapter template with all the data
     return render_template(
         "chapter_editor.html",
         chapter=chapter_data,
@@ -1770,7 +1772,7 @@ def finalize_outline_stream():
 def parse_outline_to_chapters(outline_content, num_chapters):
     """Helper function to parse outline content into structured chapter format"""
 
-    # Clean content to simplofy chapter extraction
+    # Clean content to simplify chapter extraction
     outline_content = outline_content.replace("\r\n", "\n")
     outline_content = re.sub(r"\n{2,}", "\n\n", outline_content)
 
@@ -1789,8 +1791,14 @@ def parse_outline_to_chapters(outline_content, num_chapters):
         else:
             outline_text = outline_content
 
-        # Split by chapter using a more specific regex to avoid duplicate chapters
-        chapter_matches = re.finditer(r"Chapter\s+(\d+):\s+([^\n]+)", outline_text)
+        # Remove Act sections before parsing chapters
+        outline_text = re.sub(r"###\s+\**Act\s+\w+:.+\n", "", outline_text)
+        outline_text = re.sub(r"###\s+\**Epilogue\**.+\n", "", outline_text)
+
+        # Split by chapter using regex that accounts for optional ** around title
+        chapter_matches = re.finditer(
+            r"Chapter\s+(\d+):\s+\*?\*?([^\n*]+)\*?\*?", outline_text
+        )
         seen_chapters = set()
 
         for match in chapter_matches:
@@ -1816,10 +1824,21 @@ def parse_outline_to_chapters(outline_content, num_chapters):
                 chapter_content = outline_text[start_pos:].strip()
 
             # Extract just the content part, not including the chapter title line
-            content_lines = chapter_content.split("\n")
+            content_lines = chapter_content.split("\n")[1:]  # Skip the title line
+            # Filter out empty lines and strip each line
+            content_lines = [line.strip() for line in content_lines if line.strip()]
+            # Join lines without adding trailing newline
             chapter_description = (
-                "\n".join(content_lines[1:]) if len(content_lines) > 1 else ""
+                "\n".join(content_lines).rstrip() if content_lines else ""
             )
+
+            # Clean the chapter description by removing leading/trailing newlines and **
+            chapter_description = re.sub(
+                r"^\n+|\n+$", "", chapter_description
+            )  # Remove leading and trailing newlines
+            chapter_description = re.sub(
+                r"\*+$", "", chapter_description
+            )  # Remove trailing **
 
             chapters.append(
                 {
