@@ -599,10 +599,11 @@ $(document).ready(function() {
             point_of_view: pointOfView,
             tense: tense,
             action_beats_content: action_beats_content,
-            chapter_content: chapterContent
+            chapter_content: chapterContent,
+            show_prompt: true
         };
 
-        fetch(`/chapter_editor_prompt/{{ chapter.chapter_number }}`, {
+        fetch(`/chapter_editor_stream/{{ chapter.chapter_number }}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

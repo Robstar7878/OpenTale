@@ -568,10 +568,11 @@ $(document).ready(function() {
             master_prompt: masterPrompt,
             point_of_view: pointOfView,
             tense: tense,
-            action_beats_content: action_beats_content
+            action_beats_content: action_beats_content,
+            show_prompt: true
         };
 
-        fetch(`/chapter_prompt/{{ chapter.chapter_number }}`, {
+        fetch(`/chapter_stream/{{ chapter.chapter_number }}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

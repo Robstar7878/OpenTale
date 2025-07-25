@@ -176,6 +176,22 @@ def get_settings():
     return {}
 
 
+def get_previous_chapter_context(chapter_number):
+    """Get context from the previous chapter to ensure continuity."""
+
+    previous_context = ""
+    if chapter_number > 1:
+        prev_chapter_path = os.path.join(
+            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
+        )
+        if os.path.exists(prev_chapter_path):
+            with open(prev_chapter_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+
+    return previous_context
+
+
 def save_settings(settings):
     """Save settings to file."""
     with open(SETTINGS_FILE, "w", encoding="utf-8") as f:
@@ -667,71 +683,62 @@ def save_outline():
 @app.route("/chapter/<int:chapter_number>", methods=["GET", "POST"])
 def chapter(chapter_number):
     """Generate or display a specific chapter"""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
 
-    # Check if chapter exists
-    chapter_data = None
-    for ch in chapters:
-        if ch["chapter_number"] == chapter_number:
-            chapter_data = ch
-            break
-
+    # If chapter not found, render an error page
     if not chapter_data:
         return render_template(
             "error.html", message=f"Chapter {chapter_number} not found"
         )
 
-    settings = get_settings()
-
+    # Handle POST request for chapter generation (non-streaming)
     if request.method == "POST":
+        # Get data from the form
+
         # Get any additional context from the chat interface
         additional_context = request.form.get("additional_context", "")
+
         master_prompt = request.form.get("master_prompt", "")
         point_of_view = request.form.get("point_of_view", "Third-person limited")
         tense = request.form.get("tense", "Past tense")
         action_beats = request.form.get("action_beats_content", "")
 
-        # Save to settings
+        # Save chapter-specific settings
         settings_to_save = get_settings()
         if "chapters" not in settings_to_save:
             settings_to_save["chapters"] = {}
         if str(chapter_number) not in settings_to_save["chapters"]:
             settings_to_save["chapters"][str(chapter_number)] = {}
-
         settings_to_save["chapters"][str(chapter_number)]["point_of_view"] = (
             point_of_view
         )
         settings_to_save["chapters"][str(chapter_number)]["tense"] = tense
         save_settings(settings_to_save)
 
-        # Generate chapter content
+        # Load foundational book data
         world_theme = get_world_theme()
         characters = get_characters()
 
-        # Get previous chapters context
-        previous_context = ""
-        if chapter_number > 1:
-            prev_chapter_path = os.path.join(
-                CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-            )
-            if os.path.exists(prev_chapter_path):
-                with open(prev_chapter_path, "r") as f:
-                    # Get a summary or the last few paragraphs
-                    content = f.read()
-                    previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+        # Get context from the previous chapter to ensure continuity
+        previous_context = get_previous_chapter_context(chapter_number)
 
         # Initialize agents for chapter generation
         book_agents = BookAgents(agent_config, chapters)
         book_agents.create_agents(world_theme, len(chapters))
 
-        # Add the additional context from chat to the chapter prompt
+        # Combine base prompt with chat context
         chapter_prompt = (
             f"{chapter_data['prompt']}\n\n{additional_context}"
             if additional_context
             else chapter_data["prompt"]
         )
 
-        # Generate the chapter
+        # Generate the chapter content
         chapter_content = book_agents.generate_content(
             "writer",
             prompts.CHAPTER_GENERATION_PROMPT.format(
@@ -749,51 +756,48 @@ def chapter(chapter_number):
             ),
         )
 
-        # Clean and save chapter content
+        # Clean and save the generated content
         chapter_content = chapter_content.strip()
         chapter_path = os.path.join(
             CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
         )
-        with open(chapter_path, "w") as f:
+        with open(chapter_path, "w", encoding="utf-8") as f:
             f.write(chapter_content)
 
         return jsonify({"chapter_content": chapter_content})
 
-    # GET request - show chapter page with existing content if available
+    # Handle GET request to display the chapter page
+    # Load existing chapter content if it exists
     chapter_content = ""
     chapter_path = os.path.join(
         CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
     )
     if os.path.exists(chapter_path):
-        with open(chapter_path, "r") as f:
+        with open(chapter_path, "r", encoding="utf-8") as f:
             chapter_content = f.read().strip()
 
+    # Load other necessary data for the template
     master_prompt = get_master_prompt()
+    action_beats_content = get_action_beats(chapter_number)
+    settings = get_settings()
 
-    action_beats_path = os.path.join(
-        CHAPTERS_DIR, f"chapter_{chapter_number}_action_beats{TEXT_EXTENSION}"
-    )
-    action_beats_content = ""
-    if os.path.exists(action_beats_path):
-        with open(action_beats_path, "r") as f:
-            action_beats_content = f.read()
-
-    # Get chapter-specific settings or defaults
+    # Get chapter-specific settings or use defaults
     chapter_settings = settings.get("chapters", {}).get(str(chapter_number), {})
     point_of_view = chapter_settings.get("point_of_view", "Third-person limited")
     tense = chapter_settings.get("tense", "Past tense")
 
-    # Get chapter navigation pagination
+    # Get pagination data for chapter navigation
     chapters_paginated = get_paginated_chapters_from_request(
         request, chapters, chapter_number
     )
 
+    # Render the chapter template with all the data
     return render_template(
         "chapter.html",
         chapter=chapter_data,
         chapter_content=chapter_content,
         action_beats_content=action_beats_content,
-        chapters=chapters,  # Pass the full chapters list for total count
+        chapters=chapters,
         chapters_paginated=chapters_paginated,
         master_prompt=master_prompt,
         point_of_view=point_of_view,
@@ -801,18 +805,16 @@ def chapter(chapter_number):
     )
 
 
-@app.route("/chapter_stream/<int:chapter_number>", methods=["POST"])
-def chapter_stream(chapter_number):
-    """Generate or display a specific chapter"""
+def _handle_chapter_stream(chapter_number, agent_name):
+    """A helper function to handle chapter stream generation for both writer and editor."""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
 
-    # Check if chapter exists
-    chapter_data = None
-    for ch in chapters:
-        if ch["chapter_number"] == chapter_number:
-            chapter_data = ch
-            break
-
+    # Return a 404 error if the chapter is not found
     if not chapter_data:
         return Response(
             json.dumps({"error": f"Chapter {chapter_number} not found"}),
@@ -820,78 +822,84 @@ def chapter_stream(chapter_number):
             mimetype="application/json",
         )
 
-    # Get any additional context from the chat interface
+    # Parse incoming JSON data from the request
     data = request.json
+
+    # Get any additional context from the chat interface
     additional_context = data.get("additional_context", "")
     master_prompt = data.get("master_prompt", "")
     point_of_view = data.get("point_of_view", "Third-person limited")
     tense = data.get("tense", "Past tense")
     action_beats = data.get("action_beats_content", "")
+    show_prompt = data.get("show_prompt", False)
+    chapter_content = data.get("chapter_content", "")  # For editor
 
-    # Save to settings
+    # Save chapter-specific settings (point_of_view and tense)
     settings_to_save = get_settings()
     if "chapters" not in settings_to_save:
         settings_to_save["chapters"] = {}
     if str(chapter_number) not in settings_to_save["chapters"]:
         settings_to_save["chapters"][str(chapter_number)] = {}
-
     settings_to_save["chapters"][str(chapter_number)]["point_of_view"] = point_of_view
     settings_to_save["chapters"][str(chapter_number)]["tense"] = tense
     save_settings(settings_to_save)
 
-    # Generate chapter content
+    # Load foundational book data
     world_theme = get_world_theme()
     characters = get_characters()
 
-    # Get previous chapters context
-    previous_context = ""
-    if chapter_number > 1:
-        prev_chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-        )
-        if os.path.exists(prev_chapter_path):
-            with open(prev_chapter_path, "r") as f:
-                # Get a summary or the last few paragraphs
-                content = f.read()
-                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+    # Get context from the previous chapter to ensure continuity
+    previous_context = get_previous_chapter_context(chapter_number)
 
-    # Initialize agents for chapter generation
+    # Initialize the book agents
     book_agents = BookAgents(agent_config, chapters)
     book_agents.create_agents(world_theme, len(chapters))
 
-    # Add the additional context from chat to the chapter prompt
+    # Combine the base chapter prompt with any additional context from the chat
     chapter_prompt = (
         f"{chapter_data['prompt']}\n\n{additional_context}"
         if additional_context
         else chapter_data["prompt"]
     )
 
-    # Generate the chapter
-    stream = book_agents.generate_content_stream(
-        "writer",
-        prompts.CHAPTER_GENERATION_PROMPT.format(
-            master_prompt=master_prompt,
-            chapter_number=chapter_number,
-            chapter_title=chapter_data["title"],
-            chapter_outline=chapter_prompt,
-            world_theme=world_theme,
-            relevant_characters=characters,  # You might want to filter for relevant characters only
-            scene_details="",  # This would be filled if scenes were generated first
-            action_beats=action_beats,
-            previous_context=previous_context,
-            point_of_view=point_of_view,
-            tense=tense,
-        ),
+    # Select the appropriate prompt template based on the agent
+    prompt_template = (
+        prompts.CHAPTER_EDITING_PROMPT
+        if agent_name == "editor"
+        else prompts.CHAPTER_GENERATION_PROMPT
     )
 
+    # Format the final user prompt with all the necessary context
+    user_prompt = prompt_template.format(
+        master_prompt=master_prompt,
+        chapter_number=chapter_number,
+        chapter_title=chapter_data["title"],
+        chapter_outline=chapter_prompt,
+        world_theme=world_theme,
+        relevant_characters=characters,  # You might want to filter for relevant characters only
+        scene_details="",  # This would be filled if scenes were generated first
+        action_beats=action_beats,
+        previous_context=previous_context,
+        point_of_view=point_of_view,
+        tense=tense,
+        chapter_content=chapter_content,  # Included for editor
+    )
+
+    # If requested, return the full prompt for debugging instead of generating
+    if show_prompt:
+        system_prompt = book_agents.system_prompts.get(agent_name, "")
+        full_prompt = f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
+        return jsonify({"prompt": full_prompt})
+
+    # Generate the content stream from the selected agent
+    stream = book_agents.generate_content_stream(agent_name, user_prompt)
+
+    # Define the generator function for the streaming response
     def generate():
         # Send a heartbeat to establish the connection
         yield 'data: {"content": ""}\n\n'
-
-        # Collect all chunks to save the complete response
         collected_content = []
-
-        # Iterate through the stream to get each chunk
+        # Process each chunk from the stream
         for chunk in stream:
             if (
                 chunk.choices
@@ -901,22 +909,22 @@ def chapter_stream(chapter_number):
             ):
                 content = chunk.choices[0].delta.content
                 collected_content.append(content)
-                # Send each token as it arrives
+                # Yield each piece of content as a server-sent event
                 yield f"data: {json.dumps({'content': content})}\n\n"
 
-        # Combine all chunks for the complete content
+        # Once streaming is complete, save the full content to a file
         complete_content = "".join(collected_content)
-
-        # Save chapter content to file
+        file_suffix = "_editor" if agent_name == "editor" else ""
         chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number}{TEXT_EXTENSION}"
+            CHAPTERS_DIR, f"chapter_{chapter_number}{file_suffix}{TEXT_EXTENSION}"
         )
         with open(chapter_path, "w", encoding="utf-8") as f:
             f.write(complete_content)
 
-        # Send completion marker
+        # Send a final marker to indicate the end of the stream
         yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
 
+    # Return the streaming response
     return Response(
         stream_with_context(generate()),
         mimetype="text/event-stream",
@@ -924,154 +932,23 @@ def chapter_stream(chapter_number):
     )
 
 
-@app.route("/chapter_prompt/<int:chapter_number>", methods=["POST"])
-def chapter_prompt(chapter_number):
-    """Returns the fully formatted prompt for a chapter."""
-    chapters = get_chapters()
-
-    # Check if chapter exists
-    chapter_data = next(
-        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
-    )
-
-    if not chapter_data:
-        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
-
-    # Get data from the request
-    data = request.json
-    additional_context = data.get("additional_context", "")
-    master_prompt = data.get("master_prompt", "")
-    point_of_view = data.get("point_of_view", "Third-person limited")
-    tense = data.get("tense", "Past tense")
-    action_beats = data.get("action_beats_content", "")
-
-    # Get context from files
-    world_theme = get_world_theme()
-    characters = get_characters()
-
-    # Get previous chapter context
-    previous_context = ""
-    if chapter_number > 1:
-        prev_chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-        )
-        if os.path.exists(prev_chapter_path):
-            with open(prev_chapter_path, "r", encoding="utf-8") as f:
-                content = f.read()
-                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
-
-    # Combine chapter prompt with additional context
-    chapter_prompt_content = (
-        f"{chapter_data['prompt']}\n\n{additional_context}"
-        if additional_context
-        else chapter_data["prompt"]
-    )
-
-    # Initialize agents to get system prompt
-    book_agents = BookAgents(agent_config, chapters)
-    book_agents.create_agents(world_theme, len(chapters))
-    system_prompt = book_agents.system_prompts.get("writer", "")
-
-    # Format the user prompt
-    user_prompt = prompts.CHAPTER_GENERATION_PROMPT.format(
-        master_prompt=master_prompt,
-        chapter_number=chapter_number,
-        chapter_title=chapter_data["title"],
-        chapter_outline=chapter_prompt_content,
-        world_theme=world_theme,
-        relevant_characters=characters,
-        scene_details="",
-        action_beats=action_beats,
-        previous_context=previous_context,
-        point_of_view=point_of_view,
-        tense=tense,
-    )
-
-    # Combine system and user prompts
-    full_prompt = (
-        f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
-    )
-
-    return jsonify({"prompt": full_prompt})
-
-
-@app.route("/chapter_editor_prompt/<int:chapter_number>", methods=["POST"])
-def chapter_editor_prompt(chapter_number):
-    """Returns the fully formatted prompt for chapter editing."""
-    chapters = get_chapters()
-
-    chapter_data = next(
-        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
-    )
-
-    if not chapter_data:
-        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
-
-    data = request.json
-    additional_context = data.get("additional_context", "")
-    master_prompt = data.get("master_prompt", "")
-    point_of_view = data.get("point_of_view", "Third-person limited")
-    tense = data.get("tense", "Past tense")
-    action_beats = data.get("action_beats_content", "")
-    chapter_content = data.get("chapter_content", "")
-
-    world_theme = get_world_theme()
-    characters = get_characters()
-
-    previous_context = ""
-    if chapter_number > 1:
-        prev_chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-        )
-        if os.path.exists(prev_chapter_path):
-            with open(prev_chapter_path, "r", encoding="utf-8") as f:
-                content = f.read()
-                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
-
-    chapter_prompt_content = (
-        f"{chapter_data['prompt']}\n\n{additional_context}"
-        if additional_context
-        else chapter_data["prompt"]
-    )
-
-    book_agents = BookAgents(agent_config, chapters)
-    book_agents.create_agents(world_theme, len(chapters))
-    system_prompt = book_agents.system_prompts.get("editor", "")
-
-    user_prompt = prompts.CHAPTER_EDITING_PROMPT.format(
-        master_prompt=master_prompt,
-        chapter_number=chapter_number,
-        chapter_title=chapter_data["title"],
-        chapter_outline=chapter_prompt_content,
-        world_theme=world_theme,
-        relevant_characters=characters,
-        scene_details="",
-        action_beats=action_beats,
-        previous_context=previous_context,
-        point_of_view=point_of_view,
-        tense=tense,
-        chapter_content=chapter_content,
-    )
-
-    full_prompt = (
-        f"--- SYSTEM PROMPT ---\n{system_prompt}\n\n--- USER PROMPT ---\n{user_prompt}"
-    )
-
-    return jsonify({"prompt": full_prompt})
+@app.route("/chapter_stream/<int:chapter_number>", methods=["POST"])
+def chapter_stream(chapter_number):
+    """Generate or display a specific chapter using the writer agent."""
+    return _handle_chapter_stream(chapter_number, "writer")
 
 
 @app.route("/chapter_editor/<int:chapter_number>", methods=["GET"])
 def chapter_editor(chapter_number):
     """Generate or display a specific chapter for editing"""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
 
-    # Check if chapter exists
-    chapter_data = None
-    for ch in chapters:
-        if ch["chapter_number"] == chapter_number:
-            chapter_data = ch
-            break
-
+    # If chapter not found, render an error page
     if not chapter_data:
         return render_template(
             "error.html", message=f"Chapter {chapter_number} not found"
@@ -1099,17 +976,8 @@ def chapter_editor(chapter_number):
             chapter_content = f.read()
         has_review = True
 
-    # Get previous chapters context
-    previous_context = ""
-    if chapter_number > 1:
-        prev_chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-        )
-        if os.path.exists(prev_chapter_path):
-            with open(prev_chapter_path, "r") as f:
-                prev_content = f.read()
-                # Take the last N characters of the previous chapter
-                previous_context = prev_content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+    # Get context from the previous chapter to ensure continuity
+    previous_context = get_previous_chapter_context(chapter_number)
 
     master_prompt = get_master_prompt()
     action_beats_content = get_action_beats(chapter_number)
@@ -1142,102 +1010,8 @@ def chapter_editor(chapter_number):
 
 @app.route("/chapter_editor_stream/<int:chapter_number>", methods=["POST"])
 def chapter_editor_stream(chapter_number):
-    """Generate or display a specific chapter"""
-    chapters = get_chapters()
-
-    # Check if chapter exists
-    chapter_data = None
-    for ch in chapters:
-        if ch["chapter_number"] == chapter_number:
-            chapter_data = ch
-            break
-
-    if not chapter_data:
-        return Response(
-            json.dumps({"error": f"Chapter {chapter_number} not found"}),
-            status=404,
-            mimetype="application/json",
-        )
-
-    data = request.json
-    # Get any additional context from the chat interface
-    additional_context = data.get("additional_context", "")
-    master_prompt = data.get("master_prompt", "")
-    point_of_view = data.get("point_of_view", "Third-person limited")
-    tense = data.get("tense", "Past tense")
-    action_beats = data.get("action_beats_content", "")
-    chapter_content = data.get("chapter_content", "")
-
-    # Generate chapter content
-    world_theme = get_world_theme()
-    characters = get_characters()
-
-    # Get previous chapters context
-    previous_context = ""
-    if chapter_number > 1:
-        prev_chapter_path = os.path.join(
-            CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-        )
-        if os.path.exists(prev_chapter_path):
-            with open(prev_chapter_path, "r") as f:
-                # Get a summary or the last few paragraphs
-                content = f.read()
-                previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
-
-    # Initialize agents for chapter generation
-    book_agents = BookAgents(agent_config, chapters)
-    book_agents.create_agents(world_theme, len(chapters))
-
-    # Add the additional context from chat to the chapter prompt
-    chapter_prompt = (
-        f"{chapter_data['prompt']}\n\n{additional_context}"
-        if additional_context
-        else chapter_data["prompt"]
-    )
-
-    # Generate the chapter
-    stream = book_agents.generate_content_stream(
-        "editor",
-        prompts.CHAPTER_EDITING_PROMPT.format(
-            master_prompt=master_prompt,
-            chapter_number=chapter_number,
-            chapter_title=chapter_data["title"],
-            chapter_outline=chapter_prompt,
-            world_theme=world_theme,
-            relevant_characters=characters,  # You might want to filter for relevant characters only
-            scene_details="",  # This would be filled if scenes were generated first
-            action_beats=action_beats,
-            previous_context=previous_context,
-            point_of_view=point_of_view,
-            tense=tense,
-            chapter_content=chapter_content,
-        ),
-    )
-
-    def generate():
-        # Send a heartbeat to establish the connection
-        yield 'data: {"content": ""}\n\n'
-
-        # Iterate through the stream to get each chunk
-        for chunk in stream:
-            if (
-                chunk.choices
-                and len(chunk.choices) > 0
-                and chunk.choices[0].delta
-                and chunk.choices[0].delta.content is not None
-            ):
-                content = chunk.choices[0].delta.content
-                # Send each token as it arrives
-                yield f"data: {json.dumps({'content': content})}\n\n"
-
-        # Send completion marker
-        yield f"data: {json.dumps({'content': '[DONE]'})}\n\n"
-
-    return Response(
-        stream_with_context(generate()),
-        mimetype="text/event-stream",
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
-    )
+    """Generate or display a specific chapter using the editor agent."""
+    return _handle_chapter_stream(chapter_number, "editor")
 
 
 @app.route("/inline_llm_continue_stream", methods=["POST"])
@@ -1405,24 +1179,14 @@ def save_setting():
 @app.route("/scene/<int:chapter_number>", methods=["GET", "POST"])
 def scene(chapter_number):
     """Generate a scene for a specific chapter"""
-    # Load chapters data - similar logic to the chapter route
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
+    chapter_data = next(
+        (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
+    )
 
-    # Print diagnostic info
-    print(f"Number of chapters loaded: {len(chapters)}")
-    print(f"Looking for chapter: {chapter_number}")
-    if chapters:
-        print(
-            f"Available chapter numbers: {[ch.get('chapter_number') for ch in chapters]}"
-        )
-
-    # Find chapter data
-    chapter_data = None
-    for ch in chapters:
-        if ch.get("chapter_number") == chapter_number:
-            chapter_data = ch
-            break
-
+    # If chapter not found, render an error page
     if not chapter_data:
         print(f"Chapter {chapter_number} not found in loaded data")
         # Try alternate approaches to find the chapter
@@ -1448,6 +1212,7 @@ def scene(chapter_number):
             }
             print("Creating stub chapter data")
 
+    # Handle POST request for scene generation
     if request.method == "POST":
         # scene description is not used in this context, but can be added if needed
         # scene_description = request.form.get("scene_description", "")
@@ -1456,16 +1221,8 @@ def scene(chapter_number):
         world_theme = get_world_theme()
         characters = get_characters()
 
-        # Get previous context
-        previous_context = ""
-        if chapter_number > 1:
-            prev_chapter_path = os.path.join(
-                CHAPTERS_DIR, f"chapter_{chapter_number - 1}{TEXT_EXTENSION}"
-            )
-            if os.path.exists(prev_chapter_path):
-                with open(prev_chapter_path, "r") as f:
-                    content = f.read()
-                    previous_context = content[-PREVIOUS_CHAPTER_CONTEXT_LENGTH:]
+        # Get context from the previous chapter to ensure continuity
+        previous_context = get_previous_chapter_context(chapter_number)
 
         # Initialize agents
         book_agents = BookAgents(agent_config, chapters)
@@ -1479,7 +1236,7 @@ def scene(chapter_number):
                 chapter_title=chapter_data.get("title", f"Chapter {chapter_number}"),
                 chapter_outline=chapter_data.get("prompt", ""),
                 world_theme=world_theme,
-                relevant_characters=characters,
+                relevant_characters=characters,  # You might want to filter for relevant characters only
                 previous_context=previous_context,
             ),
         )
@@ -1551,11 +1308,14 @@ def save_action_beats(chapter_number):
 @app.route("/action_beats_chat/<int:chapter_number>", methods=["GET"])
 def action_beats_chat(chapter_number):
     """Display action beats chat interface"""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
     chapter_data = next(
         (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
     )
 
+    # If chapter not found, render an error page
     if not chapter_data:
         return render_template(
             "error.html", message=f"Chapter {chapter_number} not found"
@@ -1573,13 +1333,20 @@ def action_beats_chat(chapter_number):
 @app.route("/action_beats_chat_stream/<int:chapter_number>", methods=["POST"])
 def action_beats_chat_stream(chapter_number):
     """Handle ongoing chat for action beats creation with streaming response"""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
     chapter_data = next(
         (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
     )
 
+    # Return a 404 error if the chapter is not found
     if not chapter_data:
-        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+        return Response(
+            json.dumps({"error": f"Chapter {chapter_number} not found"}),
+            status=404,
+            mimetype="application/json",
+        )
 
     data = request.json
     user_message = data.get("message", "")
@@ -1622,13 +1389,20 @@ def action_beats_chat_stream(chapter_number):
 @app.route("/finalize_action_beats_stream/<int:chapter_number>", methods=["POST"])
 def finalize_action_beats_stream(chapter_number):
     """Finalize the action beats based on chat history with streaming response"""
+
+    # Retrieve all chapters to find the relevant one
     chapters = get_chapters()
     chapter_data = next(
         (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
     )
 
+    # Return a 404 error if the chapter is not found
     if not chapter_data:
-        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+        return Response(
+            json.dumps({"error": f"Chapter {chapter_number} not found"}),
+            status=404,
+            mimetype="application/json",
+        )
 
     data = request.json
     chat_history = data.get("chat_history", [])
@@ -2117,15 +1891,20 @@ def api_paginated_chapters():
 @app.route("/api/chapter/<int:chapter_number>", methods=["GET"])
 def api_chapter(chapter_number):
     """API endpoint to get a specific chapter by number."""
-    chapters = get_chapters()
 
-    # Find the chapter data
+    # Retrieve all chapters to find the relevant one
+    chapters = get_chapters()
     chapter_data = next(
         (ch for ch in chapters if ch["chapter_number"] == chapter_number), None
     )
 
+    # Return a 404 error if the chapter is not found
     if not chapter_data:
-        return jsonify({"error": f"Chapter {chapter_number} not found"}), 404
+        return Response(
+            json.dumps({"error": f"Chapter {chapter_number} not found"}),
+            status=404,
+            mimetype="application/json",
+        )
 
     return jsonify(chapter_data)
 
