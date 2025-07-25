@@ -9,9 +9,10 @@
                    data-chapter-number="{{ ch.chapter_number }}">
                     <div class="d-flex justify-content-between align-items-center">
                         <span>Chapter {{ ch.chapter_number }}: {{ ch.title }}</span>
-                        <div class="d-flex flex-column">
-                            {% if ch.has_content %}<span class="badge bg-success mb-1">Has Content</span>{% endif %}
-                            {% if ch.has_been_reviewed %}<span class="badge bg-info">Reviewed</span>{% endif %}
+                        <div class="d-flex flex-column" style="width: 90px;">
+                            {% if ch.has_content %}<span class="badge bg-success mb-1 w-100 text-center" style="font-size: 0.60em !important; padding: 4px;">Content</span>{% endif %}
+                            {% if ch.has_action_beats %}<span class="badge bg-secondary mb-1 w-100 text-center" style="font-size: 0.60em !important; padding: 4px;">Action Beats</span>{% endif %}
+                            {% if ch.has_been_reviewed %}<span class="badge bg-info w-100 text-center" style="font-size: 0.60em !important; padding: 4px;">Reviewed</span>{% endif %}
                         </div>
                     </div>
                 </a>
@@ -19,7 +20,7 @@
         <div class="p-2">
             <p class="small text-muted mb-1 text-center">
                 Page {{ chapters_paginated.current_page }} of {{ chapters_paginated.total_pages }}
-                ({{ chapters_paginated.total_chapters }} chapters)
+                (Chapter {{ chapter.chapter_number }} of {{ chapters_paginated.total_chapters }})
             </p>
             <label for="chaptersPerPage" class="form-label small mb-1">Chapters per page:</label>
             <select class="form-select form-select-sm mb-2" id="chaptersPerPage">
@@ -35,6 +36,6 @@
             <button class="btn btn-sm btn-outline-secondary" id="nextPageBtn" data-page="next">Next Page &raquo;</button>
             <button class="btn btn-sm btn-outline-secondary" id="lastChapterBtn" data-page="last" {% if chapter.chapter_number == chapters|length %}disabled{% endif %}>Last &raquo;&raquo;</button>
         </div>
-        </div>{{chapter.chapter_number}} -> {{chapters|length}}</div>
+    </div>
     </div>
 </div>

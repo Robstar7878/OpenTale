@@ -89,7 +89,7 @@ def get_chapters():
             except json.JSONDecodeError:
                 chapters = []
 
-    # Add 'has_content' and 'has_been_reviewed' flags to each chapter
+    # Add 'has_content', 'has_been_reviewed', and 'has_action_beats' flags to each chapter
     for chapter in chapters:
         chapter_file_path = os.path.join(
             CHAPTERS_DIR, f"chapter_{chapter['chapter_number']}{TEXT_EXTENSION}"
@@ -103,6 +103,14 @@ def get_chapters():
         chapter["has_been_reviewed"] = (
             os.path.exists(editor_chapter_file_path)
             and os.path.getsize(editor_chapter_file_path) > 0
+        )
+        action_beats_file_path = os.path.join(
+            CHAPTERS_DIR,
+            f"chapter_{chapter['chapter_number']}_action_beats{TEXT_EXTENSION}",
+        )
+        chapter["has_action_beats"] = (
+            os.path.exists(action_beats_file_path)
+            and os.path.getsize(action_beats_file_path) > 0
         )
     return chapters
 
