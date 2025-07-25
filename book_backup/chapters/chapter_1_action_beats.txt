@@ -1,4 +1,4 @@
-ACTION\_BEATS:
+ACTION_BEATS:
 
 -   Beat 1: Leo, a man consumed by apathy after a humiliating breakup with his ex-girlfriend Cecilia and her new partner, his boss Paul, trudges home from his soul-crushing warehouse job through a bleak, rain-drenched city.
 -   Beat 2: Walking down a decaying street, Leo's gaze falls on a pile of overflowing garbage, a small monument to the urban decay that mirrors his internal state.

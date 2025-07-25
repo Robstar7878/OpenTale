@@ -1,4 +1,4 @@
-ACTION\_BEATS:
+ACTION_BEATS:
 
 -   Beat 1: Around a tense campfire, Leo breaks the silence, questioning Tia about why the monstrous creatures (the Rotspawn) specifically targeted her.
 -   Beat 2: Sileus seizes the moment to deliver a major revelation, explaining the ancient legend of Aegion's Blood—a bloodline with the power to heal the world's life-force (the Weave) or, in the wrong hands, give the evil entity Asakael the power to rewrite reality into eternal torment.

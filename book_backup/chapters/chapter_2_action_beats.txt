@@ -1,4 +1,4 @@
-ACTION\_BEATS:
+ACTION_BEATS:
 
 -   Beat 1: Before Leo's arrival in Elysia, in a chamber of living darkness, Asakael confronts a kneeling, damaged Rot-Knight that has failed in its mission to capture Tia.
 -   Beat 2: Asakael circles the failed servant, his voice a vibration in the mind, explaining that its failure represents an inefficiency in his grand design that must be corrected.

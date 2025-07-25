@@ -1,4 +1,4 @@
-ACTION\_BEATS:
+ACTION_BEATS:
 
 -   Beat 1: Battered and exhausted, Leo and Tia wash up on a muddy sandbank of the River Qi, coughing up water and struggling to breathe in the falling dusk.
 -   Beat 2: As they recover, Leo impulsively helps Tia sit up, and they exchange names for the first time. A tense, quiet understanding passes between the two survivors.

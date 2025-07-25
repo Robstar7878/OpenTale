@@ -1,4 +1,4 @@
-ACTION\_BEATS:
+ACTION_BEATS:
 
 -   Beat 1: A group of four survivors—the pragmatic warrior Arana, the empathetic healer Miel, the silent scout Kaa, and the mystic guide Sileus—travel cautiously through an ancient, vibrant forest in northern Elysia.
 -   Beat 2: As they near the River Qi, Sileus suddenly stumbles, overwhelmed by a violent, three-part disturbance he feels in the Weave.
