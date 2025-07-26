@@ -716,7 +716,7 @@ def chapter(chapter_number):
         tense = request.form.get("tense", "Past tense")
         action_beats = request.form.get("action_beats_content", "")
 
-        # Save chapter-specific settings
+        # Save chapter-specific settings (point_of_view and tense)
         settings_to_save = get_settings()
         if "chapters" not in settings_to_save:
             settings_to_save["chapters"] = {}
@@ -1165,6 +1165,28 @@ def save_master_prompt():
     master_prompt = request.form.get("master_prompt", "")
     with open(MASTER_PROMPT_FILE, "w") as f:
         f.write(master_prompt)
+    return jsonify({"success": True})
+
+
+@app.route("/save_chapter_style/<int:chapter_number>", methods=["POST"])
+def save_chapter_style(chapter_number):
+    """Save chapter-specific style settings (point_of_view and tense)."""
+    data = request.json
+    point_of_view = data.get("point_of_view")
+    tense = data.get("tense")
+
+    settings = get_settings()
+    if "chapters" not in settings:
+        settings["chapters"] = {}
+    if str(chapter_number) not in settings["chapters"]:
+        settings["chapters"][str(chapter_number)] = {}
+
+    if point_of_view is not None:
+        settings["chapters"][str(chapter_number)]["point_of_view"] = point_of_view
+    if tense is not None:
+        settings["chapters"][str(chapter_number)]["tense"] = tense
+
+    save_settings(settings)
     return jsonify({"success": True})
 
 

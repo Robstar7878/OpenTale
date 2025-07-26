@@ -511,6 +511,30 @@ $(document).ready(function() {
     }, 500); // 500ms delay
 
     $('#masterPrompt').on('keyup', saveMasterPrompt);
+    
+    // Save writing style with debounce
+    const saveWritingStyle = debounce(function() {
+        const pointOfView = $('#pointOfView').val();
+        const tense = $('#tense').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/save_chapter_style/{{ chapter.chapter_number }}',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                point_of_view: pointOfView,
+                tense: tense
+            }),
+            success: function() {
+                console.log('Writing style saved.');
+            },
+            error: function() {
+                console.error('Error saving writing style.');
+            }
+        });
+    }, 500); // 500ms delay
+
+    $('#pointOfView, #tense').on('change', saveWritingStyle);
 
     // Show prompt
     $('#showPromptBtn').click(function() {
