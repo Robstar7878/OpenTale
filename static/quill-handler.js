@@ -280,66 +280,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         handlePaste(event) {
-            // console.log('Paste event triggered'); // Debug: Confirm event is captured
             event.preventDefault();
             event.stopPropagation();
-
+    
             const clipboardData = event.clipboardData || window.clipboardData;
             if (!clipboardData) {
-                console.log('No clipboard data available');
-                return;
+                return; // No data to paste
             }
-
-            // Log all available clipboard types
-            // console.log('Clipboard types:', clipboardData.types); // Debug
-
-            // Prefer text/plain for Markdown detection
-            let text = clipboardData.getData('text/plain');
-            // console.log('Pasted text:', text); // Debug
-
-            // Get the current selection
+    
             const range = this.quill.getSelection(true) || { index: this.quill.getLength(), length: 0 };
-            // console.log('Selection range:', range); // Debug
-
-            // Delete any selected text
+    
+            // Delete any selected text to replace it with pasted content
             if (range.length > 0) {
                 this.quill.deleteText(range.index, range.length, Quill.sources.USER);
             }
-
-            if (this.isMarkdown(text)) {
-                // console.log('Detected Markdown content');
-                this.updateEditorWithMarkdown(text, 'user');
-            } else {
-                if (clipboardData.types.includes('text/html')) {
-                    // console.log('Handling as HTML content');
-                    let html = clipboardData.getData('text/html');
-                    // console.log('Raw HTML:', html); // Debug
-                    this.updateEditorWithHtml(html, 'user');
-                } else { 
-                    // Insert plain text for non-Markdown content
-                    // console.log('Inserting as plain text');
-                    this.quill.insertText(range.index, text, Quill.sources.USER);
-                    this.quill.setSelection(range.index + text.length, 0, Quill.sources.SILENT);
-                }
+    
+            const plainText = clipboardData.getData('text/plain');
+    
+            // Determine content type and paste accordingly (Priority: Markdown > HTML > Plain Text)
+            if (plainText && this.isMarkdown(plainText)) {
+                this.updateEditorWithMarkdown(plainText, 'user');
+            } else if (clipboardData.types.includes('text/html')) {
+                const html = clipboardData.getData('text/html');
+                this.updateEditorWithHtml(html, 'user');
+            } else if (plainText) {
+                this.quill.insertText(range.index, plainText, Quill.sources.USER);
+                this.quill.setSelection(range.index + plainText.length, 0, Quill.sources.SILENT);
             }
         }
 
         isMarkdown(text) {
             const lines = text.split('\n');
+            // More specific patterns to avoid false positives, especially for inline styles.
             const markdownPatterns = [
-                /^#{1,6}\s+/, // Headers
-                /^\s*[-*+]\s+/, // Unordered list items
-                /^\s*\d+\.\s+/, // Ordered lists
-                /\*\*[^\n]*\*\*/, // Bold
-                /_[^\n]*_/, // Italic
-                /\*[^\n]*\*/, // Italic
-                /\[.*\]\(.*\)/, // Links
-                /^\s*>\s+/, // Blockquotes
-                /^\s*```/, // Code blocks
-                /^\s*---\s*$/ // Horizontal rule
+                // Block-level patterns (strong indicators)
+                /^#{1,6}\s+/,      // Headers
+                /^\s*[-*+]\s+/,   // Unordered list items
+                /^\s*\d+\.\s+/,   // Ordered lists
+                /^\s*>\s+/,       // Blockquotes
+                /^\s*```/,        // Fenced code blocks
+                /^\s*---\s*$/,    // Horizontal Rules
+                /!\[.*\]\(.*\)/,   // Images
+                /\[.*\]\(.*\)/,   // Links
+
+                // Inline patterns (weaker indicators, made more specific)
+                // Requires non-whitespace characters immediately inside markers.
+                /\*\*(\S(.*\S)?)\*\*/, // Bold (e.g., **word**)
+                /__(\S(.*\S)?)__/,   // Bold (e.g., __word__)
+                /\*(\S(.*\S)?)\*/,   // Italic (e.g., *word*)
+                /_(\S(.*\S)?)_/,     // Italic (e.g., _word_)
+                /`[^`]+`/            // Inline code (e.g., `code`)
             ];
+
+            // If any line matches any pattern, we'll treat it as Markdown.
+            // This is a practical heuristic for paste handling.
             return lines.some(line => markdownPatterns.some(pattern => pattern.test(line)));
-        }        
+        }
         
         // --- LLM Handling ---
 
