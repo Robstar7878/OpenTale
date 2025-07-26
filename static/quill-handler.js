@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // State management
             this.llmSuggestionRange = null;
             this.abortController = null;
+            this.actionBeats = this.loadActionBeats();
 
             this.quill = this.initializeEditor();
 
@@ -361,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ context }),
+                    body: JSON.stringify({ context, action_beats: this.actionBeats }),
                     signal: this.abortController.signal
                 });
 
@@ -465,6 +466,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        loadActionBeats() {
+            const actionBeatsJSON = this.hiddenInput.dataset.actionBeats;
+            if (actionBeatsJSON) {
+                try {
+                    return JSON.parse(actionBeatsJSON);
+                } catch (e) {
+                    console.error('Error parsing action beats:', e);
+                    return '';
+                }
+            }
+            return '';
+        }
+
         updateEditorWithHtml(html, user = "api") {            
             this.quill.clipboard.dangerouslyPasteHTML(html);
 
@@ -497,9 +511,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const editor = this.quill.container.querySelector('.ql-editor');
                 editor.style.setProperty('--quill-font-size', `${savedSize}px`);
             }
-        }
+        }        
     }
-
+ 
     // Initialize all Quill editors on the page
     document.querySelectorAll('.quill-editor').forEach(editorNode => {
         // The QuillHandler constructor now attaches the instance to the editorNode.

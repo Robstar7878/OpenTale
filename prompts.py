@@ -230,17 +230,25 @@ Continue the story below without repeating the story unless it is for literary e
 
 Story:
 {context}
+
+Additional instructions for the revision if available (Ignore if not found):
+User Input:
+{user_input}
+
+Action Beats:
+{action_beats}
 """
 
 # Inline revise prompt
 INLINE_REVISE_PROMPT = """Instructions:
 You will be doing a revision of text within the passage tags [passage][/passage]. You will include only text and not tags. Follow any instructions found in between [ ] inside of the passage.
 
-Additional Context if Available (Ignore if not present):
-{documents}
-
 [passage]{context}[/passage]
 
 Additional instructions for the revision if available (Ignore if not found):
+User Input:
 {user_input}
+
+Action Beats:
+{action_beats}
 """
