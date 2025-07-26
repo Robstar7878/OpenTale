@@ -253,25 +253,22 @@ function showModalWithContent(title, content) {
     modal.id = 'dynamicModal';
     modal.tabIndex = -1;
     modal.innerHTML = `
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">${title}</h5>
-                    <div class="d-flex align-items-center ms-auto">
-                        <button type="button" class="btn btn-link btn-sm me-2 copy-icon" id="copyModalContentTop" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy to Clipboard">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-body-scrollable">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-link btn-sm copy-icon" id="copyModalContent" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy to Clipboard">
                             <i class="bi bi-clipboard"></i>
                         </button>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="modal-body">
                     <pre><code id="modalContent">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                 </div>
-                <div class="modal-footer d-flex">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-link btn-sm ms-auto copy-icon" id="copyModalContentBottom" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to Clipboard">
-                        <i class="bi bi-clipboard"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -282,11 +279,14 @@ function showModalWithContent(title, content) {
     const bsModal = new bootstrap.Modal(modal);
 
     // Handle copy button clicks
-    document.getElementById('copyModalContentTop').addEventListener('click', function() {
+    document.getElementById('copyModalContent').addEventListener('click', function() {
         copyToClipboard(content);
     });
-    document.getElementById('copyModalContentBottom').addEventListener('click', function() {
-        copyToClipboard(content);
+
+    // Initialize tooltips within the new modal
+    const tooltipTriggerList = [].slice.call(modal.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
     // Clean up after modal is hidden
@@ -341,7 +341,7 @@ function showDualContentModal(title, tab1Title, tab1Content, tab2Title, tab2Cont
                                     <i class="bi bi-clipboard"></i>
                                 </button>
                             </div>
-                            <pre><code id="tab1Content">${tab1Content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
+                            <pre><code id="tab1Content">${tab1Content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                         </div>
                         <div class="tab-pane fade" id="tab2-pane" role="tabpanel" aria-labelledby="tab2-tab" tabindex="0">
                             <div class="d-flex justify-content-end mt-2">
@@ -349,7 +349,7 @@ function showDualContentModal(title, tab1Title, tab1Content, tab2Title, tab2Cont
                                     <i class="bi bi-clipboard"></i>
                                 </button>
                             </div>
-                            <pre><code id="tab2Content">${tab2Content.replace(/</g, '<').replace(/>/g, '>')}</code></pre>
+                            <pre><code id="tab2Content">${tab2Content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                         </div>
                     </div>
                 </div>
