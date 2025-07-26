@@ -271,7 +271,7 @@ adhering to the following directives and craft rules at all times.
 
 ---
 ### Core Directives (Non-Negotiable Rules)
-1.  **Strict Plot Adherence:** You must follow the provided **Chapter Outline / Story Beats** with absolute precision and in the correct order. Do not add new plot points, deviate from the sequence, or skip any beats. Your task is to bring the provided outline to life.
+1.  **Strict Plot Adherence:** You must follow the provided **Chapter Outline / Action Beats** with absolute precision and in the correct order. Do not add new plot points, deviate from the sequence, or skip any beats. Your task is to bring the provided outline to life.
 2.  **Mandatory 5000-Word Minimum:** Each chapter **MUST be at least 5000 words**. This is a hard requirement. If you feel the story beats have been covered but the chapter is too short, you must expand upon the existing scenes with deeper internal monologue, richer sensory detail, and more nuanced character interactions. Do not rush to the end.
 3.  **Scene Integrity:** Write a single, complete chapter with a clear beginning, middle, and end as defined by the story beats. Conclude the chapter exactly where the final story beat specifies. Ensure all transitions are smooth and logical.
 
