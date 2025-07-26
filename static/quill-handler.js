@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formats: ['bold', 'italic', 'underline', 'strike', 'blockquote', 'header', 'list', 'link', 'highlight', 'divider']
             });
 
-            // Add event listeners
+            // Add text-change event listener
             quill.on('text-change', (delta, oldDelta, source) => {
                 if (source === 'user') {
                     this.updateHiddenInput();
@@ -145,6 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // Add paste event listener
+            quill.root.addEventListener('paste', this.handlePaste.bind(this), false);
+
+            // Add keydown event listener
             quill.root.addEventListener('keydown', this.handleKeyDown.bind(this));
 
             this.debouncedUpdateStats = this.debounce(this.updateStats, 250);
@@ -275,6 +279,68 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        handlePaste(event) {
+            // console.log('Paste event triggered'); // Debug: Confirm event is captured
+            event.preventDefault();
+            event.stopPropagation();
+
+            const clipboardData = event.clipboardData || window.clipboardData;
+            if (!clipboardData) {
+                console.log('No clipboard data available');
+                return;
+            }
+
+            // Log all available clipboard types
+            // console.log('Clipboard types:', clipboardData.types); // Debug
+
+            // Prefer text/plain for Markdown detection
+            let text = clipboardData.getData('text/plain');
+            // console.log('Pasted text:', text); // Debug
+
+            // Get the current selection
+            const range = this.quill.getSelection(true) || { index: this.quill.getLength(), length: 0 };
+            // console.log('Selection range:', range); // Debug
+
+            // Delete any selected text
+            if (range.length > 0) {
+                this.quill.deleteText(range.index, range.length, Quill.sources.USER);
+            }
+
+            if (this.isMarkdown(text)) {
+                // console.log('Detected Markdown content');
+                this.updateEditorWithMarkdown(text, 'user');
+            } else {
+                if (clipboardData.types.includes('text/html')) {
+                    // console.log('Handling as HTML content');
+                    let html = clipboardData.getData('text/html');
+                    // console.log('Raw HTML:', html); // Debug
+                    this.updateEditorWithHtml(html, 'user');
+                } else { 
+                    // Insert plain text for non-Markdown content
+                    // console.log('Inserting as plain text');
+                    this.quill.insertText(range.index, text, Quill.sources.USER);
+                    this.quill.setSelection(range.index + text.length, 0, Quill.sources.SILENT);
+                }
+            }
+        }
+
+        isMarkdown(text) {
+            const lines = text.split('\n');
+            const markdownPatterns = [
+                /^#{1,6}\s+/, // Headers
+                /^\s*[-*+]\s+/, // Unordered list items
+                /^\s*\d+\.\s+/, // Ordered lists
+                /\*\*[^\n]*\*\*/, // Bold
+                /_[^\n]*_/, // Italic
+                /\*[^\n]*\*/, // Italic
+                /\[.*\]\(.*\)/, // Links
+                /^\s*>\s+/, // Blockquotes
+                /^\s*```/, // Code blocks
+                /^\s*---\s*$/ // Horizontal rule
+            ];
+            return lines.some(line => markdownPatterns.some(pattern => pattern.test(line)));
+        }        
+        
         // --- LLM Handling ---
 
         async runLlm() {
@@ -386,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateHiddenInput() {
             const semanticHTML = this.quill.getSemanticHTML().replace(/(\u00A0|&nbsp;)/g, ' ');
+            // use turndown to convert HTML to Markdown
             this.hiddenInput.value = turndownService.turndown(semanticHTML);
         }
 
@@ -402,15 +469,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        updateEditorWithMarkdown(markdownContent) {
-            const html = showdownConverter.makeHtml(markdownContent);
+        updateEditorWithHtml(html, user = "api") {            
             this.quill.clipboard.dangerouslyPasteHTML(html);
 
             // Scroll to bottom to follow updates
-            this.quill.setSelection(this.quill.getLength(), 0, 'api');
+            this.quill.setSelection(this.quill.getLength(), 0, user);
 
             // Make sure to update the hidden input as well
             this.updateHiddenInput();
+        }
+
+        updateEditorWithMarkdown(markdownContent, user = "api") {
+            // use showdown to convert Markdown to HTML
+            const html = showdownConverter.makeHtml(markdownContent);
+            this.updateEditorWithHtml(html, user);
         }
 
         // --- Font Size ---
