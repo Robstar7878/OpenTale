@@ -15,6 +15,89 @@
  * - Converts editor content to Markdown for form submission.
  */
 document.addEventListener('DOMContentLoaded', () => {
+    const Clipboard = Quill.import('modules/clipboard');
+    const Delta = Quill.import('delta');
+
+    class MarkdownClipboard extends Clipboard {
+        constructor(quill, options) {
+            super(quill, options);
+            this.keepSelection = options.keepSelection || false;
+        }
+
+        onCapturePaste(e) {
+            if (e.defaultPrevented || !this.quill.isEnabled()) return;
+            e.preventDefault();
+            
+            const range = this.quill.getSelection();
+            if (range == null) return;
+
+            let text = e.clipboardData?.getData('text/plain');
+            let html = e.clipboardData?.getData('text/html');
+            let delta = new Delta().retain(range.index).delete(range.length);
+            let insertedLength = 0;
+
+            // Handle text/html/markdown content
+            if (this.isMarkdown(text)) {
+                // Convert Markdown to HTML using Showdown
+                const content = showdownConverter.makeHtml(text);
+                const convertedDelta = this.convert({ html: content });
+                delta = delta.concat(convertedDelta);
+                insertedLength = convertedDelta.length();
+            } else if (!html) {
+                // Handle plain text
+                delta = delta.insert(text);
+                insertedLength = text.length;
+            } else {
+                // Handle HTML content
+                const convertedDelta = this.convert({ html });
+                delta = delta.concat(convertedDelta);
+                insertedLength = convertedDelta.length();
+            }
+
+            this.quill.updateContents(delta, Quill.sources.USER);
+
+            // Update cursor position
+            const cursorPosition = range.index + insertedLength;
+            if (this.keepSelection) {
+                this.quill.setSelection(range.index, insertedLength, Quill.sources.SILENT);
+            } else {
+                this.quill.setSelection(cursorPosition, 0, Quill.sources.SILENT);
+            }
+
+            this.quill.scrollSelectionIntoView();
+
+            // dont need to call updateHiddenInput here, as it will be called by the text-change event
+        }
+
+        isMarkdown(text) {
+            const lines = text.split('\n');
+            // More specific patterns to avoid false positives, especially for inline styles.
+            const markdownPatterns = [
+                // Block-level patterns (strong indicators)
+                /^#{1,6}\s+/,      // Headers
+                /^\s*[-*+]\s+/,   // Unordered list items
+                /^\s*\d+\.\s+/,   // Ordered lists
+                /^\s*>\s+/,       // Blockquotes
+                /^\s*```/,        // Fenced code blocks
+                /^\s*---\s*$/,    // Horizontal Rules
+                /!\[.*\]\(.*\)/,   // Images
+                /\[.*\]\(.*\)/,   // Links
+
+                // Inline patterns (weaker indicators, made more specific)
+                // Requires non-whitespace characters immediately inside markers.
+                /\*\*(\S(.*\S)?)\*\*/, // Bold (e.g., **word**)
+                /__(\S(.*\S)?)__/,   // Bold (e.g., __word__)
+                /\*(\S(.*\S)?)\*/,   // Italic (e.g., *word*)
+                /_(\S(.*\S)?)_/,     // Italic (e.g., _word_)
+                /`[^`]+`/            // Inline code (e.g., `code`)
+            ];
+
+            // If any line matches any pattern, we'll treat it as Markdown.
+            // This is a practical heuristic for paste handling.
+            return lines.some(line => markdownPatterns.some(pattern => pattern.test(line)));
+        }
+    }
+    
     // Initialize converters once
     const turndownService = new TurndownService({
         headingStyle: 'atx',
@@ -55,6 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Register the fullscreen toggle module
         Quill.register('modules/toggleFullscreen', QuillToggleFullscreenButton);
+
+        // Register the Markdown Clipboard module
+        Quill.register('modules/clipboard', MarkdownClipboard);
 
         // Define custom icons
         const icons = Quill.import('ui/icons');
@@ -133,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         ],
                         handlers: this.getToolbarHandlers()
                     },
-                    toggleFullscreen: true
+                    toggleFullscreen: true,
+                    clipboard: true
                 },
                 formats: ['bold', 'italic', 'underline', 'strike', 'blockquote', 'header', 'list', 'link', 'highlight', 'divider']
             });
@@ -145,9 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.debouncedUpdateStats();
                 }
             });
-
-            // Add paste event listener
-            quill.root.addEventListener('paste', this.handlePaste.bind(this), false);
 
             // Add keydown event listener
             quill.root.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -278,65 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 keyMap[e.key].call(this);
             }
-        }
-
-        handlePaste(event) {
-            event.preventDefault();
-            event.stopPropagation();
-    
-            const clipboardData = event.clipboardData || window.clipboardData;
-            if (!clipboardData) {
-                return; // No data to paste
-            }
-    
-            const range = this.quill.getSelection(true) || { index: this.quill.getLength(), length: 0 };
-    
-            // Delete any selected text to replace it with pasted content
-            if (range.length > 0) {
-                this.quill.deleteText(range.index, range.length, Quill.sources.USER);
-            }
-    
-            const plainText = clipboardData.getData('text/plain');
-    
-            // Determine content type and paste accordingly (Priority: Markdown > HTML > Plain Text)
-            if (plainText && this.isMarkdown(plainText)) {
-                this.updateEditorWithMarkdown(plainText, 'user');
-            } else if (clipboardData.types.includes('text/html')) {
-                const html = clipboardData.getData('text/html');
-                this.updateEditorWithHtml(html, 'user');
-            } else if (plainText) {
-                this.quill.insertText(range.index, plainText, Quill.sources.USER);
-                this.quill.setSelection(range.index + plainText.length, 0, Quill.sources.SILENT);
-            }
-        }
-
-        isMarkdown(text) {
-            const lines = text.split('\n');
-            // More specific patterns to avoid false positives, especially for inline styles.
-            const markdownPatterns = [
-                // Block-level patterns (strong indicators)
-                /^#{1,6}\s+/,      // Headers
-                /^\s*[-*+]\s+/,   // Unordered list items
-                /^\s*\d+\.\s+/,   // Ordered lists
-                /^\s*>\s+/,       // Blockquotes
-                /^\s*```/,        // Fenced code blocks
-                /^\s*---\s*$/,    // Horizontal Rules
-                /!\[.*\]\(.*\)/,   // Images
-                /\[.*\]\(.*\)/,   // Links
-
-                // Inline patterns (weaker indicators, made more specific)
-                // Requires non-whitespace characters immediately inside markers.
-                /\*\*(\S(.*\S)?)\*\*/, // Bold (e.g., **word**)
-                /__(\S(.*\S)?)__/,   // Bold (e.g., __word__)
-                /\*(\S(.*\S)?)\*/,   // Italic (e.g., *word*)
-                /_(\S(.*\S)?)_/,     // Italic (e.g., _word_)
-                /`[^`]+`/            // Inline code (e.g., `code`)
-            ];
-
-            // If any line matches any pattern, we'll treat it as Markdown.
-            // This is a practical heuristic for paste handling.
-            return lines.some(line => markdownPatterns.some(pattern => pattern.test(line)));
-        }
+        }     
         
         // --- LLM Handling ---
 
