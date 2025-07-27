@@ -38,6 +38,14 @@
     "8": {
       "point_of_view": "Third-person limited",
       "tense": "Past tense"
+    },
+    "4": {
+      "point_of_view": "Third-person limited",
+      "tense": "Past tense"
+    },
+    "11": {
+      "point_of_view": "Third-person limited",
+      "tense": "Past tense"
     }
   }
 }
