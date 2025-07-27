@@ -589,5 +589,19 @@ $(document).ready(function() {
         });
     });
 });
+
+// Listen for the custom save event from the Quill editor
+document.addEventListener('save-content', function(e) {
+    // Determine which editor is active and trigger its save button
+    const activeElement = document.activeElement;
+    const chapterEditor = document.getElementById('chapterContentEditor');
+    const actionBeatsEditor = document.getElementById('actionBeatsEditor');
+
+    if (chapterEditor && chapterEditor.contains(activeElement)) {
+        $('#saveChapterBtn').click();
+    } else if (actionBeatsEditor && actionBeatsEditor.contains(activeElement)) {
+        $('#saveActionBeatsBtn').click();
+    }
+});
 </script>
 {% endblock %}

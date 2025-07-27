@@ -352,6 +352,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         handleKeyDown(e) {
+            // Handle Ctrl+S or Cmd+S for saving
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                // Dispatch a custom event that the parent page can listen for
+                this.editorNode.dispatchEvent(new CustomEvent('save-content', { bubbles: true }));
+                return; // Stop further processing
+            }
+
             const keyMap = {
                 '\\': this.runLlm,
                 '=': this.acceptLlmSuggestion,
@@ -362,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 keyMap[e.key].call(this);
             }
-        }     
+        }
         
         // --- LLM Handling ---
 
