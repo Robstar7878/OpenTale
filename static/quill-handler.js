@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add text-change event listener
             quill.on('text-change', (delta, oldDelta, source) => {
-                if (source === 'user') {
+                if (source === Quill.sources.USER) {
                     this.updateHiddenInput();
                     this.debouncedUpdateStats();
                 }
@@ -258,8 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return {
                 'divider': () => {
                     const range = this.quill.getSelection(true);
-                    this.quill.insertEmbed(range.index, 'divider', true, 'user');
-                    this.quill.setSelection(range.index + 1, 0, 'user');
+                    this.quill.insertEmbed(range.index, 'divider', true, Quill.sources.USER);
+                    this.quill.setSelection(range.index + 1, 0, Quill.sources.USER);
                 },
                 'showHtml': () => {
                     let html = this.quill.getSemanticHTML().replace(/(\u00A0|&nbsp;)/g, ' ');
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let insertAt = range.index + range.length;
             if (isSelection) {
-                this.quill.insertText(insertAt, ' ', 'user'); // Add space after selection
+                this.quill.insertText(insertAt, ' ', Quill.sources.USER); // Add space after selection
                 insertAt += 1;
             }
 
@@ -413,10 +413,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const data = JSON.parse(jsonString);
                                 if (data.content === '[DONE]') return;
                                 if (data.content) {
-                                    this.quill.insertText(insertAt, data.content, 'highlight', true, 'api');
+                                    this.quill.insertText(insertAt, data.content, 'highlight', true, Quill.sources.API);
                                     this.llmSuggestionRange.length += data.content.length;
                                     insertAt += data.content.length;
-                                    this.quill.setSelection(insertAt, 0, 'api');
+                                    this.quill.setSelection(insertAt, 0, Quill.sources.API);
                                 }
                             } catch (e) {
                                 console.error('Error parsing stream data:', e);
@@ -438,9 +438,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.quill.formatText(
                     this.llmSuggestionRange.index,
                     this.llmSuggestionRange.length,
-                    'highlight', false, 'api'
+                    'highlight', false, Quill.sources.API
                 );
-                this.quill.setSelection(this.llmSuggestionRange.index + this.llmSuggestionRange.length, 0, 'user');
+                this.quill.setSelection(this.llmSuggestionRange.index + this.llmSuggestionRange.length, 0, Quill.sources.USER);
                 this.llmSuggestionRange = null;
             }
         }
@@ -451,9 +451,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (this.llmSuggestionRange) {
                 const originalIndex = this.llmSuggestionRange.index;
-                this.quill.deleteText(this.llmSuggestionRange.index, this.llmSuggestionRange.length, 'api');
+                this.quill.deleteText(this.llmSuggestionRange.index, this.llmSuggestionRange.length, Quill.sources.API);
                 this.llmSuggestionRange = null;
-                this.quill.setSelection(originalIndex, 0, 'user');
+                this.quill.setSelection(originalIndex, 0, Quill.sources.USER);
             }
         }
 
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return op;
             });
-            this.quill.setContents(newOps, 'api');
+            this.quill.setContents(newOps, Quill.sources.API);
         }
 
         updateHiddenInput() {
