@@ -21,54 +21,67 @@ Elysia is a world of stark, unsettling duality, a "fevered dream" for the uninit
 
 **THE UNTAINTED LANDS (NORTH)**
 
--   **\[THE NORTHERN MIDLANDS\]**
--   **Physical Description:** A vast expanse of rolling, vibrant green hills, ancient forests, and sun-drenched fields. The colors here are hyper-saturated; the grass is a deep, impossible emerald, and the sky is a piercing, cloudless azure. The land feels profoundly alive and untamed.
--   **Key Features:** The Crumbling Riverbank where Leo arrives; Wayside Campfire Sites used by travelers.
--   **\[THE RIVER QI (NORTHERN REACHES)\]**
--   **Physical Description:** A wide, powerful, and crystal-clear waterway with a swift current. Its banks are lush and fertile. It represents the pure, untamed energy of the Untainted Lands.
+-   **\[THE NORTHERN LANDS\]**
+-   **Physical Description:** A vast expanse of rolling, vibrant green hills, ancient forests, and sun-drenched fields nestled south of the great northern mountain range. The colors here are hyper-saturated; the grass is a deep, impossible emerald, and the sky is a piercing, cloudless azure. This land feels profoundly alive and untamed.
+-   **\[MOUNTAIN AETHEL\]**
+-   **Physical Description:** The imposing central mountain range in the far north, characterized by snow-capped peaks and treacherous passes. It acts as a natural barrier, separating the western city of Eleium from Mithra on its other side.
 -   **\[ELEIUM - THE MOUNTAIN BASTION\]**
--   **Physical Description:** A massive, multi-tiered city built into and upon the slopes of a great mountain. Its architecture is a fusion of natural rock and hewn stone, connected by steep, winding streets.
+-   **Physical Description:** The largest city in Elysia. A massive, multi-tiered city built into and upon the slopes of a great mountain, west of Mountain Aethel. Its architecture is a fusion of natural rock and hewn stone, connected by steep, winding streets.
 -   **Atmosphere:** A city of fading hope. Its proud, defiant nature is being eroded by a new, creeping paranoia brought by a flood of refugees.
--   **Key Features:** The choked Main Gate; Refugee Squares crowded with tents; the cramped boarding house where the group stays.
+-   **Key Features:** The choked Main Gate; Refugee Squares crowded with tents; a major entrance to the Weaver's Paths.
+-   **\[MITHRA - THE NORTHERN STRONGHOLD\]**
+-   **Physical Description:** The northernmost city in Elysia, a remote stronghold on the other side of Mountain Aethel from Eleium. Known for its deep mines and resilient, stoic defenders.
+-   **Atmosphere:** Isolated and defensive. Hope here is not a dwindling resource but a hardened, practical commodity. They are survivors, not dreamers.
+-   **Key Features:** Fortified stone architecture; deep mine shafts; a major entrance to the Weaver's Paths.
+-   **\[THE RIVER QI (NORTHERN REACHES)\]**
+-   **Physical Description:** A wide, powerful, and crystal-clear waterway originating in the northern mountains. It flows south through the Northern Lands and the Midlands, its banks lush and fertile. It represents the pure, untamed energy of the Untainted Lands.
 
 **THE CONTESTED LANDS (THE BORDER)**
 
+-   **\[THE MIDLANDS\]**
+-   **Physical Description:** A vast, temperate region of plains and hills that serves as the sprawling border between the untainted north and the corrupted south. This is where Leo first arrives.
+-   **Key Features:** Leo's Entry Point (a forest west of the River Qi); Wayside Campfire Sites; a critical opening to the Weaver's Paths in its southern expanse.
 -   **\[RAUM - THE DESPERATE CITY\]**
--   **Physical Description:** A fortified city of weathered timber and crumbling stone, perched on the last hill before the Weeping Swamp. Its defensive walls face south, bristling with makeshift watchtowers.
+-   **Physical Description:** A fortified city of weathered timber and crumbling stone, perched on the last hills before the Weeping Swamp. Its defensive walls face south, bristling with makeshift watchtowers.
 -   **Atmosphere:** Desperate, grim, and on the verge of collapse. Hope is a dwindling resource. This is the final, crumbling wall of order before utter despair.
 -   **Key Features:** The southern wall overlooking the swamp; overcrowded markets; public spaces serving as open-air infirmaries.
 -   **\[THE WEEPING SWAMP\]**
--   **Physical Description:** A vast, misty wetland under a perpetually bruised purple-grey sky. Skeletal, gnarled trees rise from stagnant water. The ground is a treacherous labyrinth of sucking mud and tangled roots.
+-   **Physical Description:** A vast, misty wetland under a perpetually bruised purple-grey sky. Skeletal, gnarled trees rise from stagnant water. The River Qi becomes sluggish and dark as it flows through here. The ground is a treacherous labyrinth of sucking mud and tangled roots.
 -   **Atmosphere:** Utterly hopeless and insidious. The environment itself is a hostile entity, fostering despair and draining the will to live.
--   **Key Features:** Pools of black, viscous liquid; skeletal remains of strange creatures; the blackened, half-submerged ruins of the city of Ull.
 
 **THE CORRUPTED LANDS (SOUTH)**
 
--   **\[ULL - THE RUINED CITY & THE OBSIDIAN VAULT\]**
--   **Physical Description:** The blackened, skeletal ruins of a once-great southern city, now half-sunk into the Weeping Swamp. Deep beneath it lies a hidden vault.
--   **Atmosphere:** A place of profound tragedy and active menace, a tomb haunted by Asakael's forces.
--   **Key Features:**
--   **The Subterranean Vault:** A large, circular chamber with a high ceiling supported by massive pillars of hewn, black obsidian.
--   **The Flawed Pillar:** One specific obsidian pillar with a deep, milky-white, crystalline fracture—an obvious, critical weak point that Arana targets.
--   **\[THE SOUTHERN VALLEYS\]**
--   **Physical Description:** A nightmarish, twisted landscape of jagged, black mountains and barren, cracked earth choked with writhing, thorny vegetation. The River Qi flows here as a thick, black sludge.
+-   **\[THE SOUTHERN VALLEYS & CORRUPTED LANDS\]**
+-   **Physical Description:** A nightmarish, twisted landscape of jagged mountains and barren, cracked earth choked with writhing, thorny vegetation. The River Qi flows here as a thick, black sludge.
 -   **Atmosphere:** Oppressive, malevolent, and sanity-draining. This is not just a blighted land; it is an actively hostile environment.
+-   **\[ULL - THE RUINED CITY & THE HIDDEN WEAVE PIT\]**
+-   **Physical Description:** The blackened, skeletal ruins of a once-great southern city nestled within the Southern Valleys, bordering the Weeping Swamp. Deep beneath it lies a hidden, untouched Weave Pit.
+-   **Atmosphere:** A place of profound tragedy and active menace, a tomb haunted by Asakael's forces. Yet, it holds the world's greatest secret: an island of absolute purity in a sea of corruption.
+-   **Key Features:**
+-   **Subterranean Vault (Weave Pit):** A hidden, ancient place of immense, concentrated Resonance. It is a natural fortress of pure energy that Asakael's Dissonance cannot penetrate. This is the group's ultimate destination, and the only Weave Pit whose location Sileus knows for a fact. The chamber itself contains massive pillars of obsidian.
+-   **The Flawed Pillar:** One specific obsidian pillar inside the Weave Pit with a deep, milky-white, crystalline fracture—an obvious, critical weak point that Arana targets.
 -   **\[ASAKAEL'S LAIR - THE CRATER OF NEGATION\]**
--   **Physical Description:** Not a structure, but the *absence* of one. A crater of pure non-existence, a sphere of perfect blackness that does not reflect light. Reality itself seems to fray at its edges.
+-   **Physical Description:** Not a structure, but the *absence* of one. A crater of pure non-existence at the southern-most tip of the continent, a sphere of perfect blackness that does not reflect light. Reality itself seems to fray at its edges, depicted as a black, fractured wound in the world.
 -   **Atmosphere:** Absolute, conceptual horror. It exerts a crushing metaphysical pressure, a feeling of being actively unmade.
 
 **THE ANCIENT UNDERGROUND**
 
 -   **\[THE WEAVER'S PATHS\]**
--   **Physical Description:** A vast, ancient subterranean network. The tunnels vary from smooth, circular passages where the rock appears *braided* to rough-hewn natural caverns. Faint, ethereal light is cast by strange minerals or fungi.
--   **Key Features:** The Ouroboros Chamber, a large cavern with a colossal carving of two serpents chasing tails, with Leo's coin depicted at its center.
+-   **Physical Description:** A vast, ancient subterranean network connecting distant parts of the continent. The tunnels vary from smooth, circular passages where the rock appears *braided* to rough-hewn natural caverns. Faint, ethereal light is cast by strange minerals or fungi.
+-   **Key Features:**
+-   **Multiple Openings:** Known entrances exist near major cities like Eleium and Mithra, and in the open wilds of the southern Midlands.
+-   **The Ouroboros Chamber:** A large, hidden chamber located within the mountain range between Mithra and Eleium. It contains a colossal carving of two serpents chasing tails, with Leo's coin depicted at its center.
+-   **Junctions and Crossroads:** The network is not linear. It contains critical junctions where paths diverge, forcing travelers to make choices that can lead them to vastly different regions (e.g., toward Mithra or south toward the Midlands and Ull).
 
 #### **II. THE UNSEEN WORLD: MAGIC & MYSTERIES**
 
 -   **\[THE WEAVE\]:** The fundamental "magical physics" of Elysia, a tangible network of energy with spatial and temporal dimensions. Its natural state is **Resonance** (harmony), while its corrupted state is **Dissonance**.
 -   **\[ASAKAEL'S CORRUPTION\]:** The entity Asakael actively poisons The Weave, creating Dissonance that corrupts the land, its creatures, and people's minds. His lair is the source of this corruption.
 -   **\[AEGION'S BLOOD\]:** A rare power in Tia's bloodline that embodies pure Resonance. Its primary function is to repair The Weave. Its ultimate, secret ability is to trigger **Annihilation by Totality** when combined with the Paradox Coin.
--   **\[THE GATE\]:** A shimmering, vertical rift in the air created by the overload of temporal energy. It is a swirling vortex of light and shadow that serves as a controlled portal between worlds.
+-   **\[WEAVE PITS\]:** Rare, ancient, and often hidden locations of immense, concentrated, pure Resonance. They are natural "wells" of the Weave's power.
+-   **Function:** They function as natural fortresses against Dissonance; Asakael's creations cannot survive in their pure energy field. They are also places of immense power, ideal for studying or manipulating the fundamental nature of the Weave.
+-   **Known Locations:** Most have been lost to legend. Sileus, through his study of ancient texts, knows the factual location of only one: the Weave Pit hidden beneath the ruins of Ull.
+-   **\[THE GATE\]:** A shimmering, vertical rift in the air created by the overload of temporal energy. It is a swirling vortex of light and shadow at the heart of Asakael's Lair, serving as a controlled portal between worlds.
 
 #### **III. KEY ARTIFACTS**
 
@@ -92,7 +105,7 @@ Elysia is a world of stark, unsettling duality, a "fevered dream" for the uninit
 
 #### **VI. HISTORY & LEGENDS**
 
--   **\[THE WEAVERS\]:** Ancient, colossal beings who created the Weaver's Paths. Their carvings suggest a profound, forgotten understanding of The Weave's temporal dimensions.
+-   **\[THE WEAVERS\]:** Ancient, colossal beings who created the Weaver's Paths connecting distant locations like Mithra and Eleium. Their carvings, like the one in the Ouroboros Chamber, suggest a profound, forgotten understanding of The Weave's temporal dimensions.
 -   **\[THE FORGOTTEN BLOODLINE\]:** The knowledge of Aegion’s Blood was lost over time, forced into secrecy by past persecution from Asakael’s followers. Tia’s mother sending her to Eleium was a desperate attempt to reconnect with this lost history.
 
 * * *
@@ -105,4 +118,4 @@ Elysia is a world of stark, unsettling duality, a "fevered dream" for the uninit
 **TRANSITIONS BETWEEN LOCATIONS**
 
 -   **The Descent:** Travel from north to south is a journey of environmental and psychological decay, where color, life, and hope are gradually leached from the world.
--   **Surface to Underground:** Entering the Weaver's Paths is a transition from the living world to an ancient, silent, and timeless space, marked by echoes and strange, faint light.
+-   **Surface to Underground:** Entering the Weaver's Paths is a transition from the living world to an ancient, silent, and timeless space. The journey is not linear, but a series of choices at junctions that determine the traveler's ultimate destination.
