@@ -547,6 +547,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } finally {
                 this.abortController = null;
+                if (isSelection) {
+                    this.quill.setSelection(this.originalSelectionRange.index, this.originalSelectionRange.length, Quill.sources.SILENT);
+                }
             }
         }
 
@@ -559,7 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
                 this.quill.setSelection(this.llmSuggestionRange.index + this.llmSuggestionRange.length, 0, Quill.sources.USER);
                 this.llmSuggestionRange = null;
-                this.originalSelectionRange = null; // Clear original selection
             }
         }
 
@@ -573,7 +575,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.llmSuggestionRange = null;
                 this.quill.setSelection(originalIndex, 0, Quill.sources.USER);
             }
-            this.originalSelectionRange = null; // Clear original selection
+            if (this.originalSelectionRange) {
+                this.quill.setSelection(this.originalSelectionRange.index, this.originalSelectionRange.length, Quill.sources.SILENT);
+            }
         }
 
         // --- Formatting & Content ---
