@@ -1028,7 +1028,7 @@ def inline_llm_continue_stream():
     """Get a streaming response from the LLM based on the provided context."""
     data = request.json
     context = data.get("context", "")
-    action_beats = data.get("action_beats", "")
+    # action_beats = data.get("action_beats", "")
 
     if not context:
         return Response(
@@ -1037,17 +1037,17 @@ def inline_llm_continue_stream():
             mimetype="application/json",
         )
 
-    master_prompt = get_master_prompt()
+    # master_prompt = get_master_prompt()
 
     book_agents = BookAgents(agent_config)
     book_agents.create_agents("", 0)  # No initial prompt or chapters needed
 
     stream = book_agents.generate_content_stream(
-        "inline_writer",
+        "inline_continuer",
         prompts.INLINE_CONTINUE_PROMPT.format(
             context=context,
-            user_input=master_prompt,
-            action_beats=action_beats,
+            user_input="",
+            action_beats="",
         ),
     )
 
@@ -1082,7 +1082,8 @@ def inline_llm_revise_stream():
     """Get a streaming response from the LLM based on the provided context."""
     data = request.json
     context = data.get("context", "")
-    action_beats = data.get("action_beats", "")
+    # action_beats = data.get("action_beats", "")
+    user_prompt = data.get("user_prompt", "")
 
     if not context:
         return Response(
@@ -1091,17 +1092,17 @@ def inline_llm_revise_stream():
             mimetype="application/json",
         )
 
-    master_prompt = get_master_prompt()
+    # master_prompt = get_master_prompt()
 
     book_agents = BookAgents(agent_config)
     book_agents.create_agents("", 0)  # No initial prompt or chapters needed
 
     stream = book_agents.generate_content_stream(
-        "inline_writer",
+        "inline_reviser",
         prompts.INLINE_REVISE_PROMPT.format(
             context=context,
-            user_input=master_prompt,
-            action_beats=action_beats,
+            user_input=user_prompt,
+            action_beats="",  # if I include action_beats, the LLM does not revise, but add a lot more content
         ),
     )
 

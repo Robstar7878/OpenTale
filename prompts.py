@@ -226,29 +226,31 @@ And considering:
 
 # Inline continue prompt
 INLINE_CONTINUE_PROMPT = """Instructions:
-Continue the story below without repeating the story unless it is for literary effect. Include only the text you are adding. You should read what is before the tag and match the same style and tone, so the next text fits into the narrative properly.
+You are continuing a story. Do not repeat what has already been written unless doing so briefly for literary effect. Your continuation should match the tone, voice, and style of the preceding text.
 
-Story:
+Output only the continuation — no headings, explanations, or tags.
+
+Story so far:
 {context}
 
-Additional instructions for the revision if available (Ignore if not found):
-User Input:
-{user_input}
-
-Action Beats:
-{action_beats}
+Optional guidance (use only if helpful):
+User input: {user_input}
+Action beats: {action_beats}
 """
 
 # Inline revise prompt
-INLINE_REVISE_PROMPT = """Instructions:
-You will be doing a revision of text within the passage tags [passage][/passage]. You will include only text and not tags. Follow any instructions found in between [ ] inside of the passage.
+INLINE_REVISE_PROMPT = """Revise only the text found between [passage] and [/passage]. Improve clarity, tone, rhythm, and emotional or narrative impact. You may extend the original text, but the result must be no shorter than the original and no more than approximately three times its length.
 
-[passage]{context}[/passage]
+Rules:
+- Output only the revised text. Do NOT include any tags or explanations.
+- Follow any optional user input, or action beats if they are present below. Ignore them if not.
+- Preserve the meaning and intention of the original text.
+- Avoid unnecessary filler — all additions must serve tone, character, or clarity.
 
-Additional instructions for the revision if available (Ignore if not found):
-User Input:
-{user_input}
+[passage]
+{context}
+[/passage]
 
-Action Beats:
-{action_beats}
+User input: {user_input}  
+Action beats: {action_beats}
 """
